@@ -38,10 +38,21 @@ function Changepasswordpage() {
     })
       .then((response) => {
         console.log(response);
-        showToastSuccess("Password has been changed successfully")
+        showToastSuccess("Password has been changed successfully");
       })
-      .catch((err) => console.log(err));
-      showToastError("Something went wrong please try again")
+      .catch((err) => {
+        let errorMessage = "Something went wrong, please try again";
+        if (err.response) {
+          if (err.response.data) {
+            if (err.response.data.message) {
+              errorMessage = err.response.data.message;
+            }
+          }
+        } else {
+          console.log("Error without response:", err);
+        }
+        showToastError(errorMessage);
+      });
   };
 
   return (
