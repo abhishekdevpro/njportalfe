@@ -38,13 +38,15 @@ function Changepasswordpage() {
     })
       .then((response) => {
         console.log(response);
-        showToastSuccess("Password has been changed successfully");
+        if (response) {
+          showToastSuccess(response?.data?.message);
+        }
       })
       .catch((err) => {
         let errorMessage = "Something went wrong, please try again";
-        if (err.response) {
-          if (err.response.data) {
-            if (err.response.data.message) {
+        if (err?.response) {
+          if (err?.response?.data) {
+            if (err?.response?.data?.message) {
               errorMessage = err.response.data.message;
             }
           }
