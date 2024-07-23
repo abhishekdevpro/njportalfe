@@ -7,7 +7,8 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import reportWebVitals from "./reportWebVitals";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { AuthProvider } from "./services/AuthProvider";
 
 // import SimpleReactLightbox from "simple-react-lightbox";
 
@@ -16,9 +17,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
+      <AuthProvider>
+        <Router>
+          <App />
+        </Router>
+      </AuthProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
