@@ -178,6 +178,8 @@ import Vendorbulkuploadjobseeker from "./vendor/Vendorbulkuploadjobseeker";
 import Vendorregistration from "./vendor/Vendorregistration";
 import JobPagethirdparty from "./markup/Pages/JobPagethirdparty";
 import ProtectedRoute from "./services/ProtectedRoute";
+import EmployeeProtectedRoute from "./services/EmployeeProtectedRoute";
+import { EmployeeAuthProvider } from "./services/EmployeeAuthContext";
 
 function App() {
   const dispatch = useDispatch();
@@ -543,28 +545,31 @@ function App() {
 
       {/* routes for empployees */}
 
-      <Route path="/employee">
-        <Route path="verify/:token" element={<VerifyEmailemployee />} />
+      {/* Public Routes */}
+      <Route path="/employee/verify/:token" element={<VerifyEmailemployee />} />
+      <Route
+        path="/employee/forgot-password"
+        element={<ForgotPasswordemployee />}
+      />
+      <Route
+        path="/employee/reset-password/:token"
+        element={<ResetPasswordemployee />}
+      />
+      <Route path="/employee/login" element={<EmployeeLogin />} />
+      <Route path="/employee/register" element={<EmployeeRegister1 />} />
+      <Route path="/employee/register-2" element={<EmployeeRegister2 />} />
 
-        <Route path="forgot-password" element={<ForgotPasswordemployee />} />
+      <Route element={<EmployeeProtectedRoute />}>
         <Route
-          path="reset-password/:token"
-          element={<ResetPasswordemployee />}
-        />
-        <Route
-          path=""
+          path="/employee"
           element={
             <EmployeePrivateRoute>
               <EmployeeHomepage />
             </EmployeePrivateRoute>
           }
         />
-        <Route path="login" element={<EmployeeLogin />} />
-        <Route path="register" element={<EmployeeRegister1 />} />
-        <Route path="register-2" element={<EmployeeRegister2 />} />
-
         <Route
-          path="jobs-profile"
+          path="/employee/jobs-profile"
           element={
             <EmployeePrivateRoute>
               <EmployeeJobProfile />
@@ -572,7 +577,7 @@ function App() {
           }
         />
         <Route
-          path="category-company-jobs"
+          path="/employee/category-company-jobs"
           element={
             <EmployeePrivateRoute>
               <EmployeeCategorycompanyjob />
@@ -580,7 +585,7 @@ function App() {
           }
         />
         <Route
-          path="applicant-job"
+          path="/employee/applicant-job"
           element={
             <EmployeePrivateRoute>
               <EmployeeApplicantsJobPage />
@@ -588,7 +593,7 @@ function App() {
           }
         />
         <Route
-          path="jobs-my-resume"
+          path="/employee/jobs-my-resume"
           element={
             <EmployeePrivateRoute>
               <EmployeeJobmyresume />
@@ -596,25 +601,23 @@ function App() {
           }
         />
         <Route
-          path="jobs-applied-job"
+          path="/employee/jobs-applied-job"
           element={
             <EmployeePrivateRoute>
               <EmployeeJobsappliedjob />
             </EmployeePrivateRoute>
           }
         />
-
         <Route
-          path="jobs-alerts"
+          path="/employee/jobs-alerts"
           element={
             <EmployeePrivateRoute>
               <EmployeeJobsalert />
             </EmployeePrivateRoute>
           }
         />
-
         <Route
-          path="jobs-saved-jobs"
+          path="/employee/jobs-saved-jobs"
           element={
             <EmployeePrivateRoute>
               <EmployeeJobsavedjobs />
@@ -622,7 +625,7 @@ function App() {
           }
         />
         <Route
-          path="jobs-cv-manager"
+          path="/employee/jobs-cv-manager"
           element={
             <EmployeePrivateRoute>
               <EmployeeJobcvmanager />
@@ -630,7 +633,7 @@ function App() {
           }
         />
         <Route
-          path="jobs-change-password"
+          path="/employee/jobs-change-password"
           element={
             <EmployeePrivateRoute>
               <EmployeeChangepasswordpage />
@@ -638,7 +641,7 @@ function App() {
           }
         />
         <Route
-          path="company-profile"
+          path="/employee/company-profile"
           element={
             <EmployeePrivateRoute>
               <EmployeeCompanyprofile />
@@ -646,7 +649,7 @@ function App() {
           }
         />
         <Route
-          path="company-resume/:id"
+          path="/employee/company-resume/:id"
           element={
             <EmployeePrivateRoute>
               <EmployeeCompanyresume />
@@ -654,7 +657,7 @@ function App() {
           }
         />
         <Route
-          path="company-post-jobs/:id"
+          path="/employee/company-post-jobs/:id"
           element={
             <EmployeePrivateRoute>
               <EmployeeComponypostjobs />
@@ -662,7 +665,7 @@ function App() {
           }
         />
         <Route
-          path="company-manage-job/:id"
+          path="/employee/company-manage-job/:id"
           element={
             <EmployeePrivateRoute>
               <EmployeeCompanymanage />
@@ -670,7 +673,7 @@ function App() {
           }
         />
         <Route
-          path="company-transactions"
+          path="/employee/company-transactions"
           element={
             <EmployeePrivateRoute>
               <EmployeeCompanytransactions />
@@ -678,7 +681,7 @@ function App() {
           }
         />
         <Route
-          path="browse-candidates"
+          path="/employee/browse-candidates"
           element={
             <EmployeePrivateRoute>
               <EmployeeBrowsecandidates />
@@ -686,7 +689,7 @@ function App() {
           }
         />
         <Route
-          path="about-us"
+          path="/employee/about-us"
           element={
             <EmployeePrivateRoute>
               <EmployeeAboutus />
@@ -694,7 +697,7 @@ function App() {
           }
         />
         <Route
-          path="job-detail"
+          path="/employee/job-detail"
           element={
             <EmployeePrivateRoute>
               <EmployeeJobdetail />
@@ -702,61 +705,55 @@ function App() {
           }
         />
         <Route
-          path="companies"
+          path="/employee/companies"
           element={
             <EmployeePrivateRoute>
               <EmployeeCompanies />
             </EmployeePrivateRoute>
           }
         />
-
         <Route
-          path="free-job-alerts"
+          path="/employee/free-job-alerts"
           element={
             <EmployeePrivateRoute>
               <EmployeeFreejobalerts />
             </EmployeePrivateRoute>
           }
         />
-
         <Route
-          path="browse-job-list"
+          path="/employee/browse-job-list"
           element={
             <EmployeePrivateRoute>
               <EmployeeBrowsejoblist />
             </EmployeePrivateRoute>
           }
         />
-
         <Route
-          path="browse-job-grid"
+          path="/employee/browse-job-grid"
           element={
             <EmployeePrivateRoute>
               <EmployeeBrowsejobgrid />
             </EmployeePrivateRoute>
           }
         />
-
         <Route
-          path="browse-job-filter-list"
+          path="/employee/browse-job-filter-list"
           element={
             <EmployeePrivateRoute>
               <EmployeeBrowsejobfilterlist />
             </EmployeePrivateRoute>
           }
         />
-
         <Route
-          path="browse-job-filter-grid"
+          path="/employee/browse-job-filter-grid"
           element={
             <EmployeePrivateRoute>
               <EmployeeBrowsejobfiltergrid />
             </EmployeePrivateRoute>
           }
         />
-
         <Route
-          path="category-all-jobs"
+          path="/employee/category-all-jobs"
           element={
             <EmployeePrivateRoute>
               <EmployeeCategoryalljob />
@@ -764,7 +761,7 @@ function App() {
           }
         />
         <Route
-          path="category-designations-jobs"
+          path="/employee/category-designations-jobs"
           element={
             <EmployeePrivateRoute>
               <EmployeeCategorydesignationsjob />
@@ -772,7 +769,7 @@ function App() {
           }
         />
         <Route
-          path="category-jobs"
+          path="/employee/category-jobs"
           element={
             <EmployeePrivateRoute>
               <EmployeeCategoryjobs />
@@ -780,16 +777,15 @@ function App() {
           }
         />
         <Route
-          path="category-location-jobs"
+          path="/employee/category-location-jobs"
           element={
             <EmployeePrivateRoute>
               <EmployeeCategorylocationjobs />
             </EmployeePrivateRoute>
           }
         />
-
         <Route
-          path="category-skill-jobs"
+          path="/employee/category-skill-jobs"
           element={
             <EmployeePrivateRoute>
               <EmployeeCategoryskilljobs />
@@ -797,7 +793,7 @@ function App() {
           }
         />
         <Route
-          path="portfolio-grid-2"
+          path="/employee/portfolio-grid-2"
           element={
             <EmployeePrivateRoute>
               <EmployeePortfoliogrid2 />
@@ -805,16 +801,7 @@ function App() {
           }
         />
         <Route
-          path="register-2"
-          element={
-            <EmployeePrivateRoute>
-              <EmployeeRegister2 />
-            </EmployeePrivateRoute>
-          }
-        />
-
-        <Route
-          path="contact"
+          path="/employee/contact"
           element={
             <EmployeePrivateRoute>
               <EmployeeContact />
@@ -822,7 +809,7 @@ function App() {
           }
         />
         <Route
-          path="blog-classic"
+          path="/employee/blog-classic"
           element={
             <EmployeePrivateRoute>
               <EmployeeBlogclassic />
@@ -830,7 +817,7 @@ function App() {
           }
         />
         <Route
-          path="blog-classic-sidebar"
+          path="/employee/blog-classic-sidebar"
           element={
             <EmployeePrivateRoute>
               <EmployeeBlogclassicsidebar />
@@ -838,7 +825,7 @@ function App() {
           }
         />
         <Route
-          path="blog-detailed-grid"
+          path="/employee/blog-detailed-grid"
           element={
             <EmployeePrivateRoute>
               <EmployeeBlogdetailgrid />
@@ -846,209 +833,46 @@ function App() {
           }
         />
         <Route
-          path="blog-detailed-grid-sidebar"
+          path="/employee/blog-detailed-grid-sidebar"
           element={
             <EmployeePrivateRoute>
               <EmployeeBlogdetailgridsidebar />
             </EmployeePrivateRoute>
           }
         />
-
         <Route
-          path="term-of-use-nova-jobs"
-          element={
-            // <EmployeePrivateRoute>
-            <TermOfUse />
-            // </EmployeePrivateRoute>
-          }
-        />
-        <Route
-          path="resume-security"
-          element={
-            // <EmployeePrivateRoute>
-            <ResumeSecurity />
-            // </EmployeePrivateRoute>
-          }
-        />
-        <Route
-          path="data-privacy-framework"
-          element={
-            // <EmployeePrivateRoute>
-            <DataPrivacyFramework />
-            // </EmployeePrivateRoute>
-          }
-        />
-
-        <Route
-          path="cooking-advertising-overview"
-          element={
-            // <EmployeePrivateRoute>
-            <CookingAdvertising />
-            // </EmployeePrivateRoute>
-          }
-        />
-        <Route
-          path="data-sharing-helps-you"
-          element={
-            // <EmployeePrivateRoute>
-            <DataSharingHelps />
-            // </EmployeePrivateRoute>
-          }
-        />
-
-        <Route
-          path="scope-privacy-notice"
-          element={
-            // <EmployeePrivateRoute>
-            <ScopePrivacyNotice />
-            // </EmployeePrivateRoute>
-          }
-        />
-        <Route
-          path="information-novaus-jobs"
-          element={
-            // <EmployeePrivateRoute>
-            <InformationNovaUsJobs />
-            // </EmployeePrivateRoute>
-          }
-        />
-
-        <Route
-          path="retention-period-resume-visibility"
-          element={
-            // <EmployeePrivateRoute>
-            <RetentionPeriod />
-            // </EmployeePrivateRoute>
-          }
-        />
-        <Route
-          path="cookies-digital-advertising"
-          element={
-            // <EmployeePrivateRoute>
-            <CookiesDigitalAdvertising />
-            // </EmployeePrivateRoute>
-          }
-        />
-        <Route
-          path="privacy-rights"
-          element={
-            // <EmployeePrivateRoute>
-            <PrivacyRights />
-            // </EmployeePrivateRoute>
-          }
-        />
-
-        <Route
-          path="international-transfer-of-personal-information"
-          element={
-            // <EmployeePrivateRoute>
-            <InternationalTransfer />
-            // </EmployeePrivateRoute>
-          }
-        />
-        <Route
-          path="general-contact-information"
-          element={
-            // <EmployeePrivateRoute>
-            <GeneralContactInformation />
-            // </EmployeePrivateRoute>
-          }
-        />
-        <Route
-          path="security-center-account-management"
-          element={
-            // <EmployeePrivateRoute>
-            <SecurityCenterAccountManagement />
-            // </EmployeePrivateRoute>
-          }
-        />
-        <Route
-          path="safeguard-from-email-scams"
-          element={
-            // <EmployeePrivateRoute>
-            <EmailScams />
-            // </EmployeePrivateRoute>
-          }
-        />
-        <Route
-          path="online-interview-scams"
-          element={
-            // <EmployeePrivateRoute>
-            <OnlineInterviewScams />
-            // </EmployeePrivateRoute>
-          }
-        />
-        <Route
-          path="security-bug-reporting"
-          element={
-            // <EmployeePrivateRoute>
-            <SecurityBugReporting />
-            // </EmployeePrivateRoute>
-          }
-        />
-        <Route
-          path="accessibility-center"
-          element={
-            // <EmployeePrivateRoute>
-            <AccessibilityCenter />
-            // </EmployeePrivateRoute>
-          }
-        />
-        <Route
-          path="howitworks-for-employee"
-          element={
-            // <EmployeePrivateRoute>
-            <HowItWorksEmployee />
-            // </EmployeePrivateRoute>
-          }
-        />
-        <Route
-          path="howitworks-for-candidates"
-          element={
-            // <EmployeePrivateRoute>
-            <HowItWorksCandidates />
-            // </EmployeePrivateRoute>
-          }
-        />
-        <Route
-          path="profilepage/:id"
-          element={
-           
-              <ProfilePage />
-           
-          }
-        />
-{/* edgvhdsbbv */}
-        <Route
-          path="messages"
-          element={
-            <EmployeePrivateRoute>
-              <Messages />
-            </EmployeePrivateRoute>
-          }
-        />
-
-        <Route
-          path="blog-left-img"
+          path="/employee/blog-left-img"
           element={
             <EmployeePrivateRoute>
               <EmployeeBlogleftimg />
             </EmployeePrivateRoute>
           }
         />
-
         <Route
-          path="blog-details"
+          path="/employee/blog-details"
           element={
             <EmployeePrivateRoute>
               <EmployeeBlogdetail />
             </EmployeePrivateRoute>
           }
         />
-
-        <Route path="candidate-listing" element={<EmployeeJobPage />} />
-        <Route path="*" element={<EmployeeError404 />} />
+        <Route path="/employee/profilepage/:id" element={<ProfilePage />} />
+        <Route
+          path="/employee/messages"
+          element={
+            <EmployeePrivateRoute>
+              <Messages />
+            </EmployeePrivateRoute>
+          }
+        />
+        <Route
+          path="/employee/candidate-listing"
+          element={<EmployeeJobPage />}
+        />
       </Route>
+
+      {/* Error Route */}
+      <Route path="/employee/*" element={<EmployeeError404 />} />
     </Routes>
   );
 }

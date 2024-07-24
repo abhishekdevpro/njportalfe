@@ -9,6 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthProvider } from "./services/AuthProvider";
+import { EmployeeAuthProvider } from "./services/EmployeeAuthContext";
 
 // import SimpleReactLightbox from "simple-react-lightbox";
 
@@ -17,11 +18,13 @@ import { AuthProvider } from "./services/AuthProvider";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <AuthProvider>
-        <Router>
-          <App />
-        </Router>
-      </AuthProvider>
+      <EmployeeAuthProvider>
+        <AuthProvider>
+          <Router>
+            <App />
+          </Router>
+        </AuthProvider>
+      </EmployeeAuthProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
