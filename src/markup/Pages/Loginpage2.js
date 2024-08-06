@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { Link, Redirect, useNavigate } from "react-router-dom";
 import {
@@ -23,6 +23,12 @@ function Login(props) {
   const navigate = useNavigate();
   const notify = (data) => toast.warning(data);
 
+  const isLogin = localStorage.getItem("jobSeekerLoginToken");
+  useEffect(() => {
+    if (isLogin) {
+      navigate("/user");
+    }
+  }, []);
   const handlePostRequest = async (e) => {
     e.preventDefault();
     if (password === "") {

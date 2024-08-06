@@ -72,6 +72,7 @@ function EmployeeLogin(props) {
         console.log(response, "login");
         localStorage.setItem("employeeLoginToken", response?.data?.data?.token);
         navigate("/employee");
+        toast.success(response.data.message);
       })
       .catch((err) => {
         console.log(err);
@@ -81,7 +82,7 @@ function EmployeeLogin(props) {
   };
   return (
     <div className="page-wraper">
-      <Header/>
+      <Header />
       <ToastContainer />
       <div
         className="page-content bg-white login-style2"

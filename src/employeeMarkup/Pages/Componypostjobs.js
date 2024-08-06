@@ -171,7 +171,8 @@ function EmployeeComponypostjobs() {
             selectedState: res.data.data.job_detail.state_id,
             selectedCountry: res.data.data.job_detail.country_id,
             job_title: res.data.data.job_detail.job_title,
-            salary: res.data.data.job_detail.salary
+            salary: res.data.data.job_detail.salary,
+            experience_level_id: res.data.data.job_detail.experience_level_id,
           })
         );
         dispatch(setSkillsData(res.data.data.job_detail.skills_arr));
