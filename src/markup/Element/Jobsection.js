@@ -28,12 +28,15 @@ function Jobsection() {
           },
         }
       );
-      console.log(response, "res");
+      console.log(response, "resData");
 
       // Sort the job application data by updated_at in descending order
+      console.log(response.data.data,"Check")
       const sortedData = response.data.data.sort(
-        (a, b) => new Date(b.job_detail.updated_at) - new Date(a.job_detail.updated_at)
+        (a, b) =>
+          new Date(b.job_detail.updated_at) - new Date(a.job_detail.updated_at)
       );
+      console.log("sorteddata",sortedData)
 
       dispatch(setJobApplicationData(sortedData));
       setSkeleton(false);
@@ -90,8 +93,6 @@ function Jobsection() {
     }
   };
 
-  
-
   return (
     <div className="section-full bg-white content-inner-2">
       <ToastContainer />
@@ -104,11 +105,11 @@ function Jobsection() {
               <h2 className="m-b5">Recent Jobs</h2>
               <h6 className="fw4 m-b0">20+ Recently Added Jobs</h6>
             </div>
-            <div className="align-self-end mx-2">
+            {/*<div className="align-self-end mx-2">
               <Link to={"/user/jobthirdparty"} className="site-button button-sm">
                 Thirdparty
               </Link>
-            </div>
+            </div> */}
             <div className="align-self-end">
               <Link to={"/user/job"} className="site-button button-sm">
                 Browse All Jobs <i className="fa fa-long-arrow-right"></i>
@@ -125,22 +126,28 @@ function Jobsection() {
                         <div className="d-flex m-b30">
                           <div className="job-post-company">
                             <span>
-                              <img src={require("./../../images/logo/icon1.png")} alt="Company Logo"
-                             
+                              <img
+                                src={require("./../../images/logo/icon1.png")}
+                                alt="Company Logo"
                               />
                             </span>
                           </div>
-                          {console.log(logo,'logo this is logo')}
+                          {console.log(logo, "logo this is logo")}
                           <div className="job-post-info">
                             <h4>
-                            <Link to={{
-    pathname: `/user/job`,
-    state: { job: jobApplicationData }
-  }}>   {item.job_detail.job_title}    </Link>
-                              
+                              <Link
+                                to={{
+                                  pathname: `/user/job/${item.s_no}`,
+                                  state: { job: jobApplicationData },
+                                }}
+                              >
+                                {" "}
+                                {item.job_detail.job_title}{" "}
+                              </Link>
                             </h4>
                             <h6>{item.companies.company_name}</h6>
                             <ul>
+                          
                               <li>
                                 <i className="fa fa-map-marker"></i>{" "}
                                 {item.cities.name}, {item.states.name},{" "}
@@ -153,17 +160,26 @@ function Jobsection() {
                                 </li>
                               ) : null}
                               <li>
-                                <i className="fa fa-clock-o"></i>{" "}
-                                {moment(item.job_detail.updated_at).fromNow()}
+                                {console.log(
+                                  "time",
+                                  item.job_detail.updated_at
+                                )}
+                                <i className="fa fa-clock-o"></i> 
+                                {moment(item.job_detail.created_at).fromNow()}
                               </li>
                             </ul>
                             {item.job_detail.skills_arr ? (
                               <div className="mx-1">
-                                {item.job_detail.skills_arr.map((skill, index) => (
-                                  <span key={index} className="badge badge-primary m-2">
-                                    {skill}
-                                  </span>
-                                ))}
+                                {item.job_detail.skills_arr.map(
+                                  (skill, index) => (
+                                    <span
+                                      key={index}
+                                      className="badge badge-primary m-2"
+                                    >
+                                      {skill}
+                                    </span>
+                                  )
+                                )}
                               </div>
                             ) : null}
                           </div>

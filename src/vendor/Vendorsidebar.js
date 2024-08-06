@@ -89,12 +89,13 @@ const VendorCompanySideBar = ({ active }) => {
     getLogo(); // Fetch logo on component mount
   }, []); // Empty dependency array ensures it runs only once
 
-  console.log(logo, "lavi");
 
   const companyData = useSelector(
     (state) => state.companyDataSlice.companyData
   );
   let companyDetail = companyData?.company_detail;
+
+  console.log("compaysidebardetail",companyDetail)
 
   const [file, setFile] = useState([]);
   const handleImageChange = (e) => {

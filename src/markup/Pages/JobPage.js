@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate,useLocation } from "react-router-dom";
 import Header from "./../Layout/Header";
 import Footer from "./../Layout/Footer";
-import { FaSave, FaSearch, FaTimes } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Tab, Nav, Form } from "react-bootstrap";
@@ -27,127 +26,41 @@ import JobPageSkeleton from "../skeleton/jobPage";
 import TwoBoxWithLinesSkeleton from "../skeleton/twoBoxLines";
 import { useParams } from "react-router-dom";
 import SkeletonImg from "../../images/jobpage/No data-pana.png";
-
+import { FaSearch, FaBars } from 'react-icons/fa';
 function JobPage() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [selectedJob, setSelectedJob] = useState(null);
   const [show, setShow] = useState(false);
-  const [activeTab, setActiveTab] = useState("contact-info"); // Initial active tab
+  const [activeTab, setActiveTab] = useState("contact-info");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showSkeleton, setShowSkeleton] = useState(true);
 
-  const dispatch = useDispatch();
   const jobApplicationData = useSelector(
     (state) => state.jobApplicationSlice.jobApplicationData
   );
   const token = localStorage.getItem("jobSeekerLoginToken");
-  const location = useLocation();
   const jobFromState = location.state?.job || null;
-
-  useEffect(() => {
-    if (jobFromState) {
-      setSelectedJob(jobFromState);
-    } else if (jobApplicationData.length > 0) {
-      setSelectedJob(jobApplicationData[0]);
-    }
-  }, [jobFromState, jobApplicationData]);
 
   const screeningQuestion = useSelector(
     (state) => state.jobApplicationScreeningQues.selectedScreeningQuestions
   );
 
-  
+  const jobApplicationValues = useSelector(
+    (state) => state.jobApplicationSlice.jobApplicationValues
+  );
 
-  const [showSkeleton, setShowSkeleton] = useState(true);
-  const navigate = useNavigate();
-  const toggleFabJobs = async () => {
-    try {
-      await axios({
-        url: "https://api.novajobs.us/api/jobseeker/job-favorites",
-        method: "POST",
-        headers: { Authorization: token },
-        data: {
-          job_id: selectedJob.job_detail.id,
-        },
-      })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchJobApplicationData = async () => {
-    try {
-      const response = await axios.get(
-        "https://api.novajobs.us/api/jobseeker/job-lists",
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
-      dispatch(setJobApplicationData(response.data.data));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    // New: Set selectedJob based on job title from URL or state
-    const searchParams = new URLSearchParams(location.search);
-    const jobTitleFromState = location.state?.jobTitle || searchParams.get("jobTitle");
-    
-    if (jobTitleFromState) {
-      const job = jobApplicationData.find(
-        (job) => job.job_detail.job_title === jobTitleFromState
-      );
-      if (job) setSelectedJob(job);
-    }
-  }, [jobApplicationData, location]);
-
-  const convertToPlainText = (htmlContent) => {
-    const div = document.createElement("div");
-    div.innerHTML = htmlContent;
-    let plainText = div.innerText || div.textContent || "";
-    plainText = plainText.split(/\s+/).slice(0, 30).join(" ");
-    return plainText;
-  };
-
-  useEffect(() => {
-    setSelectedJob(jobApplicationData[0]);
-    console.log(jobApplicationData, "error");
-  }, [jobApplicationData]);
-
-  const handleSelectJob = (job) => {
-    setSelectedJob(job);
-  };
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const handleNext = () => {
-    // Update activeTab state based on the current active tab
-    if (activeTab === "contact-info") {
-      setActiveTab("additional-info");
-    } else if (activeTab === "additional-info") {
-      setActiveTab("resume-info");
-    } else if (activeTab === "resume-info") {
-      setActiveTab("immediate-info");
-    }
-  };
-
-  const handlePrev = () => {
-    // Update activeTab state based on the current active tab
-    if (activeTab === "immediate-info") {
-      setActiveTab("resume-info");
-    } else if (activeTab === "resume-info") {
-      setActiveTab("additional-info");
-    } else if (activeTab === "additional-info") {
-      setActiveTab("contact-info");
-    }
-  };
+  const [countries, setCountries] = useState([{ id: 0, name: "" }]);
+  const [states, setStates] = useState([{ id: 0, name: "" }]);
+  const [cities, setCities] = useState([{ id: 0, name: "" }]);
+  const [workplace_type, setWorkplace_type] = useState([{ id: 0, name: "" }]);
+  const [experience, setExperience] = useState([{ id: 0, name: "" }]);
+  const [job_type, setJobType] = useState([{ id: 0, name: "" }]);
+  const [jobCategories, setJobCategories] = useState([{ id: 0, name: "" }]);
+  const [activeDropDown, setActiveDropDown] = useState("");
 
   useEffect(() => {
     const fetchJobApplicationData = async () => {
@@ -162,230 +75,33 @@ function JobPage() {
         );
         dispatch(setJobApplicationData(response.data.data));
         setShowSkeleton(false);
+        
+        // If we have an ID from params, find and set the matching job
+        if (id) {
+          const matchingJob = response.data.data.find(job => job.s_no.toString() === id);
+          if (matchingJob) {
+            setSelectedJob(matchingJob);
+          } else {
+            console.log(`No job found with id: ${id}`);
+          }
+        } else if (jobFromState) {
+          setSelectedJob(jobFromState);
+        } else if (response.data.data.length > 0) {
+          setSelectedJob(response.data.data[0]);
+        }
       } catch (error) {
-        console.log(error);
+        console.error('Error fetching job data:', error);
       }
     };
+
     fetchJobApplicationData();
-  }, [dispatch, token]);
-
-  const jobApplicationValues = useSelector(
-    (state) => state.jobApplicationSlice.jobApplicationValues
-  );
-
-  // console.table(jobApplicationValues, "values");
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "country_id") {
-      const selectedIndex = e.target.selectedIndex;
-      const text = e.target.options[selectedIndex].text;
-      // console.log(text);
-      dispatch(
-        setJobApplicationValues({
-          ...jobApplicationValues,
-          country: text,
-          [name]: value,
-        })
-      );
-      return;
-    }
-
-    if (name === "city_id") {
-      const selectedIndex = e.target.selectedIndex;
-      const text = e.target.options[selectedIndex].text;
-      // console.log(text);
-      dispatch(
-        setJobApplicationValues({
-          ...jobApplicationValues,
-          city: text,
-          [name]: value,
-        })
-      );
-      return;
-    }
-
-    if (name === "state_id") {
-      const selectedIndex = e.target.selectedIndex;
-      const text = e.target.options[selectedIndex].text;
-      // console.log(text);
-      dispatch(
-        setJobApplicationValues({
-          ...jobApplicationValues,
-          state: text,
-          [name]: value,
-        })
-      );
-      return;
-    }
-    dispatch(
-      setJobApplicationValues({ ...jobApplicationValues, [name]: value })
-    );
-  };
-  const [countries, setCountries] = useState([
-    {
-      id: 0,
-      name: "",
-    },
-  ]);
-
-  const [states, setStates] = useState([
-    {
-      id: 0,
-      name: "",
-    },
-  ]);
-
-  const [cities, setCities] = useState([
-    {
-      id: 0,
-      name: "",
-    },
-  ]);
-
-  const [workplace_type, setWorkplace_type] = useState([
-    {
-      id: 0,
-      name: "",
-    },
-  ]);
-
-  const [experience, setExperience] = useState([
-    {
-      id: 0,
-      name: "",
-    },
-  ]);
-
-  const [job_type, setJobType] = useState([
-    {
-      id: 0,
-      name: "",
-    },
-  ]);
-
-  const [jobCategories, setJobCategories] = useState([
-    {
-      id: 0,
-      name: "",
-    },
-  ]);
-  const [activeDropDown, setActiveDropDown] = useState("");
+  }, [id, jobFromState, dispatch, token]);
 
   useEffect(() => {
     if (jobApplicationValues.jobCategory !== "") {
       setActiveDropDown("active_dropDown");
     }
   }, [jobApplicationValues.jobCategory]);
-  const getJobTyes = async () => {
-    await axios({
-      method: "GET",
-      url: "https://api.novajobs.us/api/jobseeker/job-types",
-
-      headers: {
-        Authorization: token,
-      },
-    })
-      .then((res) => {
-        // console.log(res.data.data, "JOBTYPE");
-        setJobType(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err, "joy");
-      });
-  };
-
-  const getWorkplaceType = () => {
-    axios({
-      method: "GET",
-      url: "https://api.novajobs.us/api/jobseeker/workplace-types",
-      headers: {
-        Authorization: token,
-      },
-    })
-      .then((response) => {
-        // console.log(response.data.data);
-        setWorkplace_type(response.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log(err.response.data.message);
-        showToastError(err?.response?.data?.message);
-      });
-  };
-
-  const getCountry = () => {
-    axios({
-      method: "GET",
-      url: "https://api.novajobs.us/api/jobseeker/countries",
-      headers: {
-        Authorization: token,
-      },
-    })
-      .then((response) => {
-        let country = response.data.data;
-        setCountries(country);
-      })
-      .catch((err) => {
-        console.log(err);
-        setCities([]);
-      });
-  };
-
-  const getState = () => {
-    axios({
-      method: "GET",
-      url: `https://api.novajobs.us/api/jobseeker/stats/231`,
-      headers: {
-        Authorization: token,
-      },
-    })
-      .then((response) => {
-        // console.log(response.data.data, "STATE");
-        setStates(response.data.data);
-      })
-      .catch((err) => {
-        console.log(err, "STATE");
-        setStates([]);
-        setCities([]);
-      });
-  };
-
-  const getCities = () => {
-    axios({
-      method: "GET",
-      url: `https://api.novajobs.us/api/jobseeker/cities/${jobApplicationValues.state_id}`,
-      headers: {
-        Authorization: token,
-      },
-    })
-      .then((response) => {
-        // console.log(response, "CITY");
-        setCities(response.data.data);
-      })
-      .catch((err) => {
-        console.log(err, "CITY");
-        setCities([]);
-      });
-  };
-
-  const getExperience = () => {
-    axios({
-      method: "GET",
-      url: "https://api.novajobs.us/api/jobseeker/experience-level",
-      headers: {
-        Authorization: token,
-      },
-    })
-      .then((response) => {
-        // console.log(response.data.data);
-        setExperience(response.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log(err.response.data.message);
-        showToastError(err?.response?.data?.message);
-      });
-  };
 
   useEffect(() => {
     getCountry();
@@ -415,81 +131,632 @@ function JobPage() {
     getCities();
   }, [jobApplicationValues.state_id]);
 
-  useEffect(() => {
-    axios({
-      method: "GET",
-      url: "https://api.novajobs.us/api/jobseeker/job-categories",
-      headers: {
-        Authorization: token,
-      },
-    })
-      .then((response) => {
-        console.log(response.data.data, "jobCategory");
-        setJobCategories(response.data.data);
-      })
-      .catch((err) => console.log(err, "jobCategory"));
-  }, []);
-
-  const submitApplication = async () => {
-    await axios({
-      url: "https://api.novajobs.us/api/jobseeker/jobs-applied",
-      method: "POST",
-      headers: {
-        Authorization: token,
-      },
-      data: {
-        job_id: selectedJob.job_detail.id,
-        screen_questions: screeningQuestion,
-      },
-    })
-      .then((res) => {
-        // console.log(res);
-        fetchJobApplicationData();
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log(err.response.data.message);
-        showToastError(err?.response?.data?.message);
-      });
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
   };
 
-  const selectedLocation = localStorage.getItem("selectedLocation");
-  const title_keyword = localStorage.getItem("title_keyword");
+  const toggleFabJobs = async () => {
+    try {
+      await axios({
+        url: "https://api.novajobs.us/api/jobseeker/job-favorites",
+        method: "POST",
+        headers: { Authorization: token },
+        data: {
+          job_id: selectedJob.job_detail.id,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSelectJob = (job) => {
+    setSelectedJob(job);
+  };
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleNext = () => {
+    if (activeTab === "contact-info") {
+      setActiveTab("additional-info");
+    } else if (activeTab === "additional-info") {
+      setActiveTab("resume-info");
+    } else if (activeTab === "resume-info") {
+      setActiveTab("immediate-info");
+    }
+  };
+
+  const handlePrev = () => {
+    if (activeTab === "immediate-info") {
+      setActiveTab("resume-info");
+    } else if (activeTab === "resume-info") {
+      setActiveTab("additional-info");
+    } else if (activeTab === "additional-info") {
+      setActiveTab("contact-info");
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "country_id" || name === "city_id" || name === "state_id") {
+      const selectedIndex = e.target.selectedIndex;
+      const text = e.target.options[selectedIndex].text;
+      dispatch(
+        setJobApplicationValues({
+          ...jobApplicationValues,
+          [name === "country_id" ? "country" : name === "city_id" ? "city" : "state"]: text,
+          [name]: value,
+        })
+      );
+    } else {
+      dispatch(
+        setJobApplicationValues({ ...jobApplicationValues, [name]: value })
+      );
+    }
+  };
+
+  const getJobTyes = async () => {
+    try {
+      const res = await axios.get("https://api.novajobs.us/api/jobseeker/job-types", {
+        headers: { Authorization: token },
+      });
+      setJobType(res.data.data);
+    } catch (err) {
+      console.log(err, "job type error");
+    }
+  };
+
+  const getWorkplaceType = async () => {
+    try {
+      const response = await axios.get("https://api.novajobs.us/api/jobseeker/workplace-types", {
+        headers: { Authorization: token },
+      });
+      setWorkplace_type(response.data.data);
+    } catch (err) {
+      console.log(err);
+      showToastError(err?.response?.data?.message);
+    }
+  };
+
+  const getCountry = async () => {
+    try {
+      const response = await axios.get("https://api.novajobs.us/api/jobseeker/countries", {
+        headers: { Authorization: token },
+      });
+      setCountries(response.data.data);
+    } catch (err) {
+      console.log(err);
+      setCities([]);
+    }
+  };
+
+  const getState = async () => {
+    try {
+      const response = await axios.get(`https://api.novajobs.us/api/jobseeker/stats/231`, {
+        headers: { Authorization: token },
+      });
+      setStates(response.data.data);
+    } catch (err) {
+      console.log(err, "STATE");
+      setStates([]);
+      setCities([]);
+    }
+  };
+
+  const getCities = async () => {
+    try {
+      const response = await axios.get(`https://api.novajobs.us/api/jobseeker/cities/${jobApplicationValues.state_id}`, {
+        headers: { Authorization: token },
+      });
+      setCities(response.data.data);
+    } catch (err) {
+      console.log(err, "CITY");
+      setCities([]);
+    }
+  };
+
+  const getExperience = async () => {
+    try {
+      const response = await axios.get("https://api.novajobs.us/api/jobseeker/experience-level", {
+        headers: { Authorization: token },
+      });
+      setExperience(response.data.data);
+    } catch (err) {
+      console.log(err);
+      showToastError(err?.response?.data?.message);
+    }
+  };
+
+  const submitApplication = async () => {
+    try {
+      await axios({
+        url: "https://api.novajobs.us/api/jobseeker/jobs-applied",
+        method: "POST",
+        headers: { Authorization: token },
+        data: {
+          job_id: selectedJob.job_detail.id,
+          screen_questions: screeningQuestion,
+        },
+      });
+      // fetchJobApplicationData();
+    } catch (err) {
+      console.log(err);
+      showToastError(err?.response?.data?.message);
+    }
+  };
+
+  console.log("SelectedJob", selectedJob);
+  console.log("JobApplicationData", jobApplicationData);
+
+  // const {id}  = useParams()
+  // console.log(id,"Parama")
+  // const [selectedJob, setSelectedJob] = useState(null);
+  // const [show, setShow] = useState(false);
+  // const [activeTab, setActiveTab] = useState("contact-info"); // Initial active tab
+  // const [sidebarOpen, setSidebarOpen] = useState(false);
+  // const dispatch = useDispatch();
+  // const jobApplicationData = useSelector(
+  //   (state) => state.jobApplicationSlice.jobApplicationData
+  // );
+  // const token = localStorage.getItem("jobSeekerLoginToken");
+  // const location = useLocation();
+  // const jobFromState = location.state?.job || null;
+
+  // useEffect(() => {
+  //   if (jobFromState) {
+  //     setSelectedJob(jobFromState);
+  //   } else if (jobApplicationData.length > 0) {
+  //     setSelectedJob(jobApplicationData[0]);
+  //   }
+  // }, [jobFromState, jobApplicationData]);
+
+  // const screeningQuestion = useSelector(
+  //   (state) => state.jobApplicationScreeningQues.selectedScreeningQuestions
+  // );
+
+  
+  // const toggleSidebar = () => {
+  //   setSidebarOpen(!sidebarOpen);
+  // };
+
+  // const [showSkeleton, setShowSkeleton] = useState(true);
+  // const navigate = useNavigate();
+  // const toggleFabJobs = async () => {
+  //   try {
+  //     await axios({
+  //       url: "https://api.novajobs.us/api/jobseeker/job-favorites",
+  //       method: "POST",
+  //       headers: { Authorization: token },
+  //       data: {
+  //         job_id: selectedJob.job_detail.id,
+  //       },
+  //     })
+  //       .then((res) => {
+  //         console.log(res);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // const fetchJobApplicationData = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       "https://api.novajobs.us/api/jobseeker/job-lists",
+  //       {
+  //         headers: {
+  //           Authorization: token,
+  //         },
+  //       }
+  //     );
+  //     dispatch(setJobApplicationData(response.data.data));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+ 
+  // useEffect(() => {
+  //   // New: Set selectedJob based on job title from URL or state
+  //   const searchParams = new URLSearchParams(location.search);
+  //   const jobTitleFromState = location.state?.jobTitle || searchParams.get("jobTitle");
+    
+  //   if (jobTitleFromState) {
+  //     const job = jobApplicationData.find(
+  //       (job) => job.job_detail.job_title === jobTitleFromState
+  //     );
+  //     if (job) setSelectedJob(job);
+  //   }
+  // }, [jobApplicationData, location]);
+
+  // const convertToPlainText = (htmlContent) => {
+  //   const div = document.createElement("div");
+  //   div.innerHTML = htmlContent;
+  //   let plainText = div.innerText || div.textContent || "";
+  //   plainText = plainText.split(/\s+/).slice(0, 30).join(" ");
+  //   return plainText;
+  // };
+
+  // useEffect(() => {
+  //   setSelectedJob(jobApplicationData[0]);
+  //   console.log(jobApplicationData, "error");
+  // }, [jobApplicationData]);
+ 
+  // console.log("Job data",selectedJob)
+   
+  // const handleSelectJob = (job) => {
+  //   setSelectedJob(job);
+  // };
+
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
+
+  // const handleNext = () => {
+  //   // Update activeTab state based on the current active tab
+  //   if (activeTab === "contact-info") {
+  //     setActiveTab("additional-info");
+  //   } else if (activeTab === "additional-info") {
+  //     setActiveTab("resume-info");
+  //   } else if (activeTab === "resume-info") {
+  //     setActiveTab("immediate-info");
+  //   }
+  // };
+
+  // const handlePrev = () => {
+  //   // Update activeTab state based on the current active tab
+  //   if (activeTab === "immediate-info") {
+  //     setActiveTab("resume-info");
+  //   } else if (activeTab === "resume-info") {
+  //     setActiveTab("additional-info");
+  //   } else if (activeTab === "additional-info") {
+  //     setActiveTab("contact-info");
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const fetchJobApplicationData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "https://api.novajobs.us/api/jobseeker/job-lists",
+  //         {
+  //           headers: {
+  //             Authorization: token,
+  //           },
+  //         }
+  //       );
+  //       dispatch(setJobApplicationData(response.data.data));
+  //       setShowSkeleton(false);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchJobApplicationData();
+  // }, [dispatch, token]);
+
+  // const jobApplicationValues = useSelector(
+  //   (state) => state.jobApplicationSlice.jobApplicationValues
+  // );
+
+  // // console.table(jobApplicationValues, "values");
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   if (name === "country_id") {
+  //     const selectedIndex = e.target.selectedIndex;
+  //     const text = e.target.options[selectedIndex].text;
+  //     // console.log(text);
+  //     dispatch(
+  //       setJobApplicationValues({
+  //         ...jobApplicationValues,
+  //         country: text,
+  //         [name]: value,
+  //       })
+  //     );
+  //     return;
+  //   }
+
+  //   if (name === "city_id") {
+  //     const selectedIndex = e.target.selectedIndex;
+  //     const text = e.target.options[selectedIndex].text;
+  //     // console.log(text);
+  //     dispatch(
+  //       setJobApplicationValues({
+  //         ...jobApplicationValues,
+  //         city: text,
+  //         [name]: value,
+  //       })
+  //     );
+  //     return;
+  //   }
+
+  //   if (name === "state_id") {
+  //     const selectedIndex = e.target.selectedIndex;
+  //     const text = e.target.options[selectedIndex].text;
+  //     // console.log(text);
+  //     dispatch(
+  //       setJobApplicationValues({
+  //         ...jobApplicationValues,
+  //         state: text,
+  //         [name]: value,
+  //       })
+  //     );
+  //     return;
+  //   }
+  //   dispatch(
+  //     setJobApplicationValues({ ...jobApplicationValues, [name]: value })
+  //   );
+  // };
+  // const [countries, setCountries] = useState([
+  //   {
+  //     id: 0,
+  //     name: "",
+  //   },
+  // ]);
+
+  // const [states, setStates] = useState([
+  //   {
+  //     id: 0,
+  //     name: "",
+  //   },
+  // ]);
+
+  // const [cities, setCities] = useState([
+  //   {
+  //     id: 0,
+  //     name: "",
+  //   },
+  // ]);
+
+  // const [workplace_type, setWorkplace_type] = useState([
+  //   {
+  //     id: 0,
+  //     name: "",
+  //   },
+  // ]);
+
+  // const [experience, setExperience] = useState([
+  //   {
+  //     id: 0,
+  //     name: "",
+  //   },
+  // ]);
+
+  // const [job_type, setJobType] = useState([
+  //   {
+  //     id: 0,
+  //     name: "",
+  //   },
+  // ]);
+
+  // const [jobCategories, setJobCategories] = useState([
+  //   {
+  //     id: 0,
+  //     name: "",
+  //   },
+  // ]);
+  // const [activeDropDown, setActiveDropDown] = useState("");
+
+  // useEffect(() => {
+  //   if (jobApplicationValues.jobCategory !== "") {
+  //     setActiveDropDown("active_dropDown");
+  //   }
+  // }, [jobApplicationValues.jobCategory]);
+  // const getJobTyes = async () => {
+  //   await axios({
+  //     method: "GET",
+  //     url: "https://api.novajobs.us/api/jobseeker/job-types",
+
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       // console.log(res.data.data, "JOBTYPE");
+  //       setJobType(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err, "joy");
+  //     });
+  // };
+
+  // const getWorkplaceType = () => {
+  //   axios({
+  //     method: "GET",
+  //     url: "https://api.novajobs.us/api/jobseeker/workplace-types",
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       // console.log(response.data.data);
+  //       setWorkplace_type(response.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       console.log(err.response.data.message);
+  //       showToastError(err?.response?.data?.message);
+  //     });
+  // };
+
+  // const getCountry = () => {
+  //   axios({
+  //     method: "GET",
+  //     url: "https://api.novajobs.us/api/jobseeker/countries",
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       let country = response.data.data;
+  //       setCountries(country);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       setCities([]);
+  //     });
+  // };
+
+  // const getState = () => {
+  //   axios({
+  //     method: "GET",
+  //     url: `https://api.novajobs.us/api/jobseeker/stats/231`,
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       // console.log(response.data.data, "STATE");
+  //       setStates(response.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err, "STATE");
+  //       setStates([]);
+  //       setCities([]);
+  //     });
+  // };
+
+  // const getCities = () => {
+  //   axios({
+  //     method: "GET",
+  //     url: `https://api.novajobs.us/api/jobseeker/cities/${jobApplicationValues.state_id}`,
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       // console.log(response, "CITY");
+  //       setCities(response.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err, "CITY");
+  //       setCities([]);
+  //     });
+  // };
+
+  // const getExperience = () => {
+  //   axios({
+  //     method: "GET",
+  //     url: "https://api.novajobs.us/api/jobseeker/experience-level",
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       // console.log(response.data.data);
+  //       setExperience(response.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       console.log(err.response.data.message);
+  //       showToastError(err?.response?.data?.message);
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   getCountry();
+  //   getExperience();
+  //   getWorkplaceType();
+  //   getJobTyes();
+  // }, []);
+
+  // useEffect(() => {
+  //   dispatch(
+  //     setJobApplicationValues({
+  //       ...jobApplicationValues,
+  //       state_id: 0,
+  //       city_id: 0,
+  //     })
+  //   );
+  //   getState();
+  // }, [jobApplicationValues.country_id]);
+
+  // useEffect(() => {
+  //   dispatch(
+  //     setJobApplicationValues({
+  //       ...jobApplicationValues,
+  //       city_id: 0,
+  //     })
+  //   );
+  //   getCities();
+  // }, [jobApplicationValues.state_id]);
+
+  // useEffect(() => {
+  //   axios({
+  //     method: "GET",
+  //     url: "https://api.novajobs.us/api/jobseeker/job-categories",
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       console.log(response.data.data, "jobCategory");
+  //       setJobCategories(response.data.data);
+  //     })
+  //     .catch((err) => console.log(err, "jobCategory"));
+  // }, []);
+
+  // const submitApplication = async () => {
+  //   await axios({
+  //     url: "https://api.novajobs.us/api/jobseeker/jobs-applied",
+  //     method: "POST",
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //     data: {
+  //       job_id: selectedJob.job_detail.id,
+  //       screen_questions: screeningQuestion,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       // console.log(res);
+  //       fetchJobApplicationData();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       console.log(err.response.data.message);
+  //       showToastError(err?.response?.data?.message);
+  //     });
+  // };
+
+  // const selectedLocation = localStorage.getItem("selectedLocation");
+  // const title_keyword = localStorage.getItem("title_keyword");
   const baseUrl =
     // "https://api.novajobs.us/api/jobseeker/job-lists/?page_size=7&is_publish=1";
     "https://api.novajobs.us/api/jobseeker/job-lists?page_size=7&is_publish=1";
 
   const params = new URLSearchParams();
 
-  if (jobApplicationValues.search_input) {
-    params.append("title_keywords", jobApplicationValues.search_input);
-  } else if (title_keyword) {
-    params.append("title_keywords", title_keyword);
-  }
+  // if (jobApplicationValues.search_input) {
+  //   params.append("title_keywords", jobApplicationValues.search_input);
+  // } else if (title_keyword) {
+  //   params.append("title_keywords", title_keyword);
+  // }
 
-  if (jobApplicationValues.state_id) {
-    params.append("location", jobApplicationValues.state_id);
-  } else if (selectedLocation) {
-    params.append("location", selectedLocation);
-  }
+  // if (jobApplicationValues.state_id) {
+  //   params.append("location", jobApplicationValues.state_id);
+  // } else if (selectedLocation) {
+  //   params.append("location", selectedLocation);
+  // }
 
-  if (jobApplicationValues.workplace_type) {
-    params.append("workplace_type", jobApplicationValues.workplace_type);
-  }
+  // if (jobApplicationValues.workplace_type) {
+  //   params.append("workplace_type", jobApplicationValues.workplace_type);
+  // }
 
-  if (jobApplicationValues.job_type) {
-    params.append("job_type", jobApplicationValues.job_type);
-  }
-  if (jobApplicationValues.experience_level) {
-    params.append("experience_level", jobApplicationValues.experience_level);
-  }
-  if (jobApplicationValues.jobCategory) {
-    params.append("job_category_id", jobApplicationValues.jobCategory);
-  } else if (localStorage.getItem("jobCategory")) {
-    params.append("job_category_id", localStorage.getItem("jobCategory"));
-  }
+  // if (jobApplicationValues.job_type) {
+  //   params.append("job_type", jobApplicationValues.job_type);
+  // }
+  // if (jobApplicationValues.experience_level) {
+  //   params.append("experience_level", jobApplicationValues.experience_level);
+  // }
+  // if (jobApplicationValues.jobCategory) {
+  //   params.append("job_category_id", jobApplicationValues.jobCategory);
+  // } else if (localStorage.getItem("jobCategory")) {
+  //   params.append("job_category_id", localStorage.getItem("jobCategory"));
+  // }
 
-  // const url = `${baseUrl}?${params.toString()}`;
+  // // const url = `${baseUrl}?${params.toString()}`;
   const url = `${baseUrl}&${params.toString()}`;
   console.log(url, "this is the url");
   const handleGetReq = () => {
@@ -506,28 +773,29 @@ function JobPage() {
         } else {
           dispatch(setJobApplicationData([]));
         }
-
+       
         console.log(response, "custom data");
       })
       .catch((err) => {
         console.log(err, "custom err");
       });
   };
-  useEffect(() => {
-    if (
-      selectedLocation ||
-      title_keyword ||
-      localStorage.getItem("jobCategory") !== null
-    ) {
-      handleGetReq();
-    }
-    return () => {
-      localStorage.removeItem("selectedLocation");
-      localStorage.removeItem("title_keyword");
-      localStorage.removeItem("jobCategory");
-    };
-  }, []);
-
+  // useEffect(() => {
+  //   if (
+  //     selectedLocation ||
+  //     title_keyword ||
+  //     localStorage.getItem("jobCategory") !== null
+  //   ) {
+  //     handleGetReq();
+  //   }
+  //   return () => {
+  //     localStorage.removeItem("selectedLocation");
+  //     localStorage.removeItem("title_keyword");
+  //     localStorage.removeItem("jobCategory");
+  //   };
+  // }, []);
+  // console.log("SelectedJob",selectedJob)
+  // console.log("JobApplicationData",jobApplicationData)
   return (
     <>
       <Header />
@@ -985,7 +1253,7 @@ function JobPage() {
                                                     >
                                                       {moment(
                                                         job.job_detail
-                                                          .updated_at
+                                                          .created_at
                                                       ).fromNow()}
                                                     </p>
                                                   )}
@@ -1005,16 +1273,18 @@ function JobPage() {
                       </div>
                       <div className="col-xl-8 col-lg-7 m-b30 ">
                         {selectedJob && (
-                          <div className="m-b20 job-bx rounded-4  ">
+                          <div className="m-b20 job-bx rounded-4 ">
                             <div>
-                              <div className="candidate-title">
-                                <div className="d-flex gap-4">
+                              <div className="candidate-title ">
+                                <div className="d-flex gap-4 justify-content-between align-items-center mt-6 p-2">
                                 <div><Link to="#">
                                   <h3 className="mb-1">
                                     {selectedJob.job_detail.job_title}
                                   </h3>
                                 </Link></div>
-                                <div>{localStorage.getItem("jobSeekerLoginToken") ? (
+                                <div
+                                  className=""
+                                >{localStorage.getItem("jobSeekerLoginToken") ? (
                                   <>
                                     {selectedJob.job_detail.is_job_applied ? (
                                       <button
@@ -1039,7 +1309,7 @@ function JobPage() {
                                 ) : (
                                   <>
                                     <button
-                                      className=" site-button btn btn-primary "
+                                      className=" site-button btn btn-primary justify-end "
                                       onClick={() => navigate("/user/login")}
                                     >
                                       Apply now
@@ -1052,7 +1322,7 @@ function JobPage() {
                                   {selectedJob.job_workplace_types.name &&
                                     selectedJob.job_type.name &&
                                     selectedJob.job_category.name && (
-                                      <p className="mb-0">
+                                      <p className="p-2">
                                         {selectedJob.job_workplace_types.name} |{" "}
                                         {selectedJob.job_type.name} |{" "}
                                         {selectedJob.job_category.name}
@@ -1064,7 +1334,7 @@ function JobPage() {
                                   >
                                     {selectedJob.job_detail.skills_arr.map(
                                       (item, index) => (
-                                        <p key={index} className="badge badge-primary mr-1 mb-1">
+                                        <p key={index} className="btn btn-primary mr-1 mb-1">
                                           {item}
                                         </p>
                                       )
@@ -1456,6 +1726,489 @@ function JobPage() {
       <Footer />
     </>
   );
-}
+
+  // return (
+  //   <>
+  //     <Header />
+  //     {localStorage.getItem("jobSeekerLoginToken") ? <FixedHeader /> : null}
+
+  //     <div className="page-content bg-white">
+  //       {showSkeleton ? (
+  //         <div className="bg-white w-100">
+  //           <TwoBoxWithLinesSkeleton />
+  //         </div>
+  //       ) : (
+  //         <div className="content-block">
+  //           <div className="section-full bg-white py-5">
+  //             <div className="container">
+  //               <div className="row justify-content-center">
+  //                 <div className="col-12 col-md-6 col-lg-2 mb-3">
+  //                   <div className="form-group">
+  //                     <label htmlFor="jobCategory">Choose Category</label>
+  //                     <select
+  //                       className={`form-control ${jobApplicationValues.jobCategory ? "active_dropDown" : ""}`}
+  //                       id="jobCategory"
+  //                       name="jobCategory"
+  //                       onChange={handleChange}
+  //                       value={jobApplicationValues.jobCategory}
+  //                     >
+  //                       <option value="">Select a Category</option>
+  //                       {jobCategories.map((item, index) => (
+  //                         <option key={index} value={item.id}>
+  //                           {item.name}
+  //                         </option>
+  //                       ))}
+  //                     </select>
+  //                   </div>
+  //                 </div>
+
+  //                 <div className="col-12 col-md-6 col-lg-2 mb-3">
+  //                   <div className="form-group">
+  //                     <label htmlFor="state_id">State:</label>
+  //                     <select
+  //                       className={`form-control ${jobApplicationValues.state_id ? "active_dropDown" : ""}`}
+  //                       id="state_id"
+  //                       name="state_id"
+  //                       onChange={handleChange}
+  //                       value={jobApplicationValues.state_id}
+  //                     >
+  //                       <option value="">Select a State</option>
+  //                       {states.map((item, index) => (
+  //                         <option key={index} value={item.id}>
+  //                           {item.name}
+  //                         </option>
+  //                       ))}
+  //                     </select>
+  //                   </div>
+  //                 </div>
+
+  //                 <div className="col-12 col-md-6 col-lg-2 mb-3">
+  //                   <div className="form-group">
+  //                     <label htmlFor="city_id">City:</label>
+  //                     <select
+  //                       className={`form-control ${jobApplicationValues.city_id !== 0 ? "active_dropDown" : ""}`}
+  //                       id="city_id"
+  //                       name="city_id"
+  //                       onChange={handleChange}
+  //                       value={jobApplicationValues.city_id}
+  //                     >
+  //                       <option value="">Select A City</option>
+  //                       {cities.map((item, index) => (
+  //                         <option key={index} value={item.id}>
+  //                           {item.name}
+  //                         </option>
+  //                       ))}
+  //                     </select>
+  //                   </div>
+  //                 </div>
+
+  //                 <div className="col-12 col-md-6 col-lg-2 mb-3">
+  //                   <div className="form-group">
+  //                     <label htmlFor="workplace_type">WorkPlace Type:</label>
+  //                     <select
+  //                       className={`form-control ${jobApplicationValues.workplace_type ? "active_dropDown" : ""}`}
+  //                       id="workplace_type"
+  //                       name="workplace_type"
+  //                       onChange={handleChange}
+  //                       value={jobApplicationValues.workplace_type}
+  //                     >
+  //                       <option value="">Select WorkPlace</option>
+  //                       {workplace_type.map((item, index) => (
+  //                         <option key={index} value={item.id}>
+  //                           {item.name}
+  //                         </option>
+  //                       ))}
+  //                     </select>
+  //                   </div>
+  //                 </div>
+
+  //                 <div className="col-12 col-md-6 col-lg-2 mb-3">
+  //                   <div className="form-group">
+  //                     <label htmlFor="job_type">Job Type:</label>
+  //                     <select
+  //                       className={`form-control ${jobApplicationValues.job_type ? "active_dropDown" : ""}`}
+  //                       id="job_type"
+  //                       name="job_type"
+  //                       onChange={handleChange}
+  //                       value={jobApplicationValues.job_type}
+  //                     >
+  //                       <option value="">Select Job Type</option>
+  //                       {job_type.map((item, index) => (
+  //                         <option key={index} value={item.id}>
+  //                           {item.name}
+  //                         </option>
+  //                       ))}
+  //                     </select>
+  //                   </div>
+  //                 </div>
+
+  //                 <div className="col-12 col-md-6 col-lg-2 mb-3">
+  //                   <div className="form-group">
+  //                     <label htmlFor="experience_level">Experience Level:</label>
+  //                     <select
+  //                       className={`form-control ${jobApplicationValues.experience_level ? "active_dropDown" : ""}`}
+  //                       id="experience_level"
+  //                       name="experience_level"
+  //                       onChange={handleChange}
+  //                       value={jobApplicationValues.experience_level}
+  //                     >
+  //                       <option value="">Select Experience</option>
+  //                       {experience.map((item, index) => (
+  //                         <option key={index} value={item.id}>
+  //                           {item.name}
+  //                         </option>
+  //                       ))}
+  //                     </select>
+  //                   </div>
+  //                 </div>
+  //               </div>
+
+  //               <div className="row justify-content-center mt-4">
+  //                 <div className="col-12 col-md-8">
+  //                   <div className="input-group">
+  //                     <input
+  //                       type="text"
+  //                       name="search_input"
+  //                       id="search_input"
+  //                       onChange={handleChange}
+  //                       value={jobApplicationValues.search_input}
+  //                       className="form-control"
+  //                       placeholder="Search here..."
+  //                     />
+  //                     <div className="input-group-append">
+  //                       <button
+  //                         onClick={handleGetReq}
+  //                         className="btn site-button"
+  //                         type="button"
+  //                       >
+  //                         <FaSearch className="mr-2" /> Search
+  //                       </button>
+  //                     </div>
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </div>
+
+  //             {jobApplicationData.length !== 0 ? (
+  //               <div className="container mt-5">
+  //                 <div className="row">
+  //                   <div className="col-lg-4 mb-4">
+  //                     <div className="sticky-top">
+  //                       <div className="candidate-info company-info rounded-4 overflow-hidden">
+  //                         <ul className="job-list-container list-unstyled" style={{ maxHeight: "calc(100vh - 200px)", overflowY: "auto" }}>
+  //                           {jobApplicationData.map((job) => (
+  //                             <li key={job.s_no} className="p-3 border-bottom">
+  //                               <Link to="#" onClick={() => setSelectedJob(job)} className="text-decoration-none">
+  //                                 <div className="d-flex align-items-center">
+  //                                   <div className="flex-grow-1">
+                                      // <h5 className="mb-1">{job.job_detail.job_title}</h5>
+                                      // <p className="mb-1">{job.companies.company_name}</p>
+                                      // <p className="mb-1 small">{job.companies.cities.name}, {job.companies.states.name}</p>
+  //                                     <div className="d-flex flex-wrap">
+  //                                       {job.job_detail.skills_arr.slice(0, 3).map((item, index) => (
+  //                                         <span key={index} className="badge badge-primary mr-1 mb-1">{item}</span>
+  //                                       ))}
+  //                                     </div>
+  //                                     <p className="mb-0 small">{job.job_workplace_types.name} | {job.job_type.name}</p>
+  //                                     <p className="mb-0 small text-muted">{moment(job.job_detail.updated_at).fromNow()}</p>
+  //                                   </div>
+  //                                 </div>
+  //                               </Link>
+  //                             </li>
+  //                           ))}
+  //                         </ul>
+  //                       </div>
+  //                     </div>
+  //                   </div>
+  //                   <div className="col-lg-8">
+  //                     {selectedJob && (
+  //                       <div className="job-bx rounded-4 p-4 mb-4 ">
+  //                         <div className="d-flex justify-content-between align-items-center mb-4 mt-6 ">
+  //                           <h3>{selectedJob.job_detail.job_title}</h3>
+  //                           {localStorage.getItem("jobSeekerLoginToken") ? (
+  //                             selectedJob.job_detail.is_job_applied ? (
+  //                               <button className="btn site-button btn-primary">View Status</button>
+  //                             ) : (
+  //                               <button className="btn site-button btn-primary" onClick={() => { handleClose(); submitApplication(); }}>
+  //                                 Apply
+  //                               </button>
+  //                             )
+  //                           ) : (
+  //                             <button className="btn site-button" onClick={() => navigate("/user/login")}>
+  //                               Apply now
+  //                             </button>
+  //                           )}
+  //                         </div>
+                          
+  //                         <p>{selectedJob.job_workplace_types.name} | {selectedJob.job_type.name} | {selectedJob.job_category.name}</p>
+                          
+  //                         <div className="mb-3">
+  //                           {selectedJob.job_detail.skills_arr.map((item, index) => (
+  //                             <span key={index} className="badge badge-primary mr-1 mb-1">{item}</span>
+  //                           ))}
+  //                         </div>
+                          
+  //                       {token?<p className="mb-4">You must create a Nova account before continuing to the company website to apply</p>:""}
+                          
+  //                         <h5 className="mb-3">Job details</h5>
+                          
+  //                         <div className="mb-3">
+  //                           <p><i className="fa fa-briefcase mr-2"></i>{selectedJob.companies.company_name}</p>
+  //                           <p><i className="fa fa-calendar mr-2"></i>Founded: {selectedJob.companies.founded_date}</p>
+  //                           <p><i className="fa fa-map-marker mr-2"></i>{selectedJob.companies.cities.name}, {selectedJob.companies.states.name}</p>
+  //                         </div>
+                          
+  //                         <h5 className="mb-3">Full job description</h5>
+                          
+  //                         <div className="ql-editor" dangerouslySetInnerHTML={{ __html: selectedJob.job_detail.job_description }} />
+                          
+  //                         <p className="mt-4">Posted {moment(selectedJob.job_detail.created_at).fromNow()}</p>
+                          
+  //                         <div className="d-flex align-items-center mt-4">
+  //                           <label className="like-btn mr-3">
+  //                             <input
+  //                               type="checkbox"
+  //                               defaultChecked={selectedJob.job_detail.is_job_favorite}
+  //                               name={selectedJob.job_detail.id}
+  //                               onClick={toggleFabJobs}
+  //                             />
+  //                             <span className="checkmark"></span>
+  //                           </label>
+  //                           <span>Save Job</span>
+  //                         </div>
+  //                       </div>
+  //                     )}
+                      
+  //                     {selectedJob && (
+  //                       <div className="job-bx rounded-4 p-4">
+  //                         <h3 className="mb-3">About Company</h3>
+  //                         <p>{selectedJob.companies.about}</p>
+  //                       </div>
+  //                     )}
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             ) : (
+  //               <div className="container mt-5">
+  //                 <div className="row justify-content-center">
+  //                   <div className="col-md-6 text-center">
+  //                     <img src={SkeletonImg} alt="No data available" className="img-fluid mb-3" style={{ maxWidth: "300px" }} />
+  //                     <p>No job listings found. Try adjusting your search criteria.</p>
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             )}
+  //           </div>
+  //         </div>
+  //       )}
+  //     </div>
+
+  //     <Footer />
+  //   </>
+  // );
+  // return (
+  //   <>
+  //     <Header />
+  //     {localStorage.getItem("jobSeekerLoginToken") ? <FixedHeader /> : null}
+
+  //     <div className="page-content bg-white">
+  //       {showSkeleton ? (
+  //         <div className="bg-white w-100">
+  //           <TwoBoxWithLinesSkeleton />
+  //         </div>
+  //       ) : (
+  //         <div className="content-block">
+  //           <div className="section-full bg-white py-3 py-md-5">
+  //             <div className="container">
+  //               <div className="row justify-content-center">
+  //                 {['jobCategory', 'state_id', 'city_id', 'workplace_type', 'job_type', 'experience_level'].map((field) => (
+  //                   <div className="col-12 col-sm-6 col-md-4 col-lg-2 mb-3" key={field}>
+  //                     <div className="form-group">
+  //                       <label htmlFor={field}>{field.replace('_', ' ').charAt(0).toUpperCase() + field.replace('_', ' ').slice(1)}:</label>
+  //                       <select
+  //                         className={`form-control ${jobApplicationValues[field] ? "active_dropDown" : ""}`}
+  //                         id={field}
+  //                         name={field}
+  //                         onChange={handleChange}
+  //                         value={jobApplicationValues[field]}
+  //                       >
+  //                         <option value="">Select {field.replace('_', ' ')}</option>
+  //                         {/* Map options here based on the field */}
+  //                       </select>
+  //                     </div>
+  //                   </div>
+  //                 ))}
+  //               </div>
+
+  //               <div className="row justify-content-center mt-4">
+  //                 <div className="col-12 col-md-8">
+  //                   <div className="input-group">
+  //                     <input
+  //                       type="text"
+  //                       name="search_input"
+  //                       id="search_input"
+  //                       onChange={handleChange}
+  //                       value={jobApplicationValues.search_input}
+  //                       className="form-control"
+  //                       placeholder="Search here..."
+  //                     />
+  //                     <div className="input-group-append">
+  //                       <button
+  //                         onClick={handleGetReq}
+  //                         className="btn site-button"
+  //                         type="button"
+  //                       >
+  //                         <FaSearch className="mr-2" /> Search
+  //                       </button>
+  //                     </div>
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </div>
+
+  //             {jobApplicationData.length !== 0 ? (
+  //               <div className="container mt-5">
+  //                 <div className="row">
+  //                   <div className={`col-lg-4 mb-4 sidebar ${sidebarOpen ? 'open' : ''}`}>
+  //                     <div className="sticky-top">
+  //                       <div className="candidate-info company-info rounded-4 overflow-hidden">
+  //                         <ul className="job-list-container list-unstyled" style={{ maxHeight: "calc(100vh - 200px)", overflowY: "auto" }}>
+  //                           {jobApplicationData.map((job) => (
+  //                             <li key={job.s_no} className="p-3 border-bottom">
+  //                               <Link to="#" onClick={() => { setSelectedJob(job); setSidebarOpen(false); }} className="text-decoration-none">
+  //                                 <div className="d-flex align-items-center">
+  //                                   <div className="flex-grow-1">
+  //                                     <h5 className="mb-1">{job.job_detail.job_title}</h5>
+  //                                     <p className="mb-1">{job.companies.company_name}</p>
+  //                                     <p className="mb-1 small">{job.companies.cities.name}, {job.companies.states.name}</p>
+  //                                     <div className="d-flex flex-wrap">
+  //                                       {job.job_detail.skills_arr.slice(0, 3).map((item, index) => (
+  //                                         <span key={index} className="badge badge-primary mr-1 mb-1">{item}</span>
+  //                                       ))}
+  //                                     </div>
+  //                                     <p className="mb-0 small">{job.job_workplace_types.name} | {job.job_type.name}</p>
+  //                                     <p className="mb-0 small text-muted">{moment(job.job_detail.updated_at).fromNow()}</p>
+  //                                   </div>
+  //                                 </div>
+  //                               </Link>
+  //                             </li>
+  //                           ))}
+  //                         </ul>
+  //                       </div>
+  //                     </div>
+  //                   </div>
+  //                   <div className="col-lg-8">
+  //                     <button className="btn btn-primary d-lg-none mb-3" onClick={toggleSidebar}>
+  //                       <FaBars /> {sidebarOpen ? 'Close' : 'Open'} Sidebar
+  //                     </button>
+  //                     {selectedJob && (
+  //                       <div className="job-bx rounded-4 p-3 p-md-4 mb-4">
+  //                         <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 mt-3 mt-md-6">
+  //                           <h3 className="mb-3 mb-md-0">{selectedJob.job_detail.job_title}</h3>
+  //                           {localStorage.getItem("jobSeekerLoginToken") ? (
+  //                             selectedJob.job_detail.is_job_applied ? (
+  //                               <button className="btn site-button btn-primary mt-2 mt-md-0">View Status</button>
+  //                             ) : (
+  //                               <button className="btn site-button btn-primary mt-2 mt-md-0" onClick={submitApplication}>
+  //                                 Apply
+  //                               </button>
+  //                             )
+  //                           ) : (
+  //                             <button className="btn site-button mt-2 mt-md-0" onClick={() => navigate("/user/login")}>
+  //                               Apply now
+  //                             </button>
+  //                           )}
+  //                         </div>
+                          
+  //                         <p>{selectedJob.job_workplace_types.name} | {selectedJob.job_type.name} | {selectedJob.job_category.name}</p>
+                          
+  //                         <div className="mb-3">
+  //                           {selectedJob.job_detail.skills_arr.map((item, index) => (
+  //                             <span key={index} className="badge badge-primary mr-1 mb-1">{item}</span>
+  //                           ))}
+  //                         </div>
+                          
+  //                         <h5 className="mb-3">Job details</h5>
+                          
+  //                         <div className="mb-3">
+  //                           <p><i className="fa fa-briefcase mr-2"></i>{selectedJob.companies.company_name}</p>
+  //                           <p><i className="fa fa-calendar mr-2"></i>Founded: {selectedJob.companies.founded_date}</p>
+  //                           <p><i className="fa fa-map-marker mr-2"></i>{selectedJob.companies.cities.name}, {selectedJob.companies.states.name}</p>
+  //                         </div>
+                          
+  //                         <h5 className="mb-3">Full job description</h5>
+                          
+  //                         <div className="ql-editor" dangerouslySetInnerHTML={{ __html: selectedJob.job_detail.job_description }} />
+                          
+  //                         <p className="mt-4">Posted {moment(selectedJob.job_detail.created_at).fromNow()}</p>
+                          
+  //                         <div className="d-flex align-items-center mt-4">
+  //                           <label className="like-btn mr-3">
+  //                             <input
+  //                               type="checkbox"
+  //                               defaultChecked={selectedJob.job_detail.is_job_favorite}
+  //                               name={selectedJob.job_detail.id}
+  //                               onClick={toggleFabJobs}
+  //                             />
+  //                             <span className="checkmark"></span>
+  //                           </label>
+  //                           <span>Save Job</span>
+  //                         </div>
+  //                       </div>
+  //                     )}
+                      
+  //                     {selectedJob && (
+  //                       <div className="job-bx rounded-4 p-3 p-md-4">
+  //                         <h3 className="mb-3">About Company</h3>
+  //                         <p>{selectedJob.companies.about}</p>
+  //                       </div>
+  //                     )}
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             ) : (
+  //               <div className="container mt-5">
+  //                 <div className="row justify-content-center">
+  //                   <div className="col-md-6 text-center">
+  //                     <img src={SkeletonImg} alt="No data available" className="img-fluid mb-3" style={{ maxWidth: "300px" }} />
+  //                     <p>No job listings found. Try adjusting your search criteria.</p>
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             )}
+  //           </div>
+  //         </div>
+  //       )}
+  //     </div>
+
+  //     <Footer />
+
+  //     <style jsx>{`
+  //       .sidebar {
+  //         transition: all 0.3s ease-in-out;
+  //       }
+  //       @media (max-width: 991px) {
+  //         .sidebar {
+  //           position: fixed;
+  //           top: 0;
+  //           left: -100%;
+  //           height: 100vh;
+  //           width: 80%;
+  //           max-width: 300px;
+  //           background-color: white;
+  //           z-index: 1000;
+  //           overflow-y: auto;
+  //           padding: 20px;
+  //           box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  //         }
+  //         .sidebar.open {
+  //           left: 0;
+  //         }
+  //       }
+  //     `}</style>
+  //   </>
+  // );
+};
+
 
 export default JobPage;

@@ -347,7 +347,32 @@ const navigate = useNavigate();
             <div className="find-job-bx">
               <div className="dezPlaceAni p-t50 p-b20 border shadow rounded-3">
                 <div className="d-flex justify-content-center ">
-                  <div className="col-lg-3 col-md-5">
+                <div
+                  className="col-lg-8 col-md-2 "
+                
+                >
+                  <div
+                    className="  w-full p-2  shadow rounded-2"
+                    style={{
+                     
+                      
+                    }}
+                  >
+                    <input
+                      type="text"
+                      name="search_input"
+                      id="search_input"
+                      onChange={handleChange}
+                      value={browseCandidateValues.search_input}
+                      autoComplete="false"
+                      className="w-100 p-2 h-100 bg-transparent border-0 "
+                      placeholder="search here..."
+                      style={{ outline: "none" }}
+                    />
+                  </div>
+                  
+                </div>
+                 {/* <div className="col-lg-3 col-md-5">
                     <div className="form-group">
                       <label htmlFor="education"></label>
                       <div className="input-group">
@@ -375,11 +400,11 @@ const navigate = useNavigate();
                       <span className="input-group-text">
                         <i className="fa fa-search"></i>
                       </span>
-                    </div> */}
+                    </div> 
                       </div>
                     </div>
-                  </div>
-                  <div className="col-lg-2 col-md-5">
+                  </div> */}
+                  {/*<div className="col-lg-2 col-md-5">
                     <div className="form-group">
                       <label htmlFor="experience"></label>
                       <div className="input-group">
@@ -409,10 +434,10 @@ const navigate = useNavigate();
                       <span className="input-group-text">
                         <i className="fa fa-map-marker"></i>
                       </span>
-                    </div> */}
+                    </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="col-lg-2 col-md-5">
                     <div className="form-group">
                       <label htmlFor="state_id"></label>
@@ -426,7 +451,7 @@ const navigate = useNavigate();
                           value={browseCandidateValues.state_id}
                           autoComplete="false"
                         >
-                          <option value="">Choose A State</option>
+                          <option value="">Location</option>
                           {states.map((item, index) => {
                             return (
                               <option key={index} value={item.id}>
@@ -443,7 +468,7 @@ const navigate = useNavigate();
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-2 col-md-5">
+                 {/* <div className="col-lg-2 col-md-5">
                     <div className="form-group">
                       <label htmlFor="salary"></label>
                       <div className="input-group">
@@ -469,7 +494,7 @@ const navigate = useNavigate();
                         
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="col-lg-2 col-md-5">
                     <div className="form-group">
                       <label htmlFor="salary"></label>
@@ -483,7 +508,7 @@ const navigate = useNavigate();
                     style={{ cursor: "pointer", outline: "none", gap: "7px" }}
                   >
                     <FaSearch />
-                    Find Job
+                    Find Talent
                   </button>
                         
                         
@@ -496,31 +521,7 @@ const navigate = useNavigate();
             </div>
           </div>
         </div>
-        <div
-                  className="row d-flex   mb-3 "
-                  style={{ gap: "10px" ,marginLeft:'155px'}}
-                >
-                  <div
-                    className=" w-75 d-flex ms-5 p-2  shadow rounded-2"
-                    style={{
-                     
-                      
-                    }}
-                  >
-                    <input
-                      type="text"
-                      name="search_input"
-                      id="search_input"
-                      onChange={handleChange}
-                      value={browseCandidateValues.search_input}
-                      autoComplete="false"
-                      className="w-100 p-2 h-100 bg-transparent border-0 "
-                      placeholder="search here..."
-                      style={{ outline: "none" }}
-                    />
-                  </div>
-                  
-                </div>
+       
         {browseCandidateData ? (
           <div className="content-block ">
             <div className="section-full bg-white browse-job p-b50">

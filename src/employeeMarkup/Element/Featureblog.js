@@ -135,7 +135,7 @@ function Featureblog() {
                             }}>
                             <div className="city-info">
                               <h5>{state.name}</h5>
-                              <span>{state.jobs} Jobs</span>
+                                     {/* <span>{state.jobs} Jobs</span> */}
                             </div>
                           </div>
                         </div>

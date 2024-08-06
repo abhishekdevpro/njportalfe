@@ -221,7 +221,7 @@ const CompanySideBar = ({ active }) => {
                 <span>Manage jobs</span>
               </Link>
             </li>
-            <li>
+           {/* <li>
               <Link
                 to={"/employee/company-resume"}
                 className={active === "company-resume" ? "active" : null}
@@ -229,7 +229,7 @@ const CompanySideBar = ({ active }) => {
                 <i className="fa fa-id-card-o" aria-hidden="true"></i>
                 <span>Applicants</span>
               </Link>
-            </li>
+            </li> */}
             <li>
             <Link
   to={"/employee/browse-candidates"}

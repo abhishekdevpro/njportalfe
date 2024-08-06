@@ -18,7 +18,6 @@ const Vendorlogin = () => {
     try {
       const response = await axios.post('https://api.novajobs.us/api/admin/auth/vendor/login', {
         email,
-       
         password,
       });
 

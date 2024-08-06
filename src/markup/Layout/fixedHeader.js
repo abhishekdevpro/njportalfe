@@ -338,13 +338,16 @@ const FixedHeader = () => {
                   <div>
                     {AiBtn ? (
                       <form onSubmit={handleSubmit}>
-                        <div>
+                        <div><div className="text-white">
+                 
+                  Please upload resume upto 2mb
+                </div>
                           <div className="form-group">
                             <input
                               type="file"
                               onChange={handleChange}
                               className="form-control"
-                              accept=".pdf, .doc, .docx"
+                              accept=".pdf"
                             />
                           </div>
                           <p>{percentage}</p>
@@ -402,14 +405,15 @@ const FixedHeader = () => {
               </div>
             ) : (
               <div>
-                <div>
-                  <video
+                <div className="text-white">
+                  {/*<video
                     width="200px"
                     loop={showVideo}
                     autoPlay={showVideo}
                   >
                     <source src={processVid} type="video/mp4" />
-                  </video>
+                  </video> */}
+                  Your Resume is uploaded
                 </div>
                 {showPercentage ? (
                   <div>

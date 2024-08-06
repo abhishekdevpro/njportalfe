@@ -232,7 +232,7 @@ function Homepage() {
                   8+ Categories waiting for your application
                 </h6>
               </div>
-              <div className="head-counter-bx text-break">
+             {/* <div className="head-counter-bx text-break">
                 <h2 className="m-b5 counter">
                   <CountUp end={100} duration={5} />+
                 </h2>
@@ -249,7 +249,7 @@ function Homepage() {
                   <CountUp end={100} duration={5} />%
                 </h2>
                 <h6 className="fw3 text-break">AI Verified Opportunities</h6>
-              </div>
+              </div> */}
             </div>
             <Jobcategories />
           </div>
