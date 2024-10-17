@@ -78,44 +78,94 @@ function JobPage() {
   };
 
   const [searchParams, setSearchParams] = useState(initialSearchParams);
+  const [jobsPerPage] = useState(10);
+const [page, setPage] = useState(1)
+const [jobData, setJobData] = useState([]); // Store the job data
 
-  useEffect(() => {
-    const fetchJobApplicationData = async () => {
-      try {
-        const response = await axios.get(
-          "https://api.novajobs.us/api/jobseeker/job-lists",
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
-        );
-        dispatch(setJobApplicationData(response.data.data));
-        setShowSkeleton(false);
-
-        // If we have an ID from params, find and set the matching job
-        if (id) {
-          const matchingJob = response.data.data.find(job => job.s_no.toString() === id);
-          if (matchingJob) {
-            setSelectedJob(matchingJob);
-          } else {
-            console.log(`No job found with id: ${id}`);
-          }
-        } else if (jobFromState) {
-          setSelectedJob(jobFromState);
-        } else if (response.data.data.length > 0) {
-          setSelectedJob(response.data.data[0]);
+useEffect(() => {
+  const fetchJobApplicationData = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.novajobs.us/api/jobseeker/job-lists?page_size=10&is_publish=1&page_no=${page}`,
+        {
+          headers: {
+            Authorization: token,
+          },
         }
+      );
+      console.log(response);
+      dispatch(setJobApplicationData(response.data.data));
+      setShowSkeleton(false);
 
-        // Perform search based on initial search params
-        handleSearch();
-      } catch (error) {
-        console.error('Error fetching job data:', error);
+      // Append new data to existing data
+      setJobData(prevJobData => [...prevJobData, ...response.data.data]);
+
+      // If we have an ID from params, find and set the matching job
+      if (id) {
+        const matchingJob = response.data.data.find(job => job.s_no.toString() === id);
+        if (matchingJob) {
+          setSelectedJob(matchingJob);
+        } else {
+          console.log(`No job found with id: ${id}`);
+        }
+      } else if (jobFromState) {
+        setSelectedJob(jobFromState);
+      } else if (response.data.data.length > 0) {
+        setSelectedJob(response.data.data[0]);
       }
-    };
 
-    fetchJobApplicationData();
-  }, [id, jobFromState, dispatch, token]);
+      // Perform search based on initial search params
+      // handleSearch();
+    } catch (error) {
+      console.error('Error fetching job data:', error);
+    }
+  };
+
+  fetchJobApplicationData();
+}, [id, jobFromState, dispatch, token, page]);
+  // useEffect(() => {
+  //   const fetchJobApplicationData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `https://api.novajobs.us/api/jobseeker/job-lists?page_size=10&is_publish=1&page_no=${page}`,
+  //         {
+  //           headers: {
+  //             Authorization: token,
+  //           },
+  //         }
+  //       );
+  //       console.log(response);
+  //       dispatch(setJobApplicationData(response.data.data));
+  //       setShowSkeleton(false);
+
+  //       // If we have an ID from params, find and set the matching job
+  //       if (id) {
+  //         const matchingJob = response.data.data.find(job => job.s_no.toString() === id);
+  //         if (matchingJob) {
+  //           setSelectedJob(matchingJob);
+  //         } else {
+  //           console.log(`No job found with id: ${id}`);
+  //         }
+  //       } else if (jobFromState) {
+  //         setSelectedJob(jobFromState);
+  //       } else if (response.data.data.length > 0) {
+  //         setSelectedJob(response.data.data[0]);
+  //       }
+
+  //       // Perform search based on initial search params
+  //       // handleSearch();
+  //     } catch (error) {
+  //       console.error('Error fetching job data:', error);
+  //     }
+  //   };
+
+  //   fetchJobApplicationData();
+  // }, [id, jobFromState, dispatch, token,page]);
+
+  const loadmore=()=>{
+    setPage(prevpage => prevpage +1); 
+ }
+ console.log(page,"page");
 
   useEffect(() => {
     if (jobApplicationValues.jobCategory !== "") {
@@ -300,9 +350,9 @@ function JobPage() {
   };
 
   
-  const baseUrl =
-    // "https://api.novajobs.us/api/jobseeker/job-lists/?page_size=7&is_publish=1";
-    "https://api.novajobs.us/api/jobseeker/job-lists?page_size=7&is_publish=1";
+  // const baseUrl =
+  //   // "https://api.novajobs.us/api/jobseeker/job-lists/?page_size=7&is_publish=1";
+   
 
   const params = new URLSearchParams();
   // Handle Search Based on Params
@@ -318,7 +368,8 @@ function JobPage() {
     if (experience_level) params.append("experience_level", experience_level);
     if (title_keywords) params.append("title_keywords", title_keywords);
 
-    const url = `${baseUrl}&${params.toString()}`;
+    // const url = `${baseUrl}&${params.toString()}`;
+    const url = ` https://api.novajobs.us/api/jobseeker/job-lists?page_size=7&is_publish=1&${params.toString()}`;
     handleGetReq(url);
   };
 
@@ -338,7 +389,7 @@ function JobPage() {
         console.error("Error fetching filtered jobs:", err);
       });
   };
-
+ 
 
 
 
@@ -610,12 +661,13 @@ function JobPage() {
                     </button>
                   </div>
                 </div>
-                {jobApplicationData.length !== 0 ? (
+                {console.log(jobApplicationData,"Datajob")}
+                {jobData.length !== 0 ? (
                   <div className="container">
                     <div className="row">
                       <div className="col-xl-4 col-lg-5 m-b30 rounded-5 ">
                         <div className="sticky-top ">
-                          {jobApplicationData ? (
+                          {jobData ? (
                             <div className="candidate-info company-info rounded-5 ">
                               <ul
                                 className="job-list-container rounded-4"
@@ -625,7 +677,7 @@ function JobPage() {
                                   boxShadow: "0 0 10px 0 rgba(0, 24, 128, 0.1)",
                                 }}
                               >
-                                {jobApplicationData.map((job) => (
+                                {jobData.map((job) => (
                                   <div>
                                     <li key={job.s_no}>
                                       {console.log(job.s_no,'no')}
@@ -811,6 +863,11 @@ function JobPage() {
                                   </div>
                                 ))}
                               </ul>
+                              <div className="text-center mt-3">
+          <button className="site-button" onClick={loadmore}>
+            View More
+          </button>
+        </div>
                             </div>
                           ) : null}
                         </div>
