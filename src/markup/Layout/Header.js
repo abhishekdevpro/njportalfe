@@ -289,7 +289,7 @@ class UserHeader extends Component {
     </li>
                     <li>
                     {localStorage.getItem("jobSeekerLoginToken") ? null : (
-                  <Link to={"/vendor/login"}
+                  <Link to={"https://vendors.novajobs.us/"}
                     
                   style={{ color: "white" }}
                   className="site-button "
@@ -304,7 +304,7 @@ class UserHeader extends Component {
                       ) : (
                         <Link
                           style={{ color: "white" }}
-                          to={"/employee"}
+                          to={"https://employer.novajobs.us/"}
                           className="site-button"
                         >
                           Employers/Post Job
