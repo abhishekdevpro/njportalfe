@@ -75,7 +75,8 @@ function Profilesidebar({ data }) {
               </li>
               <li>
                 <Link
-                  to={`https://airesume.novajobs.us/${token}`}
+                    // ${token}
+                  to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
                   className={data === "resume" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
@@ -83,6 +84,16 @@ function Profilesidebar({ data }) {
                   <span>AI Resume Builder</span>
                 </Link>
               </li>
+              {/* <li>
+                <Link
+                  to={`https://airesume.novajobs.us/${token}`}
+                  className={data === "resume" ? "active" : null}
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <i className="fa fa-file-text-o" aria-hidden="true"></i>
+                  <span>AI Resume Builder</span>
+                </Link>
+              </li> */}
               {/*<li>
                 <Link
                   to={"/user/jobs-my-resume"}

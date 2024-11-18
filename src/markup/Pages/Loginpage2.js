@@ -253,6 +253,14 @@ function Login(props) {
                     </form>
                     <div className="form-group text-center">
                       <Link
+                        to="/"
+                        className="site-button-link  m-t15 "
+                      >
+                        Back to Home
+                      </Link>
+                    </div>
+                    <div className="form-group text-center">
+                      <Link
                         to="mailto:mailto:contact@novajobs.us"
                         className="site-button-link  m-t15 "
                       >

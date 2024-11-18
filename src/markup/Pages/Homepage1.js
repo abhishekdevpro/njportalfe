@@ -316,7 +316,9 @@ function Homepage() {
                 Launch your career with AGI Tax Experts! Comprehensive
                  training and placement opportunities
                   available through our portal</p>
-                  <button class="btn btn-primary " type="button" >Learn More</button>
+                 <Link to="https://ultraaura.education/course-info/226">
+                 <button class="btn btn-primary " type="button" >Learn More</button>
+                 </Link> 
             </div>
          
             <div
@@ -341,7 +343,9 @@ function Homepage() {
                
                  </p>
                
+                 <Link to="https://ultraaura.education/course-info/185">
                  <button class="btn btn-primary " type="button" >Learn More</button>
+                 </Link>
             </div>
             
           </div>
