@@ -68,6 +68,8 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.14.5",
+    "css-loader": "^7.1.2",
+    "postcss-loader": "^8.1.1",
     "tailwindcss": "^3.4.6"
   },
   "scripts": {
