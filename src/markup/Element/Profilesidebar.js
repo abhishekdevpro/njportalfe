@@ -76,8 +76,8 @@ function Profilesidebar({ data }) {
               <li>
                 <Link
                     // ${token}
-                  // to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
-                  to={`http://localhost:3000/?tokenbyurl=${token}`}
+                  to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
+                  // to={`http://localhost:3000/?tokenbyurl=${token}`}
                   className={data === "resume" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
