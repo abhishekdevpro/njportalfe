@@ -19,7 +19,7 @@ import pic9 from "../../assests/1 (9).png";
 import pic10 from "../../assests/1 (10).png";
 import pic11 from "../../assests/1 (11).png";
 import pic12 from "../../assests/1 (12).png";
-import pic13 from "../../assests/1 (13).png";
+// import pic13 from "../../assests/1 (13).png";
 import { Carousel } from "react-bootstrap";
 import "./aboutus.css";
 
@@ -268,13 +268,13 @@ function Aboutus1() {
                           alt="Third slide"
                         />
                       </Carousel.Item>
-                      <Carousel.Item>
+                      {/* <Carousel.Item>
                         <img
                           className="d-block w-100"
                           src={pic13}
                           alt="Third slide"
                         />
-                      </Carousel.Item>
+                      </Carousel.Item> */}
                     </Carousel>
                   </div>
                   <br />

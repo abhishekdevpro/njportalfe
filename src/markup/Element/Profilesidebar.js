@@ -77,6 +77,7 @@ function Profilesidebar({ data }) {
                 <Link
                     // ${token}
                   to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
+                  // to={`http://localhost:3000/?tokenbyurl=${token}`}
                   className={data === "resume" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
@@ -94,7 +95,7 @@ function Profilesidebar({ data }) {
                   <span>AI Resume Builder</span>
                 </Link>
               </li> */}
-              {/*<li>
+              {/* <li>
                 <Link
                   to={"/user/jobs-my-resume"}
                   className={data === "resume" ? "active" : null}
