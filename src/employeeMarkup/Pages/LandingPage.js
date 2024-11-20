@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import "../../css/landingPage.css";
 import img from "../../images/360_F_309586333_FU8eARHr7QnC1TSPmvrIdqWp0qoRGMDM-removebg-preview.png";
 import img7 from "../../images/services/1.jpeg"
+import img10 from "../../assests/services_image1.png";
 import img2 from "../../images/services/2.jpeg";
 import img3 from "../../images/services/3.jpeg";
 import img4 from "../../images/services/4.jpeg";
 import img5 from "../../images/services/5.jpeg";
-import img6 from "../../images/services/6.jpeg";
+import img6 from "../../assests/services_image3.png";
 import img8 from "../../images/services/Pink Cute Illustration Discord Avatar (1).png";
 import img9 from "../../images/services/Pink Cute Illustration Discord Avatar.png";
 
@@ -145,8 +146,9 @@ const LandingPage = () => {
 
       <div className="banner">
         
-        <div className="banner-text mt-5 pt-4">
-          
+        <div className="banner-text mt-5 pt-4 flex flex-col">
+          <h1 className="fw-bold text-white m-4">What we offer</h1>
+          <span className="fw-bold text-white m-2">Looking for your dream job or the perfect candidate? Our platform connects job seekers and employers with ease. Post job listings or browse opportunities across industries. Whether you're hiring or searching, we make the process seamless and efficient. Start your journey to success today!</span>
        
           
         </div>
@@ -159,7 +161,7 @@ const LandingPage = () => {
       <div className="row">
         <div className="col-12 col-md-4 mb-4 d-flex justify-content-center">
           <div className="service-div">
-            <img src={img2} alt="Service 2" className="img-fluid" />
+            <img src={img10} alt="Service 2" className="img-fluid border-2 border-red-700 bg-red-600" />
             <p className="text-center" style={{ fontSize: '20px' }}>For Employers</p>
             <ul>
               <li>Management</li>

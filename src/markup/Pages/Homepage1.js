@@ -343,7 +343,7 @@ function Homepage() {
                
                  </p>
                
-                 <Link to="https://ultraaura.education/course-info/185">
+                 <Link to="https://novahome.care/">
                  <button class="btn btn-primary " type="button" >Learn More</button>
                  </Link>
             </div>
