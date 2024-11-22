@@ -34,11 +34,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: black;
 }
 
 .banner-text h2 {
-    color: white;
+    color: black;
 }
 
 .services-row {

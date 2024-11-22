@@ -69,7 +69,6 @@ function Aboutus1() {
                             style={{ padding: "20px" }}
                           >
                             <source src={dummyvideo} type="video/mp4" />
-                            Your browser does not support the video tag.
                           </video>
                         </div>
                         <br />

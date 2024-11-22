@@ -52,7 +52,7 @@ function Login(props) {
           "jobSeekerLoginToken",
           response?.data?.data?.token
         );
-        navigate("/user");
+        navigate("/user/jobs-profile");
       })
       .catch((err) => {
         console.log(err.response.data.message);
