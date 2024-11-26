@@ -19,7 +19,7 @@ import pic9 from "../../assests/1 (9).png";
 import pic10 from "../../assests/1 (10).png";
 import pic11 from "../../assests/1 (11).png";
 import pic12 from "../../assests/1 (12).png";
-import dummyvideo from "../../assests/dummyvideo-aboutuspage.mp4";
+// import dummyvideo from "../../assests/dummyvideo-aboutuspage.mp4";
 // import pic13 from "../../assests/1 (13).png";
 import { Carousel } from "react-bootstrap";
 import "./aboutus.css";
@@ -68,7 +68,7 @@ function Aboutus1() {
                             controls
                             style={{ padding: "20px" }}
                           >
-                            <source src={dummyvideo} type="video/mp4" />
+                            <source src="https://api.novajobs.us/etc/nova_us_jobs/about_nova.mp4" type="video/mp4" />
                           </video>
                         </div>
                         <br />
