@@ -19,6 +19,7 @@ import pic9 from "../../assests/1 (9).png";
 import pic10 from "../../assests/1 (10).png";
 import pic11 from "../../assests/1 (11).png";
 import pic12 from "../../assests/1 (12).png";
+// import dummyvideo from "../../assests/dummyvideo-aboutuspage.mp4";
 // import pic13 from "../../assests/1 (13).png";
 import { Carousel } from "react-bootstrap";
 import "./aboutus.css";
@@ -54,6 +55,23 @@ function Aboutus1() {
                         Experience the future of employment with intelligent
                         matching and personalized career opportunities.
                         <br />
+                        <p
+                          style={{ fontSize: "clamp(14px, 3vw, 15px)" }}
+                          className="mt-5 justify-content-center text-center"
+                        >
+                          <strong>Check our quick Product Video below :</strong>{" "}
+                        </p>
+                        <div className="mt-3 mx-3 mx-lg-5 d-flex justify-content-center">
+                          <video
+                            width="800"
+                            height="400"
+                            controls
+                            style={{ padding: "20px" }}
+                          >
+                            <source src="https://api.novajobs.us/etc/nova_us_jobs/about_nova.mp4" type="video/mp4" />
+                          </video>
+                        </div>
+                        <br />
                       </p>
                       <p style={{ fontSize: "clamp(14px, 3vw, 15px)" }}>
                         For employers and staffing companies, Novajobs.us offers
@@ -78,8 +96,7 @@ function Aboutus1() {
 
                   <div className=" mt-5">
                     <div className="mx-3 mx-lg-5 mb-4 mb-lg-0">
-                    <h1
-                        
+                      <h1
                         style={{
                           fontSize: "clamp(14px, 5vw, 20px)",
                           fontWeight: "500",
@@ -117,8 +134,7 @@ function Aboutus1() {
 
                   <div className=" mt-5">
                     <div className="mx-3 mx-lg-5 mb-4 mb-lg-0">
-                    <h1
-                        
+                      <h1
                         style={{
                           fontSize: "clamp(14px, 5vw, 20px)",
                           fontWeight: "500",
@@ -297,19 +313,18 @@ function Aboutus1() {
                         More Services from Hyper V Solutions
                       </h1>
                       <p style={{ fontSize: "clamp(14px, 3vw, 15px)" }}>
-                      Discover the wide range of innovative services offered
-                       by Hyper V Solutions. Whether you're navigating a 
-                       job search or looking to elevate your career, our
-                        EdTech platform, UltraAura.education, is here to support you.
-                      <br />
+                        Discover the wide range of innovative services offered
+                        by Hyper V Solutions. Whether you're navigating a job
+                        search or looking to elevate your career, our EdTech
+                        platform, UltraAura.education, is here to support you.
+                        <br />
                       </p>
                       <p style={{ fontSize: "clamp(14px, 3vw, 15px)" }}>
-                      We offer expertly curated content, live online classes
-                       led by industry professionals, and robust placement
-                        assistance through Novajobs.us. Take the next step 
-                        towards your future with our cutting-edge educational solutions.
-
-
+                        We offer expertly curated content, live online classes
+                        led by industry professionals, and robust placement
+                        assistance through Novajobs.us. Take the next step
+                        towards your future with our cutting-edge educational
+                        solutions.
                       </p>
                       <p
                         style={{
@@ -317,7 +332,7 @@ function Aboutus1() {
                           fontWeight: "500",
                         }}
                       >
-                        For more information, visit our parent website: 
+                        For more information, visit our parent website:
                         https://hypervsolutions.net/
                       </p>
                     </div>

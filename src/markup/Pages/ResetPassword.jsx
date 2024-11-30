@@ -59,7 +59,8 @@ function ResetPassword(props) {
           backgroundImage: "url(" + loginbg + ")",
           backgroundSize: "cover",
         }}
-      ><ToastContainer/>
+      >
+        <ToastContainer />
         <div className="section-full">
           <div className="container">
             <div className="row">
@@ -75,7 +76,7 @@ function ResetPassword(props) {
                   </div>
                   <h2 className="m-b10">Verify Your Email To Get Link</h2>
                   <p className="m-b30">
-                  Welcome To One Stop AI Powered Staffing Solution
+                    Welcome To One Stop AI Powered Staffing Solution
                   </p>
                   <ul className="list-inline m-a0">
                     <li>
@@ -109,7 +110,7 @@ function ResetPassword(props) {
                           <input
                             type="password"
                             className="form-control"
-                            placeholder="Type Your Email Address"
+                            placeholder="Type Your Confirm Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                           />
@@ -196,10 +197,17 @@ function ResetPassword(props) {
                       width: "40px",
                     }}
                   />
-                  <Link to={"#"} ><strong className="text-white" style={{fontSize:'20px'}}>Nova Jobs </strong></Link>{" "}
+                  <Link to={"#"}>
+                    <strong className="text-white" style={{ fontSize: "20px" }}>
+                      Nova Jobs{" "}
+                    </strong>
+                  </Link>{" "}
                 </span>
                 <span className="float-right">
-                <strong className="text-white" style={{ fontWeight:'bold'}}>Hyper V Solutions</strong>  | All Rights Reserved
+                  <strong className="text-white" style={{ fontWeight: "bold" }}>
+                    Hyper V Solutions
+                  </strong>{" "}
+                  | All Rights Reserved
                 </span>
               </div>
             </div>
