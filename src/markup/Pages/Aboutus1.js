@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "./../Layout/Header";
 import Footer from "./../Layout/Footer";
+import ReactPlayer from 'react-player';
 import { Link, useNavigate } from "react-router-dom";
 //import video from '../../assests/HyperV Solutions.mp4';
 import logo1 from "../../assests/logo1.jpg";
@@ -61,7 +62,7 @@ function Aboutus1() {
                         >
                           <strong>Check our quick Product Video below :</strong>{" "}
                         </p>
-                        <div className="mt-3 mx-3 mx-lg-5 d-flex justify-content-center">
+                        {/* <div className="mt-3 mx-3 mx-lg-5 d-flex justify-content-center">
                           <video
                             width="800"
                             height="400"
@@ -70,7 +71,25 @@ function Aboutus1() {
                           >
                             <source src="https://api.novajobs.us/etc/nova_us_jobs/about_nova.mp4" type="video/mp4" />
                           </video>
-                        </div>
+                        </div> */}
+                         <div style={{ display: 'flex', justifyContent: 'center' }}>
+        {/* Using ReactPlayer for a better video player experience */}
+        <ReactPlayer
+          // url="https://youtu.be/FObrI1s9qIk?si=RKSVtL4H071Qu8vj" 
+          url="https://www.youtube.com/watch?v=DbHXRGdBhqo" 
+// Replace with your YouTube video URL
+          width="700px"
+          height="500px"
+          controls={true} // Show player controls
+          style={{
+            margin: '50px',
+            border: '2px solid #ccc',
+            borderRadius: '10px',
+            boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+          }}
+        />
+      </div>
+
                         <br />
                       </p>
                       <p style={{ fontSize: "clamp(14px, 3vw, 15px)" }}>
