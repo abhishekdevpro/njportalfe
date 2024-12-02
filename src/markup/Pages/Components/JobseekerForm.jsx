@@ -385,49 +385,59 @@ const JobseekerForm = () => {
 
   const [formData, setFormData] = useState({
     hasSpecificJob: null,
-    jobTitle: '',
-    workMode: '',
-    location: '',
-    salaryExpectation: '',
-    salaryCurrency: 'USD',
-    salaryFrequency: 'yearly',
+    jobTitle: "",
+    workMode: "",
+    location: "",
+    salaryExpectation: "",
+    salaryCurrency: "USD",
+    salaryFrequency: "yearly",
   });
-  
+
   const [errors, setErrors] = useState({});
   const [showSummary, setShowSummary] = useState(false);
 
-  useEffect(() => {
-    // Check if the user is logged in (example using a token in localStorage)
-    const token = localStorage.getItem("jobSeekerLoginToken");
-    if (token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   // Check if the user is logged in (example using a token in localStorage)
+  //   const token = localStorage.getItem("jobSeekerLoginToken");
+  //   if (token) {
+  //     setIsLoggedIn(true);
+  //   } else {
+  //     setIsLoggedIn(false);
+  //   }
+  // }, []);
 
   const steps = [
     {
-      question: 'Do you have a specific job title in mind?',
+      question: "Do you have a specific job title in mind?",
       options: [
-        { label: 'Yes - help me find it', value: true },
-        { label: 'No - let\'s explore', value: false },
+        { label: "Yes - help me find it", value: true },
+        { label: "No - let's explore", value: false },
       ],
-      field: 'hasSpecificJob',
+      field: "hasSpecificJob",
       skippable: false,
     },
-    { question: 'What job title are you looking for?', type: 'input', field: 'jobTitle', skippable: true },
     {
-      question: 'What work mode do you prefer?',
-      options: ['Remote', 'Hybrid', 'On-site'],
-      field: 'workMode',
+      question: "What job title are you looking for?",
+      type: "input",
+      field: "jobTitle",
       skippable: true,
     },
-    { question: 'Where are you looking to work?', type: 'input', field: 'location', skippable: true },
-    { 
-      question: 'What is your salary expectation?', 
-      type: 'salary', 
-      fields: ['salaryExpectation', 'salaryCurrency', 'salaryFrequency'],
+    {
+      question: "What work mode do you prefer?",
+      options: ["Remote", "Hybrid", "On-site"],
+      field: "workMode",
+      skippable: true,
+    },
+    {
+      question: "Where are you looking to work?",
+      type: "input",
+      field: "location",
+      skippable: true,
+    },
+    {
+      question: "What is your salary expectation?",
+      type: "salary",
+      fields: ["salaryExpectation", "salaryCurrency", "salaryFrequency"],
       skippable: true,
     },
   ];
@@ -436,38 +446,40 @@ const JobseekerForm = () => {
     setStep(0);
     setFormData({
       hasSpecificJob: null,
-      jobTitle: '',
-      workMode: '',
-      location: '',
-      salaryExpectation: '',
-      salaryCurrency: 'USD',
-      salaryFrequency: 'yearly',
+      jobTitle: "",
+      workMode: "",
+      location: "",
+      salaryExpectation: "",
+      salaryCurrency: "USD",
+      salaryFrequency: "yearly",
     });
     setErrors({});
     setShowSummary(false);
-    navigate('/user/login');
+    navigate("/user/login");
   };
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: '' });
+    setErrors({ ...errors, [e.target.name]: "" });
   };
 
   const handleOptionSelect = (value, field) => {
     setFormData({ ...formData, [field]: value });
-    setErrors({ ...errors, [field]: '' });
+    setErrors({ ...errors, [field]: "" });
   };
 
   const validateStep = () => {
     const currentStep = steps[step];
     if (currentStep.skippable) return true;
-    
-    const fields = Array.isArray(currentStep.fields) ? currentStep.fields : [currentStep.field];
+
+    const fields = Array.isArray(currentStep.fields)
+      ? currentStep.fields
+      : [currentStep.field];
     let isValid = true;
 
     fields.forEach((field) => {
       if (!formData[field]) {
-        setErrors((prev) => ({ ...prev, [field]: 'This field is required' }));
+        setErrors((prev) => ({ ...prev, [field]: "This field is required" }));
         isValid = false;
       }
     });
@@ -491,10 +503,12 @@ const JobseekerForm = () => {
 
   const skipStep = () => {
     const currentStep = steps[step];
-    const fields = Array.isArray(currentStep.fields) ? currentStep.fields : [currentStep.field];
-    
+    const fields = Array.isArray(currentStep.fields)
+      ? currentStep.fields
+      : [currentStep.field];
+
     fields.forEach((field) => {
-      setFormData((prev) => ({ ...prev, [field]: 'Skipped' }));
+      setFormData((prev) => ({ ...prev, [field]: "Skipped" }));
     });
 
     nextStep();
@@ -513,15 +527,19 @@ const JobseekerForm = () => {
           {currentStep.options.map((option, index) => (
             <OptionButton
               key={index}
-              onClick={() => handleOptionSelect(option.value || option, currentStep.field)}
-              selected={formData[currentStep.field] === (option.value || option)}
+              onClick={() =>
+                handleOptionSelect(option.value || option, currentStep.field)
+              }
+              selected={
+                formData[currentStep.field] === (option.value || option)
+              }
             >
               {option.label || option}
             </OptionButton>
           ))}
         </div>
       );
-    } else if (currentStep.type === 'salary') {
+    } else if (currentStep.type === "salary") {
       return (
         <div>
           <InputGroup>
@@ -560,7 +578,7 @@ const JobseekerForm = () => {
         <Input
           type="text"
           name={currentStep.field}
-          value={formData[currentStep.field] || ''}
+          value={formData[currentStep.field] || ""}
           onChange={handleInputChange}
           error={errors[currentStep.field]}
           placeholder="Enter your answer"
@@ -585,20 +603,20 @@ const JobseekerForm = () => {
             <ChevronLeft size={20} />
             Back
           </Button>
-          {isLoggedIn ? (
-            <Button primary onClick={nextStep}>
-              {step < steps.length - 1 ? (
-                <>
-                  Next
-                  <ChevronRight size={20} />
-                </>
-              ) : (
-                'Submit'
-              )}
-            </Button>
-          ) : (
+          {/* {isLoggedIn ? ( */}
+          <Button primary onClick={nextStep}>
+            {step < steps.length - 1 ? (
+              <>
+                Next
+                <ChevronRight size={20} />
+              </>
+            ) : (
+              "Submit"
+            )}
+          </Button>
+          {/* ) : (
             <p>Please log in to submit the form.</p>
-          )}
+          )} */}
         </ButtonContainer>
       </FormCard>
 
@@ -615,11 +633,16 @@ const JobseekerForm = () => {
               .filter(([key]) => key !== "hasSpecificJob")
               .map(([key, value]) => (
                 <div key={key}>
-                  <strong>{key.replace(/([A-Z])/g, ' $1').toUpperCase()}:</strong> {value.toString()}
+                  <strong>
+                    {key.replace(/([A-Z])/g, " $1").toUpperCase()}:
+                  </strong>{" "}
+                  {value.toString()}
                 </div>
               ))}
             <SuccessMessage>
-              <p><strong>Success</strong></p>
+              <p>
+                <strong>Success</strong>
+              </p>
               <p>Your application has been submitted successfully!</p>
             </SuccessMessage>
           </ModalContent>

@@ -59,7 +59,7 @@ function Profilesidebar({ data }) {
       <button className="sidebar-toggle" onClick={toggleSidebar}>
         ☰
       </button>
-      <div className={`sidebar ${sidebarOpen ? 'open' : ''} overflow-y`}>
+      <div className={`sidebar ${sidebarOpen ? "open" : ""} overflow-y`}>
         <div className="sticky-top overflow-y">
           <div className="candidate-info overflow-y">
             <ul>
@@ -75,9 +75,9 @@ function Profilesidebar({ data }) {
               </li>
               <li>
                 <Link
-                    // ${token}
-                  // to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
-                  to={`http://localhost:3000/?tokenbyurl=${token}`}
+                  // ${token}
+                  to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
+                  // to={`http://localhost:3000/?tokenbyurl=${token}`}
                   className={data === "resume" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
