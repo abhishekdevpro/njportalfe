@@ -61,7 +61,6 @@ class EmployeeHeader extends Component {
             <div className="main-bar clearfix">
               <div className="container clearfix">
                 <div className="logo-header mostion">
-                 
                   <Link to={"/employee"}>
                     <img
                       src={require("./../../images/logo/NovaUS.png")}
@@ -92,10 +91,9 @@ class EmployeeHeader extends Component {
                       </Link>
                     )}
                     {/* <Link to ={'#'} title="READ MORE" onClick={this.handleShow}  className="site-button"><i className="fa fa-lock"></i> login </Link> */}
-                    {localStorage.getItem("employeeLoginToken") ? <Logout /> : (
-                      null
-                    )}
-                    
+                    {localStorage.getItem("employeeLoginToken") ? (
+                      <Logout />
+                    ) : null}
                   </div>
                 </div>
 
@@ -105,16 +103,16 @@ class EmployeeHeader extends Component {
                 >
                   <div className="logo-header mostion d-md-block d-lg-none">
                     <Link to={"/"} className="dez-page">
-                    <img
-                      src={require("./../../images/logo/NovaUS.png")}
-                      className="logo"
-                      alt="img"
-                    />
+                      <img
+                        src={require("./../../images/logo/NovaUS.png")}
+                        className="logo"
+                        alt="img"
+                      />
                     </Link>
                   </div>
                   <ul className="nav navbar-nav">
                     <li className="">
-                      <Link to={"/employee"}>Home </Link>
+                      <Link to={"/"}>Home </Link>
                     </li>
                     <li className="">
                       <Link to={"/services"}>services </Link>
@@ -191,12 +189,9 @@ class EmployeeHeader extends Component {
                       </ul>
                     </li> */}
                     {localStorage.getItem("employeeLoginToken") ? (
-                       <li>
-                       <Link 
-                        to={"/employee/company-profile"} >
-                         Dashboard
-                       </Link>
-                      {/* <ul className="sub-menu">
+                      <li>
+                        <Link to={"/employee/company-profile"}>Dashboard</Link>
+                        {/* <ul className="sub-menu">
                          <li>
                            <Link
                              to={"/employee/company-profile"}
@@ -248,11 +243,11 @@ class EmployeeHeader extends Component {
                            </Link>
                          </li>
                        </ul> */}
-                     </li>
+                      </li>
                     ) : (
-                      ''
+                      ""
                     )}
-                   
+
                     {/* <li>
                       <Link to={"#"}>
                         Pages <i className="fa fa-chevron-down"></i>

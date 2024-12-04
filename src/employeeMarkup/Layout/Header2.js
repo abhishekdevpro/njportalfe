@@ -58,7 +58,6 @@ class EmployeeHeader2 extends Component {
             <div className="main-bar clearfix">
               <div className="container clearfix">
                 <div className="logo-header mostion">
-                  
                   <Link to={"/employee"}>
                     <img
                       src={require("./../../images/logo/NovaUS.png")}
@@ -75,7 +74,8 @@ class EmployeeHeader2 extends Component {
                   data-target="#navbarNavDropdown"
                   aria-controls="navbarNavDropdown"
                   aria-expanded="false"
-                  aria-label="Toggle navigation">
+                  aria-label="Toggle navigation"
+                >
                   <span></span>
                   <span></span>
                   <span></span>
@@ -101,7 +101,8 @@ class EmployeeHeader2 extends Component {
 
                 <div
                   className="header-nav navbar-collapse collapse myNavbar justify-content-start"
-                  id="navbarNavDropdown">
+                  id="navbarNavDropdown"
+                >
                   <ul className="nav navbar-nav">
                     <li className="">
                       <Link to={"/employee"}>Home </Link>
@@ -179,12 +180,9 @@ class EmployeeHeader2 extends Component {
                         </li>
                       </ul>
                     </li> */}
-                    
+
                     <li>
-                      <Link to={"#"}>
-                        Dashboard
-                      </Link>
-                     
+                      <Link to={"#"}>Dashboard</Link>
                     </li>
                     {/* <li>
                       <Link to={"#"}>
@@ -433,13 +431,15 @@ class EmployeeHeader2 extends Component {
           show={this.state.show}
           onHide={this.handleClose}
           className=" lead-form-modal"
-          centered>
+          centered
+        >
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <button
                 type="button"
                 className="close"
-                onClick={this.handleClose}>
+                onClick={this.handleClose}
+              >
                 <span aria-hidden="true">&times;</span>
               </button>
               <div className="modal-body row m-a0 clearfix">
@@ -449,7 +449,8 @@ class EmployeeHeader2 extends Component {
                     backgroundImage: "url(" + bnr3 + ")",
                     backgroundPosition: "center",
                     backgroundSize: "cover",
-                  }}>
+                  }}
+                >
                   <div className="form-info text-white align-self-center">
                     <h3 className="m-b15">Login To You Now</h3>
                     <p className="m-b15">
@@ -506,7 +507,8 @@ class EmployeeHeader2 extends Component {
                       <div className="clearfix">
                         <button
                           type="button"
-                          className="btn-primary site-button btn-block">
+                          className="btn-primary site-button btn-block"
+                        >
                           Submit{" "}
                         </button>
                       </div>

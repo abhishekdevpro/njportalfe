@@ -48,101 +48,160 @@ function Footer() {
 
   return (
     <footer className="site-footer text-break">
-    <div className="footer-top py-5">
-      <div className="container">
-        <div className="row row-cols-2 row-cols-md-5">
-          <div className="col-md-12 col-lg">
-            <div className="widget border-0">
-              <div className="row row-cols-1 row-cols-md-5">
-                <div className="col mb-4 mb-md-0">
-                  <div className="text-start">
-                    <h5 className="mb-4 F-heading fw-bold">For Job Seekers</h5>
-                    <ul className="list-3 d-flex flex-column gap-2 text-break">
-                      <li><Link to={"/user/job/2"}>Search Jobs</Link></li>
-                      <li><Link to={"/user/register-2"}>Create Free account</Link></li>
-                      <li><Link to={"/user/register-2"}>List profile</Link></li>
-                      <li><Link to={"https://airesume.novajobs.us/form"}>Build AI resume</Link></li>
-                      <li><Link to={"/user/skill-test"}>Skill Test</Link></li>
-                    </ul>
+      <div className="footer-top py-5">
+        <div className="container">
+          <div className="row row-cols-2 row-cols-md-5">
+            <div className="col-md-12 col-lg">
+              <div className="widget border-0">
+                <div className="row row-cols-1 row-cols-md-5">
+                  <div className="col mb-4 mb-md-0">
+                    <div className="text-start">
+                      <h5 className="mb-4 F-heading fw-bold">
+                        For Job Seekers
+                      </h5>
+                      <ul className="list-3 d-flex flex-column gap-2 text-break">
+                        <li>
+                          <Link to={"/user/job/2"}>Search Jobs</Link>
+                        </li>
+                        <li>
+                          <Link to={"/user/register-2"}>
+                            Create Free account
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to={"/user/register-2"}>List profile</Link>
+                        </li>
+                        <li>
+                          <Link to={"https://airesume.novajobs.us/form"}>
+                            Build AI resume
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to={"/user/skill-test"}>Skill Test</Link>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-                <div className="col mb-4 mb-md-0">
-                  <div className="text-start">
-                    <h5 className="mb-4 F-heading fw-bold">For Employers</h5>
-                    <ul className="list-3 d-flex flex-column gap-2 text-break">
-                      <li><Link to={"/employee/company-profile"}>Post Jobs</Link></li>
-                      <li><Link to={"/employee/browse-candidates"}>Browse Applicants</Link></li>
-                      <li><Link to={"/employee/login"}>Schedule Interviews</Link></li>
-                    </ul>
+                  <div className="col mb-4 mb-md-0">
+                    <div className="text-start">
+                      <h5 className="mb-4 F-heading fw-bold">For Employers</h5>
+                      <ul className="list-3 d-flex flex-column gap-2 text-break">
+                        <li>
+                          <Link to={"/employee/company-profile"}>
+                            Post Jobs
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to={"/employee/browse-candidates"}>
+                            Browse Applicants
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to={"/employee/login"}>
+                            Schedule Interviews
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-                <div className="col mb-4 mb-md-0">
-                  <div className="text-start">
-                    <h5 className="mb-4 F-heading fw-bold">Partner with Us</h5>
-                    <ul className="list-3 d-flex flex-column gap-2 text-break">
-                      <li><Link to={"/vendor/vendorregistration"}>Partners</Link></li>
-                    </ul>
+                  <div className="col mb-4 mb-md-0">
+                    <div className="text-start">
+                      <h5 className="mb-4 F-heading fw-bold">
+                        Partner with Us
+                      </h5>
+                      <ul className="list-3 d-flex flex-column gap-2 text-break">
+                        <li>
+                          <Link to={"/vendor/vendorregistration"}>
+                            Partners
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-                <div className="col mb-4 mb-md-0">
-                  <div className="text-start">
-                    <h5 className="mb-4 F-heading fw-bold">Company</h5>
-                    <ul className="list-3 d-flex flex-column gap-2 text-break">
-                      <li><Link to={"/aboutus"}>About Us</Link></li>
-                      <li><Link to={"/services"}>Services</Link></li>
-                    </ul>
+                  <div className="col mb-4 mb-md-0">
+                    <div className="text-start">
+                      <h5 className="mb-4 F-heading fw-bold">Company</h5>
+                      <ul className="list-3 d-flex flex-column gap-2 text-break">
+                        <li>
+                          <Link to={"/aboutus"}>About Us</Link>
+                        </li>
+                        <li>
+                          <Link to={"/services"}>Services</Link>
+                        </li>
+                        <li>
+                          <Link to={"/employee/term-of-use-nova-jobs"}>
+                            Terms of use
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-                <div className="col mb-4 mb-md-0">
-                  <div className="text-start">
-                    <h5 className="mb-4 F-heading fw-bold">Contact Us</h5>
-                    <ul className="list-3 d-flex flex-column gap-2 text-break">
-                      <li><Link to="mailto:contact@novajobs.us">Email us</Link></li>
-                      <li><Link to={"/employee/term-of-use-nova-jobs"}>Terms of use</Link></li>
-                    </ul>
+                  <div className="col mb-4 mb-md-0">
+                    <div className="text-start">
+                      <h5 className="mb-4 F-heading fw-bold">Contact Us</h5>
+                      <ul className="list-3 d-flex flex-column gap-2 text-break">
+                        <li>
+                          <Link to="mailto:contact@novajobs.us">Email us</Link>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="d-flex justify-content-center justify-content-md-end mt-4 mt-md-0">
-              <ul className="list-inline d-flex text">
-                <li>
-                  <Link to={"https://www.facebook.com/Novausjobs"} className="site-button white facebook circle text-white bg-primary">
-                    <i className="fa fa-facebook"></i>
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"https://www.linkedin.com/company/nova-us-jobs/"} className="site-button white linkedin circle text-white bg-primary">
-                    <i className="fa fa-linkedin"></i>
-                  </Link>
-                </li>
-              </ul>
+              <div className="d-flex justify-content-center justify-content-md-end mt-4 mt-md-0">
+                <ul className="list-inline d-flex text">
+                  <li>
+                    <Link
+                      to={"https://www.facebook.com/Novausjobs"}
+                      className="site-button white facebook circle text-white bg-primary"
+                    >
+                      <i className="fa fa-facebook"></i>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to={"https://www.linkedin.com/company/nova-us-jobs/"}
+                      className="site-button white linkedin circle text-white bg-primary"
+                    >
+                      <i className="fa fa-linkedin"></i>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  
-    <div className="footer-bottom py-3">
-      <div className="container">
-        <div className="row align-items-center">
-          <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-            <span>
-              © Copyright by{" "}
-              <img src={india} alt="India flag" style={{ width: "40px", marginRight: "5px" }} />{" "}
-              <strong style={{ color: "white", fontWeight: "bold" }}>Hyper V Solutions</strong>{" "}
-              | All Rights Reserved
-            </span>
-          </div>
-          <div className="col-md-6 text-center text-md-end">
-            <img src={SBELogo} alt="SBE Logo" style={{ height: "50px", marginRight: "10px" }} />
-            <img src={NewDBELogo} alt="DBE Logo" style={{ height: "50px" }} />
+
+      <div className="footer-bottom py-3">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
+              <span>
+                © Copyright by{" "}
+                <img
+                  src={india}
+                  alt="India flag"
+                  style={{ width: "40px", marginRight: "5px" }}
+                />{" "}
+                <strong style={{ color: "white", fontWeight: "bold" }}>
+                  Hyper V Solutions
+                </strong>{" "}
+                | All Rights Reserved
+              </span>
+            </div>
+            <div className="col-md-6 text-center text-md-end">
+              <img
+                src={SBELogo}
+                alt="SBE Logo"
+                style={{ height: "50px", marginRight: "10px" }}
+              />
+              <img src={NewDBELogo} alt="DBE Logo" style={{ height: "50px" }} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
-  
+    </footer>
   );
 }
 
