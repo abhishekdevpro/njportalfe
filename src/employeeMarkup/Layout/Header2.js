@@ -105,7 +105,7 @@ class EmployeeHeader2 extends Component {
                 >
                   <ul className="nav navbar-nav">
                     <li className="">
-                      <Link to={"/employee"}>Home </Link>
+                      {/* <Link to={"/employee"}>Home </Link> */}
                       {/* <ul className="sub-menu">
                         <li>
                           <Link to={"./"} className="dez-page">

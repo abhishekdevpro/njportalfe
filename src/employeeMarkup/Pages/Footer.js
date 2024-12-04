@@ -54,6 +54,30 @@ function Footer() {
             <div className="col-md-12 col-lg">
               <div className="widget border-0">
                 <div className="row row-cols-1 row-cols-md-5">
+                  <div className="col mb-4 mb-md-0 col-md-4">
+                    <div className="text-start">
+                      <div className="mb-4">
+                        <Link to={"/"}>
+                          <img
+                            src={require("./../../images/logo/NovaUS.png")}
+                            className="max-w-[180px] w-[180px] "
+                            alt=""
+                            style={{ width: "180px" }}
+                          />
+                        </Link>
+                      </div>
+                      <b className="fw-bold mb-4">
+                        An AI enabled Edtech Company
+                      </b>
+                      <ul className="list-3 d-flex flex-column gap-2 text-break">
+                        <li>
+                          {/* <Link to="mailto:contact@novajobs.us">Email us</Link> */}
+                          info@novajobs.us
+                        </li>
+                        <li>hr@novajobs.us</li>
+                      </ul>
+                    </div>
+                  </div>
                   <div className="col mb-4 mb-md-0">
                     <div className="text-start">
                       <h5 className="mb-4 F-heading fw-bold">
@@ -136,7 +160,7 @@ function Footer() {
                       </ul>
                     </div>
                   </div>
-                  <div className="col mb-4 mb-md-0">
+                  {/* <div className="col mb-4 mb-md-0">
                     <div className="text-start">
                       <h5 className="mb-4 F-heading fw-bold">Contact Us</h5>
                       <ul className="list-3 d-flex flex-column gap-2 text-break">
@@ -145,7 +169,7 @@ function Footer() {
                         </li>
                       </ul>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="d-flex justify-content-center justify-content-md-end mt-4 mt-md-0">
