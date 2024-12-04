@@ -5,7 +5,7 @@ import NewDBELogo from "../../assests/New-dbe-logo.png";
 import india from "../../images/WhatsApp_Image_2024-05-11_at_19.51.05-removebg-preview.png";
 import axios from "axios";
 import { showToastError, showToastSuccess } from "../../utils/toastify";
-
+import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 function Footer() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -66,15 +66,27 @@ function Footer() {
                           />
                         </Link>
                       </div>
-                      <b className="fw-bold mb-4">
-                        An AI enabled Edtech Company
-                      </b>
-                      <ul className="list-3 d-flex flex-column gap-2 text-break">
-                        <li>
-                          {/* <Link to="mailto:contact@novajobs.us">Email us</Link> */}
-                          info@novajobs.us
+                      <b className="fw-bold mb-4">An AI enabled Job Portal</b>
+                      <ul className="list-3 d-flex flex-column gap-2 text-break mt-4">
+                        <li className="flex d-flex align-items-center justify-content-start gap-2">
+                          <p>
+                            <FaMapMarkerAlt className="" />
+                          </p>
+                          <p> P O Box 1084, Columbia, SC 29202</p>
                         </li>
-                        <li>hr@novajobs.us</li>
+                        <li className="flex d-flex align-items-center justify-content-start gap-2">
+                          <p>
+                            <FaEnvelope className="" />
+                          </p>
+                          {/* <Link to="mailto:contact@novajobs.us">Email us</Link> */}
+                          <p>info@novajobs.us</p>
+                        </li>
+                        <li className="flex d-flex align-items-center justify-content-start gap-2">
+                          <p>
+                            <FaEnvelope className="" />
+                          </p>
+                          <p>hr@novajobs.us</p>
+                        </li>
                       </ul>
                     </div>
                   </div>
