@@ -83,16 +83,14 @@ const SavedJobs = () => {
     <div className="section-full bg-white c">
       <div className="container">
         <div className="d-flex ">
-          <div className="">
-         
-        
-          </div>
-          
+          <div className=""></div>
         </div>
         <div className="row">
           {skeleton === true ? (
-            
-            <div>Please wait Or Check have saved any job?<JobPageSkeleton /> </div>
+            <div>
+              Please wait Or Check have saved any job?
+              <JobPageSkeleton />{" "}
+            </div>
           ) : (
             <div className="col-lg-12">
               {jobApplicationData ? (
@@ -108,8 +106,7 @@ const SavedJobs = () => {
                           </div>
                           <div className="job-post-info">
                             <h4>
-                              
-                              <Link to={`/user/job`}>
+                              <Link to={`/user/job/${item.job_detail.id}`}>
                                 {item.job_detail.job_title}
                               </Link>
                             </h4>

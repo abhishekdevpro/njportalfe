@@ -121,7 +121,7 @@ function Jobsection() {
                             <h4>
                               <Link
                                 to={{
-                                  pathname: `/user/job/${item.s_no}`,
+                                  pathname: `/user/job/${item.job_detail.id}`,
                                   state: { job: jobApplicationData },
                                 }}
                               >
@@ -142,20 +142,22 @@ function Jobsection() {
                                 </li>
                               ) : null}
                               <li>
-                                <i className="fa fa-clock-o"></i> 
+                                <i className="fa fa-clock-o"></i>
                                 {moment(item.job_detail.created_at).fromNow()}
                               </li>
                             </ul>
                             {item.job_detail.skills_arr ? (
                               <div className="mx-1">
-                                {item.job_detail.skills_arr.map((skill, index) => (
-                                  <span
-                                    key={index}
-                                    className="badge badge-primary m-2"
-                                  >
-                                    {skill}
-                                  </span>
-                                ))}
+                                {item.job_detail.skills_arr.map(
+                                  (skill, index) => (
+                                    <span
+                                      key={index}
+                                      className="badge badge-primary m-2"
+                                    >
+                                      {skill}
+                                    </span>
+                                  )
+                                )}
                               </div>
                             ) : null}
                           </div>
@@ -204,45 +206,51 @@ function Jobsection() {
               ) : null}
               {/* Pagination Controls */}
               <div className="pagination d-flex flex-wrap justify-content-center">
-  <button
-    className="btn btn-outline-primary me-2 mb-2"
-    onClick={() => handlePageChange(currentPage - 1)}
-    disabled={currentPage === 1}
-  >
-    Previous
-  </button>
-  
-  {Array.from({ length: totalPages }, (_, index) => {
-    if (index < 5 || (index === totalPages - 1 && totalPages > 5)) {
-      return (
-        <button
-          key={index}
-          onClick={() => handlePageChange(index + 1)}
-          className={`btn ${currentPage === index + 1 ? "btn-primary" : "btn-outline-secondary"} me-2 mb-2`}
-        >
-          {index + 1}
-        </button>
-      );
-    } else if (index === 5 && totalPages > 5) {
-      return (
-        <span key="ellipsis" className="me-2 mb-2">
-          ...
-        </span>
-      );
-    } else {
-      return null;
-    }
-  })}
+                <button
+                  className="btn btn-outline-primary me-2 mb-2"
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  Previous
+                </button>
 
-  <button
-    onClick={() => handlePageChange(currentPage + 1)}
-    disabled={currentPage === totalPages}
-    className="btn btn-outline-primary mb-2"
-  >
-    Next
-  </button>
-</div>
+                {Array.from({ length: totalPages }, (_, index) => {
+                  if (
+                    index < 5 ||
+                    (index === totalPages - 1 && totalPages > 5)
+                  ) {
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => handlePageChange(index + 1)}
+                        className={`btn ${
+                          currentPage === index + 1
+                            ? "btn-primary"
+                            : "btn-outline-secondary"
+                        } me-2 mb-2`}
+                      >
+                        {index + 1}
+                      </button>
+                    );
+                  } else if (index === 5 && totalPages > 5) {
+                    return (
+                      <span key="ellipsis" className="me-2 mb-2">
+                        ...
+                      </span>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
 
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="btn btn-outline-primary mb-2"
+                >
+                  Next
+                </button>
+              </div>
             </div>
             <div className="col-lg-3">
               <div className="sticky-top">
@@ -263,9 +271,7 @@ function Jobsection() {
                       </p>
                     </div>
                     <div className="testimonial-detail">
-                      <strong className="testimonial-name">
-                        Amanda V.
-                      </strong>{" "}
+                      <strong className="testimonial-name">Amanda V.</strong>{" "}
                       <span className="testimonial-position">Florida, USA</span>{" "}
                     </div>
                   </div>
