@@ -91,7 +91,7 @@ function Footer() {
                       </ul>
                     </div>
                   </div>
-                  <div className="col mb-4 mb-md-0">
+                  <div className="col mb-4 mb-md-0 col-md-2">
                     <div className="text-start">
                       <h5 className="mb-4 F-heading fw-bold">
                         For Job Seekers
@@ -119,7 +119,7 @@ function Footer() {
                       </ul>
                     </div>
                   </div>
-                  <div className="col mb-4 mb-md-0">
+                  <div className="col mb-4 mb-md-0 col-md-2">
                     <div className="text-start">
                       <h5 className="mb-4 F-heading fw-bold">For Employers</h5>
                       <ul className="list-3 d-flex flex-column gap-2 text-break">
@@ -141,7 +141,7 @@ function Footer() {
                       </ul>
                     </div>
                   </div>
-                  <div className="col mb-4 mb-md-0">
+                  <div className="col mb-4 mb-md-0 col-md-2">
                     <div className="text-start">
                       <h5 className="mb-4 F-heading fw-bold">
                         Partner with Us
@@ -155,7 +155,7 @@ function Footer() {
                       </ul>
                     </div>
                   </div>
-                  <div className="col mb-4 mb-md-0">
+                  <div className="col mb-4 mb-md-0 col-md-2">
                     <div className="text-start">
                       <h5 className="mb-4 F-heading fw-bold">Company</h5>
                       <ul className="list-3 d-flex flex-column gap-2 text-break">
