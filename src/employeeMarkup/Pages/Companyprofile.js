@@ -41,14 +41,19 @@ function EmployeeCompanyprofile() {
   const [services, setServices] = useState([{ title: '', image: null }]);
   const [industries, setIndustries] = useState([]);
   const [file, setFile] = useState(null);
-
+  
   const token = localStorage.getItem("employeeLoginToken");
 
-  const handleChange = (content, delta, source, editor) => {
-    const plainText = editor.getText(); // Extract plain text from the editor
-    setDescription(plainText); // Set the plain text in the state
-  };
+  // const handleChange = (content, delta, source, editor) => {
+  //   const plainText = editor.getText();
 
+  //   // Extract plain text from the editor
+  //   setDescription(plainText); // Set the plain text in the state
+  // };
+  const handleChange = (content) => {
+    // Extract plain text from the editor
+    setDescription(content); // Set the plain text in the state
+  };
   useEffect(() => {
     // Fetch industries from API
     axios({
@@ -68,7 +73,6 @@ function EmployeeCompanyprofile() {
   }, [token]); // Added token as dependency to ensure useEffect runs on token change
 
   // Function to update company data
- 
 
   const dispatch = useDispatch();
 
@@ -96,24 +100,28 @@ function EmployeeCompanyprofile() {
     const companyServices = companyDetail?.company_services;
 
     // Check if companyServices is a valid JSON string
-    if (companyServices && typeof companyServices === 'string' && companyServices.trim() !== '') {
-        try {
-            const parsedServices = JSON.parse(companyServices);
-            const formattedServices = parsedServices.map(service => ({
-                title: service.service_name,
-                image: service.service_photo,
-            }));
-            setServices(formattedServices);
-        } catch (error) {
-            console.error("Failed to parse company services:", error);
-            // Optionally set services to an empty array or handle the error as needed
-            setServices([]);
-        }
-    } else {
-        // If companyServices is not valid, set services to an empty array
+    if (
+      companyServices &&
+      typeof companyServices === "string" &&
+      companyServices.trim() !== ""
+    ) {
+      try {
+        const parsedServices = JSON.parse(companyServices);
+        const formattedServices = parsedServices.map((service) => ({
+          title: service.service_name,
+          image: service.service_photo,
+        }));
+        setServices(formattedServices);
+      } catch (error) {
+        console.error("Failed to parse company services:", error);
+        // Optionally set services to an empty array or handle the error as needed
         setServices([]);
+      }
+    } else {
+      // If companyServices is not valid, set services to an empty array
+      setServices([]);
     }
-}, [companyData]);
+  }, [companyData]);
 
   const getCountry = async () => {
     axios({
@@ -169,7 +177,7 @@ function EmployeeCompanyprofile() {
 
   useEffect(() => {
     console.log(selectedCountry);
-   
+
     getState();
   }, [selectedCountry]);
 
@@ -183,12 +191,12 @@ function EmployeeCompanyprofile() {
   const addService = () => {
     setServices([...services, { title: "", image: "" }]);
   };
-  
+
   const removeService = (index) => {
     const updatedServices = services.filter((_, i) => i !== index);
     setServices(updatedServices);
   };
-  
+
   const handleServiceChange = (index, field, value) => {
     const updatedServices = services.map((service, i) => {
       if (i === index) {
@@ -198,7 +206,7 @@ function EmployeeCompanyprofile() {
     });
     setServices(updatedServices);
   };
-  
+
   const handleImageChange = (index, e) => {
     const img = e.target.files[0];
     const url = URL.createObjectURL(img);
@@ -212,20 +220,25 @@ function EmployeeCompanyprofile() {
     setServices(updatedServices);
   };
 
-  
- 
   const updateCompanyData = async () => {
-    if (!companyName || !email || !industry || !selectedCountry || !selectedStates || !selectedCities) {
+    if (
+      !companyName ||
+      !email ||
+      !industry ||
+      !selectedCountry ||
+      !selectedStates ||
+      !selectedCities
+    ) {
       showToastError("Please fill out all required fields.");
       return;
     }
-  
+
     try {
-      const servicesName = services.map(service => service.title);
+      const servicesName = services.map((service) => service.title);
       const formData = new FormData();
       const serviceFiles = []; // Array to hold service images
       const serviceNames = []; // Array to hold service names
-  
+
       // Function to convert a URL or string to a Blob/File
       const convertImageToBinary = async (image) => {
         if (typeof image === "string") {
@@ -236,7 +249,7 @@ function EmployeeCompanyprofile() {
         }
         return image; // If it's already a File or Blob, return as is
       };
-  
+
       // Process each service to prepare the data
       for (const service of services) {
         serviceNames.push(service.title); // Collect service titles
@@ -245,13 +258,13 @@ function EmployeeCompanyprofile() {
           serviceFiles.push(binaryImage); // Collect service images
         }
       }
-  
+
       // Append each service image and its corresponding name to formData
       for (let i = 0; i < serviceFiles.length; i++) {
         formData.append("images", serviceFiles[i]);
         formData.append("services_name", serviceNames[i] || `file-${i}`); // Use a default name if none provided
       }
-  
+
       // First request to update company data
       await axios({
         method: "put",
@@ -278,9 +291,9 @@ function EmployeeCompanyprofile() {
           company_industry_id: Number(industry),
         },
       });
-  
+
       showToastSuccess("Company data updated successfully.");
-  
+
       // Second request to update company services
       await axios({
         method: "put",
@@ -291,15 +304,14 @@ function EmployeeCompanyprofile() {
         },
         data: formData, // This is the FormData containing images and names
       });
-  
+
       showToastSuccess("Services updated successfully.");
     } catch (error) {
       console.error("Error updating company data or services:", error);
       showToastError("Failed to update company data or services.");
     }
   };
-  
-  
+
   return (
     <>
       <Header2 />
@@ -322,10 +334,12 @@ function EmployeeCompanyprofile() {
                         View Company page
                       </Link>
                     </div>
-                    <form onSubmit={(e) => {
-                      e.preventDefault();
-                      updateCompanyData();
-                    }}>
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        updateCompanyData();
+                      }}
+                    >
                       <div className="row m-b30">
                         <div className="col-lg-6 col-md-6">
                           <div className="form-group">
@@ -382,16 +396,16 @@ function EmployeeCompanyprofile() {
                           </div>
                         </div>
                         <div className="col-lg-6 col-md-6">
-      <div className="form-group">
-        <label>Founded Year</label>
-        <input
-          type="text"  // Allows the user to select year and month
-          className="form-control"
-          onChange={(e) => setFoundedYear(e.target.value)}
-          value={foundedYear}
-        />
-      </div>
-    </div>
+                          <div className="form-group">
+                            <label>Founded Year</label>
+                            <input
+                              type="text" // Allows the user to select year and month
+                              className="form-control"
+                              onChange={(e) => setFoundedYear(e.target.value)}
+                              value={foundedYear}
+                            />
+                          </div>
+                        </div>
 
                         <div className="col-lg-6 col-md-6">
                           <div className="form-group">
@@ -399,17 +413,14 @@ function EmployeeCompanyprofile() {
                             <Form.Control
                               as="select"
                               custom
-                                                            className="custom-select"
+                              className="custom-select"
                               onChange={(e) => setIndustry(e.target.value)}
                               value={industry}
                               required
                             >
                               <option value="">Select Industry</option>
                               {industries.map((industry) => (
-                                <option
-                                  key={industry.id}
-                                  value={industry.id}
-                                >
+                                <option key={industry.id} value={industry.id}>
                                   {industry.name}
                                 </option>
                               ))}
@@ -427,12 +438,16 @@ function EmployeeCompanyprofile() {
                               rows="3"
                               required
                             /> */}
-                         <ReactQuill
-        theme="snow"
-        value={description}
-        onChange={handleChange}
-        style={{ height: "200px", width: "100%", marginBottom: "70px" }}
-      />
+                            <ReactQuill
+                              theme="snow"
+                              value={description}
+                              onChange={handleChange}
+                              style={{
+                                height: "200px",
+                                width: "100%",
+                                marginBottom: "70px",
+                              }}
+                            />
                           </div>
                         </div>
                         <div className="col-lg-12 col-md-12">
@@ -447,7 +462,13 @@ function EmployeeCompanyprofile() {
                                       className="form-control"
                                       placeholder="Service Title"
                                       value={service.title}
-                                      onChange={(e) => handleServiceChange(index, 'title', e.target.value)}
+                                      onChange={(e) =>
+                                        handleServiceChange(
+                                          index,
+                                          "title",
+                                          e.target.value
+                                        )
+                                      }
                                     />
                                   </div>
                                 </div>
@@ -456,13 +477,15 @@ function EmployeeCompanyprofile() {
                                     <input
                                       type="file"
                                       className="form-control-file"
-                                      onChange={(e) => handleImageChange(index, e)}
+                                      onChange={(e) =>
+                                        handleImageChange(index, e)
+                                      }
                                     />
                                   </div>
                                 </div>
                                 <div className="col-lg-1 col-md-1">
-                                  <button 
-                                    type="button" 
+                                  <button
+                                    type="button"
                                     className="site-button button-sm red"
                                     onClick={() => removeService(index)}
                                   >
@@ -471,13 +494,18 @@ function EmployeeCompanyprofile() {
                                 </div>
                                 {service.image && (
                                   <div className="col-lg-12 col-md-12 mt-2">
-                                    <img src={`https://api.novajobs.us${service.image}`} alt="Service" className="img-fluid" style={{maxHeight: '100px'}} />
+                                    <img
+                                      src={`https://api.novajobs.us${service.image}`}
+                                      alt="Service"
+                                      className="img-fluid"
+                                      style={{ maxHeight: "100px" }}
+                                    />
                                   </div>
                                 )}
                               </div>
                             ))}
-                            <button 
-                              type="button" 
+                            <button
+                              type="button"
                               className="site-button button-sm"
                               onClick={addService}
                             >
@@ -512,10 +540,7 @@ function EmployeeCompanyprofile() {
                             >
                               <option value="">Select Country</option>
                               {countries.map((country) => (
-                                <option
-                                  key={country.id}
-                                  value={country.id}
-                                >
+                                <option key={country.id} value={country.id}>
                                   {country.name}
                                 </option>
                               ))}
@@ -536,10 +561,7 @@ function EmployeeCompanyprofile() {
                             >
                               <option value="">Select State</option>
                               {states.map((state) => (
-                                <option
-                                  key={state.id}
-                                  value={state.id}
-                                >
+                                <option key={state.id} value={state.id}>
                                   {state.name}
                                 </option>
                               ))}
@@ -560,17 +582,14 @@ function EmployeeCompanyprofile() {
                             >
                               <option value="">Select City</option>
                               {cities.map((city) => (
-                                <option
-                                  key={city.id}
-                                  value={city.id}
-                                >
+                                <option key={city.id} value={city.id}>
                                   {city.name}
                                 </option>
                               ))}
                             </Form.Control>
                           </div>
                         </div>
-                       {/* <div className="col-lg-12 col-md-12">
+                        {/* <div className="col-lg-12 col-md-12">
                           <div className="form-group">
                             <label>Address</label>
                             <input
@@ -583,7 +602,7 @@ function EmployeeCompanyprofile() {
                             />
                           </div>
                         </div> */}
-                        
+
                         <div className="col-lg-6 col-md-6">
                           <div className="form-group">
                             <label>LinkedIn Link</label>
@@ -634,8 +653,7 @@ function EmployeeCompanyprofile() {
                             />
                           </div>
                         </div>
-                        
-                       
+
                         <div className="col-lg-12 col-md-12">
                           <div className="clearfix font-bold">
                             <button

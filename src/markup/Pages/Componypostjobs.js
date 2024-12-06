@@ -154,7 +154,7 @@ function Componypostjobs() {
                             <input
                               type="text"
                               className="form-control"
-                              placeholder="Conscious foundation"
+                              placeholder="Nova Jobs"
                               id="company"
                               name="company"
                               onChange={handleChange}
@@ -192,11 +192,7 @@ function Componypostjobs() {
                               onChange={handleChange}
                               name="workplaceType"
                               id="workplaceType"
-                            >
-                            
-                       
-
-                            </Form.Control>
+                            ></Form.Control>
                           </div>
                         </div>
                         <div className="col-12">

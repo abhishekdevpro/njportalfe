@@ -906,7 +906,6 @@ function JobPage() {
                                     )}
                                   </div>
                                 </div>
-
                                 <div className="job-details-content">
                                   {selectedJob.job_workplace_types.name &&
                                     selectedJob.job_type.name &&
@@ -997,7 +996,7 @@ function JobPage() {
                                         }
                                       </p>
                                      */}
-                                      <p>
+                                      {/* <p>
                                         <i
                                           class="fa fa-location-arrow"
                                           aria-hidden="true"
@@ -1006,10 +1005,17 @@ function JobPage() {
                                         {
                                           selectedJob.companies.cities.name
                                         }, {selectedJob.companies.states.name}
+                                      </p> */}
+                                      <p>
+                                        <i className="fa fa-map-marker mr-2"></i>
+                                        {selectedJob.companies.cities.name},{" "}
+                                        {selectedJob.companies.states.name},{" "}
+                                        {selectedJob.companies.countries.name}
                                       </p>
                                     </div>
                                   )}{" "}
                                 </div>
+
                                 <div className="d-inline-block border-end border-1 border-btn btn-outline-secondary w-100 my-3"></div>
                                 <h5>Full job description</h5>
                                 {selectedJob.job_detail.job_description && (
@@ -1313,7 +1319,11 @@ function JobPage() {
                         {selectedJob ? (
                           <div className="job-bx rounded-5 ">
                             <h3>About Company</h3>
-                            {selectedJob.companies.about}
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: selectedJob.companies.about,
+                              }}
+                            />
                           </div>
                         ) : null}
                       </div>

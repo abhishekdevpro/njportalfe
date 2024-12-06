@@ -41,6 +41,7 @@ const SavedJobs = () => {
     try {
       const response = await axios.get(
         "https://api.novajobs.us/api/jobseeker/job-favorites",
+        // "https://api.novajobs.us/api/jobseeker/job-lists?page_size=7&is_publish=1",
         {
           headers: {
             Authorization: token,
