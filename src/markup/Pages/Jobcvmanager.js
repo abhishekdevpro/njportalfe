@@ -114,10 +114,47 @@ function Jobcvmanager() {
                             <span>Skill Test</span>
                           </Link>
                         </li>
+
                         <li>
                           <Link to={"/user/jobs-change-password"}>
                             <i className="fa fa-key" aria-hidden="true"></i>
                             <span>Change Password</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to={""}>
+                            <i
+                              className="fa fa-id-card-o"
+                              aria-hidden="true"
+                            ></i>
+                            <span>Skill Test History</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to={""}>
+                            <i
+                              className="fa fa-id-card-o"
+                              aria-hidden="true"
+                            ></i>
+                            <span>Community</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to={""}>
+                            <i
+                              className="fa fa-id-card-o"
+                              aria-hidden="true"
+                            ></i>
+                            <span>Messages</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to={""}>
+                            <i
+                              className="fa fa-id-card-o"
+                              aria-hidden="true"
+                            ></i>
+                            <span>Ultra Aura</span>
                           </Link>
                         </li>
                         <li>

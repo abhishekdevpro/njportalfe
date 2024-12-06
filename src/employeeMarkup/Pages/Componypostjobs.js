@@ -481,7 +481,8 @@ function EmployeeComponypostjobs() {
                       </h5>
                       <Link
                         to={"/employee/company-profile"}
-                        className="site-button right-arrow button-sm float-right">
+                        className="site-button right-arrow button-sm float-right"
+                      >
                         Back
                       </Link>
                     </div>
@@ -498,7 +499,6 @@ function EmployeeComponypostjobs() {
                               name="jobTitle"
                               value={postAJobData.jobTitle}
                               onChange={handleChange}
-                              
                             />
                           </div>
                           {errors.jobTitle && (
@@ -516,28 +516,28 @@ function EmployeeComponypostjobs() {
                               name="salary"
                               value={postAJobData.salary}
                               onChange={handleChange}
-                              
                             />
                           </div>
                           {errors.jobTitle && (
                             <p className="text-danger">{errors.jobTitle}</p>
                           )}
                         </div>
-                        <div className="col-6"> 
-                        <div className="form-group">
-    <label htmlFor="experience_level_id">Experience</label>
-    <Form.Control
-  as="select"
-  custom
-  name="experience_level_id"
-  id="experience_level_id"
-  value={postAJobData.experience_level_id}
-  onChange={handleChange}
->
-  {renderexperience_level_id()}
-</Form.Control>
-
-  </div>
+                        <div className="col-6">
+                          <div className="form-group">
+                            <label htmlFor="experience_level_id">
+                              Experience
+                            </label>
+                            <Form.Control
+                              as="select"
+                              custom
+                              name="experience_level_id"
+                              id="experience_level_id"
+                              value={postAJobData.experience_level_id}
+                              onChange={handleChange}
+                            >
+                              {renderexperience_level_id()}
+                            </Form.Control>
+                          </div>
                         </div>
                         <div className="col-12 ">
                           <div className="form-group">
@@ -545,7 +545,7 @@ function EmployeeComponypostjobs() {
                             <input
                               type="text"
                               className="form-control"
-                              placeholder="Conscious foundation"
+                              placeholder="Nova Jobs"
                               id="company"
                               name="company"
                               value={postAJobData.company}
@@ -582,40 +582,37 @@ function EmployeeComponypostjobs() {
                               Workplace type
                             </label>
                             {workplaceType ? (
-                             <Form.Control
-                             as="select"
-                             custom
-                             value={postAJobData.workplaceType}
-                             onChange={handleChange}
-                             name="workplaceType"
-                           >
-                             {workplaceType.map((item) => (
-                               <option key={item.id} value={item.id}>
-                                 {item.name}
-                               </option>
-                             ))}
-                           </Form.Control>
-                           
+                              <Form.Control
+                                as="select"
+                                custom
+                                value={postAJobData.workplaceType}
+                                onChange={handleChange}
+                                name="workplaceType"
+                              >
+                                {workplaceType.map((item) => (
+                                  <option key={item.id} value={item.id}>
+                                    {item.name}
+                                  </option>
+                                ))}
+                              </Form.Control>
                             ) : null}
                           </div>
                         </div>
                         <div className="col-lg-6 col-md-6">
-  <div className="form-group">
-    <label htmlFor="jobCategory">Job Category</label>
-    <Form.Control
-  as="select"
-  custom
-  name="jobCategory"
-  id="jobCategory"
-  value={postAJobData.jobCategory}
-  onChange={handleChange}
->
-  {renderJobCategories()}
-</Form.Control>
-
-  </div>
-</div>
-
+                          <div className="form-group">
+                            <label htmlFor="jobCategory">Job Category</label>
+                            <Form.Control
+                              as="select"
+                              custom
+                              name="jobCategory"
+                              id="jobCategory"
+                              value={postAJobData.jobCategory}
+                              onChange={handleChange}
+                            >
+                              {renderJobCategories()}
+                            </Form.Control>
+                          </div>
+                        </div>
 
                         <div className="col-lg-6 col-md-6">
                           <div className="form-group">
@@ -627,7 +624,8 @@ function EmployeeComponypostjobs() {
                                 className="custom-select"
                                 name="selectedCountry"
                                 value={postAJobData.selectedCountry}
-                                onChange={handleChange}>
+                                onChange={handleChange}
+                              >
                                 {countries.map((item) => (
                                   <option value={item.id}>{item.name}</option>
                                 ))}
@@ -646,7 +644,8 @@ function EmployeeComponypostjobs() {
                                 className="custom-select"
                                 name="selectedState"
                                 value={postAJobData.selectedState}
-                                onChange={handleChange}>
+                                onChange={handleChange}
+                              >
                                 {/* <option value=""></option> */}
                                 {states.map((item) => (
                                   <option value={item.id}>{item.name}</option>
@@ -666,7 +665,8 @@ function EmployeeComponypostjobs() {
                                 name="selectedCity"
                                 className="custom-select"
                                 value={postAJobData.selectedCity}
-                                onChange={handleChange}>
+                                onChange={handleChange}
+                              >
                                 {/* <option value=""></option> */}
 
                                 {cities.map((item) => (
@@ -688,7 +688,8 @@ function EmployeeComponypostjobs() {
                                 name="jobType"
                                 id="jobType"
                                 value={postAJobData.jobType}
-                                onChange={handleChange}>
+                                onChange={handleChange}
+                              >
                                 {jobType.map(
                                   (item) => (
                                     console.log(item),
@@ -781,7 +782,8 @@ function EmployeeComponypostjobs() {
                         style={{
                           backgroundColor: "#edf3f8",
                           borderRadius: "7px",
-                        }}>
+                        }}
+                      >
                         <div className="d-flex justify-content-end ">
                           <FaX
                             className="outline-none p-0 border-0 f"
@@ -804,7 +806,8 @@ function EmployeeComponypostjobs() {
                               aiJobDescription();
                             }}
                             className="py-3 "
-                            style={{ borderRadius: "50px", fontWeight: "600" }}>
+                            style={{ borderRadius: "50px", fontWeight: "600" }}
+                          >
                             Write With AI
                           </Button>
                         </div>
@@ -819,15 +822,18 @@ function EmployeeComponypostjobs() {
                         <p className="text-center ">
                           Limits may apply to free job posts.
                           <Link to={"/employee/term-of-use-nova-jobs"}>
-                          <span style={{ color: "#0a66c2", fontWeight: "600" }}>
-                            View Our Policy
-                          </span>
-                        </Link>
-                          
+                            <span
+                              style={{ color: "#0a66c2", fontWeight: "600" }}
+                            >
+                              View Our Policy
+                            </span>
+                          </Link>
                         </p>
                       </div>
                     )}
-                    <div> <br/>
+                    <div>
+                      {" "}
+                      <br />
                       <h4>Description</h4>
                       {description ? (
                         <div>
@@ -865,7 +871,8 @@ function EmployeeComponypostjobs() {
                           />
                           <label
                             class="custom-control-label"
-                            for="check1"></label>
+                            for="check1"
+                          ></label>
                         </div>
                         <div style={{ color: "#9d9d9d" }} className="ms-4">
                           Filter out and send rejections to applicants who don't
@@ -880,27 +887,31 @@ function EmployeeComponypostjobs() {
                       style={{
                         display: "flex",
                         gap: 10,
-                      }}>
-                       <div
-        style={{
-          display: "flex",
-          gap: 10,
-        }}>
-        {/* Step 3: Update UI based on job posting status */}
-        {jobPostingStatus === "pending" ? (
-          <button
-            onClick={handlePostJob}
-            className="site-button d-flex justify-content-center align-items-center">
-            Post job
-          </button>
-        ) : (
-          <button
-            // onClick={handleAddSkill}
-            className="site-button d-flex justify-content-center align-items-center">
-            Add Another Job
-          </button>
-        )}
-      </div>
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: 10,
+                        }}
+                      >
+                        {/* Step 3: Update UI based on job posting status */}
+                        {jobPostingStatus === "pending" ? (
+                          <button
+                            onClick={handlePostJob}
+                            className="site-button d-flex justify-content-center align-items-center"
+                          >
+                            Post job
+                          </button>
+                        ) : (
+                          <button
+                            // onClick={handleAddSkill}
+                            className="site-button d-flex justify-content-center align-items-center"
+                          >
+                            Add Another Job
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

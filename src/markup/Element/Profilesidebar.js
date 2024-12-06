@@ -125,16 +125,7 @@ function Profilesidebar({ data }) {
                   <span>Applied Jobs</span>
                 </Link>
               </li>
-              <li>
-                <Link
-                  to={"/user/jobs-alerts"}
-                  className={data === "alerts-jobs" ? "active" : null}
-                  onClick={() => setSidebarOpen(false)}
-                >
-                  <i className="fa fa-bell-o" aria-hidden="true"></i>
-                  <span>Notifications</span>
-                </Link>
-              </li>
+
               <li>
                 <Link
                   to={"/user/skill-test"}
@@ -147,12 +138,62 @@ function Profilesidebar({ data }) {
               </li>
               <li>
                 <Link
+                  to={""}
+                  className={data === "skill-test-history" ? "active" : null}
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <i className="fa fa-id-card-o" aria-hidden="true"></i>
+                  <span>Skill Test History</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={""}
+                  className={data === "community" ? "active" : null}
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <i className="fa fa-id-card-o" aria-hidden="true"></i>
+                  <span>Community</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={""}
+                  className={data === "messages" ? "active" : null}
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <i className="fa fa-id-card-o" aria-hidden="true"></i>
+                  <span>Messages</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={""}
+                  className={data === "ultra-aura" ? "active" : null}
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <i className="fa fa-id-card-o" aria-hidden="true"></i>
+                  <span>Ultra Aura</span>
+                </Link>
+              </li>
+              <li>
+                <Link
                   to={"/user/jobs-referral"}
                   className={data === "jobs-referral" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
                   <i className="fa fa-id-card-o" aria-hidden="true"></i>
                   <span>Add Referral </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={"/user/jobs-alerts"}
+                  className={data === "alerts-jobs" ? "active" : null}
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <i className="fa fa-bell-o" aria-hidden="true"></i>
+                  <span>Notifications</span>
                 </Link>
               </li>
               <li>

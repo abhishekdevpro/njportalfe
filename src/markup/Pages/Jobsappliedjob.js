@@ -233,13 +233,17 @@ function Jobsappliedjob() {
                             const formattedCreatedDate = moment(
                               item.job_detail.created_at
                             ).fromNow();
-
+                            const formattedDate = moment(
+                              item.job_applied.created_at
+                            ).format("MMMM-DD-YYYY");
                             return (
                               <li key={index}>
                                 <div className="post-bx">
                                   <div className="job-post-info m-a0">
                                     <h4>
-                                      <Link to={`/user/job/${item.job_detail.id}`}>
+                                      <Link
+                                        to={`/user/job/${item.job_detail.id}`}
+                                      >
                                         {item.job_detail.job_title}
                                       </Link>
                                     </h4>
@@ -282,7 +286,9 @@ function Jobsappliedjob() {
       </li>
     </ul> */}
                                     <div className="job-time m-t15 m-b10">
-                                    Applied on: {Date(item.job_applied.created_at)}
+                                      {/* Applied on:{" "} */}
+                                      {/* {Date(item.job_applied.created_at)} */}
+                                      Applied on :{formattedDate}
                                       {item.job_detail.skills_arr ? (
                                         <div>
                                           {item.job_detail.skills_arr.map(
@@ -306,7 +312,7 @@ function Jobsappliedjob() {
                                         className="d-flex align-items-center  w-50 justify-content-end "
                                         style={{ gap: "7px" }}
                                       >
-                                       {/* <Link
+                                        {/* <Link
                                           to={"/user/jobs-my-resume"}
                                           className="site-button button-sm float-right"
                                         >

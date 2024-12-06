@@ -195,27 +195,37 @@ function EmployeeCompanymanage() {
               <li key={index} className="position-relative">
                 <div className="post-bx d-flex w-100 justify-content-between">
                   <div className="job-post-info m-a0">
-                    {console.log('yehi h console', item.job_detail)}
+                    {console.log("yehi h console", item.job_detail)}
                     {item.job_detail.job_title && (
                       <h4 className="mb-0">
-                         <Link to={`/user/company/${item.companies.id}`}>
-                         {item.job_detail.job_title}
-                                      </Link>
-                        
+                        <Link to={`/user/job/${item.job_detail.id}`}>
+                          {item.job_detail.job_title}
+                        </Link>
                       </h4>
                     )}
-                    {(item.job_category.name || item.job_type.name || item.job_workplace_types.name) && (
+                    {(item.job_category.name ||
+                      item.job_type.name ||
+                      item.job_workplace_types.name) && (
                       <div className="d-flex">
                         {item.job_category.name && (
-                          <p>{item.job_category.name}{" | "}</p>
+                          <p>
+                            {item.job_category.name}
+                            {" | "}
+                          </p>
                         )}
                         {item.job_type.name && (
-                          <p>{item.job_type.name}{" | "}</p>
+                          <p>
+                            {item.job_type.name}
+                            {" | "}
+                          </p>
                         )}
                         {item.job_detail.skills_arr && (
                           <div className="mx-1">
                             {item.job_detail.skills_arr.map((skill, index) => (
-                              <span key={index} className="badge badge-primary mr-1 mb-1">
+                              <span
+                                key={index}
+                                className="badge badge-primary mr-1 mb-1"
+                              >
                                 {skill}
                               </span>
                             ))}
@@ -231,39 +241,73 @@ function EmployeeCompanymanage() {
                         Experience: {item.experience_level.name}
                       </p>
                     )}
-                    {(item.cities.name || item.states.name || item.countries.name) && (
+                    {(item.cities.name ||
+                      item.states.name ||
+                      item.countries.name) && (
                       <p style={{ color: "#232323" }} className="mb-2">
                         <i className="fa fa-map-marker"></i>{" "}
-                        {item.cities.name && <span>{item.cities.name}{" | "}</span>}
-                        {item.states.name && <span>{item.states.name}{" | "}</span>}
-                        {item.countries.name && <span>{item.countries.name}</span>}
+                        {item.cities.name && (
+                          <span>
+                            {item.cities.name}
+                            {" | "}
+                          </span>
+                        )}
+                        {item.states.name && (
+                          <span>
+                            {item.states.name}
+                            {" | "}
+                          </span>
+                        )}
+                        {item.countries.name && (
+                          <span>{item.countries.name}</span>
+                        )}
                       </p>
                     )}
                     {item.job_detail.reposted_at ? (
                       <p className="mb-0">
                         <span className="text-black mr-2">Posted on* </span>
-                        {moment(item.job_detail.reposted_at).format("MMMM DD, YYYY")}
+                        {moment(item.job_detail.reposted_at).format(
+                          "MMMM DD, YYYY"
+                        )}
                       </p>
                     ) : (
                       <p className="mb-0">
                         <span className="text-black mr-2">Posted on* </span>
-                        {moment(item.job_detail.created_at).format("MMMM DD, YYYY")}
+                        {moment(item.job_detail.created_at).format(
+                          "MMMM DD, YYYY"
+                        )}
                       </p>
                     )}
                   </div>
-                  <div className="d-flex flex-row justify-content-center align-items-center" style={{ gap: "12px" }}>
+                  <div
+                    className="d-flex flex-row justify-content-center align-items-center"
+                    style={{ gap: "12px" }}
+                  >
                     <button
-                      onClick={() => navigate(`/employee/company-post-jobs/${item.job_detail.id}`)}
+                      onClick={() =>
+                        navigate(
+                          `/employee/company-post-jobs/${item.job_detail.id}`
+                        )
+                      }
                       className="px-3 py-2 site-button text-white border-0"
                       style={{ cursor: "pointer" }}
-                    >Edit Jobs
+                    >
+                      Edit Jobs
                       {btn}
                     </button>
                     <button
-                      onClick={() => navigate(`/employee/company-resume/${item.job_detail.id}`)}
+                      onClick={() =>
+                        navigate(
+                          `/employee/company-resume/${item.job_detail.id}`
+                        )
+                      }
                       className="px-3 py-2 site-button text-white border-0"
                       style={{ cursor: "pointer" }}
-                    ><i className="fa fa-id-card-o mr-1" aria-hidden="true"></i>
+                    >
+                      <i
+                        className="fa fa-id-card-o mr-1"
+                        aria-hidden="true"
+                      ></i>
                       <span>Applicants</span>
                       {btn}
                     </button>
@@ -277,68 +321,71 @@ function EmployeeCompanymanage() {
                   </div>
                 </div>
                 <button
-  className="px-3 py-2 site-button text-white border-0 float-right mb-2"
-  style={{ cursor: "pointer" }}
-  onClick={() => handleShareClick(item.job_detail.id)}
->
-  Share
-</button>
-{showModal && selectedJobId === item.job_detail.id && (
-  <Modal show={showModal} onHide={closeModal} centered>
-    <Modal.Body style={{ backgroundColor: "#00B4D8", color: "white" }}>
-      <div className="d-flex justify-content-between">
-        <h5 className="text-white">Share on</h5>
-        <FaX style={{ cursor: "pointer" }} onClick={closeModal} />
-      </div>
-      <div className="d-flex justify-content-evenly my-4">
-        <a
-          href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-            `${window.location.origin}/user/job/${item.job_detail.id}`
-          )}`}
-          className="text-white"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FaLinkedin size={40} />
-          LinkedIn
-        </a>
-        <a
-          href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
-            `${window.location.origin}/user/job/${item.job_detail.id}`
-          )}`}
-          className="text-white"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FaWhatsapp size={40} />
-          WhatsApp
-        </a>
-      </div>
-      <div className="text-center">
-        <input
-          style={{ width: '300px' }}
-          className="py-2 rounded-2 p-1"
-          type="text"
-          value={`${window.location.origin}/user/job/${item.job_detail.id}`}
-          readOnly
-        />
-        <button
-         className="p-2 rounded-2 site-button text-white border-0 float-right "
-          onClick={() => {
-            
-            navigator.clipboard.writeText(
-              `${window.location.origin}/user/job/${item.job_detail.id}`
-            );
-            alert("Link copied!");
-          }}
-        >
-          Copy Link
-        </button>
-      </div>
-    </Modal.Body>
-  </Modal>
-)}
-
+                  className="px-3 py-2 site-button text-white border-0 float-right mb-2"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleShareClick(item.job_detail.id)}
+                >
+                  Share
+                </button>
+                {showModal && selectedJobId === item.job_detail.id && (
+                  <Modal show={showModal} onHide={closeModal} centered>
+                    <Modal.Body
+                      style={{ backgroundColor: "#00B4D8", color: "white" }}
+                    >
+                      <div className="d-flex justify-content-between">
+                        <h5 className="text-white">Share on</h5>
+                        <FaX
+                          style={{ cursor: "pointer" }}
+                          onClick={closeModal}
+                        />
+                      </div>
+                      <div className="d-flex justify-content-evenly my-4">
+                        <a
+                          href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+                            `${window.location.origin}/user/job/${item.job_detail.id}`
+                          )}`}
+                          className="text-white"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaLinkedin size={40} />
+                          LinkedIn
+                        </a>
+                        <a
+                          href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
+                            `${window.location.origin}/user/job/${item.job_detail.id}`
+                          )}`}
+                          className="text-white"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaWhatsapp size={40} />
+                          WhatsApp
+                        </a>
+                      </div>
+                      <div className="text-center">
+                        <input
+                          style={{ width: "300px" }}
+                          className="py-2 rounded-2 p-1"
+                          type="text"
+                          value={`${window.location.origin}/user/job/${item.job_detail.id}`}
+                          readOnly
+                        />
+                        <button
+                          className="p-2 rounded-2 site-button text-white border-0 float-right "
+                          onClick={() => {
+                            navigator.clipboard.writeText(
+                              `${window.location.origin}/user/job/${item.job_detail.id}`
+                            );
+                            alert("Link copied!");
+                          }}
+                        >
+                          Copy Link
+                        </button>
+                      </div>
+                    </Modal.Body>
+                  </Modal>
+                )}
               </li>
             );
           })}
