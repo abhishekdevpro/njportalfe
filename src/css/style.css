@@ -114,9 +114,9 @@
 /*--------------------------------------------------------------
 1. GENERAL
 ---------------------------------------------------------------*/
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 a {
   text-decoration: none !important;
 }
