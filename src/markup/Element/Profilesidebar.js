@@ -148,7 +148,7 @@ function Profilesidebar({ data }) {
               </li>
               <li>
                 <Link
-                  to={""}
+                  to={"/user/community"}
                   className={data === "community" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
@@ -158,7 +158,7 @@ function Profilesidebar({ data }) {
               </li>
               <li>
                 <Link
-                  to={""}
+                  to={"/user/messages"}
                   className={data === "messages" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >

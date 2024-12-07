@@ -275,3 +275,485 @@
 // }
 
 // export default Messages;
+
+
+
+
+
+
+// import LoginPopup from "../../../common/form/login/LoginPopup";
+
+// import MenuToggler from "../../MenuToggler";
+// import Header2 from "./../Layout/Header2";
+// import FixedHeader from "../Layout/fixedHeader";
+// import { useSelector } from "react-redux";
+// import Profilesidebar from "../Element/Profilesidebar";
+// import Footer from "./../Layout/Footer";
+// import React, { useEffect, useState } from "react";
+// import { FaTelegram, FaUserCircle } from "react-icons/fa";
+// const Messages = () => {
+// //   const { chatSidebar } = useSelector((state) => state.toggle);
+//   const [socket, setSocket] = useState(null);
+//   const [messages, setMessages] = useState([]);
+//   const [inputValue, setInputValue] = useState("");
+//   const [activeChat, setActiveChat] = useState(15);
+//   const [contacts, setContacts] = useState([
+//     {
+//       id: 15,
+//       name: "John Snow",
+//       avatar: "https://avatar.iran.liara.run/public/boy?username=Ash",
+//       lastMessage: "Hello, how are you?",
+//       time: "4:30 PM",
+//       unreadCount: 3,
+//     },
+//     {
+//       id: 16,
+//       name: "Emma Watson",
+//       avatar: "https://avatar.iran.liara.run/public/girl?username=Emma",
+//       lastMessage: "See you later",
+//       time: "3:45 PM",
+//       unreadCount: 1,
+//     },
+//   ]);
+
+//   useEffect(() => {
+//     const ws = new WebSocket("wss://api.sentryspot.co.uk/ws");
+
+//     ws.onopen = () => {
+//       console.log("WebSocket connection opened");
+//     };
+
+//     ws.onmessage = (event) => {
+//       const incomingMessage = JSON.parse(event.data);
+//       console.log("Message received:", incomingMessage);
+
+//       setMessages((prevMessages) => [
+//         ...prevMessages,
+//         {
+//           content: incomingMessage.message,
+//           time: incomingMessage.timestamp || new Date().toLocaleTimeString(),
+//           sender: incomingMessage.sender || "John",
+//         },
+//       ]);
+//     };
+
+//     ws.onerror = (error) => {
+//       console.error("WebSocket error:", error);
+//     };
+
+//     ws.onclose = () => {
+//       console.log("WebSocket connection closed");
+//     };
+
+//     setSocket(ws);
+
+//     return () => {
+//       ws.close();
+//     };
+//   }, []);
+
+//   const sendMessage = () => {
+//     if (inputValue.trim() === "") return;
+
+//     const data = {
+//       message: inputValue,
+//       receiver_id: activeChat,
+//       sender_id: 29,
+//     };
+
+//     if (socket && socket.readyState === WebSocket.OPEN) {
+//       socket.send(JSON.stringify(data));
+//       console.log("Message sent:", data);
+//       setInputValue("");
+//     } else {
+//       console.error("WebSocket is not open");
+//     }
+//   };
+
+//   const handleKeyPress = (e) => {
+//     if (e.key === "Enter") {
+//       sendMessage();
+//     }
+//   };
+
+//   return (
+//     <>
+//       <Header2 />
+//       <FixedHeader />
+
+//       <div className="page-content bg-white">
+//         <div className="content-block">
+//           <div className="section-full bg-white p-t50 p-b20">
+//             <div className="container">
+//               <div className="row">
+//                 <Profilesidebar data={"messages"} />
+//                 {/* <LoginPopup /> */}
+//                 <div className="col-xl-9 col-lg-8 m-b30">
+//                   <div className="job-bx-title  clearfix">
+//                     <h5 className="font-weight-700 pull-left text-uppercase">
+//                       Messages!
+//                     </h5>
+//                   </div>
+
+//                   {/* <!-- Dashboard --> */}
+//                   <section className="user-dashboard">
+//                     <div className="dashboard-outer">
+//                       {/* <MenuToggler /> */}
+
+//                       <div className="row">
+//                         <div
+//                         //   className={`col-lg-12 ${
+//                         //     chatSidebar ? "active-chat-contacts" : ""
+//                         //   }`}
+//                         className="col-lg-12"
+//                         >
+//                           <div className="chat-widget">
+//                             <div className="widget-content">
+//                               <div className="row">
+//                                 <div className=" ">
+//                                   <div className="d-flex flex h-screen bg-blue-50">
+//                                     {/* Contacts Sidebar */}
+//                                     <div className="w-80 bg-white border-r border-blue-100 shadow-lg">
+//                                       <div className="search-box-one p-2">
+//                                         <form method="post" action="#">
+//                                           <div className="form-group">
+//                                             <span className="icon flaticon-search-1"></span>
+//                                             <input
+//                                               type="search"
+//                                               name="search-field"
+//                                               placeholder="Search"
+//                                               required=""
+//                                             />
+//                                           </div>
+//                                         </form>
+//                                       </div>
+//                                       <ul className="contacts">
+//                                         <li>
+//                                           <a href="#">
+//                                             <div className="d-flex bd-highlight">
+//                                               <div className="img_cont">
+//                                                 <img
+//                                                   src="/images/resource/candidate-1.png"
+//                                                   className="rounded-circle user_img"
+//                                                   alt="chatbox avatar"
+//                                                 />
+//                                               </div>
+//                                               <div className="user_info">
+//                                                 <span>Darlene Robertson</span>
+//                                                 <p> Head of Development</p>
+//                                               </div>
+//                                               <span className="info">
+//                                                 35 mins
+//                                               </span>
+//                                             </div>
+//                                           </a>
+//                                         </li>
+//                                         {/* End single Contact List */}
+
+//                                         <li>
+//                                           <a href="#">
+//                                             <div className="d-flex bd-highlight">
+//                                               <div className="img_cont">
+//                                                 <img
+//                                                   src="/images/resource/candidate-2.png"
+//                                                   className="rounded-circle user_img"
+//                                                   alt="chatbox avatar"
+//                                                 />
+//                                               </div>
+//                                               <div className="user_info">
+//                                                 <span>Jane Cooper</span>
+//                                                 <p>Head of Development</p>
+//                                               </div>
+//                                               <span className="info">
+//                                                 35 mins{" "}
+//                                                 <span className="count">2</span>
+//                                               </span>
+//                                             </div>
+//                                           </a>
+//                                         </li>
+//                                         {/* End single Contact List */}
+
+//                                         <li>
+//                                           <a href="#">
+//                                             <div className="d-flex bd-highlight">
+//                                               <div className="img_cont">
+//                                                 <img
+//                                                   src="/images/resource/candidate-3.png"
+//                                                   className="rounded-circle user_img"
+//                                                   alt="chatbox avatar"
+//                                                 />
+//                                               </div>
+//                                               <div className="user_info">
+//                                                 <span>Arlene McCoy</span>
+//                                                 <p>Head of Development</p>
+//                                               </div>
+//                                               <span className="info">
+//                                                 35 mins{" "}
+//                                                 <span className="count bg-success">
+//                                                   2
+//                                                 </span>
+//                                               </span>
+//                                             </div>
+//                                           </a>
+//                                         </li>
+//                                         {/* End single Contact List */}
+
+//                                         <li>
+//                                           <a href="#">
+//                                             <div className="d-flex bd-highlight">
+//                                               <div className="img_cont">
+//                                                 <img
+//                                                   src="/images/resource/candidate-4.png"
+//                                                   className="rounded-circle user_img"
+//                                                   alt="chatbox avatar"
+//                                                 />
+//                                               </div>
+//                                               <div className="user_info">
+//                                                 <span>Albert Flores</span>
+//                                                 <p>Head of Development</p>
+//                                               </div>
+//                                               <span className="info">
+//                                                 35 mins
+//                                               </span>
+//                                             </div>
+//                                           </a>
+//                                         </li>
+//                                         {/* End single Contact List */}
+
+//                                         <li className="active">
+//                                           <a href="#">
+//                                             <div className="d-flex bd-highlight">
+//                                               <div className="img_cont">
+//                                                 <img
+//                                                   src="/images/resource/candidate-5.png"
+//                                                   className="rounded-circle user_img"
+//                                                   alt="chatbox avatar"
+//                                                 />
+//                                               </div>
+//                                               <div className="user_info">
+//                                                 <span>Williamson</span>
+//                                                 <p>Head of Development</p>
+//                                               </div>
+//                                               <span className="info">
+//                                                 35 mins{" "}
+//                                                 <span className="count bg-warning">
+//                                                   2
+//                                                 </span>
+//                                               </span>
+//                                             </div>
+//                                           </a>
+//                                         </li>
+//                                         {/* End single Contact List */}
+
+//                                         <li>
+//                                           <a href="#">
+//                                             <div className="d-flex bd-highlight">
+//                                               <div className="img_cont">
+//                                                 <img
+//                                                   src="/images/resource/candidate-6.png"
+//                                                   className="rounded-circle user_img"
+//                                                   alt="chatbox avatar"
+//                                                 />
+//                                               </div>
+//                                               <div className="user_info">
+//                                                 <span>Kristin Watson</span>
+//                                                 <p>Head of Development</p>
+//                                               </div>
+//                                               <span className="info">
+//                                                 35 mins
+//                                               </span>
+//                                             </div>
+//                                           </a>
+//                                         </li>
+//                                         {/* End single Contact List */}
+
+//                                         <li>
+//                                           <a href="#">
+//                                             <div className="d-flex bd-highlight">
+//                                               <div className="img_cont">
+//                                                 <img
+//                                                   src="/images/resource/candidate-7.png"
+//                                                   className="rounded-circle user_img"
+//                                                   alt="chatbox avatar"
+//                                                 />
+//                                               </div>
+//                                               <div className="user_info">
+//                                                 <span>Annette Black</span>
+//                                                 <p>Head of Development</p>
+//                                               </div>
+//                                               <span className="info">
+//                                                 35 mins
+//                                               </span>
+//                                             </div>
+//                                           </a>
+//                                         </li>
+//                                         {/* End single Contact List */}
+
+//                                         <li>
+//                                           <a href="#">
+//                                             <div className="d-flex bd-highlight">
+//                                               <div className="img_cont">
+//                                                 <img
+//                                                   src="/images/resource/candidate-8.png"
+//                                                   className="rounded-circle user_img"
+//                                                   alt="chatbox avatar"
+//                                                 />
+//                                               </div>
+//                                               <div className="user_info">
+//                                                 <span>Jacob Jones</span>
+//                                                 <p>Head of Development</p>
+//                                               </div>
+//                                               <span className="info">
+//                                                 35 mins
+//                                               </span>
+//                                             </div>
+//                                           </a>
+//                                         </li>
+//                                         {/* End single Contact List */}
+//                                       </ul>
+//                                     </div>
+
+//                                     {/* Main Chat Area */}
+//                                     <div className="flex-1 flex flex-col">
+//                                       {/* Chat Header */}
+//                                       <div className="bg-white p-4 shadow-sm flex items-center border-b border-blue-100">
+//                                         <img
+//                                           src="https://avatar.iran.liara.run/public/boy?username=Ash"
+//                                           alt="User avatar"
+//                                           className="w-12 h-12 rounded-full mr-4"
+//                                         />
+//                                         <div>
+//                                           <h2 className="text-lg font-semibold text-blue-800">
+//                                             John Snow
+//                                           </h2>
+//                                           <p className="text-sm text-green-500">
+//                                             Online
+//                                           </p>
+//                                         </div>
+//                                       </div>
+
+//                                       {/* Messages Display */}
+//                                       <div className="flex-1 overflow-y-auto p-6 bg-blue-50">
+//                                         <div className="space-y-4">
+//                                           {messages.map((msg, index) => (
+//                                             <div
+//                                               key={index}
+//                                               className={`flex ${
+//                                                 msg.sender === "John"
+//                                                   ? "justify-start"
+//                                                   : "justify-end"
+//                                               }`}
+//                                             >
+//                                               <div
+//                                                 className={`
+//                   max-w-xs p-3 rounded-xl 
+//                   ${
+//                     msg.sender === "John"
+//                       ? "bg-white text-blue-800 border border-blue-100 rounded-bl-none"
+//                       : "bg-blue-600 text-white rounded-br-none"
+//                   }
+//                 `}
+//                                               >
+//                                                 <p className="break-words">
+//                                                   {msg.content}
+//                                                 </p>
+//                                                 <div
+//                                                   className={`text-xs text-opacity-70 text-right mt-1 
+//                     ${msg.sender === "John" ? "text-blue-500" : "text-blue-200"}
+//                   `}
+//                                                 >
+//                                                   {msg.time}
+//                                                 </div>
+//                                               </div>
+//                                             </div>
+//                                           ))}
+//                                         </div>
+//                                       </div>
+
+//                                       {/* Input Area */}
+//                                       <div className="bg-white p-4 border-t border-blue-100">
+//                                         <div className="flex items-center space-x-3">
+//                                           <button className="text-blue-500 hover:text-blue-700">
+//                                             <FaUserCircle size={24} />
+//                                           </button>
+//                                           <input
+//                                             type="text"
+//                                             placeholder="Type a message"
+//                                             value={inputValue}
+//                                             onChange={(e) =>
+//                                               setInputValue(e.target.value)
+//                                             }
+//                                             onKeyPress={handleKeyPress}
+//                                             className="flex-1 p-2 bg-blue-50 text-blue-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+//                                           />
+//                                           <button
+//                                             onClick={sendMessage}
+//                                             className="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition"
+//                                           >
+//                                             <FaTelegram size={24} />
+//                                           </button>
+//                                         </div>
+//                                       </div>
+//                                     </div>
+//                                   </div>
+//                                 </div>
+//                               </div>
+//                             </div>
+//                           </div>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </section>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       <Footer />
+//     </>
+//   );
+// };
+
+// export default Messages;
+
+
+import React from "react";
+
+import Header2 from "./../Layout/Header2";
+import Footer from "./../Layout/Footer";
+
+import FixedHeader from "../Layout/fixedHeader";
+import Profilesidebar from "../Element/Profilesidebar";
+
+function Messages() {
+  return (
+    <>
+      <Header2 />
+      <FixedHeader />
+
+      <div className="page-content bg-white">
+        <div className="content-block">
+          <div className="section-full bg-white p-t50 p-b20">
+            <div className="container">
+              <div className="row">
+                <Profilesidebar data={"messages"} />
+                <div className="col-xl-9 col-lg-8 m-b30">
+                  <h5>Note:Scheduled to be Live on December 9th 2024</h5>
+            <div className="mt-4">
+            <img src="/messages.png" alt="messages" />
+            </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </>
+  );
+}
+
+export default Messages;

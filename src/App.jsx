@@ -187,6 +187,7 @@ import JobPagethirdparty from "./markup/Pages/JobPagethirdparty";
 import Transactions from "./markup/Pages/Transactions";
 import Vendorplan from "./vendor/Vendorplan";
 import Jobadd from "./adminPanel/Jobadd";
+import Community from "./markup/Pages/community";
 
 function App() {
   const dispatch = useDispatch();
@@ -200,58 +201,283 @@ function App() {
       <Route path="Profilepagehome" element={<Profilepagehome />} />
       <Route path="/*" element={<Error404 />} />
       <Route path="about-us" element={<Aboutus />} />
-      <Route  path="accessibility-center" element={ <AccessibilityCenter /> }/>
-      <Route  path="transaction" element={ <Transactions /> }/>
+      <Route path="accessibility-center" element={<AccessibilityCenter />} />
+      <Route path="transaction" element={<Transactions />} />
 
-      
       <Route path="/admin/login" element={<Adminlogin />} />
-        <Route  path="/admin/dashboard" element={ <PrivateRouteadmin> <Dashboard />  </PrivateRouteadmin> }  />
-        <Route path="/admin/users" element={<PrivateRouteadmin><User /> </PrivateRouteadmin>} />
-        <Route path="/admin/vendor" element={<PrivateRouteadmin><Vendor /></PrivateRouteadmin>} />
-        <Route path="/admin/employee" element={<PrivateRouteadmin><Employee /></PrivateRouteadmin>} />
-        <Route path="/admin/employeelist" element={<PrivateRouteadmin><Employeelist /></PrivateRouteadmin>} />
-        <Route path="/admin/wallet" element={<PrivateRouteadmin><Wallet /></PrivateRouteadmin>} />
-        <Route path="/admin/addteam" element={<PrivateRouteadmin><Addteam /></PrivateRouteadmin>} />
-          <Route path="/admin/assignrole" element={<PrivateRouteadmin><AssignRole /></PrivateRouteadmin>} />
-            <Route path="/admin/assigntask" element={<PrivateRouteadmin><AssignTask /></PrivateRouteadmin>} />
-              <Route path="/admin/jobseekers" element={<PrivateRouteadmin><JobSeekers /></PrivateRouteadmin>} />
-              <Route path="/admin/jobs" element={<PrivateRouteadmin><Jobs /></PrivateRouteadmin>} />
-              <Route path="/admin/notifications" element={<PrivateRouteadmin><Notifications /></PrivateRouteadmin>} />
-              <Route path="/admin/team" element={<PrivateRouteadmin><Team /></PrivateRouteadmin>} />
-              <Route path="/admin/addvendor" element={<PrivateRouteadmin><Addvendor /></PrivateRouteadmin>} />
-              <Route path="/admin/edit" element={<PrivateRouteadmin><Editadmin /></PrivateRouteadmin>} />
-              <Route path="/admin/listvendor" element={<PrivateRouteadmin><Listvendor /></PrivateRouteadmin>} />
-              <Route path="/admin/team/list-team" element={<PrivateRouteadmin><Listteam /></PrivateRouteadmin>} />
-              <Route path="/admin/team/list-number" element={<PrivateRouteadmin><Listnumber /></PrivateRouteadmin>} />
-              <Route path="/admin/listalljobs" element={<PrivateRouteadmin><Jobslist /></PrivateRouteadmin>} />
-              <Route path="/admin/listalljobseeker" element={<PrivateRouteadmin><Jobseekerlist /></PrivateRouteadmin>} />
-              <Route path="/admin/CompanyListAdmin" element={<PrivateRouteadmin><CompanyListAdmin /></PrivateRouteadmin>} />
-              <Route path="/admin/CompanyNameAdmin" element={<PrivateRouteadmin><CompanyNameAdmin /></PrivateRouteadmin>} />
-              <Route path="/admin/addjob/:id" element={<PrivateRouteadmin><Jobadd /></PrivateRouteadmin>} />
+      <Route
+        path="/admin/dashboard"
+        element={
+          <PrivateRouteadmin>
+            {" "}
+            <Dashboard />{" "}
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/users"
+        element={
+          <PrivateRouteadmin>
+            <User />{" "}
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/vendor"
+        element={
+          <PrivateRouteadmin>
+            <Vendor />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/employee"
+        element={
+          <PrivateRouteadmin>
+            <Employee />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/employeelist"
+        element={
+          <PrivateRouteadmin>
+            <Employeelist />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/wallet"
+        element={
+          <PrivateRouteadmin>
+            <Wallet />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/addteam"
+        element={
+          <PrivateRouteadmin>
+            <Addteam />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/assignrole"
+        element={
+          <PrivateRouteadmin>
+            <AssignRole />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/assigntask"
+        element={
+          <PrivateRouteadmin>
+            <AssignTask />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/jobseekers"
+        element={
+          <PrivateRouteadmin>
+            <JobSeekers />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/jobs"
+        element={
+          <PrivateRouteadmin>
+            <Jobs />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/notifications"
+        element={
+          <PrivateRouteadmin>
+            <Notifications />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/team"
+        element={
+          <PrivateRouteadmin>
+            <Team />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/addvendor"
+        element={
+          <PrivateRouteadmin>
+            <Addvendor />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/edit"
+        element={
+          <PrivateRouteadmin>
+            <Editadmin />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/listvendor"
+        element={
+          <PrivateRouteadmin>
+            <Listvendor />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/team/list-team"
+        element={
+          <PrivateRouteadmin>
+            <Listteam />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/team/list-number"
+        element={
+          <PrivateRouteadmin>
+            <Listnumber />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/listalljobs"
+        element={
+          <PrivateRouteadmin>
+            <Jobslist />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/listalljobseeker"
+        element={
+          <PrivateRouteadmin>
+            <Jobseekerlist />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/CompanyListAdmin"
+        element={
+          <PrivateRouteadmin>
+            <CompanyListAdmin />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/CompanyNameAdmin"
+        element={
+          <PrivateRouteadmin>
+            <CompanyNameAdmin />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/addjob/:id"
+        element={
+          <PrivateRouteadmin>
+            <Jobadd />
+          </PrivateRouteadmin>
+        }
+      />
 
+      <Route path="/vendor/verify" element={<VerifyEmail />} />
 
-
-
-              <Route path="/vendor/verify" element={<VerifyEmail />} />
-
-             
-        <Route path="/vendor">
-        
+      <Route path="/vendor">
         <Route path="login" element={<Vendorlogin />} />
-        <Route  path="vendorprofile" element={ <PrivateRoutevendor> <VendorCompanyprofile />  </PrivateRoutevendor> }  />
-        <Route path="vendorcompanySideBar" element={<PrivateRoutevendor><VendorCompanySideBar /> </PrivateRoutevendor>} />
-        <Route path="vendorcomponypostjobs/:id" element={<PrivateRoutevendor><VendorComponypostjobs /></PrivateRoutevendor>} />
-        <Route path="vendorwallet" element={<PrivateRoutevendor><Vendorwallet /></PrivateRoutevendor>} />
-        <Route path="vendorcompanymanage/:id" element={<PrivateRoutevendor><VendorCompanymanage /></PrivateRoutevendor>} />
-        <Route path="vendorapplicant/:id" element={<PrivateRoutevendor><Vendorapplicant /></PrivateRoutevendor>} />
-        <Route path="vendorchangepasswordpage" element={<PrivateRoutevendor><VendorChangepasswordpage /></PrivateRoutevendor>} />
-        <Route path="vendorbulkuploadjobopeneing" element={<PrivateRoutevendor><Vendorbulkuploadjobopeneing /></PrivateRoutevendor>} />
-        <Route path="vendorbulkuploadjobseeker" element={<PrivateRoutevendor><Vendorbulkuploadjobseeker /></PrivateRoutevendor>} />
-        <Route path="vendorplan" element={<PrivateRoutevendor><Vendorplan/></PrivateRoutevendor>}/>
+        <Route
+          path="vendorprofile"
+          element={
+            <PrivateRoutevendor>
+              {" "}
+              <VendorCompanyprofile />{" "}
+            </PrivateRoutevendor>
+          }
+        />
+        <Route
+          path="vendorcompanySideBar"
+          element={
+            <PrivateRoutevendor>
+              <VendorCompanySideBar />{" "}
+            </PrivateRoutevendor>
+          }
+        />
+        <Route
+          path="vendorcomponypostjobs/:id"
+          element={
+            <PrivateRoutevendor>
+              <VendorComponypostjobs />
+            </PrivateRoutevendor>
+          }
+        />
+        <Route
+          path="vendorwallet"
+          element={
+            <PrivateRoutevendor>
+              <Vendorwallet />
+            </PrivateRoutevendor>
+          }
+        />
+        <Route
+          path="vendorcompanymanage/:id"
+          element={
+            <PrivateRoutevendor>
+              <VendorCompanymanage />
+            </PrivateRoutevendor>
+          }
+        />
+        <Route
+          path="vendorapplicant/:id"
+          element={
+            <PrivateRoutevendor>
+              <Vendorapplicant />
+            </PrivateRoutevendor>
+          }
+        />
+        <Route
+          path="vendorchangepasswordpage"
+          element={
+            <PrivateRoutevendor>
+              <VendorChangepasswordpage />
+            </PrivateRoutevendor>
+          }
+        />
+        <Route
+          path="vendorbulkuploadjobopeneing"
+          element={
+            <PrivateRoutevendor>
+              <Vendorbulkuploadjobopeneing />
+            </PrivateRoutevendor>
+          }
+        />
+        <Route
+          path="vendorbulkuploadjobseeker"
+          element={
+            <PrivateRoutevendor>
+              <Vendorbulkuploadjobseeker />
+            </PrivateRoutevendor>
+          }
+        />
+        <Route
+          path="vendorplan"
+          element={
+            <PrivateRoutevendor>
+              <Vendorplan />
+            </PrivateRoutevendor>
+          }
+        />
         <Route path="vendorregistration" element={<Vendorregistration />} />
-        
-        </Route>
-
+      </Route>
 
       <Route path="/user">
         <Route path="" element={<Homepage />} />
@@ -260,9 +486,7 @@ function App() {
         <Route path="reset-password/:token" element={<ResetPassword />} />
         <Route path="register" element={<Register1 />} />
         <Route path="register-2" element={<Register2 />} />
-
         <Route path="verify/:token" element={<Verifyemail />} />
-        
         <Route
           path="jobs-profile"
           element={
@@ -337,19 +561,20 @@ function App() {
             </UserPrivateRoute>
           }
         />
-        <Route
-          path="company/:id"
-          element={
-            
-              <CompanyPage />
-            
-          }
-        />
+        <Route path="company/:id" element={<CompanyPage />} />
         <Route
           path="messages"
           element={
             <UserPrivateRoute>
               <Messages />
+            </UserPrivateRoute>
+          }
+        />
+        <Route
+          path="community"
+          element={
+            <UserPrivateRoute>
+              <Community />
             </UserPrivateRoute>
           }
         />
@@ -433,7 +658,6 @@ function App() {
             </UserPrivateRoute>
           }
         />
-        
         <Route path="job-detail/:id" element={<Jobdetail />} />
         <Route
           path="companies"
@@ -543,7 +767,7 @@ function App() {
           path="verify"
           element={
             <UserPrivateRoute>
-              <Verifyemail/>
+              <Verifyemail />
             </UserPrivateRoute>
           }
         />
@@ -625,10 +849,13 @@ function App() {
       {/* routes for empployees */}
 
       <Route path="/employee">
-      <Route path="verify/:token" element={ <VerifyEmailemployee />} />
-      
-      <Route path="forgot-password" element={<ForgotPasswordemployee />} />
-      <Route path="reset-password/:token" element={<ResetPasswordemployee />} />
+        <Route path="verify/:token" element={<VerifyEmailemployee />} />
+
+        <Route path="forgot-password" element={<ForgotPasswordemployee />} />
+        <Route
+          path="reset-password/:token"
+          element={<ResetPasswordemployee />}
+        />
         <Route
           path=""
           element={
@@ -1064,7 +1291,7 @@ function App() {
             // </EmployeePrivateRoute>
           }
         />
-       
+
         <Route
           path="howitworks-for-employee"
           element={
@@ -1081,15 +1308,8 @@ function App() {
             // </EmployeePrivateRoute>
           }
         />
-        <Route
-          path="profilepage/:id"
-          element={
-           
-              <ProfilePage />
-           
-          }
-        />
-{/* edgvhdsbbv */}
+        <Route path="profilepage/:id" element={<ProfilePage />} />
+        {/* edgvhdsbbv */}
         <Route
           path="messages"
           element={
