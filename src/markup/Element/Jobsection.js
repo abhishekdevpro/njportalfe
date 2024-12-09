@@ -70,23 +70,23 @@ function Jobsection() {
   };
 
   // Function to fetch company logo
-  const getLogo = async () => {
-    try {
-      const response = await axios.get(
-        "https://api.novajobs.us/api/employeer/employeer-profile",
-        {
-          headers: { Authorization: token },
-        }
-      );
-      setLogo(`${response.data.data.company_detail.logo}`);
-    } catch (error) {
-      console.error("Error fetching logo:", error);
-    }
-  };
+  // const getLogo = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       "https://api.novajobs.us/api/employeer/employeer-profile",
+  //       {
+  //         headers: { Authorization: token },
+  //       }
+  //     );
+  //     setLogo(`${response.data.data.company_detail.logo}`);
+  //   } catch (error) {
+  //     console.error("Error fetching logo:", error);
+  //   }
+  // };
 
   // Fetch logo and job data on component mount and page change
   useEffect(() => {
-    getLogo();
+    // getLogo();
     fetchJobApplicationData(currentPage, itemsPerPage);
   }, [currentPage, itemsPerPage]);
 
@@ -183,7 +183,6 @@ function Jobsection() {
                   <li key={index}>
                     <div className="post-bx">
                       <div className="d-flex m-b30">
-                        {/* Company logo */}
                         <div className="job-post-company">
                           <span>
                             <img
@@ -193,7 +192,6 @@ function Jobsection() {
                           </span>
                         </div>
 
-                        {/* Job details */}
                         <div className="job-post-info">
                           <h4>
                             <Link to={`/user/job/${item.job_detail.id}`}>
@@ -221,7 +219,6 @@ function Jobsection() {
                         </div>
                       </div>
 
-                      {/* Job type and workplace */}
                       <div className="d-flex">
                         <div className="job-time mr-auto">
                           <span>{item.job_type.name}</span>
@@ -231,7 +228,6 @@ function Jobsection() {
                         </div>
                       </div>
 
-                      {/* Favorite job toggle */}
                       {localStorage.getItem("jobSeekerLoginToken") ? (
                         <label className="like-btn">
                           <input
