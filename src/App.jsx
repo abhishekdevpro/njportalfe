@@ -951,6 +951,22 @@ function App() {
           }
         />
         <Route
+          path="messages"
+          element={
+            <EmployeePrivateRoute>
+              <Messages />
+            </EmployeePrivateRoute>
+          }
+        />
+        <Route
+          path="community"
+          element={
+            <EmployeePrivateRoute>
+              <Community />
+            </EmployeePrivateRoute>
+          }
+        />
+        <Route
           path="company-resume/:id"
           element={
             <EmployeePrivateRoute>
@@ -1310,14 +1326,7 @@ function App() {
         />
         <Route path="profilepage/:id" element={<ProfilePage />} />
         {/* edgvhdsbbv */}
-        <Route
-          path="messages"
-          element={
-            <EmployeePrivateRoute>
-              <Messages />
-            </EmployeePrivateRoute>
-          }
-        />
+        
 
         <Route
           path="blog-left-img"

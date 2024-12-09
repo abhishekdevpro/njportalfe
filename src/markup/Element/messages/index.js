@@ -5,6 +5,7 @@ import FixedHeader from "../../Layout/fixedHeader";
 import Profilesidebar from "../Profilesidebar";
 import Footer from "../../Layout/Footer";
 import ChatBoxContentField from "./ChatBox";
+import CompanySideBar from "../../../employeeMarkup/Layout/companySideBar";
 
 const PageWrapper = styled.div`
   background-color: white;
@@ -72,7 +73,7 @@ const ChatWrapper = styled.div`
     max-width: 100%;
   }
 `;
-
+const jobseekerToken = localStorage.getItem("jobseekerLoginToken")
 function Messages() {
   return (
     <>
@@ -85,7 +86,7 @@ function Messages() {
             <Container>
               <Row>
                 <SidebarWrapper>
-                  <Profilesidebar data="messages" />
+                { jobseekerToken? <Profilesidebar data="messages" />:<CompanySideBar />}
                 </SidebarWrapper>
                 <ChatWrapper>
                   <ChatBoxContentField />
