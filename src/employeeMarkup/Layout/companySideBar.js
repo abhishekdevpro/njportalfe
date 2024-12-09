@@ -11,6 +11,8 @@ import {
 import { fetchCompanyInfo } from "../../store/thunkFunctions/companyFunction";
 import { ToastContainer } from "react-toastify";
 import "../../css/profilesidebar.css"
+import { FaComment } from "react-icons/fa";
+import { FaUser } from "react-icons/fa6";
 
 
 const CompanySideBar = ({ active }) => {
@@ -212,6 +214,25 @@ const CompanySideBar = ({ active }) => {
                 <span>Wallet</span>
               </Link>
             </li>
+            <li>
+              <Link
+                className={active === "transactions" ? "active" : null}
+                to={"/employee/community"}
+              >
+                <FaUser/>
+                <span>Community</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={active === "transactions" ? "active" : null}
+                to={"/employee/messages"}
+              >
+                                <FaComment/>
+                <span>Messages</span>
+              </Link>
+            </li>
+            
             <li>
               <Link
                 to={"/employee/company-manage-job/jobs"}
