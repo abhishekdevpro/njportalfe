@@ -107,7 +107,7 @@ import ProfilePage from "./employeeMarkup/Pages/ProfilePage";
 import SkillTest from "./markup/Pages/SkillTest";
 import EducationPage from "./markup/Pages/EducationPage";
 import EmployeeCategorycompanyjob from "./employeeMarkup/Pages/Categorycompanyjob";
-import Messages from "./markup/Pages/Messages";
+import Messages from "./markup/Element/messages/index";
 import TermOfUse from "./markup/Pages/TermOfUse";
 import DataPrivacyFramework from "./markup/Pages/DataPrivacyFramework";
 import CookingAdvertising from "./markup/Pages/Cooking&Advertising";
@@ -187,7 +187,7 @@ import JobPagethirdparty from "./markup/Pages/JobPagethirdparty";
 import Transactions from "./markup/Pages/Transactions";
 import Vendorplan from "./vendor/Vendorplan";
 import Jobadd from "./adminPanel/Jobadd";
-import Community from "./markup/Pages/community";
+import Community from "./markup/Element/community/index";
 
 function App() {
   const dispatch = useDispatch();
