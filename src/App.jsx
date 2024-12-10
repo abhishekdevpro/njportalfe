@@ -189,6 +189,7 @@ import Vendorplan from "./vendor/Vendorplan";
 import Jobadd from "./adminPanel/Jobadd";
 import Community from "./markup/Element/community/index";
 import JobPage2 from "./markup/Element/Jobsection/JobPage";
+import NotificationPage from "./markup/Element/notifications-history";
 
 function App() {
   const dispatch = useDispatch();
@@ -550,7 +551,7 @@ function App() {
           path="jobs-alerts"
           element={
             <UserPrivateRoute>
-              <Jobsalert />
+              <NotificationPage />
             </UserPrivateRoute>
           }
         />
@@ -914,7 +915,7 @@ function App() {
           path="jobs-alerts"
           element={
             <EmployeePrivateRoute>
-              <EmployeeJobsalert />
+              <NotificationPage />
             </EmployeePrivateRoute>
           }
         />

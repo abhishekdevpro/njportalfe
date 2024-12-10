@@ -147,7 +147,7 @@ const FeedSection = ({
     id: null,
     commentId: null,
   });
- const token = localStorage.getItem("jobSeekerLoginToken" || "employeeLoginToken")
+  const token = localStorage.getItem("jobSeekerLoginToken") || localStorage.getItem("employeeLoginToken") || '';
 
   const editComment = (commentId, content, postId) => {
     setEditingCommentId(commentId);

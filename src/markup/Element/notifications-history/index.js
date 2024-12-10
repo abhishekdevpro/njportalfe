@@ -4,8 +4,8 @@ import UserHeader2 from "../../Layout/Header2";
 import FixedHeader from "../../Layout/fixedHeader";
 import Profilesidebar from "../Profilesidebar";
 import Footer from "../../Layout/Footer";
-import ChatBoxContentField from "./ChatBox";
 import CompanySideBar from "../../../employeeMarkup/Layout/companySideBar";
+import NotificationsHistory from "./NotificationsHistory";
 
 const PageWrapper = styled.div`
   background-color: white;
@@ -74,7 +74,7 @@ const ChatWrapper = styled.div`
   }
 `;
 const jobseekerToken = localStorage.getItem("jobSeekerLoginToken")
-function Messages() {
+function NotificationPage() {
   return (
     <>
       <UserHeader2 />
@@ -86,10 +86,10 @@ function Messages() {
             <Container>
               <Row>
                 <SidebarWrapper>
-                { jobseekerToken? <Profilesidebar data="messages" />:<CompanySideBar />}
+                { jobseekerToken? <Profilesidebar data="jobs-alerts" />:<CompanySideBar />}
                 </SidebarWrapper>
                 <ChatWrapper>
-                  <ChatBoxContentField />
+                  <NotificationsHistory/>
                 </ChatWrapper>
               </Row>
             </Container>
@@ -102,4 +102,4 @@ function Messages() {
   );
 }
 
-export default Messages;
+export default NotificationPage;
