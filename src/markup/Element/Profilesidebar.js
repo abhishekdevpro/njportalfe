@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../css/profilesidebar.css";
 import axios from "axios";
+import { FaComment, FaExternalLinkAlt, FaHistory, FaLightbulb, FaUserFriends } from "react-icons/fa";
+// import { FaStar } from "react-icons/fa6";
 
 function Profilesidebar({ data }) {
   const navigate = useNavigate();
@@ -25,35 +27,7 @@ function Profilesidebar({ data }) {
     setSidebarOpen(!sidebarOpen);
   };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.post(
-        "https://api.novajobs.us/api/jobseeker/auth/login",
-        {
-          // Add your login credentials here if needed
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      console.log("Login response:", response); // Log the entire response for reference
-      const generatedToken = response?.data?.data?.token;
-      console.log("Generated token:", generatedToken); // Log the token
-
-      localStorage.setItem("jobSeekerLoginToken", generatedToken);
-      setToken(generatedToken);
-      navigate("/user");
-    } catch (error) {
-      console.error("Login error:", error);
-      console.log(error.response?.data?.message || "Login failed");
-    }
-  };
-
+  
   return (
     <>
       <button className="sidebar-toggle" onClick={toggleSidebar}>
@@ -85,26 +59,7 @@ function Profilesidebar({ data }) {
                   <span>AI Resume Builder</span>
                 </Link>
               </li>
-              {/* <li>
-                <Link
-                  to={`https://airesume.novajobs.us/${token}`}
-                  className={data === "resume" ? "active" : null}
-                  onClick={() => setSidebarOpen(false)}
-                >
-                  <i className="fa fa-file-text-o" aria-hidden="true"></i>
-                  <span>AI Resume Builder</span>
-                </Link>
-              </li> */}
-              {/* <li>
-                <Link
-                  to={"/user/jobs-my-resume"}
-                  className={data === "resume" ? "active" : null}
-                  onClick={() => setSidebarOpen(false)}
-                >
-                  <i className="fa fa-file-text-o" aria-hidden="true"></i>
-                  <span>My Resume</span>
-                </Link>
-              </li> */}
+              
               <li>
                 <Link
                   to={"/user/jobs-saved-jobs"}
@@ -132,7 +87,7 @@ function Profilesidebar({ data }) {
                   className={data === "skill-test" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
-                  <i className="fa fa-id-card-o" aria-hidden="true"></i>
+                  <FaLightbulb />
                   <span>Skill Test</span>
                 </Link>
               </li>
@@ -142,7 +97,7 @@ function Profilesidebar({ data }) {
                   className={data === "skill-test-history" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
-                  <i className="fa fa-id-card-o" aria-hidden="true"></i>
+                  <FaHistory/>
                   <span>Skill Test History</span>
                 </Link>
               </li>
@@ -152,7 +107,7 @@ function Profilesidebar({ data }) {
                   className={data === "community" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
-                  <i className="fa fa-id-card-o" aria-hidden="true"></i>
+                  <FaUserFriends />
                   <span>Community</span>
                 </Link>
               </li>
@@ -162,7 +117,7 @@ function Profilesidebar({ data }) {
                   className={data === "messages" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
-                  <i className="fa fa-id-card-o" aria-hidden="true"></i>
+                  <FaComment/>
                   <span>Messages</span>
                 </Link>
               </li>
@@ -172,7 +127,7 @@ function Profilesidebar({ data }) {
                   className={data === "ultra-aura" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
-                  <i className="fa fa-id-card-o" aria-hidden="true"></i>
+                  <FaExternalLinkAlt />
                   <span>Ultra Aura</span>
                 </Link>
               </li>
@@ -189,7 +144,7 @@ function Profilesidebar({ data }) {
               <li>
                 <Link
                   to={"/user/jobs-alerts"}
-                  className={data === "alerts-jobs" ? "active" : null}
+                  className={data === "jobs-alerts" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
                   <i className="fa fa-bell-o" aria-hidden="true"></i>
