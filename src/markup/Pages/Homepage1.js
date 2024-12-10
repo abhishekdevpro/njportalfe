@@ -34,7 +34,7 @@ function Homepage() {
     <div className="page-wraper">
       <Header />
       <div className="page-content">
-      <HeroSection />
+        <HeroSection />
         {/* <IndexBanner /> */}
         <div
           className="section-full p-tb70 overlay-black-dark text-white text-center bg-img-fix"
@@ -42,20 +42,21 @@ function Homepage() {
         >
           <div className="container">
             <div className="section-head text-center text-white">
-              <div
-                className="two-box-container"
-                style={{ color: "white" }}
-              >
+              <div className="two-box-container" style={{ color: "white" }}>
                 <div
                   className="bg-danger red-box"
                   onMouseEnter={() => setHoveredBox("red")}
                   onMouseLeave={() => setHoveredBox(null)}
                   style={{
-                    backgroundColor: hoveredBox === "red" ? "#ff6b6b" : "#d9534f", // Change color on hover
+                    backgroundColor:
+                      hoveredBox === "red" ? "#ff6b6b" : "#d9534f", // Change color on hover
                     transition: "background-color 0.3s ease",
                     padding: "20px",
                     borderRadius: "8px",
-                    boxShadow: hoveredBox === "red" ? "0 4px 8px rgba(0,0,0,0.2)" : "none",
+                    boxShadow:
+                      hoveredBox === "red"
+                        ? "0 4px 8px rgba(0,0,0,0.2)"
+                        : "none",
                   }}
                 >
                   <div
@@ -94,12 +95,10 @@ function Homepage() {
                         fontSize: "14px",
                       }}
                     >
-                      List your profile, check your resume score, search jobs, with advanced filters and the power of AI
+                      List your profile, check your resume score, search jobs
+                      with advanced filters and the power of AI
                     </p>
-                    <Link
-                      to={"/user/job/2"}
-                      style={{ color: "white" }}
-                    >
+                    <Link to={"/user/job/2"} style={{ color: "white" }}>
                       <button
                         type="button"
                         className="btn text-white hoverlogo-3d"
@@ -149,13 +148,13 @@ function Homepage() {
                         fontSize: "14px",
                       }}
                     >
-                      List your company, post jobs, search talent with advanced filters and power of AI{" "}
+                      List your company, post jobs, search talent with advanced
+                      filters and power of AI{" "}
                     </p>
-                    <Link
-                      to={"/user/register-2"}
-                      style={{ color: "white" }}
-                    >
-                      <button type="button" class="btn btn-danger hoverlogo-3d">Search Talent</button>
+                    <Link to={"/user/register-2"} style={{ color: "white" }}>
+                      <button type="button" class="btn btn-danger hoverlogo-3d">
+                        Search Talent
+                      </button>
                     </Link>
                   </div>
                 </div>
@@ -190,38 +189,24 @@ function Homepage() {
                 boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 transition: "transform 0.3s ease",
               }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-              onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.transform = "scale(1.05)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.transform = "scale(1)")
+              }
             >
               <div className="card-icon">
                 <FaRegFileAlt />
               </div>
               <Link to={"/novajobs#tab1"}>
-              <h3>Check Resume Score</h3>
-              <p className="text-primary">Our AI Gives Immediate Score On Your Resume.</p></Link>
-            </div>
-          
-           <div
-              className="card"
-              style={{
-                padding: "20px",
-                borderRadius: "8px",
-                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-                transition: "transform 0.3s ease",
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-              onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
-            > 
-           
-              <div className="card-icon">
-                <FaRegFilePdf />
-              </div>
-              <Link to={"https://airesume.novajobs.us/form"}>
-              <h3>Build Your Public Profile</h3>
-              <p className="text-primary">Add Your Details To Reach leading Companies.</p>
+                <h3>Check Resume Score</h3>
+                <p className="text-primary">
+                  Our AI Gives Immediate Score On Your Resume.
+                </p>
               </Link>
             </div>
-           
+
             <div
               className="card"
               style={{
@@ -230,15 +215,48 @@ function Homepage() {
                 boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 transition: "transform 0.3s ease",
               }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-              onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.transform = "scale(1.05)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.transform = "scale(1)")
+              }
+            >
+              <div className="card-icon">
+                <FaRegFilePdf />
+              </div>
+              <Link to={"https://airesume.novajobs.us/form"}>
+                <h3>Build Your Public Profile</h3>
+                <p className="text-primary">
+                  Add Your Details To Reach leading Companies.
+                </p>
+              </Link>
+            </div>
+
+            <div
+              className="card"
+              style={{
+                padding: "20px",
+                borderRadius: "8px",
+                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                transition: "transform 0.3s ease",
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.transform = "scale(1.05)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.transform = "scale(1)")
+              }
             >
               <div className="card-icon">
                 <FaRegUser />
               </div>
               <Link to={"/novajobs#tab3"}>
-              <h3>AI Skill Testing Tool</h3>
-              <p className="text-primary">AI Skill Testing Tool & Earn Rewards.</p>    </Link>
+                <h3>AI Skill Testing Tool</h3>
+                <p className="text-primary">
+                  AI Skill Testing Tool & Earn Rewards.
+                </p>{" "}
+              </Link>
             </div>
           </div>
         </div>
@@ -253,8 +271,6 @@ function Homepage() {
               <h2 className="m-b5">Testimonials</h2>
             </div>
             <Owltestimonial />
-
-            
           </div>
         </div>
 
@@ -272,7 +288,7 @@ function Homepage() {
               color: "#09213c",
             }}
           >
-             Our Partners
+            Our Partners
           </h2>
           <div className="two-box-container my-3">
             <div
@@ -282,19 +298,26 @@ function Homepage() {
                 borderRadius: "8px",
                 boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 transition: "transform 0.3s ease",
-                height:"220px"
+                height: "220px",
               }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-              onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.transform = "scale(1.05)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.transform = "scale(1)")
+              }
             >
               <div className="card-icon">
-              <img src="https://ultraaura.education/static/media/scope.e082ae7a0491759feb4b.jpg"/>
+                <img src="https://ultraaura.education/static/media/scope.e082ae7a0491759feb4b.jpg" />
               </div>
-              <h3>Scope              </h3>
-              <p className="" style={{fontWeight:"800"}}>Empowering Citizens of South Florida… 
-                Innovative education and employment program for a 
-                stronger Hallandale Beach  community.</p>
-                <button class="btn btn-primary " type="button" >Learn More</button>
+              <h3>Scope </h3>
+              <p className="" style={{ fontWeight: "800" }}>
+                Empowering Citizens of South Florida… Innovative education and
+                employment program for a stronger Hallandale Beach  community.
+              </p>
+              <button class="btn btn-primary " type="button">
+                Learn More
+              </button>
             </div>
             <div
               className="card"
@@ -303,24 +326,30 @@ function Homepage() {
                 borderRadius: "8px",
                 boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 transition: "transform 0.3s ease",
-                height:"220px"
+                height: "220px",
               }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-              onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.transform = "scale(1.05)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.transform = "scale(1)")
+              }
             >
               <div className="card-icon">
-              <img src="https://ultraaura.education/static/media/Agi.34685fda483584baba04.jpg"/>
+                <img src="https://ultraaura.education/static/media/Agi.34685fda483584baba04.jpg" />
               </div>
               <h3>AGI Tax Experts</h3>
-              <p className="" style={{fontWeight:"800"}}>
-                Launch your career with AGI Tax Experts! Comprehensive
-                 training and placement opportunities
-                  available through our portal</p>
-                 <Link to="https://ultraaura.education/course-info/226">
-                 <button class="btn btn-primary " type="button" >Learn More</button>
-                 </Link> 
+              <p className="" style={{ fontWeight: "800" }}>
+                Launch your career with AGI Tax Experts! Comprehensive training
+                and placement opportunities available through our portal
+              </p>
+              <Link to="https://ultraaura.education/course-info/226">
+                <button class="btn btn-primary " type="button">
+                  Learn More
+                </button>
+              </Link>
             </div>
-         
+
             <div
               className="card"
               style={{
@@ -328,26 +357,30 @@ function Homepage() {
                 borderRadius: "8px",
                 boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 transition: "transform 0.3s ease",
-                height:"220px"
+                height: "220px",
               }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-              onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.transform = "scale(1.05)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.transform = "scale(1)")
+              }
             >
               <div className="card-icon">
-                <img src="https://idfy-eia3.vercel.app/assets/logo5-DddCxhI1.jpg"/>
+                <img src="https://idfy-eia3.vercel.app/assets/logo5-DddCxhI1.jpg" />
               </div>
               <h3>NOVA Home Care</h3>
-              <p className="" style={{fontWeight:"800"}}>
+              <p className="" style={{ fontWeight: "800" }}>
                 Elevate your career with top-notch training and placement.
-                 Transform lives and secure your future with us.
-               
-                 </p>
-               
-                 <Link to="https://novahome.care/">
-                 <button class="btn btn-primary " type="button" >Learn More</button>
-                 </Link>
+                Transform lives and secure your future with us.
+              </p>
+
+              <Link to="https://novahome.care/">
+                <button class="btn btn-primary " type="button">
+                  Learn More
+                </button>
+              </Link>
             </div>
-            
           </div>
         </div>
       </div>

@@ -126,40 +126,37 @@ class UserHeader extends Component {
                       </ul> */}
                     </li>
 
-                   
-                    <li className="nav-item jobseeker-hover" style={{ position: 'relative' }}>
-     
-        <Link
-          style={{ color: "white" }}
-          to="/services"
-          className="nav-link site-button"
-        >
-          services
-        </Link>
-      
-      {!localStorage.getItem("jobSeekerLoginToken") && (
-        <div className="popup rounded-4 m-2 ">
-        <div className="d-flex gap-2 m-3 ">
-        <Link to="/about-us" className="btn btn-primary " style={{backgroundColor:'#1C2957'}}>
-            AI-Resume Builder
-          </Link>
-          <br />
-         
-        </div>
-        </div>
-      )}
-       
-                  
-              
-    </li>
+                    <li
+                      className="nav-item jobseeker-hover"
+                      style={{ position: "relative" }}
+                    >
+                      <Link
+                        // style={{ color: "white" }}
+                        to="/services"
+                        className="nav-link "
+                      >
+                        services
+                      </Link>
 
-                    
+                      {!localStorage.getItem("jobSeekerLoginToken") && (
+                        <div className="popup rounded-4 m-2 ">
+                          <div className="d-flex gap-2 m-3 ">
+                            <Link
+                              to="/about-us"
+                              className="btn btn-primary "
+                              style={{ backgroundColor: "#1C2957" }}
+                            >
+                              AI-Resume Builder
+                            </Link>
+                            <br />
+                          </div>
+                        </div>
+                      )}
+                    </li>
+
                     <li className="">
                       <Link to={"/aboutus"}>About Us </Link>
                     </li>
-
-
-
 
                     <li
                       onClick={() => {
@@ -172,18 +169,15 @@ class UserHeader extends Component {
                       <ul className="sub-menu">
                         <li>
                           <Link to={"/Profilepagehome"} className="dez-page">
-                          Company Page
+                            Company Page
                           </Link>
                         </li>
-                       
                       </ul>
                     </li>
                     {localStorage.getItem("jobSeekerLoginToken") ? (
                       <li>
-                        <Link to={"/user/jobs-profile"}>
-                          Dashboard 
-                        </Link>
-                       {/* <ul className="sub-menu">
+                        <Link to={"/user/jobs-profile"}>Dashboard</Link>
+                        {/* <ul className="sub-menu">
                           <li>
                             <Link
                               to={"/user/jobs-profile"}
@@ -257,47 +251,54 @@ class UserHeader extends Component {
                         </Link>
                       )}
                     </li> */}
-                     <li className="nav-item jobseeker-hover" style={{ position: 'relative' }}>
-      {localStorage.getItem("jobSeekerLoginToken") ? (
-        <Logout />
-      ) : (
-        <Link
-          style={{ color: "white" }}
-          to="#"
-          className="nav-link site-button"
-        >
-          Jobseeker
-        </Link>
-      )}
+                    <li
+                      className="nav-item jobseeker-hover"
+                      style={{ position: "relative" }}
+                    >
+                      {localStorage.getItem("jobSeekerLoginToken") ? (
+                        <Logout />
+                      ) : (
+                        <Link
+                          style={{ color: "white" }}
+                          to="#"
+                          className="nav-link site-button"
+                        >
+                          Jobseeker
+                        </Link>
+                      )}
 
-      {!localStorage.getItem("jobSeekerLoginToken") && (
-        <div className="popup rounded-4 m-2 ">
-        <div className="d-flex gap-2 m-3 ">
-        <Link to="/user/register-2" className="btn btn-primary " style={{backgroundColor:'#1C2957'}}>
-            Sign Up
-          </Link>
-          <br />
-          <Link to="/user/login" className="btn btn-secondary ">
-            Sign In
-          </Link>
-        </div>
-        </div>
-      )}
-       
-                  
-              
-    </li>
+                      {!localStorage.getItem("jobSeekerLoginToken") && (
+                        <div className="popup rounded-4 m-2 ">
+                          <div className="d-flex gap-2 m-3 ">
+                            <Link
+                              to="/user/register-2"
+                              className="btn btn-primary "
+                              style={{ backgroundColor: "#1C2957" }}
+                            >
+                              Sign Up
+                            </Link>
+                            <br />
+                            <Link
+                              to="/user/login"
+                              className="btn btn-secondary "
+                            >
+                              Sign In
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+                    </li>
                     <li>
-                    {localStorage.getItem("jobSeekerLoginToken") ? null : (
-                  <Link to={"/vendor/login"}
-                    
-                  style={{ color: "white" }}
-                  className="site-button "
-                  >    
-                    Partner With Us
-                  </Link>
-                  )}
-                    </li> 
+                      {localStorage.getItem("jobSeekerLoginToken") ? null : (
+                        <Link
+                          to={"/vendor/login"}
+                          style={{ color: "white" }}
+                          className="site-button "
+                        >
+                          Partner With Us
+                        </Link>
+                      )}
+                    </li>
                     <li>
                       {localStorage.getItem("jobSeekerLoginToken") ? (
                         ""
@@ -337,7 +338,7 @@ class UserHeader extends Component {
                 <div
                   className="col-lg-6 col-md-6 overlay-primary-dark d-flex p-a0"
                   style={{
-                   backgroundImage: "url(" + bnr3 + ")",
+                    backgroundImage: "url(" + bnr3 + ")",
                     backgroundPosition: "center",
                     backgroundSize: "cover",
                   }}

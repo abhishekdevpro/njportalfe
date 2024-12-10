@@ -493,8 +493,10 @@ const JobseekerForm = () => {
         setStep(step + 1);
       } else {
         setShowSummary(true);
+        navigate("/user/job/1");
       }
     }
+   
   };
 
   const prevStep = () => {

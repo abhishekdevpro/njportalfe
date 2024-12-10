@@ -15,11 +15,19 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../Layout/Footer";
 import Header from "../Layout/Header"
+import { Modal } from "react-bootstrap";
+const bnr3 = require("./../../images/background/bg3.jpg");
 function EmployeeLogin(props) {
   const [email, setEmail] = useState("demo@example.com");
   let errorsObj = { email: "", password: "" };
   const [errors, setErrors] = useState(errorsObj);
   const [password, setPassword] = useState("123456");
+
+  const [showOtpModal, setShowOtpModal] = useState(false); // State for OTP modal
+  const [otp, setOtp] = useState("");
+  const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [timer, setTimer] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -79,9 +87,100 @@ function EmployeeLogin(props) {
         showToastError(err?.response?.data?.message);
       });
   };
+  const startTimer = () => {
+    setTimer(60);
+    const interval = setInterval(() => {
+      setTimer((prevTimer) => {
+        if (prevTimer === 1) {
+          clearInterval(interval);
+          return 0;
+        }
+        return prevTimer - 1;
+      });
+    }, 1000);
+  };
+
+  const sendEmail = async () => {
+    try {
+      setLoading(true);
+      await axios.post(
+        "https://api.novajobs.us/api/employeer/auth/send-loginotp",
+        { email }
+      );
+      setStep(2);
+      startTimer();
+    } catch (error) {
+      const errorMessage =
+        error?.response?.data?.message ||
+        "Failed to send OTP. Please register first.";
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
+  // const sendEmail = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const response = await axios.post(
+  //       "https://api.novajobs.us/api/jobseeker/auth/send-loginotp",
+  //       { email }
+  //     );
+
+  //     // Check if the response contains the token
+  //     if (response?.data?.data?.token) {
+  //       localStorage.setItem("employeeLoginToken", response?.data?.data?.token); // Store token
+  //       setStep(2); // Move to OTP step
+  //       startTimer(); // Start OTP timer
+  //     } else {
+  //       // If no token, show an error
+  //       toast.error("Please register first.");
+  //     }
+  //   } catch (error) {
+  //     const errorMessage =
+  //       error?.response?.data?.message ||
+  //       "Failed to send OTP. Please try again.";
+  //     toast.error(errorMessage); // Show error if API call fails
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  const verifyOtp = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        "https://api.novajobs.us/api/employeer/auth/login-otp",
+        { email, otp }
+      );
+      toast.success("Login successful!");
+      localStorage.setItem("jobSeekerLoginToken", response?.data?.data?.token);
+      setShowOtpModal(false);
+      navigate("/user/jobs-profile");
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Invalid OTP.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const resendOtp = async () => {
+    try {
+      setLoading(true);
+      await axios.post(
+        "https://api.novajobs.us/api/employeer/auth/send-loginotp",
+        { email }
+      );
+      toast.success("OTP has been resent!");
+      startTimer();
+    } catch (error) {
+      toast.error("Failed to resend OTP. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="page-wraper">
-      <Header/>
+      <Header />
       <ToastContainer />
       <div
         className="page-content bg-white login-style2"
@@ -266,6 +365,15 @@ function EmployeeLogin(props) {
                           <i className="fa fa-unlock-alt"></i> Sign up
                         </Link>
                       </div>
+                      <div className="form-group text-center">
+                        <button
+                          type="button"
+                          className="site-button "
+                          onClick={() => setShowOtpModal(true)}
+                        >
+                          Sign in with OTP
+                        </button>
+                      </div>
                     </form>
                     <div className="form-group text-center">
                       <Link
@@ -307,6 +415,99 @@ function EmployeeLogin(props) {
         </footer> */}
       </div>
       <Footer />
+      <Modal
+        className="lead-form-modal"
+        show={showOtpModal}
+        onHide={() => setShowOtpModal(false)}
+        centered
+      >
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <button
+              type="button"
+              className="close"
+              onClick={() => setShowOtpModal(false)}
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div className="modal-body row m-a0 clearfix">
+              <div
+                className="col-lg-6 col-md-6 overlay-primary-dark d-flex p-a0"
+                style={{
+                  backgroundImage: "url(" + bnr3 + ")",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                }}
+              >
+                <div className="form-info text-white align-self-center">
+                  <h3 className="m-b15">Login To Your Account</h3>
+                  <p className="m-b15">
+                    Access your account and explore new opportunities!
+                  </p>
+                </div>
+              </div>
+              <div className="col-lg-6 col-md-6 p-a0">
+                <div className="lead-form browse-job text-left">
+                  {step === 1 && (
+                    <>
+                      <h6 className="m-t0">Enter Your Email</h6>
+                      <div className="form-group">
+                        <input
+                          className="form-control"
+                          placeholder="Email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </div>
+                      <button
+                        className="btn-primary site-button btn-block"
+                        onClick={sendEmail}
+                        disabled={loading}
+                      >
+                        {loading ? "Checking Email..." : "Next"}
+                      </button>
+                    </>
+                  )}
+                  {step === 2 && (
+                    <>
+                      <h6 className="m-t0">Enter OTP</h6>
+                      <div className="form-group">
+                        <input
+                          className="form-control"
+                          placeholder="OTP"
+                          value={otp}
+                          onChange={(e) => setOtp(e.target.value)}
+                        />
+                      </div>
+                      <button
+                        className="btn-primary site-button btn-block"
+                        onClick={verifyOtp}
+                        disabled={loading}
+                      >
+                        {loading ? "Verifying..." : "Submit"}
+                      </button>
+                      <p>
+                        Resend OTP in: <strong>{timer}</strong> seconds
+                      </p>
+                      <button
+                        onClick={resendOtp}
+                        disabled={timer > 0} // Disable the button while timer is active
+                        className="btn btn-primary"
+                        style={{
+                          backgroundColor: timer > 0 ? "#ccc" : "#1C2957",
+                          color: timer > 0 ? "#666" : "#fff",
+                        }}
+                      >
+                        Resend OTP
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }
