@@ -38,7 +38,7 @@ if(!token){
       <Header />
       <div className="page-content">
         <IndexBanner />
-       
+
         <div
           className="section-full p-tb70 overlay-black-dark text-white text-center bg-img-fix"
           style={{ backgroundImage: "url(" + bnr2 + ")" }}
@@ -83,14 +83,17 @@ if(!token){
                         fontSize: "14px",
                       }}
                     >
-                      List your profile, check your resume score, search jobs, with advance filters and power of AI
-
+                      List your profile, check your resume score, search jobs
+                      with advance filters and power of AI
                     </p>
-                    <Link
-                      to={"/user/job/2"}
-                      style={{ color: "white" }}
-                    >
-                     <button type="button" className="btn text-white hoverlogo-3d" style={{backgroundColor:"#080F3A"}}>Apply Now</button>
+                    <Link to={"/user/job/2"} style={{ color: "white" }}>
+                      <button
+                        type="button"
+                        className="btn text-white hoverlogo-3d"
+                        style={{ backgroundColor: "#080F3A" }}
+                      >
+                        Apply Now
+                      </button>
                     </Link>
                   </div>
                 </div>
@@ -133,13 +136,16 @@ if(!token){
                         fontSize: "14px",
                       }}
                     >
-                      List your company, post jobs, search talent with advanced filters and power of AI{" "}
+                      List your company, post jobs, search talent with advanced
+                      filters and power of AI{" "}
                     </p>
                     <Link
                       to={"/employee/register-2"}
                       style={{ color: "white" }}
                     >
-                      <button type="button" class="btn btn-danger hoverlogo-3d">Search Talent</button>
+                      <button type="button" class="btn btn-danger hoverlogo-3d">
+                        Search Talent
+                      </button>
                     </Link>
                   </div>
                 </div>
@@ -166,7 +172,6 @@ if(!token){
             <br />
             other Job Sites.
           </h2>
-        
 
           <div className="two-box-container">
             <div
@@ -177,38 +182,24 @@ if(!token){
                 boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 transition: "transform 0.3s ease",
               }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-              onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.transform = "scale(1.05)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.transform = "scale(1)")
+              }
             >
               <div className="card-icon">
                 <FaRegFileAlt />
               </div>
               <Link to={"/novajobs#tab1"}>
-              <h3>Check Resume Score</h3>
-              <p className="text-primary">Our AI Gives Immediate Score On Your Resume.</p></Link>
-            </div>
-          
-           <div
-              className="card"
-              style={{
-                padding: "20px",
-                borderRadius: "8px",
-                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-                transition: "transform 0.3s ease",
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-              onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
-            > 
-           
-              <div className="card-icon">
-                <FaRegFilePdf />
-              </div>
-              <Link to={"https://airesume.novajobs.us/form"}>
-              <h3>Build Your Public Profile</h3>
-              <p className="text-primary">Add Your Details To Reach leading Companies.</p>
+                <h3>Check Resume Score</h3>
+                <p className="text-primary">
+                  Our AI Gives Immediate Score On Your Resume.
+                </p>
               </Link>
             </div>
-           
+
             <div
               className="card"
               style={{
@@ -217,15 +208,48 @@ if(!token){
                 boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 transition: "transform 0.3s ease",
               }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-              onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.transform = "scale(1.05)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.transform = "scale(1)")
+              }
+            >
+              <div className="card-icon">
+                <FaRegFilePdf />
+              </div>
+              <Link to={"https://airesume.novajobs.us/form"}>
+                <h3>Build Your Public Profile</h3>
+                <p className="text-primary">
+                  Add Your Details To Reach leading Companies.
+                </p>
+              </Link>
+            </div>
+
+            <div
+              className="card"
+              style={{
+                padding: "20px",
+                borderRadius: "8px",
+                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                transition: "transform 0.3s ease",
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.transform = "scale(1.05)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.transform = "scale(1)")
+              }
             >
               <div className="card-icon">
                 <FaRegUser />
               </div>
               <Link to={"/novajobs#tab3"}>
-              <h3>AI Skill Testing Tool</h3>
-              <p className="text-primary">AI Skill Testing Tool & Earn Rewards.</p>    </Link>
+                <h3>AI Skill Testing Tool</h3>
+                <p className="text-primary">
+                  AI Skill Testing Tool & Earn Rewards.
+                </p>{" "}
+              </Link>
             </div>
           </div>
         </div>
@@ -238,12 +262,10 @@ if(!token){
           <div className="container">
             <div className="section-head text-center text-white">
               <h2 className="m-b5">Testimonials</h2>
-              
             </div>
             <Owltestimonial />
           </div>
         </div>
-        
       </div>
       <Footer />
     </div>

@@ -13,12 +13,19 @@ import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 import { toast, ToastContainer } from "react-toastify";
 import Footer from "../Layout/Footer";
 import Header from "../Layout/Header"
+import { Modal } from "react-bootstrap";
+const bnr3 = require("./../../images/background/bg3.jpg");
 function Login(props) {
   const [email, setEmail] = useState("demo@example.com");
   let errorsObj = { email: "", password: "" };
   const [errors, setErrors] = useState(errorsObj);
   const [password, setPassword] = useState("123456");
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [showOtpModal, setShowOtpModal] = useState(false); // State for OTP modal
+  const [otp, setOtp] = useState("");
+  const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [timer, setTimer] = useState(0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const notify = (data) => toast.warning(data);
@@ -81,10 +88,74 @@ function Login(props) {
         showToastError(error?.response?.data?.message);
       });
   };
+  const startTimer = () => {
+    setTimer(60);
+    const interval = setInterval(() => {
+      setTimer((prevTimer) => {
+        if (prevTimer === 1) {
+          clearInterval(interval);
+          return 0;
+        }
+        return prevTimer - 1;
+      });
+    }, 1000);
+  };
 
+  const sendEmail = async () => {
+    try {
+      setLoading(true);
+      await axios.post(
+        "https://api.novajobs.us/api/jobseeker/auth/send-loginotp",
+        { email }
+      );
+      setStep(2);
+      startTimer();
+    } catch (error) {
+      const errorMessage =
+        error?.response?.data?.message ||
+        "Failed to send OTP. Please register first.";
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const verifyOtp = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        "https://api.novajobs.us/api/jobseeker/auth/login-otp",
+        { email, otp }
+      );
+      toast.success("Login successful!");
+      localStorage.setItem("jobSeekerLoginToken", response?.data?.data?.token);
+      setShowOtpModal(false);
+      navigate("/user/jobs-profile");
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Invalid OTP.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const resendOtp = async () => {
+    try {
+      setLoading(true);
+      await axios.post(
+        "https://api.novajobs.us/api/jobseeker/auth/send-loginotp",
+        { email }
+      );
+      toast.success("OTP has been resent!");
+      startTimer();
+    } catch (error) {
+      toast.error("Failed to resend OTP. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="page-wraper">
-      <Header/>
+      <Header />
       <ToastContainer />
 
       <div
@@ -132,7 +203,10 @@ function Login(props) {
                     }}
                   >
                     <li>
-                      <Link to={"https://www.linkedin.com/company/nova-us-jobs/"} className="m-r10 text-white ">
+                      <Link
+                        to={"https://www.linkedin.com/company/nova-us-jobs/"}
+                        className="m-r10 text-white "
+                      >
                         <i className="fa fa-linkedin"></i>
                       </Link>
                     </li>
@@ -250,12 +324,18 @@ function Login(props) {
                           <i className="fa fa-unlock-alt"></i> Sign up
                         </Link>
                       </div>
+                      <div className="form-group text-center">
+                        <button
+                          type="button"
+                          className="site-button "
+                          onClick={() => setShowOtpModal(true)}
+                        >
+                          Sign in with OTP
+                        </button>
+                      </div>
                     </form>
                     <div className="form-group text-center">
-                      <Link
-                        to="/"
-                        className="site-button-link  m-t15 "
-                      >
+                      <Link to="/" className="site-button-link  m-t15 ">
                         Back to Home
                       </Link>
                     </div>
@@ -308,6 +388,100 @@ function Login(props) {
         </footer> */}
       </div>
       <Footer />
+      {/* OTP Modal */}
+      <Modal
+        className="lead-form-modal"
+        show={showOtpModal}
+        onHide={() => setShowOtpModal(false)}
+        centered
+      >
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <button
+              type="button"
+              className="close"
+              onClick={() => setShowOtpModal(false)}
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div className="modal-body row m-a0 clearfix">
+              <div
+                className="col-lg-6 col-md-6 overlay-primary-dark d-flex p-a0"
+                style={{
+                  backgroundImage: "url(" + bnr3 + ")",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                }}
+              >
+                <div className="form-info text-white align-self-center">
+                  <h3 className="m-b15">Login To Your Account</h3>
+                  <p className="m-b15">
+                    Access your account and explore new opportunities!
+                  </p>
+                </div>
+              </div>
+              <div className="col-lg-6 col-md-6 p-a0">
+                <div className="lead-form browse-job text-left">
+                  {step === 1 && (
+                    <>
+                      <h6 className="m-t0">Enter Your Email</h6>
+                      <div className="form-group">
+                        <input
+                          className="form-control"
+                          placeholder="Email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </div>
+                      <button
+                        className="btn-primary site-button btn-block"
+                        onClick={sendEmail}
+                        disabled={loading}
+                      >
+                        {loading ? "Checking Email..." : "Next"}
+                      </button>
+                    </>
+                  )}
+                  {step === 2 && (
+                    <>
+                      <h6 className="m-t0">Enter OTP</h6>
+                      <div className="form-group">
+                        <input
+                          className="form-control"
+                          placeholder="OTP"
+                          value={otp}
+                          onChange={(e) => setOtp(e.target.value)}
+                        />
+                      </div>
+                      <button
+                        className="btn-primary site-button btn-block"
+                        onClick={verifyOtp}
+                        disabled={loading}
+                      >
+                        {loading ? "Verifying..." : "Submit"}
+                      </button>
+                      <p>
+                        Resend OTP in: <strong>{timer}</strong> seconds
+                      </p>
+                      <button
+                        onClick={resendOtp}
+                        disabled={timer > 0} // Disable the button while timer is active
+                        className="btn btn-primary"
+                        style={{
+                          backgroundColor: timer > 0 ? "#ccc" : "#1C2957",
+                          color: timer > 0 ? "#666" : "#fff",
+                        }}
+                      >
+                        Resend OTP
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }
@@ -320,3 +494,4 @@ const mapStateToProps = (state) => {
   };
 };
 export default connect(mapStateToProps)(Login);
+
