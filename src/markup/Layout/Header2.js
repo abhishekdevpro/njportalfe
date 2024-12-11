@@ -144,7 +144,7 @@ class UserHeader2 extends Component {
                     </li>
                     
                     <li>
-                      <Link to={"#"}>
+                      <Link to={`/user/jobs-profile`}>
                         Dashboard
                       </Link>
                       {/* <ul className="sub-menu">

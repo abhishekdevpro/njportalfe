@@ -394,7 +394,7 @@ function Jobprofile() {
   return (
     <>
       <Header2 />
-      <FixedHeader />
+      {/* <FixedHeader /> */}
       <div className="page-content bg-white">
         <div className="content-block">
           <div className="section-full bg-white browse-job p-t50 p-b20">
