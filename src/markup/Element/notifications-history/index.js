@@ -6,6 +6,7 @@ import Profilesidebar from "../Profilesidebar";
 import Footer from "../../Layout/Footer";
 import CompanySideBar from "../../../employeeMarkup/Layout/companySideBar";
 import NotificationsHistory from "./NotificationsHistory";
+import EmployeeHeader2 from "../../../employeeMarkup/Layout/Header2";
 
 const PageWrapper = styled.div`
   background-color: white;
@@ -77,8 +78,8 @@ const jobseekerToken = localStorage.getItem("jobSeekerLoginToken")
 function NotificationPage() {
   return (
     <>
-      <UserHeader2 />
-      <FixedHeader />
+      {jobseekerToken?<UserHeader2 />:<EmployeeHeader2/>}
+      {jobseekerToken?<FixedHeader />:" "}
       
       <PageWrapper>
         <ContentBlock>
@@ -86,7 +87,7 @@ function NotificationPage() {
             <Container>
               <Row>
                 <SidebarWrapper>
-                { jobseekerToken? <Profilesidebar data="jobs-alerts" />:<CompanySideBar />}
+                { jobseekerToken? <Profilesidebar data="jobs-alerts" />:<CompanySideBar active="jobs-alerts" />}
                 </SidebarWrapper>
                 <ChatWrapper>
                   <NotificationsHistory/>

@@ -9,7 +9,7 @@ function LogoutPage(props) {
   const navigate = useNavigate();
   const onLogout = () => {
     localStorage.removeItem("employeeLoginToken");
-    navigate("/employee/login");
+    navigate("/");
   };
   return (
     <>

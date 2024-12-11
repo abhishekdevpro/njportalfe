@@ -7,12 +7,14 @@ import Footer from "../../Layout/Footer";
 import UserHeader2 from "../../Layout/Header2";
 import FilterLeftSidebar from "./Rightsidebar";
 import FilterSidebar from "./LeftSidebar";
+import EmployeeHeader2 from "../../../employeeMarkup/Layout/Header2";
 
 
 function Community() {
+  const token = localStorage.getItem("jobseekerLoginToken")
   return (
     <>
-      <UserHeader2 />
+     {token ? <UserHeader2 />:<EmployeeHeader2/>}
       {/* <FixedHeader /> */}
 
       <div className="page-content bg-light">

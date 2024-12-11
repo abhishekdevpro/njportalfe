@@ -6,6 +6,7 @@ import Profilesidebar from "../Profilesidebar";
 import Footer from "../../Layout/Footer";
 import ChatBoxContentField from "./ChatBox";
 import CompanySideBar from "../../../employeeMarkup/Layout/companySideBar";
+import EmployeeHeader2 from "../../../employeeMarkup/Layout/Header2";
 
 const PageWrapper = styled.div`
   background-color: white;
@@ -77,8 +78,8 @@ const jobseekerToken = localStorage.getItem("jobSeekerLoginToken")
 function Messages() {
   return (
     <>
-      <UserHeader2 />
-      <FixedHeader />
+     {jobseekerToken? <UserHeader2 />:<EmployeeHeader2/>}
+     {jobseekerToken? <FixedHeader />:""}
       
       <PageWrapper>
         <ContentBlock>
@@ -86,7 +87,7 @@ function Messages() {
             <Container>
               <Row>
                 <SidebarWrapper>
-                { jobseekerToken? <Profilesidebar data="messages" />:<CompanySideBar />}
+                { jobseekerToken? <Profilesidebar data="messages" />:<CompanySideBar active="messages"/>}
                 </SidebarWrapper>
                 <ChatWrapper>
                   <ChatBoxContentField />
