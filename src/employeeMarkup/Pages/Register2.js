@@ -150,19 +150,25 @@ const notify = (data) => toast.warning(data);
     };
 
     try {
-      const res = await axios.post("https://api.novajobs.us/api/employeer/auth/signup", body, {
-        headers: {
-          "Content-Type": "application/json",
-          //Authorization: token,
-        },
-      });
+      const res = await axios.post(
+        "https://api.novajobs.us/api/employeer/auth/signup",
+        body,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            //Authorization: token,
+          },
+        }
+      );
 
       localStorage.setItem("employeeLoginToken", res.data.data);
-      showToastSuccess("Please, check your email inbox to complete the registration");
+      showToastSuccess(
+        "Please, check your email inbox to complete the registration"
+      );
 
       // Send email to the user upon successful registration
       await sendConfirmationEmail(registerValues.email);
-
+      navigate("/employee/login");
       setShowUpload(false);
     } catch (err) {
       console.log(err);
@@ -175,14 +181,14 @@ const notify = (data) => toast.warning(data);
     try {
       const encodedEmail = encodeURIComponent(email); // Encode email
       const encodedToken = encodeURIComponent(token); // Encode token
-  
+
       const verificationLink = `https://api.novajobs.us/api/employee/verify-account/${encodedToken}?email=${encodedEmail}`;
       const emailBody = {
         to: email,
         subject: "Confirm Your Email",
         body: `Please click on the following link to confirm your email: ${verificationLink}`,
       };
-  
+
       await axios.post("YOUR_BACKEND_EMAIL_SENDING_ENDPOINT", emailBody, {
         headers: {
           "Content-Type": "application/json",
@@ -193,7 +199,6 @@ const notify = (data) => toast.warning(data);
       console.error("Error sending email:", error);
     }
   };
-  
 
   const verifyAccount = async () => {
     try {
@@ -205,7 +210,7 @@ const notify = (data) => toast.warning(data);
       // Handle error, maybe show an error message to the user
     }
   };
-  
+
   // Call verifyAccount when component mounts
   useEffect(() => {
     verifyAccount();
@@ -241,11 +246,12 @@ const notify = (data) => toast.warning(data);
         showToastError(err?.response?.data?.message);
       });
   };
-*/}
+*/
+  }
   return (
     <div className="page-wraper">
       <div className="browse-job login-style3">
-      <ToastContainer />
+        <ToastContainer />
         <div
           className="bg-img-fix"
           style={{
@@ -254,7 +260,10 @@ const notify = (data) => toast.warning(data);
           }}
         >
           <div className="row">
-            <div className="col-xl-6 col-lg-7 col-md-8 col-sm-12 bg-white z-index2 relative p-a0 content-scroll skew-section left-bottom">
+            <div
+              className="col-xl-6 col-lg-7 col-md-8 col-sm-12 bg-white z-index2 relative p-a0 content-scroll skew-section left-bottom"
+              style={{ right: "-49%" }}
+            >
               <div
                 className="login-form style-2"
                 style={{ display: "flex", flexDirection: "column" }}
@@ -270,66 +279,65 @@ const notify = (data) => toast.warning(data);
                   </Link>
                 </div>
 
-                
-                  <div className="tab-content nav p-b30 tab">
-                    <div id="login" className="tab-pane active ">
-                      {props.errorMessage && (
-                        <div className="">{props.errorMessage}</div>
-                      )}
-                      {props.successMessage && (
-                        <div className="">{props.successMessage}</div>
-                      )}
-                      <form className=" dez-form " onSubmit={onSignUp}>
-                        <div className="dez-separator-outer m-b5">
-                          <div className="dez-separator bg-primary style-liner"></div>
+                <div className="tab-content nav p-b30 tab">
+                  <div id="login" className="tab-pane active ">
+                    {props.errorMessage && (
+                      <div className="">{props.errorMessage}</div>
+                    )}
+                    {props.successMessage && (
+                      <div className="">{props.successMessage}</div>
+                    )}
+                    <form className=" dez-form " onSubmit={onSignUp}>
+                      <div className="dez-separator-outer m-b5">
+                        <div className="dez-separator bg-primary style-liner"></div>
+                      </div>
+                      <div className="row">
+                        <div className="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                          <input
+                            name="firstName"
+                            id="firstName"
+                            value={registerValues.firstName}
+                            onChange={handleRegisterChange}
+                            className="form-control"
+                            placeholder="First Name"
+                            required
+                          />
+                          {/* <div className="text-danger">
+                              {errors.email && <div>{errors.email}</div>}
+                            </div> */}
                         </div>
-                        <div className="row">
-                          <div className="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <input
-                              name="firstName"
-                              id="firstName"
-                              value={registerValues.firstName}
-                              onChange={handleRegisterChange}
-                              className="form-control"
-                              placeholder="First Name"
-                              required
-                            />
-                            {/* <div className="text-danger">
+                        <div className="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                          <input
+                            name="lastName"
+                            id="lastName"
+                            value={registerValues.lastName}
+                            onChange={handleRegisterChange}
+                            className="form-control"
+                            placeholder="Last Name"
+                            required
+                          />
+                          {/* <div className="text-danger">
                               {errors.email && <div>{errors.email}</div>}
                             </div> */}
-                          </div>
-                          <div className="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <input
-                              name="lastName"
-                              id="lastName"
-                              value={registerValues.lastName}
-                              onChange={handleRegisterChange}
-                              className="form-control"
-                              placeholder="Last Name"
-                              required
-                            />
-                            {/* <div className="text-danger">
-                              {errors.email && <div>{errors.email}</div>}
-                            </div> */}
-                          </div>
+                        </div>
 
-                          <div className="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <input
-                              id="phone"
-                              name="phone"
-                              value={registerValues.phone}
-                              type="number"
-                              className="form-control"
-                              defaultValue="Password"
-                              placeholder="Phone Number"
-                              required
-                              onChange={handleRegisterChange}
-                            />
-                            {/* <div className="text-danger">
+                        <div className="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                          <input
+                            id="phone"
+                            name="phone"
+                            value={registerValues.phone}
+                            type="number"
+                            className="form-control"
+                            defaultValue="Password"
+                            placeholder="Phone Number"
+                            required
+                            onChange={handleRegisterChange}
+                          />
+                          {/* <div className="text-danger">
                               {errors.password && <div>{errors.password}</div>}
                             </div> */}
-                          </div>
-                          {/* <div className="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        </div>
+                        {/* <div className="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <input
                               type="text"
                               name="jobTitle"
@@ -343,125 +351,121 @@ const notify = (data) => toast.warning(data);
                           
                           </div> */}
 
-                          <div className="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <input
-                              type="email"
-                              name="email"
-                              id="email"
-                              value={registerValues.email}
-                              onChange={handleRegisterChange}
-                              className="form-control"
-                              placeholder="Work Email Address"
-                              required
-                            />
-                            {/* <div className="text-danger">
+                        <div className="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                          <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            value={registerValues.email}
+                            onChange={handleRegisterChange}
+                            className="form-control"
+                            placeholder="Work Email Address"
+                            required
+                          />
+                          {/* <div className="text-danger">
                               {errors.email && <div>{errors.email}</div>}
                             </div> */}
+                        </div>
+                        <div className="form-group  col-12">
+                          <div className="input-group d-flex align-items-center">
+                            <span
+                              className="input-group-addon position-absolute"
+                              onClick={() => setShowPassword(!showPassword)}
+                              style={{
+                                cursor: "pointer",
+                                right: "0px",
+                                zIndex: "11",
+                                position: "absolute",
+                              }}
+                            >
+                              <i
+                                className={
+                                  showPassword
+                                    ? "fa fa-eye-slash "
+                                    : "fa fa-eye"
+                                }
+                              ></i>
+                            </span>
+                            <input
+                              type={showPassword ? "text" : "password"} // Toggle password visibility
+                              name="password"
+                              id="password"
+                              className="form-control position-relative"
+                              value={registerValues.password}
+                              placeholder="Type Your Password"
+                              defaultValue="Password"
+                              onChange={handleRegisterChange}
+                              required
+                            />
                           </div>
-                          <div className="form-group  col-12">
-                            <div className="input-group d-flex align-items-center">
-                              <span
-                                className="input-group-addon position-absolute"
-                                onClick={() => setShowPassword(!showPassword)}
-                                style={{
-                                  cursor: "pointer",
-                                  right: "0px",
-                                  zIndex: "11",
-                                  position: "absolute",
-                                }}
-                              >
-                                <i
-                                  className={
-                                    showPassword
-                                      ? "fa fa-eye-slash "
-                                      : "fa fa-eye"
-                                  }
-                                ></i>
-                              </span>
-                              <input
-                                type={showPassword ? "text" : "password"} // Toggle password visibility
-                                name="password"
-                                id="password"
-                                className="form-control position-relative"
-                                value={registerValues.password}
-                                placeholder="Type Your Password"
-                                defaultValue="Password"
-                                onChange={handleRegisterChange}
-                                required
-                              />
-                            </div>
-                          </div>
-                          <div className="form-group text-left ">
-                            {/* <button
+                        </div>
+                        <div className="form-group text-left ">
+                          {/* <button
                             type="submit"
                             className="site-button dz-xs-flex m-r5"
                           >
                             Sign me up
                           </button> */}
 
-                            <span className="custom-control custom-checkbox mt-3">
-                              <input
-                                type="checkbox"
-                                className="custom-control-input"
-                                id="terms"
-                                name="terms"
-                                required
-                              />
-                              <label
-                                className="custom-control-label"
-                                htmlFor="terms"
-                              >
-                                I agree to the{" "}
-                                {
-                                  <Link to={"/employee/privacy-rights"}>
-                                    Privacy Policy
-                                  </Link>
-                                }{" "}
-                                and{" "}
-                                <Link to={"/employee/term-of-use-nova-jobs"}>
-                                  Terms & conditions{" "}
+                          <span className="custom-control custom-checkbox mt-3">
+                            <input
+                              type="checkbox"
+                              className="custom-control-input"
+                              id="terms"
+                              name="terms"
+                              required
+                            />
+                            <label
+                              className="custom-control-label"
+                              htmlFor="terms"
+                            >
+                              I agree to the{" "}
+                              {
+                                <Link to={"/employee/privacy-rights"}>
+                                  Privacy Policy
                                 </Link>
-                              </label>
-                            </span>
-                          </div>
+                              }{" "}
+                              and{" "}
+                              <Link to={"/employee/term-of-use-nova-jobs"}>
+                                Terms & conditions{" "}
+                              </Link>
+                            </label>
+                          </span>
                         </div>
+                      </div>
 
-                        <div className="text-danger mb-3 ">
-                          {errors.firstName && (
-                            <div className="text-center ">
-                              {errors.firstName}
-                            </div>
-                          )}
+                      <div className="text-danger mb-3 ">
+                        {errors.firstName && (
+                          <div className="text-center ">{errors.firstName}</div>
+                        )}
 
-                          {errors.lastName && (
-                            <div className="text-center ">
-                              {errors.lastName}
-                            </div>
-                          )}
+                        {errors.lastName && (
+                          <div className="text-center ">{errors.lastName}</div>
+                        )}
 
-                          {errors.phone && (
-                            <div className="text-center ">{errors.phone}</div>
-                          )}
-                        </div>
-                        <div className="text-center ">
-                          <button
-                            type="submit"
-                            className="site-button dz-xs-flex m-r5"
-                          >
-                            Create Account
-                          </button>
-                        </div>
-                      </form>
-                      {/* <div className="text-center bottom">
+                        {errors.phone && (
+                          <div className="text-center ">{errors.phone}</div>
+                        )}
+                      </div>
+                      <div className="text-center ">
+                        <button
+                          type="submit"
+                          className="site-button dz-xs-flex m-r5"
+                        >
+                          Create Account
+                        </button>
+                      </div>
+                    </form>
+                    {/* <div className="text-center bottom">
                         <Link
                           to="/login"
                           className="site-button button-md btn-block text-white">
                           Sign In
                         </Link>
                       </div> */}
-                    </div>
                   </div>
-                 { /*(
+                </div>
+                {/*(
                   <div>
                     {AiBtn ? (
                       <form onSubmit={handleSubmit}>
@@ -529,7 +533,7 @@ const notify = (data) => toast.warning(data);
                     )}
                   </div>
                 ) */}
-                
+
                 <div className="bottom-footer clearfix m-t10 m-b20 row text-center">
                   <div className="col-lg-12 text-center">
                     <span>
@@ -548,7 +552,7 @@ const notify = (data) => toast.warning(data);
                       width: "40px",
                     }}
                   /> */}
-                      Already have an account ?
+                      Already have an accountsss ?
                       <a class="site-button-link " href="/employee/login">
                         <i class="fa fa-unlock-alt"></i> Sign In
                       </a>

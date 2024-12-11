@@ -322,33 +322,24 @@ const url = `${baseUrl}?${params.toString()}&page=${currentPage}&limit=${itemsPe
     return cities.find((city) => city.id === cityId)?.name || "";
   };
 const navigate = useNavigate();
-
-  return (
-    <>
-      <Header />
-      <div className="page-content bg-white">
-        <div
-          className="dez-bnr-inr overlay-black-middle"
-          style={{ backgroundImage: "url(" + bnr + ")" }}
-        >
-          <PageTitle motherName="Home" activeName="Browse Candidates" />
-        </div>
-        <div className="section-full browse-job-find ">
-          <div className="container ">
-            <div className="find-job-bx">
-              <div className="dezPlaceAni p-t50 p-b20 border shadow rounded-3">
-                <div className="d-flex justify-content-center ">
-                <div
-                  className="col-lg-8 col-md-2 "
-                
-                >
-                  <div
-                    className="  w-full p-2  shadow rounded-2"
-                    style={{
-                     
-                      
-                    }}
-                  >
+console.log(browseCandidateData, "browsedata");
+return (
+  <>
+    <Header />
+    <div className="page-content bg-white">
+      <div
+        className="dez-bnr-inr overlay-black-middle"
+        style={{ backgroundImage: "url(" + bnr + ")" }}
+      >
+        <PageTitle motherName="Home" activeName="Browse Candidates" />
+      </div>
+      <div className="section-full browse-job-find ">
+        <div className="container ">
+          <div className="find-job-bx">
+            <div className="dezPlaceAni p-t50 p-b20 border shadow rounded-3">
+              <div className="d-flex justify-content-center ">
+                <div className="col-lg-8 col-md-2 ">
+                  <div className="  w-full p-2  shadow rounded-2" style={{}}>
                     <input
                       type="text"
                       name="search_input"
@@ -361,82 +352,83 @@ const navigate = useNavigate();
                       style={{ outline: "none" }}
                     />
                   </div>
-                  
                 </div>
-                
-                  <div className="col-lg-2 col-md-5">
-                    <div className="form-group">
-                      <label htmlFor="state_id"></label>
-                      <div className="input-group">
-                        <select
-                          type="text"
-                          className="form-control"
-                          id="state_id"
-                          name="state_id"
-                          onChange={handleStateChange}
-                        
-                          autoComplete="false"
-                        >
-                          <option value="">Location</option>
-                          {states.map((item, index) => {
-                            return (
-                              <option key={index} value={item.name}>
-                                {item.name}
-                              </option>
-                            );
-                          })}
-                        </select>
-                       
-                      </div>
-                    </div>
-                  </div>
-               
-                  <div className="col-lg-2 col-md-5">
-                    <div className="form-group">
-                      <label htmlFor="salary"></label>
-                      <div className="input-group">
-                      <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleGetReq();
-                    }}
-                    className="border-0 site-button d-flex align-items-center "
-                    style={{ cursor: "pointer", outline: "none", gap: "7px" }}
-                  >
-                    <FaSearch />
-                    Find Talent
-                  </button>
 
-                      </div>
+                <div className="col-lg-2 col-md-5">
+                  <div className="form-group">
+                    <label htmlFor="state_id"></label>
+                    <div className="input-group">
+                      <select
+                        type="text"
+                        className="form-control"
+                        id="state_id"
+                        name="state_id"
+                        onChange={handleStateChange}
+                        autoComplete="false"
+                      >
+                        <option value="">Location</option>
+                        {states.map((item, index) => {
+                          return (
+                            <option key={index} value={item.name}>
+                              {item.name}
+                            </option>
+                          );
+                        })}
+                      </select>
                     </div>
                   </div>
                 </div>
-                
+
+                <div className="col-lg-2 col-md-5">
+                  <div className="form-group">
+                    <label htmlFor="salary"></label>
+                    <div className="input-group">
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleGetReq();
+                        }}
+                        className="border-0 site-button d-flex align-items-center "
+                        style={{
+                          cursor: "pointer",
+                          outline: "none",
+                          gap: "7px",
+                        }}
+                      >
+                        <FaSearch />
+                        Find Talent
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-       
-        {browseCandidateData ? (
-          <div className="content-block ">
-            <div className="section-full bg-white browse-job p-b50">
-              {showSkeleton === true ? (
-                <div className="bg-white w-100 ">
-                  <TwoBoxWithLinesSkeleton />
-                </div>
-              ) : (
-                <div className="container ">
-                  <div className="row">
-                    <div className="col-xl-10">
-                      <div className="sticky-top">
-                        {browseCandidateData ? (
-                          <div className="company-info">
-                             <ul className="post-job-bx browse-job ">
-                              {browseCandidateData.map((item, index) => (
-                                <li
+      </div>
+
+      {browseCandidateData ? (
+        <div className="content-block ">
+          <div className="section-full bg-white browse-job p-b50">
+            {showSkeleton === true ? (
+              <div className="bg-white w-100 ">
+                <TwoBoxWithLinesSkeleton />
+              </div>
+            ) : (
+              <div className="container ">
+                <div className="row">
+                  <div className="col-xl-10">
+                    <div className="sticky-top">
+                      {browseCandidateData ? (
+                        <div className="company-info">
+                          <ul className="post-job-bx browse-job ">
+                            {browseCandidateData.map((item, index) => (
+                              <li
                                 key={index}
                                 onClick={() =>
-                                  navigate(`/employee/profilepage/${item?.jobskkers_detail?.id}`)
+                                  navigate(
+                                    `/employee/profilepage/${item?.jobskkers_detail?.id}`
+                                  )
                                 }
                                 style={{ cursor: "pointer" }}
                               >
@@ -447,19 +439,23 @@ const navigate = useNavigate();
                                       onClick={() => handleSelectJob(item)}
                                     >
                                       <div className="post-bx d-flex mb-3">
-                                      <div className="job-post-company ">
-                                      <span>
-                                          <img
-                                           src={require("./../../images/logo/icon1.png")}
-                                            alt=""
-                                           
-                                          />
-                                           </span>
+                                        <div className="job-post-company ">
+                                          <span>
+                                            <img
+                                              src={require("./../../images/logo/icon1.png")}
+                                              alt=""
+                                            />
+                                          </span>
                                         </div>
                                         <div className="job-post-info ">
-                                         <div className="text-black mb-2" style={{fontWeight:"700",fontSize: '25px'}}>
-                                          
-                                         {item.jobskkers_detail.proffesional_title ||
+                                          <div
+                                            className="text-black mb-2"
+                                            style={{
+                                              fontWeight: "700",
+                                              fontSize: "25px",
+                                            }}
+                                          >
+                                            {/* {item.jobskkers_detail.proffesional_title ||
                                             (item.jobskkers_detail
                                               .last_name && (
                                               <p>
@@ -472,138 +468,222 @@ const navigate = useNavigate();
                                                     .last_name
                                                 }
                                               </p>
-                                            ))}
-                                         </div>
-                                          
-                                         
+                                            ))} */}
+                                            {item.jobskkers_detail
+                                              .profesional_title
+                                              ? item.jobskkers_detail
+                                                  .profesional_title
+                                              : "IT Trainer"}
+                                          </div>
 
-<div className="gap-0 align-items-center joblist d-flex gap-4 text-black mb-4" style={{ gap: "0px", height: "auto", fontSize: '15px' }}>
-  
+                                          <div
+                                            className="gap-0 align-items-center joblist d-flex gap-4 text-black mb-4"
+                                            style={{
+                                              gap: "0px",
+                                              height: "auto",
+                                              fontSize: "15px",
+                                            }}
+                                          >
+                                            <div
+                                              className="d-flex"
+                                              style={{
+                                                justifyContent: "start",
+                                                gap: "10px",
+                                              }}
+                                            >
+                                              <div>
+                                                {item.jobskkers_detail
+                                                  .state_id && (
+                                                  <p
+                                                    style={{
+                                                      margin: "0px",
+                                                      color: "blue",
+                                                    }}
+                                                  >
+                                                    <FontAwesomeIcon
+                                                      icon={faMapMarkerAlt}
+                                                      className="mr-2"
+                                                      style={{ color: "blue" }}
+                                                    />
+                                                    {
+                                                      item?.jobskkers_detail
+                                                        ?.states?.name
+                                                    }
+                                                  </p>
+                                                )}
+                                              </div>
 
-  <div className="d-flex" style={{ justifyContent: "start", gap: "10px" }}>
-    <div>
-      {item.jobskkers_detail.state_id && (
-        <p style={{ margin: "0px", color:"blue"}}>
-          <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" style={{color:'blue'}} />
-          {item?.jobskkers_detail?.states?.name}
-        </p>
-      )}
-    </div>
-    
-    <div>
-      {item.jobskkers_detail.city_id && (
-        <p style={{ margin: "0px", color:"blue"  }}>
-          {item?.jobskkers_detail?.cities?.name}
-        </p>
-      )}
-    </div>
-  </div>
+                                              <div>
+                                                {item.jobskkers_detail
+                                                  .city_id && (
+                                                  <p
+                                                    style={{
+                                                      margin: "0px",
+                                                      color: "blue",
+                                                    }}
+                                                  >
+                                                    {
+                                                      item?.jobskkers_detail
+                                                        ?.cities?.name
+                                                    }
+                                                  </p>
+                                                )}
+                                              </div>
+                                            </div>
 
-  <div>
-    {item.jobskkers_detail.ai_resume_parse_data.jobsMyResumeData.desiredCareerProfile.employmentType && (
-    <p style={{ margin: "0px", color:"blue" }}>
-      <FontAwesomeIcon icon={faEnvelope} className="mr-2 " style={{color:'blue'}} />
-      {item.jobskkers_detail.ai_resume_parse_data.jobsMyResumeData.desiredCareerProfile.employmentType}
-    </p>
-  )}
-    </div>
-  <div>
-    {item.jobskkers_detail.created_at && (
-      <p style={{ margin: "0px", fontWeight: "600", color:"blue" }}>
-        <FontAwesomeIcon icon={faCalendarAlt} className="mr-2" style={{color:'blue'}}/>Published {" "}
-        {moment(item.jobskkers_detail.created_at).fromNow()}
-      </p>
-    )}
-  </div>
-</div>
-                                          <div className="" >
-  {item.jobskkers_detail.skills_arr ? (
-    <div className="row mt-3">
-      {item.jobskkers_detail.skills_arr.map((skill, index) => (
-        <div className="col-3 col-md-3 mb-1 text-break" key={index}>
-          <span className="badge badge-info p-2" style={{backgroundColor:'blue'}}>{skill}</span>
-        </div>
-      ))}
-      
-    </div>
-    
-  ) : null}
-</div><label className="like-btn">
-                      <input type="checkbox" />
-                      <span className="checkmark"></span>
-                    </label>
-                    
-<div className="d-flex mt-3">
-                    
-                      <div
-                        className="d-flex align-items-center "
-                        style={{ gap: "7px" }}
-                      >
-                        <div className="salary-bx">
-                          <span>{item?.jobskkers_detail?.expected_salary}</span>
-                        </div>
-                      </div>
-                    </div>
+                                            <div>
+                                              {item.jobskkers_detail
+                                                .ai_resume_parse_data
+                                                .jobsMyResumeData
+                                                .desiredCareerProfile
+                                                .employmentType && (
+                                                <p
+                                                  style={{
+                                                    margin: "0px",
+                                                    color: "blue",
+                                                  }}
+                                                >
+                                                  <FontAwesomeIcon
+                                                    icon={faEnvelope}
+                                                    className="mr-2 "
+                                                    style={{ color: "blue" }}
+                                                  />
+                                                  {
+                                                    item.jobskkers_detail
+                                                      .ai_resume_parse_data
+                                                      .jobsMyResumeData
+                                                      .desiredCareerProfile
+                                                      .employmentType
+                                                  }
+                                                </p>
+                                              )}
+                                            </div>
+                                            <div>
+                                              {item.jobskkers_detail
+                                                .created_at && (
+                                                <p
+                                                  style={{
+                                                    margin: "0px",
+                                                    fontWeight: "600",
+                                                    color: "blue",
+                                                  }}
+                                                >
+                                                  <FontAwesomeIcon
+                                                    icon={faCalendarAlt}
+                                                    className="mr-2"
+                                                    style={{ color: "blue" }}
+                                                  />
+                                                  Published{" "}
+                                                  {moment(
+                                                    item.jobskkers_detail
+                                                      .created_at
+                                                  ).fromNow()}
+                                                </p>
+                                              )}
+                                            </div>
+                                          </div>
+                                          <div className="">
+                                            {item.jobskkers_detail
+                                              .skills_arr ? (
+                                              <div className="row mt-3">
+                                                {item.jobskkers_detail.skills_arr.map(
+                                                  (skill, index) => (
+                                                    <div
+                                                      className="col-3 col-md-3 mb-1 text-break"
+                                                      key={index}
+                                                    >
+                                                      <span
+                                                        className="badge badge-info p-2"
+                                                        style={{
+                                                          backgroundColor:
+                                                            "blue",
+                                                        }}
+                                                      >
+                                                        {skill}
+                                                      </span>
+                                                    </div>
+                                                  )
+                                                )}
+                                              </div>
+                                            ) : null}
+                                          </div>
+                                          <label className="like-btn">
+                                            <input type="checkbox" />
+                                            <span className="checkmark"></span>
+                                          </label>
+
+                                          <div className="d-flex mt-3">
+                                            <div
+                                              className="d-flex align-items-center "
+                                              style={{ gap: "7px" }}
+                                            >
+                                              <div className="salary-bx">
+                                                <span>
+                                                  {
+                                                    item?.jobskkers_detail
+                                                      ?.expected_salary
+                                                  }
+                                                </span>
+                                              </div>
+                                            </div>
+                                          </div>
                                         </div>
                                       </div>
                                     </Link>
-                                    
                                   </li>
-                                </div> </li>
-                              ))}
-                          
-                            </ul>
-                            
-                          </div>
-                          
-                        ) : null}
-                      </div>
+                                </div>{" "}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : null}
                     </div>
-                  
-
                   </div>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="w-100 d-flex align-items-center justify-content-center ">
-            <img
-              src={SkeletonImg}
-              alt="no data there"
-              style={{ width: "40%" }}
-            />
-          </div>
-        )}
-      </div>
-      <div className="pagination d-flex justify-content-center align-items-center">
-  <ul className="pagination">
-    <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-      <button
-        className="page-link"
-        onClick={() => handlePageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-      >
-        Previous
-      </button>
-    </li>
-    <li className="page-item disabled">
-      <span className="page-link">Page {currentPage} of {totalPages}</span>
-    </li>
-    <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-      <button
-        className="page-link"
-        onClick={() => handlePageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-      >
-        Next
-      </button>
-    </li>
-  </ul>
-</div>
+        </div>
+      ) : (
+        <div className="w-100 d-flex align-items-center justify-content-center ">
+          <img src={SkeletonImg} alt="no data there" style={{ width: "40%" }} />
+        </div>
+      )}
+    </div>
+    <div className="pagination d-flex justify-content-center align-items-center">
+      <ul className="pagination">
+        <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+          <button
+            className="page-link"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+        </li>
+        <li className="page-item disabled">
+          <span className="page-link">
+            Page {currentPage} of {totalPages}
+          </span>
+        </li>
+        <li
+          className={`page-item ${
+            currentPage === totalPages ? "disabled" : ""
+          }`}
+        >
+          <button
+            className="page-link"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+        </li>
+      </ul>
+    </div>
 
-      <Footer />
-    </>
-  );
+    <Footer />
+  </>
+);
 }
 export default EmployeeBrowsecandidates;

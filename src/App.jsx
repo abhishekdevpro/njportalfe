@@ -513,7 +513,8 @@ function App() {
             </UserPrivateRoute>
           }
         />
-        <Route path="job/:id" element={<JobPage2 />} />
+        {/* <Route path="job/:id" element={<JobPage2 />} /> */}
+        <Route path="job/:id" element={<JobPage />} />
         <Route path="jobthirdparty" element={<JobPagethirdparty />} />
         <Route
           path="applicant-job"
@@ -1328,7 +1329,6 @@ function App() {
         />
         <Route path="profilepage/:id" element={<ProfilePage />} />
         {/* edgvhdsbbv */}
-        
 
         <Route
           path="blog-left-img"
