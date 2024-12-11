@@ -182,7 +182,7 @@ class EmployeeHeader2 extends Component {
                     </li> */}
 
                     <li>
-                      <Link to={"#"}>Dashboard</Link>
+                      <Link to={`/employee/company-profile`}>Dashboard</Link>
                     </li>
                     {/* <li>
                       <Link to={"#"}>

@@ -10,10 +10,9 @@ import {
 } from "../../store/reducers/postAJobSlice";
 import { fetchCompanyInfo } from "../../store/thunkFunctions/companyFunction";
 import { ToastContainer } from "react-toastify";
-import "../../css/profilesidebar.css"
+import "../../css/profilesidebar.css";
 import { FaBell, FaComment } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
-
 
 const CompanySideBar = ({ active }) => {
   const token = localStorage.getItem("employeeLoginToken");
@@ -117,141 +116,143 @@ const CompanySideBar = ({ active }) => {
         console.log(err);
       });
   };
-  return (<>
-    <button className="sidebar-toggle" onClick={toggleSidebar}>
+  return (
+    <>
+      <button className="sidebar-toggle" onClick={toggleSidebar}>
         ☰
       </button>
-      <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
-    <div className="">
-      <ToastContainer />
-      <div className="sticky-top">
-        <div className="candidate-info company-info">
-          <div className="candidate-detail text-center">
-            <div className="canditate-des">
-              <Link to={"#"}>
-                {file?.url ? (
-                  <img className="img-fluid"
-                    alt=""
-                    src={file?.url}
-                    style={{
-                      width: "100%",
-                      height:'100%',
-                      aspectRatio: 1,
-                      backgroundImage:'fit'
-                      
-                    }}
-                  />
-                ) : (
-                  <img className="img-fluid"
-                    alt=""
-                    src={logo}
-                    style={{
-                      width: "100%",
-                      height:'100%',
-                      aspectRatio: 1,
-                    }}
-                  />
-                )}
-              </Link>
-              <div
-                className="upload-link"
-                title="update"
-                data-toggle="tooltip"
-                data-placement="right"
-              >
-                <input
-                  type="file"
-                  className="update-flie"
-                  name="file"
-                  id="file"
-                  onChange={handleImageChange}
-                />
-                <i className="fa fa-pencil"></i>
+      <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+        <div className="">
+          <ToastContainer />
+          <div className="sticky-top">
+            <div className="candidate-info company-info">
+              <div className="candidate-detail text-center">
+                <div className="canditate-des">
+                  <Link to={"#"}>
+                    {file?.url ? (
+                      <img
+                        className="img-fluid"
+                        alt=""
+                        src={file?.url}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          aspectRatio: 1,
+                          backgroundImage: "fit",
+                        }}
+                      />
+                    ) : (
+                      <img
+                        className="img-fluid"
+                        alt=""
+                        src={logo}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          aspectRatio: 1,
+                        }}
+                      />
+                    )}
+                  </Link>
+                  <div
+                    className="upload-link"
+                    title="update"
+                    data-toggle="tooltip"
+                    data-placement="right"
+                  >
+                    <input
+                      type="file"
+                      className="update-flie"
+                      name="file"
+                      id="file"
+                      onChange={handleImageChange}
+                    />
+                    <i className="fa fa-pencil"></i>
+                  </div>
+                </div>
               </div>
-              
-            </div>
-            
-          </div>
-          <div className="candidate-title text-center candidate-detail text-break">
-              <h4 className="m-b5">
-                <Link to={"#"}>{companyDetail?.company_name}</Link>
-              </h4>
-              {file?.url ? (
-                <button
-                  onClick={handleUpdateCompanyLogo}
-                  className="site-button"
-                >
-                  Update
-                </button>
-              ) : null}
-            </div>
-          <ul>
-            <li>
-              <Link
-                to={"/employee/company-profile"}
-                className={active === "company" ? "active" : null}
-              >
-                <i className="fa fa-user-o" aria-hidden="true"></i>
-                <span>Company Profile</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                className={active === "postJob" ? "active" : null}
-                onClick={postJob}
-                //   to={"/employee/company-post-jobs"}
-              >
-                <i className="fa fa-file-text-o" aria-hidden="true"></i>
-                <span>Post A Job</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                className={active === "transactions" ? "active" : null}
-                to={"/employee/company-transactions"}
-              >
-                <i className="fa fa-random" aria-hidden="true"></i>
-                <span>Wallet</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                className={active === "transactions" ? "active" : null}
-                to={"/employee/community"}
-              >
-                <FaUser/>
-                <span>Community</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                className={active === "transactions" ? "active" : null}
-                to={"/employee/messages"}
-              >
-                                <FaComment/>
-                <span>Messages</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                className={active === "transactions" ? "active" : null}
-                to={"/employee/jobs-alerts"}
-              >
-                                <FaBell/>
-                <span>Notifications</span>
-              </Link>
-            </li>
-            
-            <li>
-              <Link
-                to={"/employee/company-manage-job/jobs"}
-                className={active === "company-manage-job" ? "active" : null}
-              >
-                <i className="fa fa-briefcase" aria-hidden="true"></i>
-                <span>Manage jobs</span>
-              </Link>
-            </li>
-           {/* <li>
+              <div className="candidate-title text-center candidate-detail text-break">
+                <h4 className="m-b5">
+                  <Link to={"#"}>{companyDetail?.company_name}</Link>
+                </h4>
+                {file?.url ? (
+                  <button
+                    onClick={handleUpdateCompanyLogo}
+                    className="site-button"
+                  >
+                    Update
+                  </button>
+                ) : null}
+              </div>
+              <ul>
+                <li>
+                  <Link
+                    to={"/employee/company-profile"}
+                    className={active === "company" ? "active" : null}
+                  >
+                    <i className="fa fa-user-o" aria-hidden="true"></i>
+                    <span>Company Profile</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={active === "postJob" ? "active" : null}
+                    onClick={postJob}
+                    //   to={"/employee/company-post-jobs"}
+                  >
+                    <i className="fa fa-file-text-o" aria-hidden="true"></i>
+                    <span>Post A Job</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={active === "transactions" ? "active" : null}
+                    to={"/employee/company-transactions"}
+                  >
+                    <i className="fa fa-random" aria-hidden="true"></i>
+                    <span>Wallet</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={active === "community" ? "active" : null}
+                    to={"/employee/community"}
+                  >
+                    <FaUser />
+                    <span>Community</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={active === "messages" ? "active" : null}
+                    to={"/employee/messages"}
+                  >
+                    <FaComment />
+                    <span>Messages</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={active === "jobs-alerts" ? "active" : null}
+                    to={"/employee/jobs-alerts"}
+                  >
+                    <FaBell />
+                    <span>Notifications</span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to={"/employee/company-manage-job/jobs"}
+                    className={
+                      active === "company-manage-job" ? "active" : null
+                    }
+                  >
+                    <i className="fa fa-briefcase" aria-hidden="true"></i>
+                    <span>Manage jobs</span>
+                  </Link>
+                </li>
+                {/* <li>
               <Link
                 to={"/employee/company-resume"}
                 className={active === "company-resume" ? "active" : null}
@@ -260,37 +261,40 @@ const CompanySideBar = ({ active }) => {
                 <span>Applicants</span>
               </Link>
             </li> */}
-            <li>
-            <Link
-  to={"/employee/browse-candidates"}
-  target="_blank"
-  rel="noopener noreferrer"
-  className={active ===  "active" }
->
-  <i className="fa fa-user-o" aria-hidden="true"></i>
-  <span>Browse Candidates</span>
-</Link>
-            </li>
-            <li>
-              <Link
-                to={"/employee/jobs-change-password"}
-                className={active === "jobs-change-password" ? "active" : null}
-              >
-                <i className="fa fa-key" aria-hidden="true"></i>
-                <span>Change Password</span>
-              </Link>
-            </li>
-            <li>
-              <Link to={"/"}>
-                <i className="fa fa-sign-out" aria-hidden="true"></i>
-                <span>Log Out</span>
-              </Link>
-            </li>
-          </ul>
+                <li>
+                  <Link
+                    to={"/employee/browse-candidates"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={active === "active"}
+                  >
+                    <i className="fa fa-user-o" aria-hidden="true"></i>
+                    <span>Browse Candidates</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/employee/jobs-change-password"}
+                    className={
+                      active === "jobs-change-password" ? "active" : null
+                    }
+                  >
+                    <i className="fa fa-key" aria-hidden="true"></i>
+                    <span>Change Password</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/"}>
+                    <i className="fa fa-sign-out" aria-hidden="true"></i>
+                    <span>Log Out</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    </div></>
+    </>
   );
 };
 
