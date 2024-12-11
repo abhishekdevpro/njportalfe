@@ -11,7 +11,7 @@ import EmployeeHeader2 from "../../../employeeMarkup/Layout/Header2";
 
 
 function Community() {
-  const token = localStorage.getItem("jobseekerLoginToken")
+  const token = localStorage.getItem("jobSeekerLoginToken")
   return (
     <>
      {token ? <UserHeader2 />:<EmployeeHeader2/>}

@@ -54,14 +54,13 @@ const FixedHeader = () => {
   const jobProfileValues = useSelector(
     (state) => state.jobProfileSlice.jobProfileValues
   );
+  const token = localStorage.getItem("jobSeekerLoginToken");
 
   useEffect(() => {
     if (percentage !== null) {
       localStorage.setItem('resumePercentage', JSON.stringify(percentage));
     }
   }, [percentage]);
-  
-  const token = localStorage.getItem("jobSeekerLoginToken");
   useEffect(() => {
     axios({
       method: "GET",
@@ -90,10 +89,49 @@ const FixedHeader = () => {
       })
       .catch((err) => {
         console.log(err);
-        console.log(err.response.data.message);
-        showToastError(err?.response?.data?.message);
+        if (err.response?.status === 401) {
+          // Navigate to the /pls route on 401 error
+          navigate("/");
+          localStorage.removeItem("jobSeekerLoginToken")
+        } else {
+          console.log(err.response?.data?.message);
+          showToastError(err?.response?.data?.message);
+        }
       });
-  }, [jobProfileValues]);
+  }, [jobProfileValues, token, navigate]);
+
+  // useEffect(() => {
+  //   axios({
+  //     method: "GET",
+  //     url: "https://api.novajobs.us/api/jobseeker/user-profile",
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       let data = response.data.data;
+  //       dispatch(
+  //         setFixedHeaderValues({
+  //           first_name: data.first_name,
+  //           last_name: data.last_name,
+  //           professional_title: data.proffesional_title,
+  //           email: data.email,
+  //           country_id: data.country_id,
+  //           state_id: data.state_id,
+  //           phone: data.phone,
+  //           photo: data.photo,
+  //           n_profile_strength: data.n_profile_strength,
+  //         })
+  //       );
+  //       setResumeId(data.job_seeker_resumes?.id || 0);
+  //       setShowSkeleton(false);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       console.log(err.response.data.message);
+  //       showToastError(err?.response?.data?.message);
+  //     });
+  // }, [jobProfileValues]);
 
   const [countries, setCountries] = useState([
     {
