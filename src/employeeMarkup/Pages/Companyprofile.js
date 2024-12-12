@@ -18,6 +18,7 @@ function EmployeeCompanyprofile() {
     (state) => state.companyDataSlice.companyData
   );
   let companyDetail = companyData?.company_detail;
+  let employeerDetail = companyData?.employeer_detail;
 
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
@@ -38,10 +39,10 @@ function EmployeeCompanyprofile() {
   const [twitter, setTwitter] = useState("");
   const [googleBusiness, setGoogleBusiness] = useState("");
   const [glassdoor, setGlassdor] = useState("");
-  const [services, setServices] = useState([{ title: '', image: null }]);
+  const [services, setServices] = useState([{ title: "", image: null }]);
   const [industries, setIndustries] = useState([]);
   const [file, setFile] = useState(null);
-  
+
   const token = localStorage.getItem("employeeLoginToken");
 
   // const handleChange = (content, delta, source, editor) => {
@@ -73,6 +74,24 @@ function EmployeeCompanyprofile() {
   }, [token]); // Added token as dependency to ensure useEffect runs on token change
 
   // Function to update company data
+  const handlePhoneNumberChange = (e) => {
+    const value = e.target.value;
+
+    // Check if the input is numeric
+    if (!/^\d*$/.test(value)) {
+      showToastError("Phone number must contain only numeric characters.");
+      return;
+    }
+
+    // Check if the input length exceeds 10 digits
+    if (value.length > 10) {
+      showToastError("Phone number cannot exceed 10 digits.");
+      return;
+    }
+
+    // Update the state only if input is valid
+    setNumber(value);
+  };
 
   const dispatch = useDispatch();
 
@@ -83,14 +102,14 @@ function EmployeeCompanyprofile() {
   useEffect(() => {
     setCompanyName(companyDetail?.company_name || "");
     setTagline(companyDetail?.tagline || "");
-    setEmail(companyDetail?.email || "");
+    setEmail(employeerDetail?.email || "");
     setWebsite(companyDetail?.website_link || "");
     setFoundedYear(companyDetail?.founded_date || "");
     setDescription(companyDetail?.about || "");
     setSelectedCountry(companyDetail?.country_id || null);
     setSelectedStates(companyDetail?.state_id || null);
     setSelectedCities(companyDetail?.city_id || null);
-    setNumber(companyDetail?.phone || "");
+    setNumber(employeerDetail?.phone || "");
     setAddress(companyDetail?.address || "");
     setlinkdin(companyDetail?.linkedin_link || "");
     setTwitter(companyDetail?.twitter_link || "");
@@ -370,7 +389,7 @@ function EmployeeCompanyprofile() {
                           </div>
                         </div>
                         <div className="col-lg-6 col-md-6">
-                          <div className="form-group">
+                          {/* <div className="form-group">
                             <label>Email ID</label>
                             <input
                               type="email"
@@ -380,6 +399,35 @@ function EmployeeCompanyprofile() {
                               value={email}
                               required
                             />
+                          </div> */}
+                          <div
+                            className="form-group"
+                            style={{ position: "relative" }}
+                          >
+                            <input
+                              type="email"
+                              className="form-control"
+                              placeholder="info@gmail.com"
+                              value={email}
+                              disabled
+                              style={{
+                                paddingRight: "2.5rem", // Leave space for the icon
+                              }}
+                            />
+                            <span
+                              style={{
+                                position: "absolute",
+                                top: "50%",
+                                right: "10px", // Adjust spacing from the right
+                                transform: "translateY(-50%)",
+                                color: "green",
+                                fontSize: "1.2rem",
+                                cursor: "pointer",
+                              }}
+                              title="Verified"
+                            >
+                              ✅
+                            </span>
                           </div>
                         </div>
                         <div className="col-lg-6 col-md-6">
@@ -520,7 +568,8 @@ function EmployeeCompanyprofile() {
                               type="text"
                               className="form-control"
                               placeholder="Phone Number"
-                              onChange={(e) => setNumber(e.target.value)}
+                              // onChange={(e) => setNumber(e.target.value)}
+                              onChange={(e) => handlePhoneNumberChange(e)}
                               value={number}
                               required
                             />
