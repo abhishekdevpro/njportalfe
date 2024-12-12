@@ -155,7 +155,7 @@ function EmployeeLogin(props) {
       toast.success("Login successful!");
       localStorage.setItem("jobSeekerLoginToken", response?.data?.data?.token);
       setShowOtpModal(false);
-      navigate("/user/jobs-profile");
+      navigate("/employee/company-profile");
     } catch (error) {
       toast.error(error?.response?.data?.message || "Invalid OTP.");
     } finally {

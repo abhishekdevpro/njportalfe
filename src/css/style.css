@@ -5062,7 +5062,14 @@ blockquote:before {
 }
 
 @media only screen and (max-width: 767px) {
+body {
+    overflow-x: hidden !important;
+  }
 
+        .col-lg-8 {
+          flex: 0 !important;
+          max-width: 100% !important;
+        }
   .ele-bnr .bnr-title,
   .ele-bnr h1 a,
   .ele-bnr .breadcrumb-row h5 {
