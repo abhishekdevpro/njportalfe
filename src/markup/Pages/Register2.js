@@ -263,7 +263,10 @@ useEffect(() => {
           }}
         >
           <div className="row">
-            <div className="col-xl-6 col-lg-7 col-md-8 col-sm-12 bg-white z-index2 relative p-a0 content-scroll skew-section left-bottom">
+            <div
+              style={{ right: "-49%" }}
+              className="col-xl-6 col-lg-7 col-md-8 col-sm-12 bg-white z-index2 relative p-a0 content-scroll skew-section left-bottom"
+            >
               <div
                 className="login-form style-2"
                 style={{ display: "flex", flexDirection: "column" }}

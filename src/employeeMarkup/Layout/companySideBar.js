@@ -206,16 +206,22 @@ const CompanySideBar = ({ active }) => {
                 </li>
                 <li>
                   <Link
-                    className={active === "transactions" ? "active" : null}
-                    to={"/employee/company-transactions"}
+
+                    to={"/employee/company-manage-job/jobs"}
+                    className={
+                      active === "company-manage-job" ? "active" : null
+                    }
                   >
-                    <i className="fa fa-random" aria-hidden="true"></i>
-                    <span>Wallet</span>
+                    <i className="fa fa-briefcase" aria-hidden="true"></i>
+                    <span>Manage jobs</span>
+
                   </Link>
                 </li>
                 <li>
                   <Link
-                    className={active === "community" ? "active" : null}
+
+                    className={active === "transactions" ? "active" : null}
+
                     to={"/employee/community"}
                   >
                     <FaUser />
@@ -224,7 +230,9 @@ const CompanySideBar = ({ active }) => {
                 </li>
                 <li>
                   <Link
-                    className={active === "messages" ? "active" : null}
+
+                    className={active === "transactions" ? "active" : null}
+
                     to={"/employee/messages"}
                   >
                     <FaComment />
@@ -233,7 +241,9 @@ const CompanySideBar = ({ active }) => {
                 </li>
                 <li>
                   <Link
-                    className={active === "jobs-alerts" ? "active" : null}
+
+                    className={active === "transactions" ? "active" : null}
+
                     to={"/employee/jobs-alerts"}
                   >
                     <FaBell />
@@ -243,26 +253,7 @@ const CompanySideBar = ({ active }) => {
 
                 <li>
                   <Link
-                    to={"/employee/company-manage-job/jobs"}
-                    className={
-                      active === "company-manage-job" ? "active" : null
-                    }
-                  >
-                    <i className="fa fa-briefcase" aria-hidden="true"></i>
-                    <span>Manage jobs</span>
-                  </Link>
-                </li>
-                {/* <li>
-              <Link
-                to={"/employee/company-resume"}
-                className={active === "company-resume" ? "active" : null}
-              >
-                <i className="fa fa-id-card-o" aria-hidden="true"></i>
-                <span>Applicants</span>
-              </Link>
-            </li> */}
-                <li>
-                  <Link
+
                     to={"/employee/browse-candidates"}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -272,6 +263,26 @@ const CompanySideBar = ({ active }) => {
                     <span>Browse Candidates</span>
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    className={active === "transactions" ? "active" : null}
+                    to={"/employee/company-transactions"}
+                  >
+                    <i className="fa fa-random" aria-hidden="true"></i>
+                    <span>Wallet</span>
+                  </Link>
+                </li>
+
+                {/* <li>
+              <Link
+                to={"/employee/company-resume"}
+                className={active === "company-resume" ? "active" : null}
+              >
+                <i className="fa fa-id-card-o" aria-hidden="true"></i>
+                <span>Applicants</span>
+              </Link>
+            </li> */}
+
                 <li>
                   <Link
                     to={"/employee/jobs-change-password"}
