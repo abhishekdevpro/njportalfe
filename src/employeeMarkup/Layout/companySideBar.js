@@ -10,10 +10,9 @@ import {
 } from "../../store/reducers/postAJobSlice";
 import { fetchCompanyInfo } from "../../store/thunkFunctions/companyFunction";
 import { ToastContainer } from "react-toastify";
-import "../../css/profilesidebar.css"
+import "../../css/profilesidebar.css";
 import { FaBell, FaComment } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
-
 
 const CompanySideBar = ({ active }) => {
   const token = localStorage.getItem("employeeLoginToken");
@@ -207,6 +206,7 @@ const CompanySideBar = ({ active }) => {
                 </li>
                 <li>
                   <Link
+
                     to={"/employee/company-manage-job/jobs"}
                     className={
                       active === "company-manage-job" ? "active" : null
@@ -214,11 +214,14 @@ const CompanySideBar = ({ active }) => {
                   >
                     <i className="fa fa-briefcase" aria-hidden="true"></i>
                     <span>Manage jobs</span>
+
                   </Link>
                 </li>
                 <li>
                   <Link
+
                     className={active === "transactions" ? "active" : null}
+
                     to={"/employee/community"}
                   >
                     <FaUser />
@@ -227,7 +230,9 @@ const CompanySideBar = ({ active }) => {
                 </li>
                 <li>
                   <Link
+
                     className={active === "transactions" ? "active" : null}
+
                     to={"/employee/messages"}
                   >
                     <FaComment />
@@ -236,7 +241,9 @@ const CompanySideBar = ({ active }) => {
                 </li>
                 <li>
                   <Link
+
                     className={active === "transactions" ? "active" : null}
+
                     to={"/employee/jobs-alerts"}
                   >
                     <FaBell />
@@ -246,6 +253,7 @@ const CompanySideBar = ({ active }) => {
 
                 <li>
                   <Link
+
                     to={"/employee/browse-candidates"}
                     target="_blank"
                     rel="noopener noreferrer"
