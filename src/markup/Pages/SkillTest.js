@@ -96,7 +96,7 @@ function SkillTest() {
               <div className="section-full bg-white browse-job p-t50 p-b20">
                 <div className="container">
                   <div className="row">
-                  <Profilesidebar data={"profile"} />
+                  <Profilesidebar data={"skill-test"} />
                     <div className="col-xl-9 col-lg-9 m-b30 mx-2">
                       <div className="job-bx job-profile">
                         {skeleton === true ? (
