@@ -59,7 +59,16 @@ function Profilesidebar({ data }) {
                   <span>AI Resume Builder</span>
                 </Link>
               </li>
-              
+              <li>
+                <Link
+                  to={"/user/resume-list"}
+                  className={data === "resume-list" ? "active" : null}
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <i className="fa fa-file-text-o" aria-hidden="true"></i>
+                  <span>My Resumes</span>
+                </Link>
+              </li>
               <li>
                 <Link
                   to={"/user/jobs-saved-jobs"}
@@ -97,7 +106,7 @@ function Profilesidebar({ data }) {
                   className={data === "skill-test-history" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
-                  <FaHistory/>
+                  <FaHistory />
                   <span>Skill Test History</span>
                 </Link>
               </li>
@@ -117,7 +126,7 @@ function Profilesidebar({ data }) {
                   className={data === "messages" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
-                  <FaComment/>
+                  <FaComment />
                   <span>Messages</span>
                 </Link>
               </li>

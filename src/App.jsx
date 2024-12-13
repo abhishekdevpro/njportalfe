@@ -11,6 +11,7 @@ import Jobmyresume from "./markup/Pages/Jobmyresume";
 import Jobsappliedjob from "./markup/Pages/Jobsappliedjob";
 import Jobsalert from "./markup/Pages/Jobsalert";
 import Jobsavedjobs from "./markup/Pages/Jobsavedjobs";
+import MyResumes from "./markup/Pages/MyResumes";
 import Jobcvmanager from "./markup/Pages/Jobcvmanager";
 import Changepasswordpage from "./markup/Pages/Changepasswordpage";
 import Companyprofile from "./markup/Pages/Companyprofile";
@@ -57,9 +58,8 @@ import "./css/templete.css";
 import "./css/skin/skin-1.css";
 import "./plugins/slick/slick.min.css";
 import "./plugins/slick/slick-theme.min.css";
-import "./css/share.css"
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import "./css/share.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import EmployeeLogin from "./employeeMarkup/Pages/Loginpage2";
 import EmployeeRegister1 from "./employeeMarkup/Pages/Register1";
@@ -102,7 +102,7 @@ import EmployeeBlogdetailgrid from "./employeeMarkup/Pages/Blogdetailgrid";
 import EmployeeBlogdetailgridsidebar from "./employeeMarkup/Pages/Blogdetailgridsidebar";
 import EmployeeBlogleftimg from "./employeeMarkup/Pages/Blogleftimg";
 import EmployeeBlogdetail from "./employeeMarkup/Pages/Blogdetail";
-import JobPage from "./markup/Pages/JobPage"
+import JobPage from "./markup/Pages/JobPage";
 import ProfilePage from "./employeeMarkup/Pages/ProfilePage";
 import SkillTest from "./markup/Pages/SkillTest";
 import EducationPage from "./markup/Pages/EducationPage";
@@ -141,20 +141,19 @@ import Novajobs from "./markup/Pages/Novajobs";
 import Jobreferral from "./markup/Element/Jobreferral";
 import VerifyEmailemployee from "./employeeMarkup/Pages/Verifyemailemploye";
 
-
 import Admin from "./adminPanel/Admin";
-import Vendor from './adminPanel/Vendor';
-import User from './adminPanel/User';
-import Dashboard from './adminPanel/Dashboard';
+import Vendor from "./adminPanel/Vendor";
+import User from "./adminPanel/User";
+import Dashboard from "./adminPanel/Dashboard";
 import Employee from "./adminPanel/Employee";
 import Wallet from "./adminPanel/Wallet";
 import Addteam from "./adminPanel/Addteam";
 import AssignRole from "./adminPanel/AssignRole";
 import AssignTask from "./adminPanel/Assigntask";
 import JobSeekers from "./adminPanel/JobSeekers";
-import Jobs from "./adminPanel/Jobs"
-import Notifications from "./adminPanel/Notifications"
-import Team from "./adminPanel/Team"
+import Jobs from "./adminPanel/Jobs";
+import Notifications from "./adminPanel/Notifications";
+import Team from "./adminPanel/Team";
 import Adminlogin from "./adminPanel/Adminlogin";
 import PrivateRouteadmin from "./adminPanel/PrivateRouteadmin";
 import Addvendor from "./adminPanel/Addvendor";
@@ -167,7 +166,6 @@ import Jobseekerlist from "./adminPanel/Jobseekerlist";
 import Employeelist from "./adminPanel/Employeelist";
 import CompanyListAdmin from "./adminPanel/CompanyListAdmin";
 import CompanyNameAdmin from "./adminPanel/CompanyNameAdmin";
-
 
 import VerifyEmail from "./vendor/VerifyEmail";
 import Vendorlogin from "./vendor/Vendorlogin";
@@ -586,6 +584,14 @@ function App() {
           element={
             <UserPrivateRoute>
               <Jobsavedjobs />
+            </UserPrivateRoute>
+          }
+        />
+        <Route
+          path="resume-list"
+          element={
+            <UserPrivateRoute>
+              <MyResumes />
             </UserPrivateRoute>
           }
         />
