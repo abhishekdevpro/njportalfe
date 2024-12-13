@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "./../Layout/Header";
 import Footer from "./../Layout/Footer";
 import CountUp from "react-countup";
@@ -29,7 +29,20 @@ var bnr2 = require("./../../images/background/bg4.jpg");
 function Homepage() {
   // State to manage hover effects
   const [hoveredBox, setHoveredBox] = useState(null);
-
+  const token =localStorage.getItem('jobSeekerLoginToken');
+  const navigate=useNavigate()
+ const handleScroll=() => {
+  window.location.href=(`/employee/register-2`)
+  window.scrollTo(0,0);
+ }
+ const handleBuilder=() => {
+  if(token){
+    window.location.href=(`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`)
+  }
+  else{
+    window.location.href=(`http://localhost:3000/user/login`)
+  }
+ }
   return (
     <div className="page-wraper">
       <Header />
@@ -95,8 +108,7 @@ function Homepage() {
                         fontSize: "14px",
                       }}
                     >
-                      List your profile, check your resume score, search jobs
-                      with advanced filters and the power of AI
+                     Search Jobs with advanced filters and the power of AI
                     </p>
                     <Link to={"/user/job/2"} style={{ color: "white" }}>
                       <button
@@ -151,8 +163,12 @@ function Homepage() {
                       List your company, post jobs, search talent with advanced
                       filters and power of AI{" "}
                     </p>
-                    <Link to={"/user/register-2"} style={{ color: "white" }}>
-                      <button type="button" class="btn btn-danger hoverlogo-3d">
+                    <Link 
+                    // to={"/employee/register-2"} 
+                    style={{ color: "white" }}>
+                      <button type="button" class="btn btn-danger hoverlogo-3d"
+                      onClick={handleScroll}
+                      >
                         Search Talent
                       </button>
                     </Link>
@@ -176,9 +192,9 @@ function Homepage() {
               color: "#09213c",
             }}
           >
-            Why You Choose us Among
+            Why choose us,
             <br />
-            other Job Sites.
+            among other Job sites.
           </h2>
           <div className="two-box-container">
             <div
@@ -199,10 +215,15 @@ function Homepage() {
               <div className="card-icon">
                 <FaRegFileAlt />
               </div>
-              <Link to={"/novajobs#tab1"}>
-                <h3>Check Resume Score</h3>
+              <Link 
+              // to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
+              >
+                <h3 onClick={handleBuilder}><b>
+                  Build AI Resume
+                  </b>
+                  </h3>
                 <p className="text-primary">
-                  Our AI Gives Immediate Score On Your Resume.
+                Make your AI Resume or get it done from our Experts.
                 </p>
               </Link>
             </div>
@@ -225,10 +246,13 @@ function Homepage() {
               <div className="card-icon">
                 <FaRegFilePdf />
               </div>
-              <Link to={"https://airesume.novajobs.us/form"}>
-                <h3>Build Your Public Profile</h3>
+              <Link to={"https://novajobs.us/novajobs#tab3"}>
+                <h3><b>
+                  Give skill test
+                  </b>
+                  </h3>
                 <p className="text-primary">
-                  Add Your Details To Reach leading Companies.
+                Our AI Skill test can be taken just by uploading resume.
                 </p>
               </Link>
             </div>
@@ -251,10 +275,11 @@ function Homepage() {
               <div className="card-icon">
                 <FaRegUser />
               </div>
-              <Link to={"/novajobs#tab3"}>
-                <h3>AI Skill Testing Tool</h3>
+              <Link to={"https://ultraaura.education/"}>
+                <h3>
+                  <b>Enhance Skills</b></h3>
                 <p className="text-primary">
-                  AI Skill Testing Tool & Earn Rewards.
+                Enhance skills with our Edtech platform.
                 </p>{" "}
               </Link>
             </div>
