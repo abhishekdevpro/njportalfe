@@ -217,6 +217,7 @@ function Login(props) {
                 <div className="login-2 submit-resume p-a30 seth">
                   <div className="nav">
                     <form className="col-12 p-a0 ">
+                    <div style={{fontSize:"25px",marginBottom:"5px",fontWeight:700}}>JobSeeker Login</div>
                       <p className="font-weight-600">
                         If you have an account with us, please log in.
                       </p>
