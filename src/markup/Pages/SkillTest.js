@@ -26,14 +26,14 @@ function SkillTest() {
   const getSkillTestQuestion = async (id, name) => {
     await axios({
       method: "get",
-      url: `https://api.novajobs.us/api/jobseeker/skill-assessment?skill_id=${id}&skill_name=${name}`,
+      url: `https://api.novajobs.us/api/user/skill-assessment?skill_id=${id}&skill_name=${name}`,
       headers: {
         Authorization: token,
         "Content-type": "application/json",
       },
     })
       .then((response) => {
-        console.log(response.data.data,"sktQ");
+        console.log(response.data.data, "sktQ");
         setLoader(false);
 
         navigate("/user/education-page");
@@ -47,14 +47,14 @@ function SkillTest() {
   useEffect(() => {
     axios({
       method: "GET",
-      url: "https://api.novajobs.us/api/jobseeker/user-skills",
+      url: "https://api.novajobs.us/api/user/user-skills",
       headers: {
         Authorization: token,
         "Content-type": "application/json",
       },
     })
       .then((response) => {
-        console.log(response.data.data,"resume data");
+        console.log(response.data.data, "resume data");
         setCardData(response.data.data);
 
         setSkeleton(false);
