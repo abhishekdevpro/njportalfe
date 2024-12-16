@@ -9,7 +9,7 @@ const EmployeePrivateRoute = ({ children }) => {
   if (authStatus) {
     return <div>{children}</div>;
   } else {
-    return <Navigate to="/employee/login" />;
+    return <Navigate to="/employer/login" />;
   }
 };
 

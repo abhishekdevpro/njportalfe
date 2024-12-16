@@ -79,7 +79,7 @@ function EmployeeLogin(props) {
       .then((response) => {
         console.log(response, "login");
         localStorage.setItem("employeeLoginToken", response?.data?.data?.token);
-        navigate("/employee/company-profile");
+        navigate("/employer/company-profile");
       })
       .catch((err) => {
         console.log(err);
@@ -155,7 +155,7 @@ function EmployeeLogin(props) {
       toast.success("Login successful!");
       localStorage.setItem("jobSeekerLoginToken", response?.data?.data?.token);
       setShowOtpModal(false);
-      navigate("/employee/company-profile");
+      navigate("/employer/company-profile");
     } catch (error) {
       toast.error(error?.response?.data?.message || "Invalid OTP.");
     } finally {
@@ -254,6 +254,9 @@ function EmployeeLogin(props) {
               </div>
               <div className="col-lg-6 col-md-6">
                 <div className="login-2 submit-resume p-a30 seth">
+                  <div className="d-flex justify-content-center align-items-center">
+                    <h2 className="text-center">Employer Login</h2>
+                  </div>
                   <div className="nav">
                     <form className="col-12 p-a0 ">
                       <p className="font-weight-600">
@@ -324,7 +327,7 @@ function EmployeeLogin(props) {
                       <div className="form-group text-center">
                         <Link
                           data-toggle="tab"
-                          to={"/employee/forgot-password"}
+                          to={"/employer/forgot-password"}
                           className="forget-pass m-l5"
                         >
                           <i className="fa fa-unlock-alt"></i> Forgot Password
@@ -359,7 +362,7 @@ function EmployeeLogin(props) {
                           login
                         </button>
                         <Link
-                          to="/employee/register-2"
+                          to="/employer/register-2"
                           className="site-button-link forget-pass m-t15 float-right"
                         >
                           <i className="fa fa-unlock-alt"></i> Sign up

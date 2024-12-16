@@ -41,7 +41,7 @@ function Jobsection() {
           setData(res.data.data);
         } else {
           console.log(res.data.message);
-          navigate("/employee/login"); // Redirect if no data is found
+          navigate("/employer/login"); // Redirect if no data is found
         }
         setIsDataFetched(true);
       })
@@ -60,7 +60,10 @@ function Jobsection() {
             <h2 className="m-b5">Candidates</h2>
           </div>
           <div className="align-self-end">
-            <Link to={"/employee/browse-candidates"} className="site-button button-sm">
+            <Link
+              to={"/employer/browse-candidates"}
+              className="site-button button-sm"
+            >
               Browse All Candidates <i className="fa fa-long-arrow-right"></i>
             </Link>
           </div>
@@ -71,7 +74,9 @@ function Jobsection() {
               {data.map((item, index) => (
                 <li
                   key={index}
-                  onClick={() => navigate(`profilepage/${item?.jobskkers_detail?.id}`)}
+                  onClick={() =>
+                    navigate(`profilepage/${item?.jobskkers_detail?.id}`)
+                  }
                   style={{ cursor: "pointer" }}
                 >
                   <div className="post-bx">
@@ -80,7 +85,10 @@ function Jobsection() {
                         <span>
                           <img
                             alt="profile"
-                            src={item?.jobskkers_detail?.photo || 'path-to-default-image.jpg'}
+                            src={
+                              item?.jobskkers_detail?.photo ||
+                              "path-to-default-image.jpg"
+                            }
                             onError={(e) => {
                               e.target.onerror = null;
                             }}
@@ -89,7 +97,8 @@ function Jobsection() {
                       </div>
                       <div className="job-post-info">
                         <h4>
-                          {item?.jobskkers_detail?.first_name} {item?.jobskkers_detail?.last_name}
+                          {item?.jobskkers_detail?.first_name}{" "}
+                          {item?.jobskkers_detail?.last_name}
                         </h4>
                         <ul>
                           <li>
@@ -100,7 +109,9 @@ function Jobsection() {
                           </li>
                           <li>
                             <i className="fa fa-clock-o"></i> Published{" "}
-                            {moment(item?.jobskkers_detail?.created_at).fromNow()}
+                            {moment(
+                              item?.jobskkers_detail?.created_at
+                            ).fromNow()}
                           </li>
                         </ul>
                         {item.jobskkers_detail.resume_score_percentage && (
@@ -112,18 +123,26 @@ function Jobsection() {
                           </ul>
                         )}
                         {item?.jobskkers_detail?.skills_arr?.length > 0 && (
-                          <div className="job-time d-flex flex-column my-2" style={{ gap: "12px" }}>
+                          <div
+                            className="job-time d-flex flex-column my-2"
+                            style={{ gap: "12px" }}
+                          >
                             <ul>
                               <li className="fw-bold"> Skills: </li>
                             </ul>
-                            <div className="d-flex text-break" style={{ gap: "3px", flexWrap: "wrap" }}>
-                              {item.jobskkers_detail.skills_arr.map((skill, index) => (
-                                <ul key={index} className="job-time">
-                                  <Link to={"#"}>
-                                    <span>{skill}</span>
-                                  </Link>
-                                </ul>
-                              ))}
+                            <div
+                              className="d-flex text-break"
+                              style={{ gap: "3px", flexWrap: "wrap" }}
+                            >
+                              {item.jobskkers_detail.skills_arr.map(
+                                (skill, index) => (
+                                  <ul key={index} className="job-time">
+                                    <Link to={"#"}>
+                                      <span>{skill}</span>
+                                    </Link>
+                                  </ul>
+                                )
+                              )}
                             </div>
                           </div>
                         )}
@@ -135,10 +154,15 @@ function Jobsection() {
                           <li>Experience:</li>
                         </ul>
                         <Link to={"#"}>
-                          <span>{item?.jobskkers_detail?.experience_in_month}</span>
+                          <span>
+                            {item?.jobskkers_detail?.experience_in_month}
+                          </span>
                         </Link>
                       </div>
-                      <div className="d-flex align-items-center" style={{ gap: "7px" }}>
+                      <div
+                        className="d-flex align-items-center"
+                        style={{ gap: "7px" }}
+                      >
                         <div className="salary-bx">
                           <span>{item?.jobskkers_detail?.expected_salary}</span>
                         </div>
@@ -192,8 +216,11 @@ function Jobsection() {
               <div className="quote-bx">
                 <div className="quote-info">
                   <h4>Make a Difference with Your Online Resume!</h4>
-                  <p>Your resume in minutes with JobBoard resume assistant is ready!</p>
-                  <Link to={"/employee/register"} className="site-button">
+                  <p>
+                    Your resume in minutes with JobBoard resume assistant is
+                    ready!
+                  </p>
+                  <Link to={"/employer/register"} className="site-button">
                     Create an Account
                   </Link>
                 </div>

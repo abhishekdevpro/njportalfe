@@ -18,19 +18,20 @@ function EmployeeCompanytransactions() {
                   <div className="job-bx table-job-bx clearfix">
                     <div className="job-bx-title clearfix">
                       <h5 className="font-weight-700 pull-left text-uppercase">
-                      Wallet History
+                        Wallet History
                       </h5>
                       <Link
-                        to={"/employee/company-profile"}
+                        to={"/employer/company-profile"}
                         className="site-button right-arrow button-sm float-right"
                       >
                         Back
                       </Link>
                     </div>
-                    <div className="d-flex justify-content-center"
-                    ><h1>🚧  Wallet Section coming soon</h1></div>
+                    <div className="d-flex justify-content-center">
+                      <h1>🚧 Wallet Section coming soon</h1>
+                    </div>
 
-                   {/*
+                    {/*
                     <div className="row ">
 
                       <div className="col-lg-8 col-sm-12 col-12 col-md-8">

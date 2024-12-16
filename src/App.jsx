@@ -231,7 +231,7 @@ function App() {
         }
       />
       <Route
-        path="/admin/employee"
+        path="/admin/employer"
         element={
           <PrivateRouteadmin>
             <Employee />
@@ -857,7 +857,7 @@ function App() {
 
       {/* routes for empployees */}
 
-      <Route path="/employee">
+      <Route path="/employer">
         <Route path="verify/:token" element={<VerifyEmailemployee />} />
 
         <Route path="forgot-password" element={<ForgotPasswordemployee />} />

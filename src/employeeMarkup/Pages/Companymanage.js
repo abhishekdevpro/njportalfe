@@ -286,7 +286,7 @@ function EmployeeCompanymanage() {
                     <button
                       onClick={() =>
                         navigate(
-                          `/employee/company-post-jobs/${item.job_detail.id}`
+                          `/employer/company-post-jobs/${item.job_detail.id}`
                         )
                       }
                       className="px-3 py-2 site-button text-white border-0"
@@ -298,7 +298,7 @@ function EmployeeCompanymanage() {
                     <button
                       onClick={() =>
                         navigate(
-                          `/employee/company-resume/${item.job_detail.id}`
+                          `/employer/company-resume/${item.job_detail.id}`
                         )
                       }
                       className="px-3 py-2 site-button text-white border-0"

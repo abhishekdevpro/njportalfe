@@ -35,7 +35,7 @@ function Jobcategories() {
                   <i className="ti-location-pin"></i>
                 </div>
                 <Link
-                  to={`/employee/company-manage-job/jobs/jobsDesign-art-multimedia`}
+                  to={`/employer/company-manage-job/jobs/jobsDesign-art-multimedia`}
                   className="dez-tilte"
                 >
                   {item.name}

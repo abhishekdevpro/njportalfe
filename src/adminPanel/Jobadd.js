@@ -466,101 +466,102 @@ function Jobadd() {
   };
   return (
     <>
-     <CustomNavbar/>
-     <Container fluid>
+      <CustomNavbar />
+      <Container fluid>
         <Row>
           <Col md={2} className="p-0">
             <Sidebar />
           </Col>
-          <Col  className='w-full'>
-           
-          
-      <div className="page-content bg-white">
-        <div className="content-block">
-          <div className="section-full bg-white p-t50 p-b20">
-            <div className="container">
-              <div className="row">
-               
-                <div className="col-xl-9 col-lg-9 m-b30">
-                  <div className="job-bx submit-resume">
-                    <div className="job-bx-title clearfix">
-                      <h5 className="font-weight-700 pull-left text-uppercase">
-                        Add A Job
-                      </h5>
-                    
-                    </div>
-                    <form>
-                      <div className="row">
-                        <div className="col-12 ">
-                          <div className="form-group">
-                            <label htmlFor="jobTitle">Job Title</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Enter Job Title"
-                              id="jobTitle"
-                              name="jobTitle"
-                              value={postAJobData.jobTitle}
-                              onChange={handleChange}
-                              
-                            />
+          <Col className="w-full">
+            <div className="page-content bg-white">
+              <div className="content-block">
+                <div className="section-full bg-white p-t50 p-b20">
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-xl-9 col-lg-9 m-b30">
+                        <div className="job-bx submit-resume">
+                          <div className="job-bx-title clearfix">
+                            <h5 className="font-weight-700 pull-left text-uppercase">
+                              Add A Job
+                            </h5>
                           </div>
-                          {errors.jobTitle && (
-                            <p className="text-danger">{errors.jobTitle}</p>
-                          )}
-                        </div>
-                        <div className="col-6 ">
-                          <div className="form-group">
-                            <label htmlFor="salary">Salary</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Enter Salary"
-                              id="salary"
-                              name="salary"
-                              value={postAJobData.salary}
-                              onChange={handleChange}
-                              
-                            />
-                          </div>
-                          {errors.jobTitle && (
-                            <p className="text-danger">{errors.jobTitle}</p>
-                          )}
-                        </div>
-                        <div className="col-6"> 
-                        <div className="form-group">
-    <label htmlFor="experience_level_id">Experience</label>
-    <Form.Control
-  as="select"
-  custom
-  name="experience_level_id"
-  id="experience_level_id"
-  value={postAJobData.experience_level_id}
-  onChange={handleChange}
->
-  {renderexperience_level_id()}
-</Form.Control>
-
-  </div>
-                        </div>
-                        <div className="col-12 ">
-                          <div className="form-group">
-                            <label htmlFor="company">Company</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Company"
-                              id="company"
-                              name="company"
-                              value={postAJobData.company}
-                              disabled
-                            />
-                          </div>
-                          {errors.company && (
-                            <p className="text-danger">{errors.company}</p>
-                          )}
-                        </div>
-                        {/* <div className="col-12">
+                          <form>
+                            <div className="row">
+                              <div className="col-12 ">
+                                <div className="form-group">
+                                  <label htmlFor="jobTitle">Job Title</label>
+                                  <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Enter Job Title"
+                                    id="jobTitle"
+                                    name="jobTitle"
+                                    value={postAJobData.jobTitle}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                                {errors.jobTitle && (
+                                  <p className="text-danger">
+                                    {errors.jobTitle}
+                                  </p>
+                                )}
+                              </div>
+                              <div className="col-6 ">
+                                <div className="form-group">
+                                  <label htmlFor="salary">Salary</label>
+                                  <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Enter Salary"
+                                    id="salary"
+                                    name="salary"
+                                    value={postAJobData.salary}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                                {errors.jobTitle && (
+                                  <p className="text-danger">
+                                    {errors.jobTitle}
+                                  </p>
+                                )}
+                              </div>
+                              <div className="col-6">
+                                <div className="form-group">
+                                  <label htmlFor="experience_level_id">
+                                    Experience
+                                  </label>
+                                  <Form.Control
+                                    as="select"
+                                    custom
+                                    name="experience_level_id"
+                                    id="experience_level_id"
+                                    value={postAJobData.experience_level_id}
+                                    onChange={handleChange}
+                                  >
+                                    {renderexperience_level_id()}
+                                  </Form.Control>
+                                </div>
+                              </div>
+                              <div className="col-12 ">
+                                <div className="form-group">
+                                  <label htmlFor="company">Company</label>
+                                  <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Company"
+                                    id="company"
+                                    name="company"
+                                    value={postAJobData.company}
+                                    disabled
+                                  />
+                                </div>
+                                {errors.company && (
+                                  <p className="text-danger">
+                                    {errors.company}
+                                  </p>
+                                )}
+                              </div>
+                              {/* <div className="col-12">
                           <div className="form-group">
                             <label>Your email</label>
                             <input
@@ -570,7 +571,7 @@ function Jobadd() {
                             />
                           </div>
                         </div> */}
-                        {/* <div className="col-lg-12 col-md-12">
+                              {/* <div className="col-lg-12 col-md-12">
                           <div className="form-group">
                             <label>Job Tags</label>
                             <input
@@ -579,134 +580,143 @@ function Jobadd() {
                             />
                           </div>
                         </div> */}
-                        <div className="ccol-lg-6 col-md-6">
-                          <div className="form-group">
-                            <label htmlFor="workplaceType">
-                              Workplace type
-                            </label>
-                            {workplaceType ? (
-                             <Form.Control
-                             as="select"
-                             custom
-                             value={postAJobData.workplaceType}
-                             onChange={handleChange}
-                             name="workplaceType"
-                           >
-                             {workplaceType.map((item) => (
-                               <option key={item.id} value={item.id}>
-                                 {item.name}
-                               </option>
-                             ))}
-                           </Form.Control>
-                           
-                            ) : null}
-                          </div>
-                        </div>
-                        <div className="col-lg-6 col-md-6">
-  <div className="form-group">
-    <label htmlFor="jobCategory">Job Category</label>
-    <Form.Control
-  as="select"
-  custom
-  name="jobCategory"
-  id="jobCategory"
-  value={postAJobData.jobCategory}
-  onChange={handleChange}
->
-  {renderJobCategories()}
-</Form.Control>
+                              <div className="ccol-lg-6 col-md-6">
+                                <div className="form-group">
+                                  <label htmlFor="workplaceType">
+                                    Workplace type
+                                  </label>
+                                  {workplaceType ? (
+                                    <Form.Control
+                                      as="select"
+                                      custom
+                                      value={postAJobData.workplaceType}
+                                      onChange={handleChange}
+                                      name="workplaceType"
+                                    >
+                                      {workplaceType.map((item) => (
+                                        <option key={item.id} value={item.id}>
+                                          {item.name}
+                                        </option>
+                                      ))}
+                                    </Form.Control>
+                                  ) : null}
+                                </div>
+                              </div>
+                              <div className="col-lg-6 col-md-6">
+                                <div className="form-group">
+                                  <label htmlFor="jobCategory">
+                                    Job Category
+                                  </label>
+                                  <Form.Control
+                                    as="select"
+                                    custom
+                                    name="jobCategory"
+                                    id="jobCategory"
+                                    value={postAJobData.jobCategory}
+                                    onChange={handleChange}
+                                  >
+                                    {renderJobCategories()}
+                                  </Form.Control>
+                                </div>
+                              </div>
 
-  </div>
-</div>
+                              <div className="col-lg-6 col-md-6">
+                                <div className="form-group">
+                                  <label>Country</label>
+                                  {countries ? (
+                                    <Form.Control
+                                      as="select"
+                                      custom
+                                      className="custom-select"
+                                      name="selectedCountry"
+                                      value={postAJobData.selectedCountry}
+                                      onChange={handleChange}
+                                    >
+                                      {countries.map((item) => (
+                                        <option value={item.id}>
+                                          {item.name}
+                                        </option>
+                                      ))}
+                                    </Form.Control>
+                                  ) : null}
+                                </div>
+                              </div>
 
+                              <div className="col-lg-6 col-md-6">
+                                <div className="form-group">
+                                  <label>State</label>
+                                  {states ? (
+                                    <Form.Control
+                                      as="select"
+                                      custom
+                                      className="custom-select"
+                                      name="selectedState"
+                                      value={postAJobData.selectedState}
+                                      onChange={handleChange}
+                                    >
+                                      {/* <option value=""></option> */}
+                                      {states.map((item) => (
+                                        <option value={item.id}>
+                                          {item.name}
+                                        </option>
+                                      ))}
+                                    </Form.Control>
+                                  ) : null}
+                                </div>
+                              </div>
 
-                        <div className="col-lg-6 col-md-6">
-                          <div className="form-group">
-                            <label>Country</label>
-                            {countries ? (
-                              <Form.Control
-                                as="select"
-                                custom
-                                className="custom-select"
-                                name="selectedCountry"
-                                value={postAJobData.selectedCountry}
-                                onChange={handleChange}>
-                                {countries.map((item) => (
-                                  <option value={item.id}>{item.name}</option>
-                                ))}
-                              </Form.Control>
-                            ) : null}
-                          </div>
-                        </div>
+                              <div className="col-lg-6 col-md-6">
+                                <div className="form-group">
+                                  <label>City</label>
+                                  {cities ? (
+                                    <Form.Control
+                                      as="select"
+                                      custom
+                                      name="selectedCity"
+                                      className="custom-select"
+                                      value={postAJobData.selectedCity}
+                                      onChange={handleChange}
+                                    >
+                                      {/* <option value=""></option> */}
 
-                        <div className="col-lg-6 col-md-6">
-                          <div className="form-group">
-                            <label>State</label>
-                            {states ? (
-                              <Form.Control
-                                as="select"
-                                custom
-                                className="custom-select"
-                                name="selectedState"
-                                value={postAJobData.selectedState}
-                                onChange={handleChange}>
-                                {/* <option value=""></option> */}
-                                {states.map((item) => (
-                                  <option value={item.id}>{item.name}</option>
-                                ))}
-                              </Form.Control>
-                            ) : null}
-                          </div>
-                        </div>
+                                      {cities.map((item) => (
+                                        <option value={item.id}>
+                                          {item.name}
+                                        </option>
+                                      ))}
+                                    </Form.Control>
+                                  ) : null}
+                                </div>
+                              </div>
 
-                        <div className="col-lg-6 col-md-6">
-                          <div className="form-group">
-                            <label>City</label>
-                            {cities ? (
-                              <Form.Control
-                                as="select"
-                                custom
-                                name="selectedCity"
-                                className="custom-select"
-                                value={postAJobData.selectedCity}
-                                onChange={handleChange}>
-                                {/* <option value=""></option> */}
-
-                                {cities.map((item) => (
-                                  <option value={item.id}>{item.name}</option>
-                                ))}
-                              </Form.Control>
-                            ) : null}
-                          </div>
-                        </div>
-
-                        <div className="col-6">
-                          <div className="form-group">
-                            <label htmlFor="jobType">Job Type</label>
-                            {jobType ? (
-                              <Form.Control
-                                as="select"
-                                custom
-                                className="custom-select"
-                                name="jobType"
-                                id="jobType"
-                                value={postAJobData.jobType}
-                                onChange={handleChange}>
-                                {jobType.map(
-                                  (item) => (
-                                    console.log(item),
-                                    (
-                                      <option value={item.id}>
-                                        {item.name}
-                                      </option>
-                                    )
-                                  )
-                                )}
-                              </Form.Control>
-                            ) : null}
-                          </div>
-                        </div>
-                        {/* <div className="col-lg-6 col-md-6">
+                              <div className="col-6">
+                                <div className="form-group">
+                                  <label htmlFor="jobType">Job Type</label>
+                                  {jobType ? (
+                                    <Form.Control
+                                      as="select"
+                                      custom
+                                      className="custom-select"
+                                      name="jobType"
+                                      id="jobType"
+                                      value={postAJobData.jobType}
+                                      onChange={handleChange}
+                                    >
+                                      {jobType.map(
+                                        (item) => (
+                                          console.log(item),
+                                          (
+                                            <option value={item.id}>
+                                              {item.name}
+                                            </option>
+                                          )
+                                        )
+                                      )}
+                                    </Form.Control>
+                                  ) : null}
+                                </div>
+                              </div>
+                              {/* <div className="col-lg-6 col-md-6">
                           <div className="form-group">
                             <label>Experience</label>
                             <Form.Control
@@ -773,146 +783,165 @@ function Jobadd() {
                             </div>
                           </div>
                         </div> */}
-                      </div>
-                      {/* <button type="button" className="site-button m-b30">
+                            </div>
+                            {/* <button type="button" className="site-button m-b30">
                         Upload
                       </button> */}
-                    </form>
-                    {suggestions === false ? null : (
-                      <div
-                        className="d-flex flex-column  flex-row  p-4"
-                        style={{
-                          backgroundColor: "#edf3f8",
-                          borderRadius: "7px",
-                        }}>
-                        <div className="d-flex justify-content-end ">
-                          <FaX
-                            className="outline-none p-0 border-0 f"
-                            onClick={handleSuggestions}
-                            style={{ cursor: "pointer" }}
-                          />
-                        </div>
-                        <p>
-                          987 members with titles similar to Business
-                          Development Specialist are actively seeking jobs in
-                          USA.
-                        </p>
-                      </div>
-                    )}
-                    {showAiButton ? null : (
-                      <div>
-                        <div className="d-flex my-3 flex-column gap-3 ">
-                          <Button
-                            onClick={() => {
-                              aiJobDescription();
-                            }}
-                            className="py-3 "
-                            style={{ borderRadius: "50px", fontWeight: "600" }}>
-                            Write With AI
-                          </Button>
-                        </div>
-                        <p className="text-center ">
-                          If You want help with your job description, we will
-                          use the information above and AI to suggest One.{" "}
-                          <br />{" "}
-                          {/*<span style={{ color: "#0a66c2", fontWeight: "600" }}>
+                          </form>
+                          {suggestions === false ? null : (
+                            <div
+                              className="d-flex flex-column  flex-row  p-4"
+                              style={{
+                                backgroundColor: "#edf3f8",
+                                borderRadius: "7px",
+                              }}
+                            >
+                              <div className="d-flex justify-content-end ">
+                                <FaX
+                                  className="outline-none p-0 border-0 f"
+                                  onClick={handleSuggestions}
+                                  style={{ cursor: "pointer" }}
+                                />
+                              </div>
+                              <p>
+                                987 members with titles similar to Business
+                                Development Specialist are actively seeking jobs
+                                in USA.
+                              </p>
+                            </div>
+                          )}
+                          {showAiButton ? null : (
+                            <div>
+                              <div className="d-flex my-3 flex-column gap-3 ">
+                                <Button
+                                  onClick={() => {
+                                    aiJobDescription();
+                                  }}
+                                  className="py-3 "
+                                  style={{
+                                    borderRadius: "50px",
+                                    fontWeight: "600",
+                                  }}
+                                >
+                                  Write With AI
+                                </Button>
+                              </div>
+                              <p className="text-center ">
+                                If You want help with your job description, we
+                                will use the information above and AI to suggest
+                                One. <br />{" "}
+                                {/*<span style={{ color: "#0a66c2", fontWeight: "600" }}>
                             Learn More
                           </span>*/}
-                        </p>
-                        <p className="text-center ">
-                          Limits may apply to free job posts.
-                          <Link to={"/employee/term-of-use-nova-jobs"}>
-                          <span style={{ color: "#0a66c2", fontWeight: "600" }}>
-                            View Our Policy
-                          </span>
-                        </Link>
-                          
-                        </p>
+                              </p>
+                              <p className="text-center ">
+                                Limits may apply to free job posts.
+                                <Link to={"/employer/term-of-use-nova-jobs"}>
+                                  <span
+                                    style={{
+                                      color: "#0a66c2",
+                                      fontWeight: "600",
+                                    }}
+                                  >
+                                    View Our Policy
+                                  </span>
+                                </Link>
+                              </p>
+                            </div>
+                          )}
+                          <div>
+                            {" "}
+                            <br />
+                            <h4>Description</h4>
+                            {description ? (
+                              <div>
+                                <Skeleton width={718} />
+                                <Skeleton width={726} />
+                                <Skeleton width={732} />
+                                <Skeleton width={740} />
+                              </div>
+                            ) : (
+                              <TextEditor value={postAJobData.description} />
+                            )}
+                          </div>
+                          <div>
+                            <h4>Skills</h4>
+                            <p className="mb-2">
+                              Add Skill Keywords (max 10) to make your job more
+                              visible to the right candidates.
+                            </p>
+                            <AddSkills />
+                          </div>
+                          <div className="mt-4">
+                            <h4>Screening Questions</h4>
+                            <AddScreening />
+                          </div>
+                          <div className="mt-4">
+                            <h4>Qualification setting</h4>
+                            <div className="d-flex justify-content-start align-items-center">
+                              <div class="custom-control custom-checkbox">
+                                <input
+                                  type="checkbox"
+                                  id="check1"
+                                  class="custom-control-input selectAllCheckBox"
+                                  name="example1"
+                                  disabled
+                                />
+                                <label
+                                  class="custom-control-label"
+                                  for="check1"
+                                ></label>
+                              </div>
+                              <div
+                                style={{ color: "#9d9d9d" }}
+                                className="ms-4"
+                              >
+                                Filter out and send rejections to applicants who
+                                don't meet any must-have qualifications.{" "}
+                                <FaCircleQuestion />
+                              </div>
+                            </div>
+                            <p className="mb-0 mt-2">Preview*</p>
+                            <QualificationSetting />
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              gap: 10,
+                            }}
+                          >
+                            <div
+                              style={{
+                                display: "flex",
+                                gap: 10,
+                              }}
+                            >
+                              {/* Step 3: Update UI based on job posting status */}
+                              {jobPostingStatus === "pending" ? (
+                                <button
+                                  onClick={handlePostJob}
+                                  className="site-button d-flex justify-content-center align-items-center"
+                                >
+                                  Post job
+                                </button>
+                              ) : (
+                                <button
+                                  // onClick={handleAddSkill}
+                                  className="site-button d-flex justify-content-center align-items-center"
+                                >
+                                  Add Another Job
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    )}
-                    <div> <br/>
-                      <h4>Description</h4>
-                      {description ? (
-                        <div>
-                          <Skeleton width={718} />
-                          <Skeleton width={726} />
-                          <Skeleton width={732} />
-                          <Skeleton width={740} />
-                        </div>
-                      ) : (
-                        <TextEditor value={postAJobData.description} />
-                      )}
-                    </div>
-                    <div>
-                      <h4>Skills</h4>
-                      <p className="mb-2">
-                        Add Skill Keywords (max 10) to make your job more
-                        visible to the right candidates.
-                      </p>
-                      <AddSkills />
-                    </div>
-                    <div className="mt-4">
-                      <h4>Screening Questions</h4>
-                      <AddScreening />
-                    </div>
-                    <div className="mt-4">
-                      <h4>Qualification setting</h4>
-                      <div className="d-flex justify-content-start align-items-center">
-                        <div class="custom-control custom-checkbox">
-                          <input
-                            type="checkbox"
-                            id="check1"
-                            class="custom-control-input selectAllCheckBox"
-                            name="example1"
-                            disabled
-                          />
-                          <label
-                            class="custom-control-label"
-                            for="check1"></label>
-                        </div>
-                        <div style={{ color: "#9d9d9d" }} className="ms-4">
-                          Filter out and send rejections to applicants who don't
-                          meet any must-have qualifications.{" "}
-                          <FaCircleQuestion />
-                        </div>
-                      </div>
-                      <p className="mb-0 mt-2">Preview*</p>
-                      <QualificationSetting />
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: 10,
-                      }}>
-                       <div
-        style={{
-          display: "flex",
-          gap: 10,
-        }}>
-        {/* Step 3: Update UI based on job posting status */}
-        {jobPostingStatus === "pending" ? (
-          <button
-            onClick={handlePostJob}
-            className="site-button d-flex justify-content-center align-items-center">
-            Post job
-          </button>
-        ) : (
-          <button
-            // onClick={handleAddSkill}
-            className="site-button d-flex justify-content-center align-items-center">
-            Add Another Job
-          </button>
-        )}
-      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      </Col>
+          </Col>
         </Row>
       </Container>
     </>

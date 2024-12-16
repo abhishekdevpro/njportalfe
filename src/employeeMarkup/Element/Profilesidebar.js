@@ -34,43 +34,43 @@ function Profilesidebar() {
           </div>
           <ul>
             <li>
-              <Link to={"/employee/jobs-profile"} className="active">
+              <Link to={"/employer/jobs-profile"} className="active">
                 <i className="fa fa-user-o" aria-hidden="true"></i>
                 <span>Profile</span>
               </Link>
             </li>
             <li>
-              <Link to={"/employee/jobs-my-resume"}>
+              <Link to={"/employer/jobs-my-resume"}>
                 <i className="fa fa-file-text-o" aria-hidden="true"></i>
                 <span>My Resume</span>
               </Link>
             </li>
             <li>
-              <Link to={"/employee/jobs-saved-jobs"}>
+              <Link to={"/employer/jobs-saved-jobs"}>
                 <i className="fa fa-heart-o" aria-hidden="true"></i>
                 <span>Saved Jobs</span>
               </Link>
             </li>
             <li>
-              <Link to={"/employee/jobs-applied-job"}>
+              <Link to={"/employer/jobs-applied-job"}>
                 <i className="fa fa-briefcase" aria-hidden="true"></i>
                 <span>Applied Jobs</span>
               </Link>
             </li>
             <li>
-              <Link to={"/employee/jobs-alerts"}>
+              <Link to={"/employer/jobs-alerts"}>
                 <i className="fa fa-bell-o" aria-hidden="true"></i>
                 <span>Job Alerts</span>
               </Link>
             </li>
             <li>
-              <Link to={"/employee/jobs-cv-manager"}>
+              <Link to={"/employer/jobs-cv-manager"}>
                 <i className="fa fa-id-card-o" aria-hidden="true"></i>
                 <span>CV Manager</span>
               </Link>
             </li>
             <li>
-              <Link to={"/employee/jobs-change-password"}>
+              <Link to={"/employer/jobs-change-password"}>
                 <i className="fa fa-key" aria-hidden="true"></i>
                 <span>Change Password</span>
               </Link>

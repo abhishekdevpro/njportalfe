@@ -452,7 +452,7 @@ function EmployeeBrowsecandidates() {
                                               key={index}
                                               onClick={() =>
                                                 navigate(
-                                                  `/employee/profilepage/${item?.jobskkers_detail?.id}`
+                                                  `/employer/profilepage/${item?.jobskkers_detail?.id}`
                                                 )
                                               }
                                             >

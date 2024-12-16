@@ -168,7 +168,7 @@ const notify = (data) => toast.warning(data);
 
       // Send email to the user upon successful registration
       await sendConfirmationEmail(registerValues.email);
-      navigate("/employee/login");
+      navigate("/employer/login");
       setShowUpload(false);
     } catch (err) {
       console.log(err);
@@ -182,7 +182,7 @@ const notify = (data) => toast.warning(data);
       const encodedEmail = encodeURIComponent(email); // Encode email
       const encodedToken = encodeURIComponent(token); // Encode token
 
-      const verificationLink = `https://api.novajobs.us/api/employee/verify-account/${encodedToken}?email=${encodedEmail}`;
+      const verificationLink = `https://api.novajobs.us/api/employer/verify-account/${encodedToken}?email=${encodedEmail}`;
       const emailBody = {
         to: email,
         subject: "Confirm Your Email",
@@ -202,7 +202,7 @@ const notify = (data) => toast.warning(data);
 
   const verifyAccount = async () => {
     try {
-      const response = await axios.get(`/api/employee/verify-account/${token}`);
+      const response = await axios.get(`/api/employer/verify-account/${token}`);
       console.log("Account verified successfully:", response.data);
       // Handle success, maybe show a success message or redirect the user
     } catch (error) {
@@ -278,7 +278,9 @@ const notify = (data) => toast.warning(data);
                     />
                   </Link>
                 </div>
-
+                <div className="d-flex justify-content-center align-items-center">
+                  <h2 className="text-center">Employer Signup</h2>
+                </div>
                 <div className="tab-content nav p-b30 tab">
                   <div id="login" className="tab-pane active ">
                     {props.errorMessage && (
@@ -421,12 +423,12 @@ const notify = (data) => toast.warning(data);
                             >
                               I agree to the{" "}
                               {
-                                <Link to={"/employee/privacy-rights"}>
+                                <Link to={"/employer/privacy-rights"}>
                                   Privacy Policy
                                 </Link>
                               }{" "}
                               and{" "}
-                              <Link to={"/employee/term-of-use-nova-jobs"}>
+                              <Link to={"/employer/term-of-use-nova-jobs"}>
                                 Terms & conditions{" "}
                               </Link>
                             </label>
@@ -553,7 +555,7 @@ const notify = (data) => toast.warning(data);
                     }}
                   /> */}
                       Already have an accountsss ?
-                      <a class="site-button-link " href="/employee/login">
+                      <a class="site-button-link " href="/employer/login">
                         <i class="fa fa-unlock-alt"></i> Sign In
                       </a>
                     </span>

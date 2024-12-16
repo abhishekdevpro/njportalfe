@@ -198,8 +198,7 @@ const Dashboard = () => {
                   </p>
                 </Col>
               </Row>
-              <Row className='gap-3'>
-              
+              <Row className="gap-3">
                 <Box
                   icon={<FaStore className="display-4" />}
                   title="Vendors"
@@ -211,17 +210,17 @@ const Dashboard = () => {
                   icon={<FaUserTie className="display-4" />}
                   title="Employer"
                   count={maxSNo4} // Replace with actual count
-                  path="/admin/employee"
+                  path="/admin/employer"
                   size={5} // Size for this Box
                 />
-                <Box 
+                <Box
                   icon={<FaBriefcase className="display-4" />}
                   title="Jobs"
                   count={maxSNo} // Display max s_no here
                   path="/admin/jobs"
                   size={6} // Larger size for this Box
                 />
-                
+
                 <Box
                   icon={<FaUserGraduate className="display-4" />}
                   title="JobSeekers"
@@ -229,11 +228,6 @@ const Dashboard = () => {
                   path="/admin/jobseekers"
                   size={5} // Size for this Box
                 />
-               
-               
-                
-               
-               
               </Row>
             </Container>
           </Col>

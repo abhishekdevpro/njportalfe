@@ -24,7 +24,6 @@ function EmployeeJobsappliedjob() {
                   <div className="sticky-top">
                     <div className="candidate-info">
                       <div className="candidate-detail text-center">
-                  
                         <div className="candidate-title">
                           <div className="">
                             <h4 className="m-b5">
@@ -38,13 +37,13 @@ function EmployeeJobsappliedjob() {
                       </div>
                       <ul>
                         <li>
-                          <Link to={"/employee/jobs-profile"}>
+                          <Link to={"/employer/jobs-profile"}>
                             <i className="fa fa-user-o" aria-hidden="true"></i>
                             <span>Profile</span>
                           </Link>
                         </li>
                         <li>
-                          <Link to={"/employee/jobs-my-resume"}>
+                          <Link to={"/employer/jobs-my-resume"}>
                             <i
                               className="fa fa-file-text-o"
                               aria-hidden="true"
@@ -53,14 +52,14 @@ function EmployeeJobsappliedjob() {
                           </Link>
                         </li>
                         <li>
-                          <Link to={"/employee/jobs-saved-jobs"}>
+                          <Link to={"/employer/jobs-saved-jobs"}>
                             <i className="fa fa-heart-o" aria-hidden="true"></i>
                             <span>Saved Jobs</span>
                           </Link>
                         </li>
                         <li>
                           <Link
-                            to={"/employee/jobs-applied-job"}
+                            to={"/employer/jobs-applied-job"}
                             className="active"
                           >
                             <i
@@ -71,13 +70,13 @@ function EmployeeJobsappliedjob() {
                           </Link>
                         </li>
                         <li>
-                          <Link to={"/employee/jobs-alerts"}>
+                          <Link to={"/employer/jobs-alerts"}>
                             <i className="fa fa-bell-o" aria-hidden="true"></i>
                             <span>Job Alerts</span>
                           </Link>
                         </li>
                         <li>
-                          <Link to={"/employee/jobs-cv-manager"}>
+                          <Link to={"/employer/jobs-cv-manager"}>
                             <i
                               className="fa fa-id-card-o"
                               aria-hidden="true"
@@ -86,7 +85,7 @@ function EmployeeJobsappliedjob() {
                           </Link>
                         </li>
                         <li>
-                          <Link to={"/employee/jobs-change-password"}>
+                          <Link to={"/employer/jobs-change-password"}>
                             <i className="fa fa-key" aria-hidden="true"></i>
                             <span>Change Password</span>
                           </Link>
@@ -125,13 +124,13 @@ function EmployeeJobsappliedjob() {
                         <div className="post-bx">
                           <div className="job-post-info m-a0">
                             <h4>
-                              <Link to={"/employee/job-detail"}>
+                              <Link to={"/employer/job-detail"}>
                                 {item.title}
                               </Link>
                             </h4>
                             <ul>
                               <li>
-                                <Link to={"/employee/company-profile"}>
+                                <Link to={"/employer/company-profile"}>
                                   @company-name
                                 </Link>
                               </li>
@@ -165,7 +164,7 @@ function EmployeeJobsappliedjob() {
                                 2 day ago
                               </p>
                               <Link
-                                to={"/employee/jobs-my-resume"}
+                                to={"/employer/jobs-my-resume"}
                                 className="site-button button-sm float-right"
                               >
                                 Apply Job

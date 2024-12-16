@@ -41,7 +41,7 @@ function ResetPasswordemployee(props) {
           response?.data?.data?.token
         );
         showToastSuccess(response?.data?.data?.token)
-        navigate("/employee/login");
+        navigate("/employer/login");
       })
       .catch((err) => {
         console.log(err);

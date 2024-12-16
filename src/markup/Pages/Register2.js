@@ -424,12 +424,12 @@ useEffect(() => {
                               {" "}
                               I agree to the{" "}
                               {
-                                <Link to={"/employee/privacy-rights"}>
+                                <Link to={"/employer/privacy-rights"}>
                                   Privacy Policy
                                 </Link>
                               }{" "}
                               and{" "}
-                              <Link to={"/employee/term-of-use-nova-jobs"}>
+                              <Link to={"/employer/term-of-use-nova-jobs"}>
                                 Terms & conditions{" "}
                               </Link>
                             </label>

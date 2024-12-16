@@ -58,7 +58,7 @@ class EmployeeHeader2 extends Component {
             <div className="main-bar clearfix">
               <div className="container clearfix">
                 <div className="logo-header mostion">
-                  <Link to={"/employee"}>
+                  <Link to={"/employer"}>
                     <img
                       src={require("./../../images/logo/NovaUS.png")}
                       className="logo"
@@ -92,7 +92,7 @@ class EmployeeHeader2 extends Component {
                     {localStorage.getItem("employeeLoginToken") ? (
                       <Logout />
                     ) : (
-                      <Link to={"/employee/login"} className="site-button">
+                      <Link to={"/employer/login"} className="site-button">
                         <i className="fa fa-user"></i> Log in
                       </Link>
                     )}
@@ -105,7 +105,7 @@ class EmployeeHeader2 extends Component {
                 >
                   <ul className="nav navbar-nav">
                     <li className="">
-                      {/* <Link to={"/employee"}>Home </Link> */}
+                      {/* <Link to={"/employer"}>Home </Link> */}
                       {/* <ul className="sub-menu">
                         <li>
                           <Link to={"./"} className="dez-page">
@@ -182,7 +182,7 @@ class EmployeeHeader2 extends Component {
                     </li> */}
 
                     <li>
-                      <Link to={`/employee/company-profile`}>Dashboard</Link>
+                      <Link to={`/employer/company-profile`}>Dashboard</Link>
                     </li>
                     {/* <li>
                       <Link to={"#"}>
@@ -190,25 +190,25 @@ class EmployeeHeader2 extends Component {
                       </Link>
                       <ul className="sub-menu">
                         <li>
-                          <Link to={"/employee/about-us"} className="dez-page">
+                          <Link to={"/employer/about-us"} className="dez-page">
                             About Us
                           </Link>
                         </li>
                         <li>
                           <Link
-                            to={"/employee/job-detail"}
+                            to={"/employer/job-detail"}
                             className="dez-page">
                             Job Detail
                           </Link>
                         </li>
                         <li>
-                          <Link to={"/employee/companies"} className="dez-page">
+                          <Link to={"/employer/companies"} className="dez-page">
                             companies
                           </Link>
                         </li>
                         <li>
                           <Link
-                            to={"/employee/free-job-alerts"}
+                            to={"/employer/free-job-alerts"}
                             className="dez-page">
                             free job alerts{" "}
                             <span className="new-page">New</span>
@@ -221,14 +221,14 @@ class EmployeeHeader2 extends Component {
                           <ul className="sub-menu">
                             <li>
                               <Link
-                                to={"/employee/browse-job-list"}
+                                to={"/employer/browse-job-list"}
                                 className="dez-page">
                                 browse job list
                               </Link>
                             </li>
                             <li>
                               <Link
-                                to={"/employee/browse-job-grid"}
+                                to={"/employer/browse-job-grid"}
                                 className="dez-page">
                                 browse job grid{" "}
                                 <span className="new-page">New</span>
@@ -236,7 +236,7 @@ class EmployeeHeader2 extends Component {
                             </li>
                             <li>
                               <Link
-                                to={"/employee/browse-job-filter-list"}
+                                to={"/employer/browse-job-filter-list"}
                                 className="dez-page">
                                 browse filter list{" "}
                                 <span className="new-page">New</span>
@@ -244,7 +244,7 @@ class EmployeeHeader2 extends Component {
                             </li>
                             <li>
                               <Link
-                                to={"/employee/browse-job-filter-grid"}
+                                to={"/employer/browse-job-filter-grid"}
                                 className="dez-page">
                                 browse filter grid{" "}
                                 <span className="new-page">New</span>
@@ -259,14 +259,14 @@ class EmployeeHeader2 extends Component {
                           <ul className="sub-menu">
                             <li>
                               <Link
-                                to={"/employee/category-all-jobs"}
+                                to={"/employer/category-all-jobs"}
                                 className="dez-page">
                                 all jobs <span className="new-page">New</span>
                               </Link>
                             </li>
                             <li>
                               <Link
-                                to={"/employee/category-company-jobs"}
+                                to={"/employer/category-company-jobs"}
                                 className="dez-page">
                                 company jobs{" "}
                                 <span className="new-page">New</span>
@@ -274,7 +274,7 @@ class EmployeeHeader2 extends Component {
                             </li>
                             <li>
                               <Link
-                                to={"/employee/category-designations-jobs"}
+                                to={"/employer/category-designations-jobs"}
                                 className="dez-page">
                                 designations jobs{" "}
                                 <span className="new-page">New</span>
@@ -282,7 +282,7 @@ class EmployeeHeader2 extends Component {
                             </li>
                             <li>
                               <Link
-                                to={"/employee/category-jobs"}
+                                to={"/employer/category-jobs"}
                                 className="dez-page">
                                 category jobs{" "}
                                 <span className="new-page">New</span>
@@ -290,7 +290,7 @@ class EmployeeHeader2 extends Component {
                             </li>
                             <li>
                               <Link
-                                to={"/employee/category-location-jobs"}
+                                to={"/employer/category-location-jobs"}
                                 className="dez-page">
                                 location jobs{" "}
                                 <span className="new-page">New</span>
@@ -298,7 +298,7 @@ class EmployeeHeader2 extends Component {
                             </li>
                             <li>
                               <Link
-                                to={"/employee/category-skill-jobs"}
+                                to={"/employer/category-skill-jobs"}
                                 className="dez-page">
                                 skill jobs <span className="new-page">New</span>
                               </Link>
@@ -312,7 +312,7 @@ class EmployeeHeader2 extends Component {
                           <ul className="sub-menu">
                             <li>
                               <Link
-                                to={"/employee/portfolio-grid-2"}
+                                to={"/employer/portfolio-grid-2"}
                                 className="dez-page">
                                 Portfolio Grid 2{" "}
                               </Link>
@@ -325,13 +325,13 @@ class EmployeeHeader2 extends Component {
                           </Link>
                           <ul className="sub-menu">
                             <li>
-                              <Link to={"/employee/login"} className="dez-page">
+                              <Link to={"/employer/login"} className="dez-page">
                                 login 1
                               </Link>
                             </li>
                             <li>
                               <Link
-                                to={"/employee/login-2"}
+                                to={"/employer/login-2"}
                                 className="dez-page">
                                 login 2 <span className="new-page">New</span>
                               </Link>
@@ -345,14 +345,14 @@ class EmployeeHeader2 extends Component {
                           <ul className="sub-menu">
                             <li>
                               <Link
-                                to={"/employee/userregister"}
+                                to={"/employer/userregister"}
                                 className="dez-page">
                                 register 1
                               </Link>
                             </li>
                             <li>
                               <Link
-                                to={"/employee/userregister-2"}
+                                to={"/employer/userregister-2"}
                                 className="dez-page">
                                 register 2 <span className="new-page">New</span>
                               </Link>
@@ -360,12 +360,12 @@ class EmployeeHeader2 extends Component {
                           </ul>
                         </li>
                         <li>
-                          <Link to={"/employee/error-404"} className="dez-page">
+                          <Link to={"/employer/error-404"} className="dez-page">
                             Error 404
                           </Link>
                         </li>
                         <li>
-                          <Link to={"/employee/contact"} className="dez-page">
+                          <Link to={"/employer/contact"} className="dez-page">
                             Contact Us
                           </Link>
                         </li>
@@ -378,42 +378,42 @@ class EmployeeHeader2 extends Component {
                       <ul className="sub-menu">
                         <li>
                           <Link
-                            to={"/employee/blog-classic"}
+                            to={"/employer/blog-classic"}
                             className="dez-page">
                             Classic
                           </Link>
                         </li>
                         <li>
                           <Link
-                            to={"/employee/blog-classic-sidebar"}
+                            to={"/employer/blog-classic-sidebar"}
                             className="dez-page">
                             Classic Sidebar
                           </Link>
                         </li>
                         <li>
                           <Link
-                            to={"/employee/blog-detailed-grid"}
+                            to={"/employer/blog-detailed-grid"}
                             className="dez-page">
                             Detailed Grid
                           </Link>
                         </li>
                         <li>
                           <Link
-                            to={"/employee/blog-detailed-grid-sidebar"}
+                            to={"/employer/blog-detailed-grid-sidebar"}
                             className="dez-page">
                             Detailed Grid Sidebar
                           </Link>
                         </li>
                         <li>
                           <Link
-                            to={"/employee/blog-left-img"}
+                            to={"/employer/blog-left-img"}
                             className="dez-page">
                             Left Image Sidebar
                           </Link>
                         </li>
                         <li>
                           <Link
-                            to={"/employee/blog-details"}
+                            to={"/employer/blog-details"}
                             className="dez-page">
                             Blog Details
                           </Link>

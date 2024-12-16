@@ -74,7 +74,7 @@ class Latestblogowl extends Component {
             <div className="blog-post blog-grid blog-style-1">
               <div className="dez-post-media dez-img-effect radius-sm">
                 {" "}
-                <Link to={"/employee/blog-details"}>
+                <Link to={"/employer/blog-details"}>
                   <img src={item.image} alt="" />
                 </Link>{" "}
               </div>
@@ -92,7 +92,7 @@ class Latestblogowl extends Component {
                 </div>
                 <div className="dez-post-title ">
                   <h5 className="post-title font-20">
-                    <Link to={"/employee/blog-details"}>
+                    <Link to={"/employer/blog-details"}>
                       Do you have a job that the average person doesn even know
                       exists?
                     </Link>
@@ -107,7 +107,7 @@ class Latestblogowl extends Component {
                 </div>
                 <div className="dez-post-readmore blog-share">
                   <Link
-                    to={"/employee/blog-details"}
+                    to={"/employer/blog-details"}
                     title="READ MORE"
                     rel="bookmark"
                     className="site-button-link"

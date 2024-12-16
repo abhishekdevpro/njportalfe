@@ -154,7 +154,7 @@ const EmployeeForm = () => {
   };
   
   const handleClick = () => {
-    navigate('/employee/login');
+    navigate("/employer/login");
   };
 
   return (

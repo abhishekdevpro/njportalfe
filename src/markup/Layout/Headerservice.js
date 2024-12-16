@@ -95,7 +95,6 @@ class Headerservice extends Component {
                 </div>
                       )}
                     </div> */}
-                
 
                 <div
                   className="header-nav navbar-collapse collapse myNavbar justify-content-start"
@@ -103,11 +102,11 @@ class Headerservice extends Component {
                 >
                   <div className="logo-header mostion d-md-block d-lg-none">
                     <Link to={"/"} className="dez-page">
-                    <img
-                      src={require("./../../images/logo/NovaUS.png")}
-                      className="logo"
-                      alt="img"
-                    />
+                      <img
+                        src={require("./../../images/logo/NovaUS.png")}
+                        className="logo"
+                        alt="img"
+                      />
                     </Link>
                   </div>
                   <ul className="nav navbar-nav align-items-center ">
@@ -144,9 +143,7 @@ class Headerservice extends Component {
                     </li>
                     {localStorage.getItem("jobSeekerLoginToken") ? (
                       <li>
-                        <Link to={"/user/jobs-profile"}>
-                          Dashboard 
-                        </Link>
+                        <Link to={"/user/jobs-profile"}>Dashboard</Link>
                         <ul className="sub-menu">
                           <li>
                             <Link
@@ -221,52 +218,59 @@ class Headerservice extends Component {
                         </Link>
                       )}
                     </li> */}
-                     <li className="nav-item jobseeker-hover" style={{ position: 'relative' }}>
-      {localStorage.getItem("jobSeekerLoginToken") ? (
-        <Logout />
-      ) : (
-        <Link
-          style={{ color: "white" }}
-          to="#"
-          className="nav-link site-button"
-        >
-          Jobseeker
-        </Link>
-      )}
+                    <li
+                      className="nav-item jobseeker-hover"
+                      style={{ position: "relative" }}
+                    >
+                      {localStorage.getItem("jobSeekerLoginToken") ? (
+                        <Logout />
+                      ) : (
+                        <Link
+                          style={{ color: "white" }}
+                          to="#"
+                          className="nav-link site-button"
+                        >
+                          Jobseeker
+                        </Link>
+                      )}
 
-      {!localStorage.getItem("jobSeekerLoginToken") && (
-        <div className="popup rounded-4 m-2 ">
-        <div className="d-flex gap-2 m-3 ">
-        <Link to="/user/register-2" className="btn btn-primary " style={{backgroundColor:'#1C2957'}}>
-            Sign Up
-          </Link>
-          <br />
-          <Link to="/user/login" className="btn btn-secondary ">
-            Sign In
-          </Link>
-        </div>
-        </div>
-      )}
-      
-                
-    </li>
-    <li>
-      
-    {localStorage.getItem("jobSeekerLoginToken") ? null : (
-                    <Link to={"/vendor/login"}
-                    
-                    style={{ color: "white" }}
-                    className="site-button"
-                    >    
-                      Partner With Us
-                    </Link>
-                  )}
-    </li>
+                      {!localStorage.getItem("jobSeekerLoginToken") && (
+                        <div className="popup rounded-4 m-2 ">
+                          <div className="d-flex gap-2 m-3 ">
+                            <Link
+                              to="/user/register-2"
+                              className="btn btn-primary "
+                              style={{ backgroundColor: "#1C2957" }}
+                            >
+                              Sign Up
+                            </Link>
+                            <br />
+                            <Link
+                              to="/user/login"
+                              className="btn btn-secondary "
+                            >
+                              Sign In
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+                    </li>
+                    <li>
+                      {localStorage.getItem("jobSeekerLoginToken") ? null : (
+                        <Link
+                          to={"/vendor/login"}
+                          style={{ color: "white" }}
+                          className="site-button"
+                        >
+                          Partner With Us
+                        </Link>
+                      )}
+                    </li>
                     {/* <li>
                       {localStorage.getItem("jobSeekerLoginToken") ? null : (
                         <Link
                         style={{ color: "white" }}
-                        to={"/employee/login"}
+                        to={"/employer/login"}
                         className="site-button"
                       >
                         Employers / Post Job
@@ -279,7 +283,7 @@ class Headerservice extends Component {
                       ) : (
                         <Link
                           style={{ color: "white" }}
-                          to={"/employee/login"}
+                          to={"/employer/login"}
                           className="site-button"
                         >
                           Employers / Post Job
@@ -312,7 +316,7 @@ class Headerservice extends Component {
                 <div
                   className="col-lg-6 col-md-6 overlay-primary-dark d-flex p-a0"
                   style={{
-                   backgroundImage: "url(" + bnr3 + ")",
+                    backgroundImage: "url(" + bnr3 + ")",
                     backgroundPosition: "center",
                     backgroundSize: "cover",
                   }}

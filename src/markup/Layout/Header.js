@@ -305,7 +305,7 @@ class UserHeader extends Component {
                       ) : (
                         <Link
                           style={{ color: "white" }}
-                          to={"/employee"}
+                          to={"/employer"}
                           className="site-button"
                         >
                           Employers/Post Job

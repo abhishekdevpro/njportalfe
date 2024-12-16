@@ -45,7 +45,7 @@ function IndexBanner() {
 
   const handleFindCandidateClick = (e) => {
     e.preventDefault();
-    navigate("/employee/browse-candidates");
+    navigate("/employer/browse-candidates");
   };
 
   return (

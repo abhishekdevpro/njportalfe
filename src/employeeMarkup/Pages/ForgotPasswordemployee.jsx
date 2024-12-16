@@ -28,8 +28,8 @@ function ForgotPasswordemployee(props) {
     })
       .then((response) => {
         console.log(response);
-        showToastSuccess(response?.data?.message)
-        navigate("/employee/forgot-password");
+        showToastSuccess(response?.data?.message);
+        navigate("/employer/forgot-password");
       })
       .catch((err) => {
         console.log(err);
@@ -46,7 +46,8 @@ function ForgotPasswordemployee(props) {
           backgroundImage: "url(" + loginbg + ")",
           backgroundSize: "cover",
         }}
-      ><ToastContainer/>
+      >
+        <ToastContainer />
         <div className="section-full">
           <div className="container">
             <div className="row">
@@ -62,9 +63,8 @@ function ForgotPasswordemployee(props) {
                   </div>
                   <h2 className="m-b10">Verify Your Email To Get Link</h2>
                   <p className="m-b30">
-                  Welcome To One Stop AI Powered Staffing Solution
+                    Welcome To One Stop AI Powered Staffing Solution
                   </p>
-                  
                 </div>
               </div>
               <div className="col-lg-6 col-md-6">
@@ -72,7 +72,7 @@ function ForgotPasswordemployee(props) {
                   <div className="nav">
                     <form className="col-12 p-a0 ">
                       <p className="font-weight-600">
-                      Please Check Your email to set new password
+                        Please Check Your email to set new password
                       </p>
                       {props.errorMessage && (
                         <div className="bg-red-300 text-red-900 border border-red-900 p-1 my-2">
@@ -113,7 +113,7 @@ function ForgotPasswordemployee(props) {
                     </form>
                     <div className="form-group text-center">
                       <Link
-                        to="/employee/login"
+                        to="/employer/login"
                         className="site-button-link  m-t15 "
                       >
                         Back to Login
@@ -145,18 +145,24 @@ function ForgotPasswordemployee(props) {
                       width: "40px",
                     }}
                   />
-                  <Link to={"#"} ><strong className="text-white" style={{fontSize:'20px'}}>Nova Jobs </strong></Link>{" "}
+                  <Link to={"#"}>
+                    <strong className="text-white" style={{ fontSize: "20px" }}>
+                      Nova Jobs{" "}
+                    </strong>
+                  </Link>{" "}
                 </span>
                 <span className="float-right">
-                <strong className="text-white" style={{ fontWeight:'bold'}}>Hyper V Solutions</strong>  | All Rights Reserved
+                  <strong className="text-white" style={{ fontWeight: "bold" }}>
+                    Hyper V Solutions
+                  </strong>{" "}
+                  | All Rights Reserved
                 </span>
               </div>
             </div>
           </div>
         </footer>
-
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

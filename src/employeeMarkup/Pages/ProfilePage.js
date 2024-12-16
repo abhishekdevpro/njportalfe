@@ -99,15 +99,14 @@ const ProfilePage = () => {
                             {userData.jobskkers_detail.first_name ||
                             userData.jobskkers_detail.proffesional_title ? (
                               <>
-                               {/* <p style={{ fontWeight:600,fontSize:"1rem" }}
+                                {/* <p style={{ fontWeight:600,fontSize:"1rem" }}
                                className="mb-0">
                               {userData.jobskkers_detail.first_name}{" "}
                               {userData.jobskkers_detail.last_name}
                             </p> */}
                                 <h4 className="mb-0">
-                                {userData.jobskkers_detail.proffesional_title}{" "}
-                              </h4>
-                             
+                                  {userData.jobskkers_detail.proffesional_title}{" "}
+                                </h4>
                               </>
                             ) : null}
 
@@ -355,7 +354,7 @@ const ProfilePage = () => {
                               key={index}
                               onClick={() =>
                                 navigate(
-                                  `/employee/profilepage/${item?.jobskkers_detail?.id}`
+                                  `/employer/profilepage/${item?.jobskkers_detail?.id}`
                                 )
                               }
                               style={{ cursor: "pointer" }}

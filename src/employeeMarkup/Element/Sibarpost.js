@@ -16,7 +16,7 @@ function Sibarpost() {
       {blogPost.map((item, index) => (
         <div className="blog-post blog-lg blog-style-1" key={index}>
           <div className="dez-post-media dez-img-effect zoom-slow radius-sm">
-            <Link to={"/employee/blog-details"}>
+            <Link to={"/employer/blog-details"}>
               <img src={item.image} alt="" />
             </Link>
           </div>
@@ -37,7 +37,7 @@ function Sibarpost() {
             </div>
             <div className="dez-post-title">
               <h4 className="post-title font-24">
-                <Link to={"/employee/blog-details"}>
+                <Link to={"/employer/blog-details"}>
                   Do you have a job that the average person doesn’t even know
                   exists?
                 </Link>
@@ -53,7 +53,7 @@ function Sibarpost() {
             </div>
             <div className="dez-post-readmore blog-share">
               <Link
-                to={"/employee/blog-details"}
+                to={"/employer/blog-details"}
                 title="READ MORE"
                 rel="bookmark"
                 className="site-button-link"

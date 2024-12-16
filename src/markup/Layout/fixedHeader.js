@@ -32,6 +32,7 @@ const FixedHeader = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [spinner, setSpinner] = useState(false);
   const [resumeId, setResumeId] = useState(0);
+  const [uploadedFileName, setUploadedFileName] = useState("");
 
   const profileImageValue = useSelector(
     (state) => state.jobProfileSlice.profileImageValue
@@ -58,7 +59,7 @@ const FixedHeader = () => {
 
   useEffect(() => {
     if (percentage !== null) {
-      localStorage.setItem('resumePercentage', JSON.stringify(percentage));
+      localStorage.setItem("resumePercentage", JSON.stringify(percentage));
     }
   }, [percentage]);
   useEffect(() => {
@@ -82,9 +83,12 @@ const FixedHeader = () => {
             phone: data.phone,
             photo: data.photo,
             n_profile_strength: data.n_profile_strength,
+            file_path: data.job_seeker_resumes.file_path,
           })
         );
         setResumeId(data.job_seeker_resumes?.id || 0);
+        setResumeUrl(data.job_seeker_resumes?.file_path || "");
+
         setShowSkeleton(false);
       })
       .catch((err) => {
@@ -92,13 +96,14 @@ const FixedHeader = () => {
         if (err.response?.status === 401) {
           // Navigate to the /pls route on 401 error
           navigate("/");
-          localStorage.removeItem("jobSeekerLoginToken")
+          localStorage.removeItem("jobSeekerLoginToken");
         } else {
           console.log(err.response?.data?.message);
           showToastError(err?.response?.data?.message);
         }
       });
   }, [jobProfileValues, token, navigate]);
+  const fileName = resumeUrl ? resumeUrl.split("/").pop() : "";
 
   // useEffect(() => {
   //   axios({
@@ -208,7 +213,14 @@ const FixedHeader = () => {
   console.log(fullImageUrl);
 
   function handleChange(event) {
-    setFile(event.target.files[0]);
+    const selectedFile = event.target.files && event.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setUploadedFileName(selectedFile.name);
+    } else {
+      // Optional: Handle cases where no file is selected
+      setUploadedFileName("");
+    }
   }
 
   function handleSubmit(event) {
@@ -221,17 +233,25 @@ const FixedHeader = () => {
     }
 
     axios
-      .post("https://api.novajobs.us/api/jobseeker/resume-upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: token,
-        },
-      })
+      .post(
+        // "https://api.novajobs.us/api/jobseeker/resume-upload",
+        "https://api.novajobs.us/api/user/resume-upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: token,
+          },
+        }
+      )
+
       .then((res) => {
         setSpinner(false);
         setResumeUrl(res.data.data[0].file_path);
         setAiBtn(false);
         console.log(resumeUrl, res, res.data.data[0].file_path);
+
+        // setFile(res.data.data.file_path.split("/").pop());
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -246,7 +266,7 @@ const FixedHeader = () => {
     if (resumeUrl) {
       axios({
         method: "post",
-        url: "https://api.novajobs.us/api/jobseeker/file-based-ai",
+        url: "https://api.novajobs.us/api/user/file-based-ai",
         data: {
           keyword: "Rate this resume content in percentage ?",
           file_location: resumeUrl,
@@ -286,10 +306,7 @@ const FixedHeader = () => {
                 <div className="canditate-des text-center">
                   <Link to={"#"}>
                     {fixedHeaderValues.photo ? (
-                      <img
-                        src={fullImageUrl}
-                        style={{ height: "100px" }}
-                      />
+                      <img src={fullImageUrl} style={{ height: "100px" }} />
                     ) : (
                       <img
                         alt=""
@@ -334,7 +351,9 @@ const FixedHeader = () => {
                         <i className="ti-location-pin"></i>
                         {getSingleCountry(fixedHeaderValues.country_id)}{" "}
                         {fixedHeaderValues.state_id ? (
-                          <>{`, ${getSingleState(fixedHeaderValues.state_id)}`}</>
+                          <>{`, ${getSingleState(
+                            fixedHeaderValues.state_id
+                          )}`}</>
                         ) : (
                           ""
                         )}
@@ -363,123 +382,64 @@ const FixedHeader = () => {
           </div>
 
           <div className="ms-5 float-end">
-            {resumeId === 0 ? (
+            <div>
               <div>
-                <div className="d-flex ml-5 pl-5">
-                  <div
-                    style={{
-                      borderRight: "1px solid white",
-                      marginRight: "8px",
-                      height: "180px",
-                    }}
-                  ></div>
+                {resumeUrl && (
                   <div>
-                    {AiBtn ? (
-                      <form onSubmit={handleSubmit}>
-                        <div><div className="text-white">
-                 
-                  Please upload resume upto 2mb
-                </div>
-                          <div className="form-group">
-                            <input
-                              type="file"
-                              onChange={handleChange}
-                              className="form-control"
-                              accept=".pdf"
-                            />
-                          </div>
-                          <p>{percentage}</p>
-                        </div>
-                        {spinner ? (
-                          <MutatingDots
-                            visible={true}
-                            height="100"
-                            width="100"
-                            color="#1c2957"
-                            secondaryColor="#1c2957"
-                            radius="12.5"
-                            ariaLabel="mutating-dots-loading"
-                            wrapperStyle={{}}
-                            wrapperClass=""
-                          />
-                        ) : (
-                          <button
-                            type="submit"
-                            className="site-button dz-xs-flex m-r5"
-                          >
-                            Upload Resume
-                          </button>
-                        )}
-                      </form>
-                    ) : (
-                      <div>
-                        <div>
-                          <video
-                            width="200px"
-                            loop={showVideo}
-                            autoPlay={showVideo}
-                          >
-                            <source src={processVid} type="video/mp4" />
-                          </video>
-                        </div>
-                        {showPercentage && (
-                          <div>
-                            <p className="text-white">{percentage}</p>
-                            <button
-                              className="site-button dz-xs-flex m-r5"
-                              onClick={(e) => {
-                                navigate("/");
-                              }}
-                            >
-                              Go To Home
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-                {console.log(percentage)}
-              </div>
-            ) : (
-              <div>
-                <div className="text-white">
-                  {/*<video
-                    width="200px"
-                    loop={showVideo}
-                    autoPlay={showVideo}
-                  >
-                    <source src={processVid} type="video/mp4" />
-                  </video> */}
-                  Your Resume is uploaded
-                </div>
-                {showPercentage ? (
-                  <div>
-                    <p className="text-white">{percentage}</p>
-                    <button
-                      className="site-button dz-xs-flex m-r5"
-                      onClick={(e) => {
-                        navigate("/");
-                      }}
-                    >
-                      Go To Home
-                    </button>
-                  </div>
-                ) : (
-                  <div>
-                    <p className="text-white">{percentage}</p>
-                    <button
-                      className="site-button dz-xs-flex m-r5"
-                      onClick={(e) => {
-                        navigate("/");
-                      }}
-                    >
-                      Go To Home
-                    </button>
+                    <div className="text-white">Your Resume is uploaded</div>
+                    <div>
+                      <span className="ml-2 truncate max-w-xs text-white">
+                        {fileName}
+                      </span>
+                    </div>
                   </div>
                 )}
+                <form onSubmit={handleSubmit}>
+                  <div>
+                    <div className="text-white">
+                      Please upload a new resume up to 2MB
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="file"
+                        onChange={handleChange}
+                        className="form-control"
+                        accept=".pdf"
+                      />
+                    </div>
+                    {resumeId > 0 && <p className="text-white">{percentage}</p>}
+                  </div>
+                  {spinner ? (
+                    <MutatingDots
+                      visible={true}
+                      height="100"
+                      width="100"
+                      color="#1c2957"
+                      secondaryColor="#1c2957"
+                      radius="12.5"
+                      ariaLabel="mutating-dots-loading"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                    />
+                  ) : (
+                    <button
+                      type="submit"
+                      className="site-button dz-xs-flex m-r5"
+                    >
+                      Upload Resume
+                    </button>
+                  )}
+                </form>
               </div>
-            )}
+              <button
+                className="site-button dz-xs-flex m-r5 mt-2"
+                onClick={(e) => {
+                  navigate("/");
+                }}
+              >
+                Go To Home
+              </button>
+            </div>
           </div>
         </div>
       </div>
