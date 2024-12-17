@@ -40,7 +40,7 @@ function Homepage() {
     window.location.href=(`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`)
   }
   else{
-    window.location.href=(`http://localhost:3000/user/login`)
+    window.location.href = "/user/login";
   }
  }
   return (
