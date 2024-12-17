@@ -268,6 +268,7 @@ const notify = (data) => toast.warning(data);
                 className="login-form style-2"
                 style={{ display: "flex", flexDirection: "column" }}
               >
+
                 <div className="logo-header text-center p-tb30">
                   {/* <Link to={"./"}><img src={require("./../../images/logo.png")} alt="" /></Link> */}
                   <Link to={"./"}>
@@ -281,6 +282,7 @@ const notify = (data) => toast.warning(data);
                 <div className="d-flex justify-content-center align-items-center">
                   <h2 className="text-center">Employer Signup</h2>
                 </div>
+
                 <div className="tab-content nav p-b30 tab">
                   <div id="login" className="tab-pane active ">
                     {props.errorMessage && (

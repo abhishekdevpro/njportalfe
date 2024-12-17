@@ -271,16 +271,19 @@ useEffect(() => {
                 className="login-form style-2"
                 style={{ display: "flex", flexDirection: "column" }}
               >
-                <div className="logo-header text-center p-tb30">
+                <div style={{display:"flex"}}>
+                   <div className="logo-header text-center p-tb30">
                   {/* <Link to={"./"}><img src={require("./../../images/logo.png")} alt="" /></Link> */}
-                  <Link to={"./"}>
+                  <Link to={"/"}>
                     <img
                       src={require("./../../images/logo/NovaUS.png")}
                       className="logo"
                       alt=""
-                    />
+                      />
                   </Link>
                 </div>
+                <h1 style={{marginLeft:20,padding:10,fontSize:"50px"}}>JobSeeker SignUp</h1>
+                      </div>
 
                 <div className="tab-content nav p-b30 tab">
                   <div id="login" className="tab-pane active ">

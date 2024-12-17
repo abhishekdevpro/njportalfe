@@ -259,8 +259,9 @@ function EmployeeLogin(props) {
                   </div>
                   <div className="nav">
                     <form className="col-12 p-a0 ">
+                      <div style={{fontSize:"25px",marginBottom:"5px",fontWeight:700}}>Employee Login</div>
                       <p className="font-weight-600">
-                        If you have an account with us, please log in.
+                        If you have an account with us, please log innnn.
                       </p>
                       {props.errorMessage && (
                         <div className="bg-red-300 text-red-900 border border-red-900 p-1 my-2">

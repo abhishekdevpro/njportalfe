@@ -168,9 +168,9 @@ if(!token){
               color: "#09213c",
             }}
           >
-            Why You Choose us Among
+            Why choose us,
             <br />
-            other Job Sites.
+            among other Job sites.
           </h2>
 
           <div className="two-box-container">
@@ -193,9 +193,9 @@ if(!token){
                 <FaRegFileAlt />
               </div>
               <Link to={"/novajobs#tab1"}>
-                <h3>Check Resume Score</h3>
+                <h3>Build AI Resume</h3>
                 <p className="text-primary">
-                  Our AI Gives Immediate Score On Your Resume.
+                Make your AI Resume or get it done from our Experts.
                 </p>
               </Link>
             </div>
@@ -219,9 +219,11 @@ if(!token){
                 <FaRegFilePdf />
               </div>
               <Link to={"https://airesume.novajobs.us/form"}>
-                <h3>Build Your Public Profile</h3>
+                <h3><b>
+                  Give skill test
+                  </b></h3>
                 <p className="text-primary">
-                  Add Your Details To Reach leading Companies.
+                Our AI Skill test can be taken just by uploading resume.
                 </p>
               </Link>
             </div>
@@ -245,9 +247,9 @@ if(!token){
                 <FaRegUser />
               </div>
               <Link to={"/novajobs#tab3"}>
-                <h3>AI Skill Testing Tool</h3>
+                <h3><b>Enhance Skills</b></h3>
                 <p className="text-primary">
-                  AI Skill Testing Tool & Earn Rewards.
+                Enhance skills with our Edtech platform.
                 </p>{" "}
               </Link>
             </div>

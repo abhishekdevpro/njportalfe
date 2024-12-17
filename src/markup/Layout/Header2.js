@@ -142,8 +142,11 @@ class UserHeader2 extends Component {
                       className="">
                       <Link to={"/user/job/1"}>Job Page</Link>
                     </li>
-                    
+                   
+
+                    {localStorage.getItem('jobSeekerLoginToken') ? (
                     <li>
+                      
                       <Link to={`/user/jobs-profile`}>
                         Dashboard
                       </Link>
@@ -480,7 +483,7 @@ class UserHeader2 extends Component {
                       </ul>
                     </li> 
                       </ul>*/}
-                    </li>
+                    </li> ) : ("")}
                   </ul>
                 </div>
               </div>
