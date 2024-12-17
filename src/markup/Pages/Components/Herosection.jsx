@@ -327,7 +327,7 @@ const CareerAdvisorPage = () => {
   const [selectedOption, setSelectedOption] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  const options = ["Jobseeker", "Employer", "Partner"];
+  const options = ["A Jobseeker", "An Employer", "A Partner"];
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
@@ -340,11 +340,11 @@ const CareerAdvisorPage = () => {
 
   const renderForm = () => {
     switch (selectedOption) {
-      case "Jobseeker":
+      case "A Jobseeker":
         return <JobseekerForm />;
-      case "Employer":
+      case "An Employer":
         return <EmployeeForm />;
-      case "Partner":
+      case "A Partner":
         return <PartnerForm />;
       default:
         return null;

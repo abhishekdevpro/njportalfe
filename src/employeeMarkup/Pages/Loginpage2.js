@@ -259,7 +259,6 @@ function EmployeeLogin(props) {
                   </div>
                   <div className="nav">
                     <form className="col-12 p-a0 ">
-                      <div style={{fontSize:"25px",marginBottom:"5px",fontWeight:700}}>Employee Login</div>
                       <p className="font-weight-600">
                         If you have an account with us, please log innnn.
                       </p>
