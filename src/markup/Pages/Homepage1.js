@@ -108,7 +108,7 @@ function Homepage() {
                         fontSize: "14px",
                       }}
                     >
-                     Search Jobs with advanced filters and the power of AI
+                      Search Jobs with advanced filters and the power of AI
                     </p>
                     <Link to={"/user/job/2"} style={{ color: "white" }}>
                       <button
@@ -163,11 +163,14 @@ function Homepage() {
                       List your company, post jobs, search talent with advanced
                       filters and power of AI{" "}
                     </p>
-                    <Link 
-                    // to={"/employee/register-2"} 
-                    style={{ color: "white" }}>
-                      <button type="button" class="btn btn-danger hoverlogo-3d"
-                      onClick={handleScroll}
+                    <Link
+                      // to={"/employee/register-2"}
+                      style={{ color: "white" }}
+                    >
+                      <button
+                        type="button"
+                        class="btn btn-danger hoverlogo-3d"
+                        onClick={handleScroll}
                       >
                         Search Talent
                       </button>
@@ -215,15 +218,17 @@ function Homepage() {
               <div className="card-icon">
                 <FaRegFileAlt />
               </div>
-              <Link 
+              <Link
               // to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
               >
-                <h3 onClick={handleBuilder}><b>
-                  Build AI Resume
-                  </b>
-                  </h3>
+                <h3
+                  onClick={handleBuilder}
+                  className="d-flex justify-content-center"
+                >
+                  <b>Build AI Resume</b>
+                </h3>
                 <p className="text-primary">
-                Make your AI Resume or get it done from our Experts.
+                  Make your AI Resume or get it done from our Experts.
                 </p>
               </Link>
             </div>
@@ -247,12 +252,11 @@ function Homepage() {
                 <FaRegFilePdf />
               </div>
               <Link to={"https://novajobs.us/novajobs#tab3"}>
-                <h3><b>
-                  Give skill test
-                  </b>
-                  </h3>
+                <h3 className="d-flex justify-content-center">
+                  <b>Give skill test</b>
+                </h3>
                 <p className="text-primary">
-                Our AI Skill test can be taken just by uploading resume.
+                  Our AI Skill test can be taken just by uploading resume.
                 </p>
               </Link>
             </div>
@@ -276,10 +280,11 @@ function Homepage() {
                 <FaRegUser />
               </div>
               <Link to={"https://ultraaura.education/"}>
-                <h3>
-                  <b>Enhance Skills</b></h3>
+                <h3 className="d-flex justify-content-center">
+                  <b>Enhance Skills</b>
+                </h3>
                 <p className="text-primary">
-                Enhance skills with our Edtech platform.
+                  Enhance skills with our Edtech platform.
                 </p>{" "}
               </Link>
             </div>

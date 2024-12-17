@@ -193,9 +193,11 @@ if(!token){
                 <FaRegFileAlt />
               </div>
               <Link to={"/novajobs#tab1"}>
-                <h3>Build AI Resume</h3>
+                <h3 className="d-flex justify-content-center">
+                  Build AI Resume
+                </h3>
                 <p className="text-primary">
-                Make your AI Resume or get it done from our Experts.
+                  Make your AI Resume or get it done from our Experts.
                 </p>
               </Link>
             </div>
@@ -219,11 +221,11 @@ if(!token){
                 <FaRegFilePdf />
               </div>
               <Link to={"https://airesume.novajobs.us/form"}>
-                <h3><b>
-                  Give skill test
-                  </b></h3>
+                <h3 className="d-flex justify-content-center">
+                  <b>Give skill test</b>
+                </h3>
                 <p className="text-primary">
-                Our AI Skill test can be taken just by uploading resume.
+                  Our AI Skill test can be taken just by uploading resume.
                 </p>
               </Link>
             </div>
@@ -247,9 +249,11 @@ if(!token){
                 <FaRegUser />
               </div>
               <Link to={"/novajobs#tab3"}>
-                <h3><b>Enhance Skills</b></h3>
+                <h3 className="d-flex justify-content-center">
+                  <b>Enhance Skills</b>
+                </h3>
                 <p className="text-primary">
-                Enhance skills with our Edtech platform.
+                  Enhance skills with our Edtech platform.
                 </p>{" "}
               </Link>
             </div>
