@@ -75,6 +75,7 @@ const ChatWrapper = styled.div`
   }
 `;
 const jobseekerToken = localStorage.getItem("jobSeekerLoginToken")
+console.log(jobseekerToken);
 function Messages() {
   return (
     <>

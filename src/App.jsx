@@ -188,6 +188,7 @@ import Jobadd from "./adminPanel/Jobadd";
 import Community from "./markup/Element/community/index";
 import JobPage2 from "./markup/Element/Jobsection/JobPage";
 import NotificationPage from "./markup/Element/notifications-history";
+import SkillTestHistory from "./markup/Element/skill-test-history";
 
 function App() {
   const dispatch = useDispatch();
@@ -500,6 +501,14 @@ function App() {
           element={
             <UserPrivateRoute>
               <SkillTest />
+            </UserPrivateRoute>
+          }
+        />
+        <Route
+          path="skill-test-history"
+          element={
+            <UserPrivateRoute>
+              <SkillTestHistory />
             </UserPrivateRoute>
           }
         />

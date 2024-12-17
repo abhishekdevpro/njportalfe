@@ -102,7 +102,7 @@ function Profilesidebar({ data }) {
               </li>
               <li>
                 <Link
-                  to={""}
+                  to={"/user/skill-test-history"}
                   className={data === "skill-test-history" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
