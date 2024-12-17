@@ -49,7 +49,7 @@ const CompanySideBar = ({ active }) => {
           })
         );
         // dispatch(setSkillsData(res.data.data.skills_arr))
-        navigate(`/employee/company-post-jobs/${res.data.data.id}`);
+        navigate(`/employer/company-post-jobs/${res.data.data.id}`);
       })
       .catch((err) => {
         console.log(err, "joy");
@@ -187,7 +187,7 @@ const CompanySideBar = ({ active }) => {
               <ul>
                 <li>
                   <Link
-                    to={"/employee/company-profile"}
+                    to={"/employer/company-profile"}
                     className={active === "company" ? "active" : null}
                   >
                     <i className="fa fa-user-o" aria-hidden="true"></i>
@@ -198,7 +198,7 @@ const CompanySideBar = ({ active }) => {
                   <Link
                     className={active === "postJob" ? "active" : null}
                     onClick={postJob}
-                    //   to={"/employee/company-post-jobs"}
+                    //   to={"/employer/company-post-jobs"}
                   >
                     <i className="fa fa-file-text-o" aria-hidden="true"></i>
                     <span>Post A Job</span>
@@ -206,23 +206,19 @@ const CompanySideBar = ({ active }) => {
                 </li>
                 <li>
                   <Link
-
-                    to={"/employee/company-manage-job/jobs"}
+                    to={"/employer/company-manage-job/jobs"}
                     className={
                       active === "company-manage-job" ? "active" : null
                     }
                   >
                     <i className="fa fa-briefcase" aria-hidden="true"></i>
                     <span>Manage jobs</span>
-
                   </Link>
                 </li>
                 <li>
                   <Link
-
                     className={active === "transactions" ? "active" : null}
-
-                    to={"/employee/community"}
+                    to={"/employer/community"}
                   >
                     <FaUser />
                     <span>Community</span>
@@ -230,10 +226,8 @@ const CompanySideBar = ({ active }) => {
                 </li>
                 <li>
                   <Link
-
                     className={active === "transactions" ? "active" : null}
-
-                    to={"/employee/messages"}
+                    to={"/employer/messages"}
                   >
                     <FaComment />
                     <span>Messages</span>
@@ -241,10 +235,8 @@ const CompanySideBar = ({ active }) => {
                 </li>
                 <li>
                   <Link
-
                     className={active === "transactions" ? "active" : null}
-
-                    to={"/employee/jobs-alerts"}
+                    to={"/employer/jobs-alerts"}
                   >
                     <FaBell />
                     <span>Notifications</span>
@@ -253,8 +245,7 @@ const CompanySideBar = ({ active }) => {
 
                 <li>
                   <Link
-
-                    to={"/employee/browse-candidates"}
+                    to={"/employer/browse-candidates"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={active === "active"}
@@ -266,7 +257,7 @@ const CompanySideBar = ({ active }) => {
                 <li>
                   <Link
                     className={active === "transactions" ? "active" : null}
-                    to={"/employee/company-transactions"}
+                    to={"/employer/company-transactions"}
                   >
                     <i className="fa fa-random" aria-hidden="true"></i>
                     <span>Wallet</span>
@@ -275,7 +266,7 @@ const CompanySideBar = ({ active }) => {
 
                 {/* <li>
               <Link
-                to={"/employee/company-resume"}
+                to={"/employer/company-resume"}
                 className={active === "company-resume" ? "active" : null}
               >
                 <i className="fa fa-id-card-o" aria-hidden="true"></i>
@@ -285,7 +276,7 @@ const CompanySideBar = ({ active }) => {
 
                 <li>
                   <Link
-                    to={"/employee/jobs-change-password"}
+                    to={"/employer/jobs-change-password"}
                     className={
                       active === "jobs-change-password" ? "active" : null
                     }

@@ -22,21 +22,21 @@ function EmployeeCategoryskilljobs() {
                 <div className="nav">
                   <ul>
                     <li>
-                      <Link to={"/employee/category-all-jobs"}>All Jobs</Link>
+                      <Link to={"/employer/category-all-jobs"}>All Jobs</Link>
                     </li>
 
                     <li>
-                      <Link to={"/employee/category-jobs"}>
+                      <Link to={"/employer/category-jobs"}>
                         Jobs by Category
                       </Link>
                     </li>
                     <li>
-                      <Link to={"/employee/category-location-jobs"}>
+                      <Link to={"/employer/category-location-jobs"}>
                         Jobs by Location
                       </Link>
                     </li>
                     <li>
-                      <Link to={"/employee/category-designations-jobs"}>
+                      <Link to={"/employer/category-designations-jobs"}>
                         Jobs by Designation
                       </Link>
                     </li>

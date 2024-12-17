@@ -30,7 +30,7 @@ const LandingPage = () => {
     window.location.href = '/';
   };
   const handleShow2 = () => {
-    window.location.href = '/employee/login';
+    window.location.href = "/employer/login";
   };
   const handleShow3 = () => {
     window.location.href = 'user/login';

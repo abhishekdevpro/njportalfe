@@ -140,7 +140,7 @@ if(!token){
                       filters and power of AI{" "}
                     </p>
                     <Link
-                      to={"/employee/register-2"}
+                      to={"/employer/register-2"}
                       style={{ color: "white" }}
                     >
                       <button type="button" class="btn btn-danger hoverlogo-3d">

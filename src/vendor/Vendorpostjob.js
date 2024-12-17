@@ -808,7 +808,7 @@ function VendorComponypostjobs() {
                         </p>
                         <p className="text-center ">
                           Limits may apply to free job posts.
-                          <Link to="/employee/privacy-rights">
+                          <Link to="/employer/privacy-rights">
                             <span
                               style={{ color: "#0a66c2", fontWeight: "600" }}
                             >

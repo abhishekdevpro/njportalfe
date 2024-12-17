@@ -18,15 +18,15 @@ function VerifyEmailemployee() {
         console.log(response)
         if (response.data) { 
           showToastSuccess("Email verified successfully");
-          navigate("/employee");
+          navigate("/employer");
         } else {
           showToastError("Email verification failed");
-          navigate("/employee/login");
+          navigate("/employer/login");
         }
       } catch (error) {
         console.error("Verification Error:", error);
         showToastError("Invalid Email");
-        navigate("/employee/register-2");
+        navigate("/employer/register-2");
       }
     };
 

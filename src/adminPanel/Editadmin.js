@@ -190,13 +190,11 @@ function Editadmin() {
 
   return (
     <>
-     
       <div className="page-content bg-white">
         <div className="content-block">
           <div className="section-full bg-white p-t50 p-b20">
             <div className="container">
               <div className="d-flex">
-               
                 <div className="col-xl-9 col-lg-9 m-b30">
                   <div className="job-bx submit-resume">
                     <div className="job-bx-title clearfix">
@@ -204,16 +202,18 @@ function Editadmin() {
                         Company Profile
                       </h5>
                       {/*<Link
-                        to={"/employee/company-profile"}
+                        to={"/employer/company-profile"}
                         className="site-button right-arrow button-sm float-right"
                       >
                         Back
                       </Link> */}
                     </div>
-                    <form onSubmit={(e) => {
-                      e.preventDefault();
-                      updateCompanyData();
-                    }}>
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        updateCompanyData();
+                      }}
+                    >
                       <div className="row m-b30">
                         <div className="col-lg-6 col-md-6">
                           <div className="form-group">
@@ -287,17 +287,14 @@ function Editadmin() {
                             <Form.Control
                               as="select"
                               custom
-                                                            className="custom-select"
+                              className="custom-select"
                               onChange={(e) => setIndustry(e.target.value)}
                               value={industry}
                               required
                             >
                               <option value="">Select Industry</option>
                               {industries.map((industry) => (
-                                <option
-                                  key={industry.id}
-                                  value={industry.id}
-                                >
+                                <option key={industry.id} value={industry.id}>
                                   {industry.name}
                                 </option>
                               ))}
@@ -344,10 +341,7 @@ function Editadmin() {
                             >
                               <option value="">Select Country</option>
                               {countries.map((country) => (
-                                <option
-                                  key={country.id}
-                                  value={country.id}
-                                >
+                                <option key={country.id} value={country.id}>
                                   {country.name}
                                 </option>
                               ))}
@@ -368,10 +362,7 @@ function Editadmin() {
                             >
                               <option value="">Select State</option>
                               {states.map((state) => (
-                                <option
-                                  key={state.id}
-                                  value={state.id}
-                                >
+                                <option key={state.id} value={state.id}>
                                   {state.name}
                                 </option>
                               ))}
@@ -392,10 +383,7 @@ function Editadmin() {
                             >
                               <option value="">Select City</option>
                               {cities.map((city) => (
-                                <option
-                                  key={city.id}
-                                  value={city.id}
-                                >
+                                <option key={city.id} value={city.id}>
                                   {city.name}
                                 </option>
                               ))}
@@ -415,7 +403,7 @@ function Editadmin() {
                             />
                           </div>
                         </div>
-                        
+
                         <div className="col-lg-6 col-md-6">
                           <div className="form-group">
                             <label>LinkedIn Link</label>
@@ -466,7 +454,7 @@ function Editadmin() {
                             />
                           </div>
                         </div>
-                       
+
                         <div className="col-lg-12 col-md-12">
                           <div className="clearfix font-bold">
                             <button
@@ -486,7 +474,7 @@ function Editadmin() {
           </div>
         </div>
       </div>
-    
+
       <ToastContainer />
     </>
   );

@@ -480,7 +480,7 @@ function EmployeeComponypostjobs() {
                         Post A Job
                       </h5>
                       <Link
-                        to={"/employee/company-profile"}
+                        to={"/employer/company-profile"}
                         className="site-button right-arrow button-sm float-right"
                       >
                         Back
@@ -821,7 +821,7 @@ function EmployeeComponypostjobs() {
                         </p>
                         <p className="text-center ">
                           Limits may apply to free job posts.
-                          <Link to={"/employee/term-of-use-nova-jobs"}>
+                          <Link to={"/employer/term-of-use-nova-jobs"}>
                             <span
                               style={{ color: "#0a66c2", fontWeight: "600" }}
                             >

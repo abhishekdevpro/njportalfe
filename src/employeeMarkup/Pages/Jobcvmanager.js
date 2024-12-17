@@ -87,13 +87,13 @@ function EmployeeJobcvmanager() {
                       </div>
                       <ul>
                         <li>
-                          <Link to={"/employee/jobs-profile"}>
+                          <Link to={"/employer/jobs-profile"}>
                             <i className="fa fa-user-o" aria-hidden="true"></i>
                             <span>Profile</span>
                           </Link>
                         </li>
                         <li>
-                          <Link to={"/employee/jobs-my-resume"}>
+                          <Link to={"/employer/jobs-my-resume"}>
                             <i
                               className="fa fa-file-text-o"
                               aria-hidden="true"
@@ -102,13 +102,13 @@ function EmployeeJobcvmanager() {
                           </Link>
                         </li>
                         <li>
-                          <Link to={"/employee/jobs-saved-jobs"}>
+                          <Link to={"/employer/jobs-saved-jobs"}>
                             <i className="fa fa-heart-o" aria-hidden="true"></i>
                             <span>Saved Jobs</span>
                           </Link>
                         </li>
                         <li>
-                          <Link to={"/employee/jobs-applied-job"}>
+                          <Link to={"/employer/jobs-applied-job"}>
                             <i
                               className="fa fa-briefcase"
                               aria-hidden="true"
@@ -117,14 +117,14 @@ function EmployeeJobcvmanager() {
                           </Link>
                         </li>
                         <li>
-                          <Link to={"/employee/jobs-alerts"}>
+                          <Link to={"/employer/jobs-alerts"}>
                             <i className="fa fa-bell-o" aria-hidden="true"></i>
                             <span>Job Alerts</span>
                           </Link>
                         </li>
                         <li>
                           <Link
-                            to={"/employee/jobs-cv-manager"}
+                            to={"/employer/jobs-cv-manager"}
                             className="active"
                           >
                             <i
@@ -135,7 +135,7 @@ function EmployeeJobcvmanager() {
                           </Link>
                         </li>
                         <li>
-                          <Link to={"/employee/jobs-change-password"}>
+                          <Link to={"/employer/jobs-change-password"}>
                             <i className="fa fa-key" aria-hidden="true"></i>
                             <span>Change Password</span>
                           </Link>
@@ -157,7 +157,7 @@ function EmployeeJobcvmanager() {
                   <div className="job-bx browse-job clearfix">
                     <div className="job-bx-title clearfix">
                       <h5 className="font-weight-700 pull-left text-uppercase">
-                      Resume Manager
+                        Resume Manager
                       </h5>
                       <div className="float-right">
                         <span className="select-title">Sort by freshness</span>
@@ -200,7 +200,7 @@ function EmployeeJobcvmanager() {
                           </div>
                           <div className="job-links action-bx">
                             <Link
-                              to={"/employee/files/pdf-sample.pdf"}
+                              to={"/employer/files/pdf-sample.pdf"}
                               target="blank"
                             >
                               <i className="fa fa-download"></i>

@@ -30,14 +30,20 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    if (location.pathname.startsWith('/admin/vendor')) setShowTeamSubmenu5(true);
-    if (location.pathname.startsWith('/admin/team')) setShowTeamSubmenu(true);
-    if (location.pathname.startsWith('/admin/jobs')) setShowTeamSubmenu3(true);
-    if (location.pathname.startsWith('/admin/notifications')) setShowTeamSubmenu4(true);
-    if (location.pathname.startsWith('/admin/jobseekers')) setShowTeamSubmenu1(true);
-    if (location.pathname.startsWith('/admin/employee')) setShowTeamSubmenu2(true);
-    if (location.pathname.startsWith('/admin/wallet')) setShowTeamSubmenu6(true);
-    if (location.pathname.startsWith('/admin/CompanyNameAdmin')) setShowTeamSubmenu6(true);
+    if (location.pathname.startsWith("/admin/vendor"))
+      setShowTeamSubmenu5(true);
+    if (location.pathname.startsWith("/admin/team")) setShowTeamSubmenu(true);
+    if (location.pathname.startsWith("/admin/jobs")) setShowTeamSubmenu3(true);
+    if (location.pathname.startsWith("/admin/notifications"))
+      setShowTeamSubmenu4(true);
+    if (location.pathname.startsWith("/admin/jobseekers"))
+      setShowTeamSubmenu1(true);
+    if (location.pathname.startsWith("/admin/employer"))
+      setShowTeamSubmenu2(true);
+    if (location.pathname.startsWith("/admin/wallet"))
+      setShowTeamSubmenu6(true);
+    if (location.pathname.startsWith("/admin/CompanyNameAdmin"))
+      setShowTeamSubmenu6(true);
   }, [location.pathname]);
 
   const handleTeamClick = () => {
@@ -67,57 +73,83 @@ const Sidebar = () => {
 
   return (
     <Nav className="flex-column bg-light h-screen gap-3 h-full">
-      <Nav.Link as={NavLink} to="/admin/dashboard" style={navLinkStyle("/admin/dashboard")} className='ps-4'>
+      <Nav.Link
+        as={NavLink}
+        to="/admin/dashboard"
+        style={navLinkStyle("/admin/dashboard")}
+        className="ps-4"
+      >
         <FaTachometerAlt style={iconStyle} /> Dashboard
       </Nav.Link>
-      
+
       <div>
         <Nav.Link
           onClick={handleTeamClick5}
-          as={NavLink} to="/admin/vendor"
+          as={NavLink}
+          to="/admin/vendor"
           style={navLinkStyle("/admin/vendor")}
-          className='ps-4'
+          className="ps-4"
         >
           <FaStore style={iconStyle} /> Vendor
         </Nav.Link>
         {showTeamSubmenu5 && (
           <>
-            <Nav.Link as={NavLink} to="/admin/listvendor" style={navLinkStyle("/admin/listvendor")} className='ps-5'>
+            <Nav.Link
+              as={NavLink}
+              to="/admin/listvendor"
+              style={navLinkStyle("/admin/listvendor")}
+              className="ps-5"
+            >
               <FaStore style={iconStyle} /> List Vendor
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/admin/addvendor" style={navLinkStyle("/admin/addvendor")} className='ps-5'>
+            <Nav.Link
+              as={NavLink}
+              to="/admin/addvendor"
+              style={navLinkStyle("/admin/addvendor")}
+              className="ps-5"
+            >
               <FaUsers style={iconStyle} /> Add Vendor
             </Nav.Link>
           </>
         )}
       </div>
 
-      
       <div>
         <Nav.Link
           onClick={handleTeamClick3}
-          as={NavLink} to="/admin/jobs"
+          as={NavLink}
+          to="/admin/jobs"
           style={navLinkStyle("/admin/jobs")}
-          className='ps-4'
+          className="ps-4"
         >
           <FaBriefcase style={iconStyle} /> Jobs
         </Nav.Link>
         {showTeamSubmenu3 && (
           <>
-            <Nav.Link as={NavLink} to="/admin/listalljobs" style={navLinkStyle("/admin/listalljobs")} className='ps-5'>
+            <Nav.Link
+              as={NavLink}
+              to="/admin/listalljobs"
+              style={navLinkStyle("/admin/listalljobs")}
+              className="ps-5"
+            >
               <FaUsers style={iconStyle} /> List All
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/admin/addjobs" style={navLinkStyle("/admin/addjobs")} className='ps-5'>
+            <Nav.Link
+              as={NavLink}
+              to="/admin/addjobs"
+              style={navLinkStyle("/admin/addjobs")}
+              className="ps-5"
+            >
               <FaBriefcase style={iconStyle} /> Add Jobs
             </Nav.Link>
-           {/* <Nav.Link as={NavLink} to="/admin/bulkUploadjobs" style={navLinkStyle("/admin/bulkUploadjobs")} className='ps-5'>
+            {/* <Nav.Link as={NavLink} to="/admin/bulkUploadjobs" style={navLinkStyle("/admin/bulkUploadjobs")} className='ps-5'>
               <FaUsers style={iconStyle} /> Bulk Upload
             </Nav.Link> */}
           </>
         )}
       </div>
 
-     {/* <div>
+      {/* <div>
         <Nav.Link
           onClick={handleTeamClick4}
           as={NavLink} to="/admin/notifications"
@@ -134,25 +166,36 @@ const Sidebar = () => {
           </>
         )}
       </div> */}
-      
+
       <div>
         <Nav.Link
           onClick={handleTeamClick1}
-          as={NavLink} to="/admin/jobseekers"
+          as={NavLink}
+          to="/admin/jobseekers"
           style={navLinkStyle("/admin/jobseekers")}
-          className='ps-4'
+          className="ps-4"
         >
           <FaUserGraduate style={iconStyle} /> JobSeekers
         </Nav.Link>
         {showTeamSubmenu1 && (
           <>
-            <Nav.Link as={NavLink} to="/admin/listalljobseeker" style={navLinkStyle("/admin/listalljobseeker")} className='ps-5'>
+            <Nav.Link
+              as={NavLink}
+              to="/admin/listalljobseeker"
+              style={navLinkStyle("/admin/listalljobseeker")}
+              className="ps-5"
+            >
               <FaUsers style={iconStyle} /> List All
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/admin/Addjobseeker" style={navLinkStyle("/admin/Addjobseeker")} className='ps-5'>
+            <Nav.Link
+              as={NavLink}
+              to="/admin/Addjobseeker"
+              style={navLinkStyle("/admin/Addjobseeker")}
+              className="ps-5"
+            >
               <FaUserGraduate style={iconStyle} /> Add Job Seeker
             </Nav.Link>
-           {/*  <Nav.Link as={NavLink} to="/admin/bulkUpload" style={navLinkStyle("/admin/bulkUpload")} className='ps-5'>
+            {/*  <Nav.Link as={NavLink} to="/admin/bulkUpload" style={navLinkStyle("/admin/bulkUpload")} className='ps-5'>
               <FaUsers style={iconStyle} /> Bulk Upload
             </Nav.Link> */}
           </>
@@ -162,18 +205,29 @@ const Sidebar = () => {
       <div>
         <Nav.Link
           onClick={handleTeamClick2}
-          as={NavLink} to="/admin/employee"
-          style={navLinkStyle("/admin/employee")}
-          className='ps-4'
+          as={NavLink}
+          to="/admin/employer"
+          style={navLinkStyle("/admin/employer")}
+          className="ps-4"
         >
           <FaUserTie style={iconStyle} /> Employer
         </Nav.Link>
         {showTeamSubmenu2 && (
           <>
-            <Nav.Link as={NavLink} to="/admin/employeelist" style={navLinkStyle("/admin/employeelist")} className='ps-5'>
+            <Nav.Link
+              as={NavLink}
+              to="/admin/employeelist"
+              style={navLinkStyle("/admin/employeelist")}
+              className="ps-5"
+            >
               <FaUsers style={iconStyle} /> List All
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/admin/team/addemployers" style={navLinkStyle("/admin/team/addemployers")} className='ps-5'>
+            <Nav.Link
+              as={NavLink}
+              to="/admin/team/addemployers"
+              style={navLinkStyle("/admin/team/addemployers")}
+              className="ps-5"
+            >
               <FaUsers style={iconStyle} /> Add Employers
             </Nav.Link>
             {/*<Nav.Link as={NavLink} to="/admin/team/bulkUploademployers" style={navLinkStyle("/admin/team/bulkUploademployers")} className='ps-5'>
@@ -183,13 +237,7 @@ const Sidebar = () => {
         )}
       </div>
 
-     
-      
-     
-      
-    
-
-     {/*
+      {/*
      
        <div>
         <Nav.Link

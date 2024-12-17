@@ -59,27 +59,20 @@ function VendorChangepasswordpage() {
 
   return (
     <>
-    
       <ToastContainer />
       <div className="page-content bg-white">
-      <Navbar bg="white" variant="white" className='py-3 border-bottom'>
-      <Navbar.Brand as={Link} to="/">
-        <img
-          style={{ width: "110px" }}
-          src={require("../images/logo/NovaUS.png")}
-          className="logo"
-          alt="img"
-        />
-      </Navbar.Brand>
+        <Navbar bg="white" variant="white" className="py-3 border-bottom">
+          <Navbar.Brand as={Link} to="/">
+            <img
+              style={{ width: "110px" }}
+              src={require("../images/logo/NovaUS.png")}
+              className="logo"
+              alt="img"
+            />
+          </Navbar.Brand>
 
-
-        <Nav className="ml-auto align-items-center">
-         
-
-          
-        </Nav>
-    
-    </Navbar>
+          <Nav className="ml-auto align-items-center"></Nav>
+        </Navbar>
         <div className="content-block">
           <div className="section-full bg-white browse-job p-t50 p-b20">
             <div className="container">
@@ -92,7 +85,7 @@ function VendorChangepasswordpage() {
                         Change Password
                       </h5>
                       <Link
-                        to={"/employee/company-resume"}
+                        to={"/employer/company-resume"}
                         className="site-button right-arrow button-sm float-right"
                       >
                         Back
@@ -233,7 +226,7 @@ function VendorChangepasswordpage() {
           </div>
         </div>
       </div>
-     <Footer/>
+      <Footer />
     </>
   );
 }

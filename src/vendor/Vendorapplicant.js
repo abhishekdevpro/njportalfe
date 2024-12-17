@@ -189,26 +189,19 @@ function Vendorapplicant() {
 
   return (
     <>
-     
       <div className="page-content bg-white">
-      <Navbar bg="white" variant="white" className='py-3 border-bottom'>
-      <Navbar.Brand as={Link} to="/">
-        <img
-          style={{ width: "110px" }}
-          src={require("../images/logo/NovaUS.png")}
-          className="logo"
-          alt="img"
-        />
-      </Navbar.Brand>
+        <Navbar bg="white" variant="white" className="py-3 border-bottom">
+          <Navbar.Brand as={Link} to="/">
+            <img
+              style={{ width: "110px" }}
+              src={require("../images/logo/NovaUS.png")}
+              className="logo"
+              alt="img"
+            />
+          </Navbar.Brand>
 
-
-        <Nav className="ml-auto align-items-center">
-         
-
-          
-        </Nav>
-    
-    </Navbar>
+          <Nav className="ml-auto align-items-center"></Nav>
+        </Navbar>
         <div className="content-block">
           <div className="section-full bg-white p-t50 p-b20">
             <div className="container">
@@ -221,17 +214,15 @@ function Vendorapplicant() {
                         Applicants
                       </h5>
                       <Link
-                        to={"/employee/company-manage-job/jobs"}
+                        to={"/employer/company-manage-job/jobs"}
                         className="site-button right-arrow button-sm float-right"
                       >
                         Back
                       </Link>
                     </div>
-                   
 
                     <div className="d-flex justify-content-between my-3 ">
-                    <div className="filter-container">
-                       
+                      <div className="filter-container">
                         <div className="dropdown">
                           <button
                             className="btn btn-secondary dropdown-toggle"
@@ -239,12 +230,18 @@ function Vendorapplicant() {
                             id="skillsDropdownButton"
                             aria-haspopup="true"
                             aria-expanded={skillsDropdownOpen}
-                            onClick={() => setSkillsDropdownOpen(!skillsDropdownOpen)}
+                            onClick={() =>
+                              setSkillsDropdownOpen(!skillsDropdownOpen)
+                            }
                           >
-                            {selectedSkills.length ? selectedSkills.join(", ") : "Select Skills"}
+                            {selectedSkills.length
+                              ? selectedSkills.join(", ")
+                              : "Select Skills"}
                           </button>
                           <div
-                            className={`dropdown-menu ${skillsDropdownOpen ? "show" : ""}`}
+                            className={`dropdown-menu ${
+                              skillsDropdownOpen ? "show" : ""
+                            }`}
                             aria-labelledby="skillsDropdownButton"
                           >
                             {skills.map((skill, index) => (
@@ -257,7 +254,10 @@ function Vendorapplicant() {
                                   checked={selectedSkills.includes(skill)}
                                   onChange={handleSkillsChange}
                                 />
-                                <label className="form-check-label" htmlFor={`skill${index}`}>
+                                <label
+                                  className="form-check-label"
+                                  htmlFor={`skill${index}`}
+                                >
                                   {skill}
                                 </label>
                               </div>
@@ -266,25 +266,33 @@ function Vendorapplicant() {
                         </div>
                       </div>
                       <button
-                        className={`btn btn-primary ${view === "all" ? "active" : ""}`}
+                        className={`btn btn-primary ${
+                          view === "all" ? "active" : ""
+                        }`}
                         onClick={() => setView("all")}
                       >
                         All ({allCount})
                       </button>
                       <button
-                        className={`btn btn-success ${view === "shortlisted" ? "active" : ""}`}
+                        className={`btn btn-success ${
+                          view === "shortlisted" ? "active" : ""
+                        }`}
                         onClick={() => setView("shortlisted")}
                       >
                         Shortlisted ({shortlistedCount})
                       </button>
                       <button
-                        className={`btn btn-danger ${view === "rejected" ? "active" : ""}`}
+                        className={`btn btn-danger ${
+                          view === "rejected" ? "active" : ""
+                        }`}
                         onClick={() => setView("rejected")}
                       >
                         Rejected ({rejectedCount})
                       </button>
                       <button
-                        className={`btn btn-info ${view === "scheduled" ? "active" : ""}`}
+                        className={`btn btn-info ${
+                          view === "scheduled" ? "active" : ""
+                        }`}
                         onClick={() => setView("scheduled")}
                       >
                         Scheduled ({scheduledCount})
@@ -298,33 +306,55 @@ function Vendorapplicant() {
                           className="job-bx bg-light clearfix border rounded p-4 mb-3"
                         >
                           <div className="job-info">
-                           
-                            <p className="font-weight-700" style={{fontSize:'25px',fontWeight:"600"}}>{item.job_title}</p>
-                            <h5 >{item.first_name} {item.last_name}</h5>
+                            <p
+                              className="font-weight-700"
+                              style={{ fontSize: "25px", fontWeight: "600" }}
+                            >
+                              {item.job_title}
+                            </p>
+                            <h5>
+                              {item.first_name} {item.last_name}
+                            </h5>
                             <p>Skills: {item.skills}</p>
                             <p>
-                              Resume Link: <a href={item.resume_link} target="_blank" rel="noopener noreferrer">View Resume</a>
+                              Resume Link:{" "}
+                              <a
+                                href={item.resume_link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                View Resume
+                              </a>
                             </p>
-                            <p>Applied on: {new Date(item.created_at).toLocaleDateString()}</p>
+                            <p>
+                              Applied on:{" "}
+                              {new Date(item.created_at).toLocaleDateString()}
+                            </p>
                           </div>
                           <div className="job-actions mt-3">
                             <button
                               className="btn btn-success"
                               onClick={() => handleShortlist(item.id)}
                             >
-                              {shortlisted.includes(item.id) ? "Unshortlist" : "Shortlist"}
+                              {shortlisted.includes(item.id)
+                                ? "Unshortlist"
+                                : "Shortlist"}
                             </button>
                             <button
                               className="btn btn-danger ml-2"
                               onClick={() => handleReject(item.id)}
                             >
-                              {rejected.includes(item.id) ? "Unreject" : "Reject"}
+                              {rejected.includes(item.id)
+                                ? "Unreject"
+                                : "Reject"}
                             </button>
                             <button
                               className="btn btn-primary ml-2"
                               onClick={() => handleSchedule(item.id)}
                             >
-                              {scheduled.includes(item.id) ? "Unschedule" : "Schedule"}
+                              {scheduled.includes(item.id)
+                                ? "Unschedule"
+                                : "Schedule"}
                             </button>
                           </div>
                         </div>

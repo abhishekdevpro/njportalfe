@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SBELogo from "../../assests/SBE-Logo.png";
 import NewDBELogo from "../../assests/New-dbe-logo.png";
@@ -9,6 +9,7 @@ import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 function Footer() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [token, setToken] = useState(null);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -22,7 +23,13 @@ function Footer() {
       setEmailError("");
     }
   };
-
+  useEffect(() => {
+    const storedToken = localStorage.getItem("jobSeekerLoginToken");
+    if (storedToken) {
+      console.log("Stored token:", storedToken); // Log the stored token when component mounts
+      setToken(storedToken);
+    }
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -107,11 +114,28 @@ function Footer() {
                         <li>
                           <Link to={"/user/register-2"}>List profile</Link>
                         </li>
-                        <li>
-                          <Link to={"https://airesume.novajobs.us/form"}>
+                        {/* <li>
+                          <Link
+                            // to={"https://airesume.novajobs.us/form"}
+                            to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
+                          >
                             Build AI resume
                           </Link>
+                        </li> */}
+                        <li>
+                          {token ? (
+                            <a
+                              href={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Build AI resume
+                            </a>
+                          ) : (
+                            <Link to={"/user/login"}>Build AI resume</Link>
+                          )}
                         </li>
+
                         <li>
                           <Link to={"/user/skill-test"}>Skill Test</Link>
                         </li>
@@ -123,17 +147,17 @@ function Footer() {
                       <h5 className="mb-4 F-heading fw-bold">For Employers</h5>
                       <ul className="list-3 d-flex flex-column gap-2 text-break">
                         <li>
-                          <Link to={"/employee/company-profile"}>
+                          <Link to={"/employer/company-profile"}>
                             Post Jobs
                           </Link>
                         </li>
                         <li>
-                          <Link to={"/employee/browse-candidates"}>
+                          <Link to={"/employer/browse-candidates"}>
                             Browse Applicants
                           </Link>
                         </li>
                         <li>
-                          <Link to={"/employee/login"}>
+                          <Link to={"/employer/login"}>
                             Schedule Interviews
                           </Link>
                         </li>
@@ -165,7 +189,7 @@ function Footer() {
                           <Link to={"/services"}>Services</Link>
                         </li>
                         <li>
-                          <Link to={"/employee/term-of-use-nova-jobs"}>
+                          <Link to={"/employer/term-of-use-nova-jobs"}>
                             Terms of use
                           </Link>
                         </li>

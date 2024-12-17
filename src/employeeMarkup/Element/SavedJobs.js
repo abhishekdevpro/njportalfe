@@ -242,10 +242,10 @@ const SavedJobs = () => {
                   </Link>
                 </td>
                 <td className="job-name">
-                  <Link to={"/employee/job-detail"}>{contact.title}</Link>
+                  <Link to={"/employer/job-detail"}>{contact.title}</Link>
                 </td>
                 <td className="criterias text-primary">
-                  <Link to={"/employee/company-profile"}>
+                  <Link to={"/employer/company-profile"}>
                     {contact.company}
                   </Link>
                 </td>
