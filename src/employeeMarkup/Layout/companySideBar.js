@@ -217,7 +217,7 @@ const CompanySideBar = ({ active }) => {
                 </li>
                 <li>
                   <Link
-                    className={active === "transactions" ? "active" : null}
+                    className={active === "community" ? "active" : null}
                     to={"/employer/community"}
                   >
                     <FaUser />
@@ -226,7 +226,7 @@ const CompanySideBar = ({ active }) => {
                 </li>
                 <li>
                   <Link
-                    className={active === "transactions" ? "active" : null}
+                    className={active === "messages" ? "active" : null}
                     to={"/employer/messages"}
                   >
                     <FaComment />
@@ -235,7 +235,7 @@ const CompanySideBar = ({ active }) => {
                 </li>
                 <li>
                   <Link
-                    className={active === "transactions" ? "active" : null}
+                    className={active === "notifications" ? "active" : null}
                     to={"/employer/jobs-alerts"}
                   >
                     <FaBell />
@@ -248,7 +248,7 @@ const CompanySideBar = ({ active }) => {
                     to={"/employer/browse-candidates"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={active === "active"}
+                    className={active === "browse-candidates" ? "active" : null}
                   >
                     <i className="fa fa-user-o" aria-hidden="true"></i>
                     <span>Browse Candidates</span>
@@ -256,7 +256,7 @@ const CompanySideBar = ({ active }) => {
                 </li>
                 <li>
                   <Link
-                    className={active === "transactions" ? "active" : null}
+                    className={active === "wallet" ? "active" : null}
                     to={"/employer/company-transactions"}
                   >
                     <i className="fa fa-random" aria-hidden="true"></i>
