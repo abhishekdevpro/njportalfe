@@ -95,16 +95,32 @@ function Footer() {
                     For Job Seekers
                   </h5>
                   <ul className="list-3 d-flex flex-column gap-2 text-break">
-                    <li>
+                    <li
+                      onClick={() =>
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+                      }
+                    >
                       <Link to={"/user/job/2"}>Search Jobs</Link>
                     </li>
-                    <li>
+                    <li
+                      onClick={() =>
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+                      }
+                    >
                       <Link to={"/user/register-2"}>Create Free account</Link>
                     </li>
-                    <li>
+                    <li
+                      onClick={() =>
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+                      }
+                    >
                       <Link to={"/user/register-2"}>List profile</Link>
                     </li>
-                    <li>
+                    <li
+                      onClick={() =>
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+                      }
+                    >
                       <Link
                         onClick={handleBuilder}
 
@@ -126,15 +142,27 @@ function Footer() {
                     For Employers
                   </h5>
                   <ul className="list-3 d-flex flex-column gap-2 text-break">
-                    <li>
+                    <li
+                      onClick={() =>
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+                      }
+                    >
                       <Link to={"/employer/company-profile"}>Post Jobs</Link>
                     </li>
-                    <li>
+                    <li
+                      onClick={() =>
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+                      }
+                    >
                       <Link to={"/employer/browse-candidates"}>
                         Browse Applicants
                       </Link>
                     </li>
-                    <li>
+                    <li
+                      onClick={() =>
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+                      }
+                    >
                       <Link to={"/employer/login"}>Schedule Interviews</Link>
                     </li>
                   </ul>
@@ -146,7 +174,11 @@ function Footer() {
                     Partner with Us
                   </h5>
                   <ul className="list-3 d-flex flex-column gap-2 text-break">
-                    <li>
+                    <li
+                      onClick={() =>
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+                      }
+                    >
                       <Link to={"/vendor/vendorregistration"}>Partners</Link>
                     </li>
                   </ul>

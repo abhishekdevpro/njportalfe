@@ -271,20 +271,21 @@ useEffect(() => {
                 className="login-form style-2"
                 style={{ display: "flex", flexDirection: "column" }}
               >
-                <div style={{display:"flex"}}>
-                   <div className="logo-header text-center p-tb30">
-                  {/* <Link to={"./"}><img src={require("./../../images/logo.png")} alt="" /></Link> */}
-                  <Link to={"/"}>
-                    <img
-                      src={require("./../../images/logo/NovaUS.png")}
-                      className="logo"
-                      alt=""
+                <div style={{ display: "flex" }}>
+                  <div className="logo-header text-center p-tb30">
+                    {/* <Link to={"./"}><img src={require("./../../images/logo.png")} alt="" /></Link> */}
+                    <Link to={"/"}>
+                      <img
+                        src={require("./../../images/logo/NovaUS.png")}
+                        className="logo"
+                        alt=""
                       />
-                  </Link>
+                    </Link>
+                  </div>
                 </div>
-                <h1 style={{marginLeft:20,padding:10,fontSize:"50px"}}>JobSeeker SignUp</h1>
-                      </div>
-
+                <div className="d-flex justify-content-center align-items-center">
+                  <h2 className="text-center">JobSeeker Signup</h2>
+                </div>
                 <div className="tab-content nav p-b30 tab">
                   <div id="login" className="tab-pane active ">
                     {props.errorMessage && (

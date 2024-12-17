@@ -215,9 +215,11 @@ function Login(props) {
               </div>
               <div className="col-lg-6 col-md-6">
                 <div className="login-2 submit-resume p-a30 seth">
+                  <div className="d-flex justify-content-center align-items-center">
+                    <h2 className="text-center">JobSeeker Login</h2>
+                  </div>
                   <div className="nav">
                     <form className="col-12 p-a0 ">
-                    <div style={{fontSize:"25px",marginBottom:"5px",fontWeight:700}}>JobSeeker Login</div>
                       <p className="font-weight-600">
                         If you have an account with us, please log in.
                       </p>
