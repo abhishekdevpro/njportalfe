@@ -10,14 +10,14 @@ import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 function Footer() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [token, setToken] = useState(null);
-  useEffect(() => {
-    const storedToken = localStorage.getItem("jobSeekerLoginToken");
-    if (storedToken) {
-      console.log("Stored token:", storedToken); // Log the stored token when component mounts
-      setToken(storedToken);
+  const token = localStorage.getItem("jobSeekerLoginToken");
+  const handleBuilder = () => {
+    if (token) {
+      window.location.href = `https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`;
+    } else {
+      window.location.href = "/user/login";
     }
-  }, []);
+  };
   const handleChange = (e) => {
     const value = e.target.value;
     setEmail(value);
@@ -115,26 +115,13 @@ function Footer() {
                         <li>
                           <Link to={"/user/register-2"}>List profile</Link>
                         </li>
-                        {/* <li>
+                        <li>
                           <Link
-                            //  to={"https://airesume.novajobs.us/form"}
-                            to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
+                            onClick={handleBuilder}
+                            // to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
                           >
                             Build AI resume
                           </Link>
-                        </li> */}
-                        <li>
-                          {token ? (
-                            <a
-                              href={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              Build AI resume
-                            </a>
-                          ) : (
-                            <Link to={"/user/login"}>Build AI resume</Link>
-                          )}
                         </li>
 
                         <li>

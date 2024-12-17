@@ -9,7 +9,7 @@ import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 function Footer() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [token, setToken] = useState(null);
+  
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -20,14 +20,15 @@ function Footer() {
       !emailPattern.test(value) ? "Please enter a valid email address." : ""
     );
   };
-  useEffect(() => {
-    const storedToken = localStorage.getItem("jobSeekerLoginToken");
-    if (storedToken) {
-      console.log("Stored token:", storedToken); // Log the stored token when component mounts
-      setToken(storedToken);
-    }
-  }, []);
 
+  const token = localStorage.getItem("jobSeekerLoginToken");
+  const handleBuilder = () => {
+    if (token) {
+      window.location.href = `https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`;
+    } else {
+      window.location.href = "/user/login";
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (emailError) return;
@@ -103,26 +104,14 @@ function Footer() {
                     <li>
                       <Link to={"/user/register-2"}>List profile</Link>
                     </li>
-                    {/* <li>
+                    <li>
                       <Link
-                        //  to={"https://airesume.novajobs.us/form"}
-                        to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
+                        onClick={handleBuilder}
+
+                        // to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
                       >
                         Build AI resume
                       </Link>
-                    </li> */}
-                    <li>
-                      {token ? (
-                        <a
-                          href={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Build AI resume
-                        </a>
-                      ) : (
-                        <Link to={"/user/login"}>Build AI resume</Link>
-                      )}
                     </li>
 
                     <li>
@@ -170,13 +159,32 @@ function Footer() {
                   </h5>
                   <ul className="list-3 d-flex flex-column gap-2 text-break">
                     <li>
-                      <Link to={"/aboutus"}>About Us</Link>
+                      <Link
+                        to={"/aboutus"}
+                        onClick={() =>
+                          window.scrollTo({ top: 0, behavior: "smooth" })
+                        }
+                      >
+                        About Us
+                      </Link>
                     </li>
                     <li>
-                      <Link to={"/services"}>Services</Link>
+                      <Link
+                        to={"/services"}
+                        onClick={() =>
+                          window.scrollTo({ top: 0, behavior: "smooth" })
+                        }
+                      >
+                        Services
+                      </Link>
                     </li>
                     <li>
-                      <Link to={"/employer/term-of-use-nova-jobs"}>
+                      <Link
+                        to={"/employer/term-of-use-nova-jobs"}
+                        onClick={() =>
+                          window.scrollTo({ top: 0, behavior: "smooth" })
+                        }
+                      >
                         Terms of use
                       </Link>
                     </li>
