@@ -260,7 +260,7 @@ function EmployeeLogin(props) {
                   <div className="nav">
                     <form className="col-12 p-a0 ">
                       <p className="font-weight-600">
-                        If you have an account with us, please log innnn.
+                        If you have an account with us, please log in.
                       </p>
                       {props.errorMessage && (
                         <div className="bg-red-300 text-red-900 border border-red-900 p-1 my-2">
