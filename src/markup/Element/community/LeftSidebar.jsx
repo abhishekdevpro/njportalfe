@@ -1,5 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+
+import axios from "axios";
 
 // Styled Components
 const SidebarContainer = styled.div`
@@ -54,14 +56,73 @@ const ExploreButton = styled.button`
 
 // Main Component
 const FilterSidebar = () => {
+  const [userData, setUserData] = useState({
+    first_name: "",
+    last_name: "",
+    photo: "",
+  });
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const jobSeekerToken = localStorage.getItem("jobSeekerLoginToken");
+        const employerToken = localStorage.getItem("employeeLoginToken");
+
+        let apiUrl = "";
+        let token = "";
+
+        if (jobSeekerToken) {
+          apiUrl = "https://api.novajobs.us/api/jobseeker/user-profile";
+          token = jobSeekerToken;
+        } else if (employerToken) {
+          apiUrl = "https://api.novajobs.us/api/employeer/employeer-profile";
+          token = employerToken;
+        } else {
+          console.error("No valid token found.");
+          return;
+        }
+
+        const response = await axios({
+          method: "GET",
+          url: apiUrl,
+          headers: {
+            Authorization: token,
+          },
+        });
+
+        const data = response.data.data;
+
+        if (data.employeer_detail) {
+          setUserData({
+            first_name: data.employeer_detail.first_name,
+            last_name: data.employeer_detail.last_name,
+            photo: data.employeer_detail.photo || "", // Ensure photo fallback if missing
+          });
+        } else {
+          setUserData({
+            first_name: data.first_name,
+            last_name: data.last_name,
+            photo: data.photo || "", // Ensure photo fallback if missing
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
+
   return (
     <SidebarContainer>
       <FilterOuter>
         <ProfileImage
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLMI5YxZE03Vnj-s-sth2_JxlPd30Zy7yEGg&s"
-          alt="Profile"
+          src={
+            userData.photo ||
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLMI5YxZE03Vnj-s-sth2_JxlPd30Zy7yEGg&s"
+          }
+          alt={`${userData.first_name} ${userData.last_name}`}
         />
-        <Title>Ben Dexter</Title>
+        <Title>{`${userData.first_name} ${userData.last_name}`}</Title>
       </FilterOuter>
 
       <FilterOuter>
@@ -71,7 +132,8 @@ const FilterSidebar = () => {
         />
         <Subtitle>YOUR GROUPS</Subtitle>
         <Description>
-          Discover and join groups with like-minded women who share your interests, profession, and lifestyle.
+          Discover and join groups with like-minded women who share your
+          interests, profession, and lifestyle.
         </Description>
         <ExploreButton>Explore</ExploreButton>
       </FilterOuter>
