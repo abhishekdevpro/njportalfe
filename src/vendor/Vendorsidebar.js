@@ -208,6 +208,24 @@ const VendorCompanySideBar = ({ active }) => {
             </li>
             <li>
               <Link
+                className={active === "form" ? "active" : null}
+                to={"/vendor/form"}
+              >
+                <i className="fa fa-random" aria-hidden="true"></i>
+                <span>White Label Form</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={active === "lading" ? "active" : null}
+                to={"/white-label"}
+              >
+                <i className="fa fa-random" aria-hidden="true"></i>
+                <span>White Label Landing</span>
+              </Link>
+            </li>
+            <li>
+              <Link
                 to={"/vendor/vendorprofile"}
                 className={active === "company" ? "active" : null}
               >
@@ -234,6 +252,7 @@ const VendorCompanySideBar = ({ active }) => {
                 <span>Wallet</span>
               </Link>
             </li>
+            
             <li>
               <Link
                 to={"/vendor/vendorcompanymanage/jobs"}
