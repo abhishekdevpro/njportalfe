@@ -189,6 +189,8 @@ import Community from "./markup/Element/community/index";
 import JobPage2 from "./markup/Element/Jobsection/JobPage";
 import NotificationPage from "./markup/Element/notifications-history";
 import SkillTestHistory from "./markup/Element/skill-test-history";
+import WhiteLabelForm from "./vendor/WhiteLabel";
+import WhiteLabelLanding from "./vendor/WhiteLanding/index";
 
 function App() {
   const dispatch = useDispatch();
@@ -393,7 +395,12 @@ function App() {
       />
 
       <Route path="/vendor/verify" element={<VerifyEmail />} />
-
+      <Route
+          path="white-label"
+          element={
+              <WhiteLabelLanding />
+          }
+        />
       <Route path="/vendor">
         <Route path="login" element={<Vendorlogin />} />
         <Route
@@ -402,6 +409,15 @@ function App() {
             <PrivateRoutevendor>
               {" "}
               <VendorCompanyprofile />{" "}
+            </PrivateRoutevendor>
+          }
+        />
+        <Route
+          path="form"
+          element={
+            <PrivateRoutevendor>
+              {" "}
+              <WhiteLabelForm />{" "}
             </PrivateRoutevendor>
           }
         />
