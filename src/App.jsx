@@ -189,6 +189,8 @@ import Community from "./markup/Element/community/index";
 import JobPage2 from "./markup/Element/Jobsection/JobPage";
 import NotificationPage from "./markup/Element/notifications-history";
 import SkillTestHistory from "./markup/Element/skill-test-history";
+
+import AboutusForm from "./adminPanel/AboutusForm";
 import WhiteLabelForm from "./vendor/WhiteLabel";
 import WhiteLabelLanding from "./vendor/WhiteLanding/index";
 
@@ -286,6 +288,14 @@ function App() {
         element={
           <PrivateRouteadmin>
             <JobSeekers />
+          </PrivateRouteadmin>
+        }
+      />
+      <Route
+        path="/admin/aboutus"
+        element={
+          <PrivateRouteadmin>
+            <AboutusForm />
           </PrivateRouteadmin>
         }
       />
