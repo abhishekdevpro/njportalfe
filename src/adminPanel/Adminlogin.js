@@ -36,32 +36,35 @@ const Adminlogin = () => {
 
   return (
     <div>
-        <CustomNavbar/>
-    <Container className="d-flex justify-content-center align-items-center vh-50">
-      <Row className="w-100">
-        <Col md={{ span: 6, offset: 3 }}>
-        <Link to={"/"}
-             className="dez-page d-flex justify-content-center mt-5">
-                    <img style={{width:"210px"}}
-                      src={require("../images/logo/NovaUS.png")}
-                      className="logo"
-                      alt="img"
-                    />
-                    </Link>
-          <h3 className="text-center m-2">Admin Login</h3>
-          <Form onSubmit={handleLogin} >
-            <Form.Group controlId="formEmail"  >
-              <Form.Label >Email*</Form.Label>
-              <Form.Control
-              className='p-4 rounded-3 '
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
+      <CustomNavbar />
+      <Container className="d-flex justify-content-center align-items-center vh-50">
+        <Row className="w-100">
+          <Col md={{ span: 6, offset: 3 }}>
+            <Link
+              to={"/"}
+              className="dez-page d-flex justify-content-center mt-5"
+            >
+              <img
+                style={{ width: "210px" }}
+                src={require("../images/logo/NovaUS.png")}
+                className="logo"
+                alt="img"
               />
-            </Form.Group>
-          {/*  <Form.Group controlId="formPhone" className="mt-3">
+            </Link>
+            <h3 className="text-center m-2">Admin Login</h3>
+            <Form onSubmit={handleLogin}>
+              <Form.Group controlId="formEmail">
+                <Form.Label>Email*</Form.Label>
+                <Form.Control
+                  className="p-4 rounded-3 "
+                  type="email"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </Form.Group>
+              {/*  <Form.Group controlId="formPhone" className="mt-3">
               <Form.Label>Phone*</Form.Label>
               <Form.Control
                 type="tel"
@@ -72,33 +75,52 @@ const Adminlogin = () => {
                 required
               />
             </Form.Group> */}
-            <Form.Group controlId="formPassword" className="mt-3">
-              <Form.Label>Password*</Form.Label>
-              <div className="password-input-group">
-                <Form.Control
-                 className='p-4 rounded-3 '
-                  type={showPassword ? "text" : "password"} // Toggle password visibility
-                  placeholder="Enter password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-                <span
-                  className="password-toggle-icon float-end"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? <i className="fa fa-eye-slash"></i> : <i className="fa fa-eye"></i>}
-                </span>
-              </div>
-            </Form.Group>
-            {error && <p className="text-danger mt-3">{error}</p>}
-            <Button variant="primary" type="submit" className="mt-3 w-100" style={{ backgroundColor: '#1C2957'}}>
-              Login
-            </Button>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+
+              <Form.Group controlId="formPassword" className="mt-3">
+                <Form.Label>Password*</Form.Label>
+                <div className="password-input-group position-relative">
+                  <Form.Control
+                    className="p-4 rounded-3"
+                    type={showPassword ? "text" : "password"} // Toggle password visibility
+                    placeholder="Enter password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <span
+                    className="password-toggle-icon position-absolute "
+                    style={{
+                      top: "50%",
+                      right: "15px",
+                      transform: "translateY(-50%)",
+                      cursor: "pointer",
+
+                      fontSize: "1.2rem",
+                    }}
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <i className="fa fa-eye-slash"></i>
+                    ) : (
+                      <i className="fa fa-eye"></i>
+                    )}
+                  </span>
+                </div>
+              </Form.Group>
+
+              {error && <p className="text-danger mt-3">{error}</p>}
+              <Button
+                variant="primary"
+                type="submit"
+                className="mt-3 w-100"
+                style={{ backgroundColor: "#1C2957" }}
+              >
+                Login
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };

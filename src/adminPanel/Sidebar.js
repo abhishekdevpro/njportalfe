@@ -236,7 +236,16 @@ const Sidebar = () => {
           </>
         )}
       </div>
-
+      <Nav.Link
+        onClick={handleTeamClick2}
+        as={NavLink}
+        to="/admin/aboutus"
+        style={navLinkStyle("/admin/aboutus")}
+        className="ps-4"
+      >
+        <FaUserTie style={iconStyle} />
+        About Us
+      </Nav.Link>
       {/*
      
        <div>
