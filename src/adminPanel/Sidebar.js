@@ -1,9 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Nav } from 'react-bootstrap';
-import { NavLink, useLocation } from 'react-router-dom';
-import { 
-  FaTachometerAlt, FaStore, FaUsers, FaUserTie, FaBriefcase, FaBell, FaUserPlus, FaTasks, FaWallet, FaUserGraduate 
-} from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import { Nav } from "react-bootstrap";
+import { NavLink, useLocation } from "react-router-dom";
+import {
+  FaTachometerAlt,
+  FaStore,
+  FaUsers,
+  FaUserTie,
+  FaBriefcase,
+  FaBell,
+  FaUserPlus,
+  FaTasks,
+  FaWallet,
+  FaUserGraduate,
+} from "react-icons/fa";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -17,16 +26,16 @@ const Sidebar = () => {
   const [showTeamSubmenu7, setShowTeamSubmenu7] = useState(false);
 
   const navLinkStyle = (path) => ({
-    display: 'flex',
-    alignItems: 'center',
-    backgroundColor: location.pathname === path ? '#1C2957' : 'transparent',
-    color: location.pathname === path ? 'white' : 'black',
-    padding: '10px 15px',
-    textDecoration: 'none',
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: location.pathname === path ? "#1C2957" : "transparent",
+    color: location.pathname === path ? "white" : "black",
+    padding: "10px 15px",
+    textDecoration: "none",
   });
 
   const iconStyle = {
-    marginRight: '10px',
+    marginRight: "10px",
   };
 
   useEffect(() => {
@@ -236,16 +245,42 @@ const Sidebar = () => {
           </>
         )}
       </div>
-      <Nav.Link
-        onClick={handleTeamClick2}
-        as={NavLink}
-        to="/admin/aboutus"
-        style={navLinkStyle("/admin/aboutus")}
-        className="ps-4"
-      >
-        <FaUserTie style={iconStyle} />
-        About Us
-      </Nav.Link>
+      <div>
+        <Nav.Link
+          onClick={handleTeamClick4}
+          as={NavLink}
+          to=""
+          style={navLinkStyle("")}
+          className="ps-4"
+        >
+          <FaUserTie style={iconStyle} /> CMS
+        </Nav.Link>
+        {showTeamSubmenu4 && (
+          <>
+            <Nav.Link
+              as={NavLink}
+              to=""
+              style={navLinkStyle("")}
+              className="ps-5"
+            >
+              <FaUsers style={iconStyle} /> Home
+            </Nav.Link>
+            <Nav.Link
+              as={NavLink}
+              to="/admin/aboutus"
+              style={navLinkStyle("/admin/aboutus")}
+              className="ps-5"
+            >
+              <FaUsers style={iconStyle} />
+              About Us
+            </Nav.Link>
+            {/*<Nav.Link as={NavLink} to="/admin/team/bulkUploademployers" style={navLinkStyle("/admin/team/bulkUploademployers")} className='ps-5'>
+              <FaUsers style={iconStyle} /> Bulk Upload
+            </Nav.Link> */}
+          </>
+        )}
+      </div>
+
       {/*
      
        <div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEnvelope,
   faPhone,
@@ -7,6 +7,10 @@ import {
   faCalendarAlt,
   faCheckCircle,
   faMoneyBill,
+  faIndustry,
+  faGraduationCap,
+  faUniversity,
+  faBriefcase,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -428,56 +432,231 @@ function EmployeeBrowsecandidates() {
                                 <li>
                                   <div key={index}>
                                     <li>
-                                      <Link
+                                      {/* <Link
                                         to="#"
-                                        onClick={() => handleSelectJob(item)}
-                                      >
-                                        <div className="post-bx d-flex mb-3">
-                                          <div className="job-post-company ">
-                                            <span>
-                                              <img
-                                                src={require("./../../images/logo/icon1.png")}
-                                                alt=""
-                                              />
-                                            </span>
+                                        // onClick={() => handleSelectJob(item)}
+                                      > */}
+                                      <div className="post-bx d-flex mb-3">
+                                        <div className="job-post-company ">
+                                          <span>
+                                            <img
+                                              src={require("./../../images/logo/icon1.png")}
+                                              alt=""
+                                            />
+                                          </span>
+                                        </div>
+                                        <div className="job-post-info ">
+                                          <div
+                                            className="text-black mb-2"
+                                            style={{
+                                              fontWeight: "700",
+                                              fontSize: "25px",
+                                              cursor: "pointer",
+                                            }}
+                                            key={index}
+                                            // onClick={() =>
+                                            //   navigate(
+                                            //     `/employer/profilepage/${item?.jobskkers_detail?.id}`
+                                            //   )
+                                            // }
+                                          >
+                                            {/* {item.jobskkers_detail
+                                                .proffesional_title ||
+                                                (item.jobskkers_detail
+                                                  .last_name && (
+                                                  <p>
+                                                    {
+                                                      item.jobskkers_detail
+                                                        .proffesional_title
+                                                    }{" "}
+                                                    {
+                                                      item.jobskkers_detail
+                                                        .last_name
+                                                    }
+                                                  </p>
+                                                ))} */}
+                                            {item.jobskkers_detail.first_name &&
+                                              item.jobskkers_detail
+                                                .last_name && (
+                                                <p>
+                                                  {
+                                                    item.jobskkers_detail
+                                                      .first_name
+                                                  }{" "}
+                                                  {
+                                                    item.jobskkers_detail
+                                                      .last_name
+                                                  }
+                                                </p>
+                                              )}
                                           </div>
-                                          <div className="job-post-info ">
-                                            <div
-                                              className="text-black mb-2"
-                                              style={{
-                                                fontWeight: "700",
-                                                fontSize: "25px",
-                                                cursor: "pointer",
-                                              }}
-                                              key={index}
-                                              onClick={() =>
-                                                navigate(
-                                                  `/employer/profilepage/${item?.jobskkers_detail?.id}`
-                                                )
-                                              }
-                                            >
-                                              {/* {item.jobskkers_detail.proffesional_title ||
-                                            (item.jobskkers_detail
-                                              .last_name && (
-                                              <p>
-                                                {
-                                                  item.jobskkers_detail
-                                                    .proffesional_title
-                                                }{" "}
-                                                {
-                                                  item.jobskkers_detail
-                                                    .last_name
-                                                }
-                                              </p>
-                                            ))} */}
-                                              {item.jobskkers_detail
-                                                .profesional_title
-                                                ? item.jobskkers_detail
-                                                    .profesional_title
-                                                : "IT Trainer"}
-                                            </div>
 
+                                          <div
+                                            className="gap-0 align-items-center joblist d-flex gap-4 text-black "
+                                            style={{
+                                              gap: "0px",
+                                              height: "auto",
+                                              fontSize: "15px",
+                                            }}
+                                          >
                                             <div
+                                              className="d-flex"
+                                              style={{
+                                                justifyContent: "start",
+                                                gap: "10px",
+                                              }}
+                                            >
+                                              <div>
+                                                <p>
+                                                  <FontAwesomeIcon
+                                                    icon={faBriefcase}
+                                                    className="mr-2"
+                                                    style={{
+                                                      color: "#1c2957",
+                                                    }}
+                                                  />{" "}
+                                                  {item.jobskkers_detail
+                                                    .proffesional_title
+                                                    ? item.jobskkers_detail
+                                                        .proffesional_title
+                                                    : "Data Coordination and Resilience Intern"}
+                                                </p>
+                                              </div>
+                                              |
+                                              <div>
+                                                <Link
+                                                  to={`${item?.jobskkers_detail?.company_linkedin_link}`}
+                                                >
+                                                  <p>
+                                                    {" "}
+                                                    <FontAwesomeIcon
+                                                      icon={faIndustry}
+                                                      className="mr-2"
+                                                      style={{
+                                                        color: "#1c2957",
+                                                      }}
+                                                    />
+                                                    {item.jobskkers_detail
+                                                      .industry_name
+                                                      ? item.jobskkers_detail
+                                                          .industry_name
+                                                      : "Government Administration"}
+                                                  </p>
+                                                </Link>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="d-flex  joblist mb-4">
+                                            <div>
+                                              {item.jobskkers_detail.cities
+                                                .id && (
+                                                <p
+                                                  style={{
+                                                    margin: "0px",
+                                                    color: "black",
+                                                  }}
+                                                >
+                                                  <FontAwesomeIcon
+                                                    icon={faMapMarkerAlt}
+                                                    className="mr-2"
+                                                    style={{
+                                                      color: "#1c2957",
+                                                    }}
+                                                  />
+                                                  {
+                                                    item?.jobskkers_detail
+                                                      ?.cities?.name
+                                                  }
+                                                </p>
+                                              )}
+                                            </div>
+                                            ,
+                                            <div>
+                                              {item.jobskkers_detail.states
+                                                .id && (
+                                                <p
+                                                  style={{
+                                                    margin: "0px",
+                                                    color: "black",
+                                                  }}
+                                                >
+                                                  {
+                                                    item?.jobskkers_detail
+                                                      ?.states?.name
+                                                  }
+                                                </p>
+                                              )}
+                                            </div>
+                                            ,{" "}
+                                            <div>
+                                              {item.jobskkers_detail.countries
+                                                .id && (
+                                                <p
+                                                  style={{
+                                                    margin: "0px",
+                                                    color: "black",
+                                                  }}
+                                                >
+                                                  {
+                                                    item?.jobskkers_detail
+                                                      ?.countries?.name
+                                                  }
+                                                </p>
+                                              )}
+                                            </div>{" "}
+                                          </div>
+                                          <div
+                                            className="gap-0 align-items-center joblist d-flex gap-4 text-black "
+                                            style={{
+                                              gap: "0px",
+                                              height: "auto",
+                                              fontSize: "15px",
+                                            }}
+                                          >
+                                            <div
+                                              className="d-flex"
+                                              style={{
+                                                justifyContent: "start",
+                                                gap: "10px",
+                                              }}
+                                            >
+                                              <div>
+                                                <p>
+                                                  {" "}
+                                                  <FontAwesomeIcon
+                                                    icon={faGraduationCap}
+                                                    className="mr-2"
+                                                    style={{
+                                                      color: "#1c2957",
+                                                    }}
+                                                  />
+                                                  {item.jobskkers_detail.degree
+                                                    ? item.jobskkers_detail
+                                                        .degree
+                                                    : "Bachelor's degree"}
+                                                </p>
+                                              </div>
+                                              |
+                                              <div>
+                                                <p>
+                                                  {" "}
+                                                  <FontAwesomeIcon
+                                                    icon={faUniversity}
+                                                    className="mr-2"
+                                                    style={{
+                                                      color: "#1c2957",
+                                                    }}
+                                                  />
+                                                  {item.jobskkers_detail
+                                                    .education
+                                                    ? item.jobskkers_detail
+                                                        .education
+                                                    : "University of South Carolina"}
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          {/* <div
                                               className="gap-0 align-items-center joblist d-flex gap-4 text-black mb-2"
                                               style={{
                                                 gap: "0px",
@@ -492,63 +671,65 @@ function EmployeeBrowsecandidates() {
                                                   gap: "10px",
                                                 }}
                                               >
-                                                <div>
-                                                  {item.jobskkers_detail.cities
-                                                    .id && (
-                                                    <p
-                                                      style={{
-                                                        margin: "0px",
-                                                        color: "black",
-                                                      }}
-                                                    >
-                                                      <FontAwesomeIcon
-                                                        icon={faMapMarkerAlt}
-                                                        className="mr-2"
+                                                <div className="d-flex">
+                                                  <div>
+                                                    {item.jobskkers_detail
+                                                      .cities.id && (
+                                                      <p
                                                         style={{
-                                                          color: "#1c2957",
+                                                          margin: "0px",
+                                                          color: "black",
                                                         }}
-                                                      />
-                                                      {
-                                                        item?.jobskkers_detail
-                                                          ?.cities?.name
-                                                      }
-                                                    </p>
-                                                  )}
-                                                </div>{" "}
-                                                ,
-                                                <div>
-                                                  {item.jobskkers_detail.states
-                                                    .id && (
-                                                    <p
-                                                      style={{
-                                                        margin: "0px",
-                                                        color: "black",
-                                                      }}
-                                                    >
-                                                      {
-                                                        item?.jobskkers_detail
-                                                          ?.states?.name
-                                                      }
-                                                    </p>
-                                                  )}
+                                                      >
+                                                        <FontAwesomeIcon
+                                                          icon={faMapMarkerAlt}
+                                                          className="mr-2"
+                                                          style={{
+                                                            color: "#1c2957",
+                                                          }}
+                                                        />
+                                                        {
+                                                          item?.jobskkers_detail
+                                                            ?.cities?.name
+                                                        }
+                                                      </p>
+                                                    )}
+                                                  </div>
+                                                  ,
+                                                  <div>
+                                                    {item.jobskkers_detail
+                                                      .states.id && (
+                                                      <p
+                                                        style={{
+                                                          margin: "0px",
+                                                          color: "black",
+                                                        }}
+                                                      >
+                                                        {
+                                                          item?.jobskkers_detail
+                                                            ?.states?.name
+                                                        }
+                                                      </p>
+                                                    )}
+                                                  </div>
+                                                  ,{" "}
+                                                  <div>
+                                                    {item.jobskkers_detail
+                                                      .countries.id && (
+                                                      <p
+                                                        style={{
+                                                          margin: "0px",
+                                                          color: "black",
+                                                        }}
+                                                      >
+                                                        {
+                                                          item?.jobskkers_detail
+                                                            ?.countries?.name
+                                                        }
+                                                      </p>
+                                                    )}
+                                                  </div>{" "}
                                                 </div>
-                                                ,
-                                                <div>
-                                                  {item.jobskkers_detail
-                                                    .countries.id && (
-                                                    <p
-                                                      style={{
-                                                        margin: "0px",
-                                                        color: "black",
-                                                      }}
-                                                    >
-                                                      {
-                                                        item?.jobskkers_detail
-                                                          ?.countries?.name
-                                                      }
-                                                    </p>
-                                                  )}
-                                                </div>{" "}
                                                 |
                                                 <div className="salary-bx">
                                                   <p
@@ -603,63 +784,65 @@ function EmployeeBrowsecandidates() {
                                                   </p>
                                                 )}
                                               </div>
-                                            </div>
-                                            <div className="mb-4">
-                                              {item.jobskkers_detail
-                                                .created_at && (
-                                                <p
-                                                  style={{
-                                                    margin: "0px",
-                                                    fontWeight: "600",
-                                                    color: "black",
-                                                  }}
-                                                >
-                                                  <FontAwesomeIcon
-                                                    icon={faCalendarAlt}
-                                                    className="mr-2"
-                                                    style={{ color: "#1c2957" }}
-                                                  />
-                                                  Published{" "}
-                                                  {moment(
-                                                    item.jobskkers_detail
-                                                      .created_at
-                                                  ).fromNow()}
-                                                </p>
-                                              )}
-                                            </div>
-                                            <div className="">
-                                              {item.jobskkers_detail
-                                                .skills_arr ? (
-                                                <div className="row mt-3 ">
-                                                  {item.jobskkers_detail.skills_arr.map(
-                                                    (skill, index) => (
-                                                      <div
-                                                        className="col-3 col-md-3 mb-1 text-break "
-                                                        key={index}
+                                            </div> */}
+                                          <div className="mb-4">
+                                            {item.jobskkers_detail
+                                              .created_at && (
+                                              <p
+                                                style={{
+                                                  margin: "0px",
+                                                  fontWeight: "600",
+                                                  color: "black",
+                                                }}
+                                              >
+                                                <FontAwesomeIcon
+                                                  icon={faCalendarAlt}
+                                                  className="mr-2"
+                                                  style={{ color: "#1c2957" }}
+                                                />
+                                                Published{" "}
+                                                {moment(
+                                                  item.jobskkers_detail
+                                                    .created_at
+                                                ).fromNow()}
+                                              </p>
+                                            )}
+                                          </div>
+                                          <div className="">
+                                            {item.jobskkers_detail
+                                              .skills_arr ? (
+                                              <div className="row mt-3 ">
+                                                {item.jobskkers_detail.skills_arr.map(
+                                                  (skill, index) => (
+                                                    <div
+                                                      className="col-3 col-md-3 mb-1 text-break "
+                                                      key={index}
+                                                    >
+                                                      <span
+                                                        className="badge badge-info p-2"
+                                                        style={{
+                                                          backgroundColor:
+                                                            "#f0f5f7",
+                                                          borderRadius: "100px",
+                                                          padding: "5px 15px",
+                                                          color: "dimgray",
+                                                        }}
                                                       >
-                                                        <span
-                                                          className="badge badge-info p-2"
-                                                          style={{
-                                                            backgroundColor:
-                                                              "#f0f5f7",
-                                                            borderRadius:
-                                                              "100px",
-                                                            padding: "5px 15px",
-                                                            color: "dimgray",
-                                                          }}
-                                                        >
-                                                          {skill}
-                                                        </span>
-                                                      </div>
-                                                    )
-                                                  )}
-                                                </div>
-                                              ) : null}
-                                            </div>
-                                            <label className="like-btn">
-                                              <input type="checkbox" />
-                                              <span className="checkmark"></span>
-                                            </label>
+                                                        {skill}
+                                                      </span>
+                                                    </div>
+                                                  )
+                                                )}
+                                              </div>
+                                            ) : null}
+                                          </div>
+                                          <label className="like-btn">
+                                            <input type="checkbox" />
+                                            <span className="checkmark"></span>
+                                          </label>
+                                          <Link
+                                            to={`${item?.jobskkers_detail?.linkedin_link}`}
+                                          >
                                             <div
                                               style={{
                                                 position: "absolute",
@@ -674,25 +857,26 @@ function EmployeeBrowsecandidates() {
                                                 View
                                               </button>
                                             </div>
+                                          </Link>
 
-                                            <div className="d-flex mt-3">
-                                              <div
-                                                className="d-flex align-items-center "
-                                                style={{ gap: "7px" }}
-                                              >
-                                                <div className="salary-bx">
-                                                  {/* <span>
+                                          <div className="d-flex mt-3">
+                                            <div
+                                              className="d-flex align-items-center "
+                                              style={{ gap: "7px" }}
+                                            >
+                                              <div className="salary-bx">
+                                                {/* <span>
                                                   {
                                                     item?.jobskkers_detail
                                                       ?.expected_salary
                                                   }
                                                 </span> */}
-                                                </div>
                                               </div>
                                             </div>
                                           </div>
                                         </div>
-                                      </Link>
+                                      </div>
+                                      {/* </Link> */}
                                     </li>
                                   </div>{" "}
                                 </li>
