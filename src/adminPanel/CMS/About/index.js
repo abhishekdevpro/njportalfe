@@ -447,58 +447,18 @@
 
 // export default AboutusForm;
 
-import React, { useState } from "react";
-import ReactPlayer from "react-player";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // Quill editor styles
+import React from "react";
+
 import { Container, Row, Col } from "react-bootstrap";
-import Sidebar from "./Sidebar";
-import CustomNavbar from "./Navbar";
+import Sidebar from "../../Sidebar";
+import CustomNavbar from "../../Navbar";
+import Introductions from "./Introductions";
+import ForJobseeker from "./ForJobseeker";
+import ForEmployer from "./ForEmployer";
+import Novajobsus from "./Novajobsus";
+import MoreServices from "./MoreServices";
 
 function AboutusForm() {
-  // State for heading and paragraph 1 content
-  const [isEditing, setIsEditing] = useState(false);
-  const [heading, setHeading] = useState("Introduction");
-  const [paragraph1Content, setParagraph1Content] = useState(`
-    <p>
-      <strong>Introducing Novajobs.us by Hyper V Solutions:</strong>
-      A cutting-edge AI-enabled job portal designed to streamline job search and recruitment processes.
-      Experience the future of employment with intelligent matching and personalized career opportunities.
-    </p>
-  
-  `);
-  const [paragraph1AContent, setParagraph1AContent] = useState(`
-   
-    <p>
-      For employers and staffing companies, Novajobs.us offers advanced AI algorithms that
-      connect you with top-tier talent, optimizing your hiring process with precision and efficiency.
-    </p>
-  `);
-  const [paragraph1BContent, setParagraph1BContent] = useState(`
-   
-    <p>
-      For employers and staffing companies, Novajobs.us offers advanced AI algorithms that
-      connect you with top-tier talent, optimizing your hiring process with precision and efficiency.
-    </p>
-  `);
-  const [videoUrl, setVideoUrl] = useState(
-    "https://www.youtube.com/watch?v=DbHXRGdBhqo"
-  );
-
-  // Save function for heading and paragraph 1
-  const handleSave = () => {
-    setIsEditing(false);
-    // Save changes to a backend server here if needed
-    console.log(
-      "Saved content:",
-      heading,
-      paragraph1Content,
-      "Video URL:",
-      videoUrl,
-      paragraph1AContent
-    );
-  };
-
   return (
     <>
       <CustomNavbar />
@@ -519,120 +479,11 @@ function AboutusForm() {
                     <div className="container">
                       <div className="m-b30">
                         <div className="job-bx">
-                          <div className="mt-5 paragraph-1">
-                            <button
-                              className="btn btn-warning mt-3 float-end"
-                              onClick={() => setIsEditing(true)}
-                            >
-                              Edit
-                            </button>
-                            <div className="mx-3 mx-lg-5 mb-4 mb-lg-0">
-                              {isEditing ? (
-                                <div>
-                                  <label>
-                                    Heading:
-                                    <input
-                                      type="text"
-                                      value={heading}
-                                      onChange={(e) =>
-                                        setHeading(e.target.value)
-                                      }
-                                      className="form-control"
-                                    />
-                                  </label>
-                                  <ReactQuill
-                                    value={paragraph1Content}
-                                    onChange={setParagraph1Content}
-                                  />
-                                  <label className="mt-3">
-                                    Video URL:
-                                    <input
-                                      type="text"
-                                      value={videoUrl}
-                                      onChange={(e) =>
-                                        setVideoUrl(e.target.value)
-                                      }
-                                      className="form-control"
-                                    />
-                                  </label>
-                                  <ReactQuill
-                                    value={paragraph1AContent}
-                                    onChange={setParagraph1AContent}
-                                  />
-                                  <button
-                                    className="btn btn-primary mt-3"
-                                    onClick={handleSave}
-                                  >
-                                    Save
-                                  </button>
-                                  <button
-                                    className="btn btn-secondary mt-3 ms-2"
-                                    onClick={() => setIsEditing(false)}
-                                  >
-                                    Cancel
-                                  </button>
-                                </div>
-                              ) : (
-                                <div>
-                                  <h1
-                                    className="mb-4"
-                                    style={{
-                                      fontSize: "clamp(24px, 5vw, 30px)",
-                                      fontWeight: "bold",
-                                    }}
-                                  >
-                                    {heading}
-                                  </h1>
-                                  <div
-                                    dangerouslySetInnerHTML={{
-                                      __html: paragraph1Content,
-                                    }}
-                                    style={{
-                                      fontSize: "clamp(14px, 3vw, 15px)",
-                                    }}
-                                  ></div>
-                                  <p
-                                    style={{
-                                      fontSize: "clamp(14px, 3vw, 15px)",
-                                    }}
-                                    className="mt-5 justify-content-center text-center"
-                                  >
-                                    <strong>
-                                      Check our quick Product Video below :
-                                    </strong>{" "}
-                                  </p>
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      justifyContent: "center",
-                                    }}
-                                  >
-                                    <ReactPlayer
-                                      url={videoUrl}
-                                      width="700px"
-                                      height="500px"
-                                      controls={true}
-                                      style={{
-                                        margin: "50px",
-                                        border: "2px solid #ccc",
-                                        borderRadius: "10px",
-                                        boxShadow:
-                                          "0px 4px 10px rgba(0, 0, 0, 0.1)",
-                                      }}
-                                    />
-                                  </div>
-                                  <div
-                                    dangerouslySetInnerHTML={{
-                                      __html: paragraph1AContent,
-                                    }}
-                                    style={{
-                                      fontSize: "clamp(14px, 3vw, 15px)",
-                                    }}
-                                  ></div>
-                                </div>
-                              )}
-                            </div>
-                          </div>
+                          <Introductions />
+                          <ForJobseeker />
+                          <ForEmployer />
+                          <Novajobsus />
+                          <MoreServices />
                         </div>
                       </div>
                     </div>
