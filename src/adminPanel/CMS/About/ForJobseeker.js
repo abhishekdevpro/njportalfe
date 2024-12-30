@@ -83,7 +83,7 @@ function ForJobseeker() {
                 onChange={setParagraph1AContent}
               />
               <label className="mt-3">
-                <h5>Change Image:</h5>
+                <h5> Change Image (400px x 800px):</h5>
                 <input
                   type="file"
                   accept="image/*"

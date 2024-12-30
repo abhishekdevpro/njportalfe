@@ -103,7 +103,7 @@ function Introductions() {
                 onChange={setParagraph1AContent}
               />
               <label className="mt-3">
-                Change Image:
+                Change Image (400px x 800px):
                 <input
                   type="file"
                   accept="image/*"

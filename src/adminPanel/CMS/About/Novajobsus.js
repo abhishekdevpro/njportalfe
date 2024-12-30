@@ -272,7 +272,10 @@ function Novajobsus() {
             {/* Image Uploads for all 12 images */}
             {Array.from({ length: 12 }, (_, index) => (
               <div key={index}>
-                <label className="mt-3">Change Image {index + 1}:</label>
+                <label className="mt-3">
+                  {" "}
+                  Change Image (400px x 800px) {index + 1}:
+                </label>
                 <input
                   type="file"
                   accept="image/*"

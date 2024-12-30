@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -277,7 +276,12 @@ function Jobsection() {
 
                         <div className="job-post-info">
                           <h4>
-                            <Link to={`/user/job/${item.job_detail.id}`}>
+                            <Link
+                              to={`/user/job/${item.job_detail.id}`}
+                              onClick={() =>
+                                window.scrollTo({ top: 0, behavior: "smooth" })
+                              }
+                            >
                               {item.job_detail.job_title}
                             </Link>
                           </h4>
