@@ -190,7 +190,7 @@ import JobPage2 from "./markup/Element/Jobsection/JobPage";
 import NotificationPage from "./markup/Element/notifications-history";
 import SkillTestHistory from "./markup/Element/skill-test-history";
 
-import AboutusForm from "./adminPanel/AboutusForm";
+import AboutusForm from "./adminPanel/CMS/About";
 import WhiteLabelForm from "./vendor/WhiteLabel";
 import WhiteLabelLanding from "./vendor/WhiteLanding/index";
 

@@ -9,7 +9,7 @@ import Featureblog from "./../Element/Featureblog";
 import Jobsection from "./../Element/Jobsection";
 import Owltestimonial from "./../Element/Owlblog1";
 import "../../css/indexBanner.css";
-import HeroSection from './Components/Herosection'
+import HeroSection from "./Components/Herosection";
 import {
   FaEdit,
   FaFileAlt,
@@ -29,20 +29,19 @@ var bnr2 = require("./../../images/background/bg4.jpg");
 function Homepage() {
   // State to manage hover effects
   const [hoveredBox, setHoveredBox] = useState(null);
-  const token =localStorage.getItem('jobSeekerLoginToken');
-  const navigate=useNavigate()
- const handleScroll=() => {
-  window.location.href=(`/employee/register-2`)
-  window.scrollTo(0,0);
- }
- const handleBuilder=() => {
-  if(token){
-    window.location.href=(`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`)
-  }
-  else{
-    window.location.href = "/user/login";
-  }
- }
+  const token = localStorage.getItem("jobSeekerLoginToken");
+  const navigate = useNavigate();
+  const handleScroll = () => {
+    window.location.href = `/employer/register-2`;
+    window.scrollTo(0, 0);
+  };
+  const handleBuilder = () => {
+    if (token) {
+      window.location.href = `https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`;
+    } else {
+      window.location.href = "/user/login";
+    }
+  };
   return (
     <div className="page-wraper">
       <Header />
