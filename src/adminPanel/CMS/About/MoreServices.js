@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
+import axios from "axios";
 import logo5 from "../../../assests/logo5.jpg";
 
-function MoreServices() {
+function MoreServices({ moreServicesData }) {
   const [isEditing, setIsEditing] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   // State for content
   const [heading, setHeading] = useState(
     "More Services from Hyper V Solutions"
@@ -23,50 +23,89 @@ function MoreServices() {
   const [subHeading, setSubHeading] = useState(
     `Experience the difference of innovation and inclusivity at Novajobs.us. Explore our website today and unlock your path to success.`
   );
-  const [image, setImage] = useState(logo5);
+  const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(logo5);
-  const [uploading, setUploading] = useState(false);
+
+  const authToken = localStorage.getItem("authToken"); // Retrieve auth token
+
+  // Fetch data from the GET API
+  useEffect(() => {
+    if (!moreServicesData) {
+      return;
+    }
+
+    setHeading(moreServicesData.title || heading);
+    setParagraph1Content(moreServicesData.paragraph1 || paragraph1Content);
+    setParagraph2Content(moreServicesData.paragraph2 || paragraph2Content);
+    setParagraph3Content(moreServicesData.paragraph3 || paragraph2Content);
+    setSubHeading(moreServicesData.paragraph4 || subHeading);
+    if (moreServicesData.images && JSON.parse(moreServicesData.images)) {
+      const imgData = JSON.parse(moreServicesData.images);
+      setImagePreview(
+        imgData[0] ? "https://api.novajobs.us" + imgData[0] : logo5
+      );
+    }
+  }, [moreServicesData]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const previewUrl = URL.createObjectURL(file);
-      setImagePreview(previewUrl);
-      setUploading(true);
-
-      setTimeout(() => {
-        setImage(previewUrl);
-        setUploading(false);
-      }, 2000);
+      setImage(file); // Directly store the selected file
+      setImagePreview(URL.createObjectURL(file)); // Set preview
     }
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     setIsEditing(false);
-    console.log(
-      "Saved content:",
-      heading,
-      paragraph1Content,
-      paragraph2Content,
-      paragraph3Content,
-      subHeading,
-      image
-    );
+    setLoading(true);
+
+    // Prepare data to send to the API
+    const formData = new FormData();
+    formData.append("title", heading);
+    formData.append("paragraph1", paragraph1Content);
+    formData.append("paragraph2", paragraph2Content);
+    formData.append("paragraph3", paragraph3Content);
+    formData.append("paragraph4", subHeading);
+    if (image) {
+      formData.append("images", image, "image.jpg");
+    }
+
+    try {
+      const response = await axios.patch(
+        "https://api.novajobs.us/api/admin/update-aboutus-content/5",
+        formData,
+        {
+          headers: {
+            Authorization: authToken,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("API Response:", response.data);
+    } catch (error) {
+      console.error("Error updating content:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
       <div className="mt-5">
-        <button
-          className="btn btn-warning mt-3 float-end"
-          onClick={() => setIsEditing(true)}
-        >
-          Edit
-        </button>
+        {/* Conditionally render "Edit" button based on authToken */}
+        {authToken && (
+          <button
+            className="btn btn-warning mt-3 float-end"
+            onClick={() => setIsEditing(true)}
+          >
+            Edit
+          </button>
+        )}
         {isEditing ? (
           <div className="mx-3 mx-lg-5 mb-4 mb-lg-0">
             <label>
-              Heading:
+              Heading(Title Mandatory):
               <input
                 type="text"
                 value={heading}
@@ -122,9 +161,13 @@ function MoreServices() {
                 />
               </div>
             )}
-            {uploading && <p className="text-black mt-2">Uploading image...</p>}
-            <button className="btn btn-primary mt-3" onClick={handleSave}>
-              Save
+
+            <button
+              className="btn btn-primary mt-3"
+              onClick={handleSave}
+              disabled={loading}
+            >
+              {loading ? "Saving..." : "Save"}
             </button>
             <button
               className="btn btn-secondary mt-3 ms-2"
@@ -169,9 +212,9 @@ function MoreServices() {
               </div>
               <div className="mx-3 mx-lg-5">
                 <img
-                  src={image}
+                  src={imagePreview}
                   alt="Service Logo"
-                  style={{ height: "auto", maxWidth: "350px" }}
+                  style={{ height: "350px", width: "350px" }}
                 />
               </div>
             </div>

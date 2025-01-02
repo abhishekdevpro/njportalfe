@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Quill editor styles
-
+import axios from "axios";
 import logo3 from "../../../assests/logo3.jpg";
 
-function ForEmployer() {
+function ForEmployer({ forEmployerData }) {
   // State for heading and paragraph content
+  const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [heading, setHeading] = useState("For Employers:");
   const [paragraph1Content, setParagraph1Content] = useState(`
@@ -24,50 +25,89 @@ function ForEmployer() {
                         find top talent efficiently.
     </p>
   `);
-  const [image, setImage] = useState(logo3);
+  const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(logo3); // Preview for new image
-  const [uploading, setUploading] = useState(false);
+
+  const authToken = localStorage.getItem("authToken"); // Retrieve auth token
+
+  // Fetch data from the GET API
+  useEffect(() => {
+    if (!forEmployerData) {
+      return;
+    }
+
+    setHeading(forEmployerData.title || heading);
+    setParagraph1Content(forEmployerData.paragraph1 || paragraph1Content);
+    setParagraph1AContent(forEmployerData.paragraph2 || paragraph1AContent);
+
+    if (forEmployerData.images && JSON.parse(forEmployerData.images)) {
+      const imgData = JSON.parse(forEmployerData.images);
+
+      setImagePreview(
+        imgData[0] ? "https://api.novajobs.us" + imgData[0] : logo3
+      );
+    }
+  }, [forEmployerData]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const previewUrl = URL.createObjectURL(file);
-      setImagePreview(previewUrl); // Show the preview
-      setUploading(true);
-
-      // Simulate an upload process (replace with actual upload logic)
-      setTimeout(() => {
-        setImage(previewUrl); // Set the selected image
-        setUploading(false);
-      }, 2000);
+      setImage(file); // Directly store the selected file
+      setImagePreview(URL.createObjectURL(file)); // Set preview
     }
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     setIsEditing(false);
-    console.log(
-      "Saved content:",
-      heading,
-      paragraph1Content,
-      paragraph1AContent,
-      image
-    );
+    setLoading(true);
+
+    // Prepare data to send to the API
+    const formData = new FormData();
+    formData.append("title", heading);
+    formData.append("paragraph1", paragraph1Content);
+    formData.append("paragraph2", paragraph1AContent);
+
+    if (image) {
+      formData.append("images", image, "image.jpg");
+    }
+
+    try {
+      const response = await axios.patch(
+        "https://api.novajobs.us/api/admin/update-aboutus-content/3",
+        formData,
+        {
+          headers: {
+            Authorization: authToken,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("API Response:", response.data);
+    } catch (error) {
+      console.error("Error updating content:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
       <div className="mt-5">
-        <button
-          className="btn btn-warning mt-3 float-end"
-          onClick={() => setIsEditing(true)}
-        >
-          Edit
-        </button>
+        {/* Conditionally render "Edit" button based on authToken */}
+        {authToken && (
+          <button
+            className="btn btn-warning mt-3 float-end"
+            onClick={() => setIsEditing(true)}
+          >
+            Edit
+          </button>
+        )}
         <div className="mx-3 mx-lg-5 mb-4 mb-lg-0">
           {isEditing ? (
             <div>
               <label>
-                <h5>Heading:</h5>
+                <h5> Heading(Title Mandatory):</h5>
                 <input
                   type="text"
                   value={heading}
@@ -113,11 +153,13 @@ function ForEmployer() {
                   />
                 </div>
               )}
-              {uploading && (
-                <p className="text-black mt-2">Uploading image...</p>
-              )}
-              <button className="btn btn-primary mt-3" onClick={handleSave}>
-                Save
+
+              <button
+                className="btn btn-primary mt-3"
+                onClick={handleSave}
+                disabled={loading}
+              >
+                {loading ? "Saving..." : "Save"}
               </button>
               <button
                 className="btn btn-secondary mt-3 ms-2"
@@ -155,12 +197,11 @@ function ForEmployer() {
               ></div>
               <div className="mx-3 mx-lg-5 d-flex justify-content-center">
                 <img
-                  src={image}
+                  src={imagePreview}
                   alt="Uploaded"
                   style={{
                     height: "400px",
                     width: "800px",
-                    padding: "20px",
                   }}
                 />
               </div>

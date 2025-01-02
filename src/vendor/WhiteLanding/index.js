@@ -81,7 +81,7 @@
 //     <>
 //     <UserHeader2 />
 //      {/* {jobseekerToken? <FixedHeader />:""} */}
-      
+
 //       <PageWrapper>
 //         <ContentBlock>
 //           <Section>
@@ -100,7 +100,7 @@
 //           </Section>
 //         </ContentBlock>
 //       </PageWrapper>
-      
+
 //       <Footer />
 //     </>
 //   );

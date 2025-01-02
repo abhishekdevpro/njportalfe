@@ -74,21 +74,25 @@ const ChatWrapper = styled.div`
     max-width: 100%;
   }
 `;
-const jobseekerToken = localStorage.getItem("jobSeekerLoginToken")
+const jobseekerToken = localStorage.getItem("jobSeekerLoginToken");
 console.log(jobseekerToken);
 function Messages() {
   return (
     <>
-     {jobseekerToken? <UserHeader2 />:<EmployeeHeader2/>}
-     {jobseekerToken? <FixedHeader />:""}
-      
+      {jobseekerToken ? <UserHeader2 /> : <EmployeeHeader2 />}
+      {jobseekerToken ? <FixedHeader /> : ""}
+
       <PageWrapper>
         <ContentBlock>
           <Section>
             <Container>
               <Row>
                 <SidebarWrapper>
-                { jobseekerToken? <Profilesidebar data="messages" />:<CompanySideBar active="messages"/>}
+                  {jobseekerToken ? (
+                    <Profilesidebar data="messages" />
+                  ) : (
+                    <CompanySideBar active="messages" />
+                  )}
                 </SidebarWrapper>
                 <ChatWrapper>
                   <ChatBoxContentField />
@@ -98,7 +102,7 @@ function Messages() {
           </Section>
         </ContentBlock>
       </PageWrapper>
-      
+
       <Footer />
     </>
   );
