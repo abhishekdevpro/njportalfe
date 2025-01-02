@@ -118,7 +118,7 @@ function Introductions({ introductionData }) {
           {isEditing ? (
             <div>
               <label>
-                Heading:
+                Heading(Title Mandatory):
                 <input
                   type="text"
                   value={heading}

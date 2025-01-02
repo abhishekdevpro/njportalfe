@@ -105,7 +105,7 @@ function MoreServices({ moreServicesData }) {
         {isEditing ? (
           <div className="mx-3 mx-lg-5 mb-4 mb-lg-0">
             <label>
-              Heading:
+              Heading(Title Mandatory):
               <input
                 type="text"
                 value={heading}

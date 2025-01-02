@@ -107,7 +107,7 @@ function ForEmployer({ forEmployerData }) {
           {isEditing ? (
             <div>
               <label>
-                <h5>Heading:</h5>
+                <h5> Heading(Title Mandatory):</h5>
                 <input
                   type="text"
                   value={heading}
