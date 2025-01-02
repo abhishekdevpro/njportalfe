@@ -71,31 +71,31 @@ const ChatWrapper = styled.div`
     max-width: 100%;
   }
 `;
-const jobseekerToken = localStorage.getItem("jobSeekerLoginToken")
+const jobseekerToken = localStorage.getItem("jobSeekerLoginToken");
 console.log(jobseekerToken);
 function WhiteLabelForm() {
   return (
     <>
-    <UserHeader2 />
-     {/* {jobseekerToken? <FixedHeader />:""} */}
-      
+      <UserHeader2 />
+      {/* {jobseekerToken? <FixedHeader />:""} */}
+
       <PageWrapper>
         <ContentBlock>
           <Section>
             <Container>
               <Row>
                 <SidebarWrapper>
-                    <VendorCompanySideBar active="form" />
+                  <VendorCompanySideBar active="form" />
                 </SidebarWrapper>
                 <ChatWrapper>
-                    <VendorPartnershipForm />
+                  <VendorPartnershipForm />
                 </ChatWrapper>
               </Row>
             </Container>
           </Section>
         </ContentBlock>
       </PageWrapper>
-      
+
       <Footer />
     </>
   );

@@ -540,3 +540,8 @@ h2.size-defaultw {
 .carousel-indicators .active {
   background-color: black !important;
 }
+
+.draggable-item:hover {
+  border: 1px dashed #007bff; /* Highlight border on hover */
+  cursor: grab;
+}
