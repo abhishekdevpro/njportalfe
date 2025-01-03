@@ -202,7 +202,7 @@ function App() {
       <Route path="/" element={<Homepage />} />
       <Route path="services" element={<LandingPage />} />
       <Route path="novajobs" element={<Novajobs />} />
-      <Route path="aboutus" element={<AboutusForm />} />
+      <Route path="aboutus" element={<Aboutus1 />} />
       <Route path="Profilepagehome" element={<Profilepagehome />} />
       <Route path="/*" element={<Error404 />} />
       <Route path="about-us" element={<Aboutus />} />
