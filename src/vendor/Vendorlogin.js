@@ -1,35 +1,38 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import { Navbar, Nav, Badge } from 'react-bootstrap';
-import Footer from '../markup/Layout/Footer';
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Navbar, Nav, Badge } from "react-bootstrap";
+import Footer from "../markup/Layout/Footer";
 
 const Vendorlogin = () => {
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://api.novajobs.us/api/admin/auth/vendor/login', {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://api.novajobs.us/api/admin/auth/vendor/login",
+        {
+          email,
+          password,
+        }
+      );
 
       if (response.data.data.token) {
-        localStorage.setItem('vendorToken', response.data.data.token);
-        navigate('/vendor/vendorprofile');
+        localStorage.setItem("vendorToken", response.data.data.token);
+        navigate("/white-label");
       }
     } catch (err) {
       if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
       } else {
-        setError('An error occurred. Please try again.');
+        setError("An error occurred. Please try again.");
       }
     }
   };
