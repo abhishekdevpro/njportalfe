@@ -193,6 +193,7 @@ import SkillTestHistory from "./markup/Element/skill-test-history";
 import AboutusForm from "./adminPanel/CMS/About";
 import WhiteLabelForm from "./vendor/WhiteLabel";
 import WhiteLabelLanding from "./vendor/WhiteLanding/index";
+import Editor from "./vendor/Editor";
 
 function App() {
   const dispatch = useDispatch();
@@ -492,6 +493,14 @@ function App() {
           element={
             <PrivateRoutevendor>
               <Vendorbulkuploadjobseeker />
+            </PrivateRoutevendor>
+          }
+        />
+         <Route
+          path="editors"
+          element={
+            <PrivateRoutevendor>
+              <Editor />
             </PrivateRoutevendor>
           }
         />

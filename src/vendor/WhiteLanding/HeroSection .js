@@ -3,7 +3,6 @@
 // import styled from 'styled-components';
 // import hero from "./home.png"
 
-
 // const Hero = () => {
 
 //  const HeroSection = styled.section`
@@ -23,8 +22,8 @@
 
 //   return (
 //     <HeroSection>
-//       <HeroImage 
-//         src={hero} 
+//       <HeroImage
+//         src={hero}
 //         alt="AI Job Portal Platform"
 //       />
 //     </HeroSection>
@@ -33,9 +32,10 @@
 
 // export default Hero;
 
-import React from 'react';
-import styled from 'styled-components';
-import hero from './home.png'; // Your hero image
+import React from "react";
+import styled from "styled-components";
+import hero from "./home.png"; // Your hero image
+import VendorPartnershipForm from "../WhiteLabel/Form";
 
 const HeroSection = styled.section`
   display: flex;
@@ -54,14 +54,14 @@ const HeroContent = styled.div`
 `;
 
 const Heading = styled.h1`
-text-align:left;
+  text-align: left;
   font-size: 3rem;
   font-weight: bold;
   color: #0a0a0a;
 `;
 
 const SubHeading = styled.p`
-text-align:left;
+  text-align: left;
   font-size: 1.2rem;
   color: #5f6368;
   line-height: 1.6;
@@ -77,7 +77,7 @@ const Button = styled.a`
   font-size: 1rem;
   color: white;
   text-align: center;
-  background-color: ${(props) => (props.primary ? '#007bff' : '#007bff')};
+  background-color: ${(props) => (props.primary ? "#007bff" : "#007bff")};
   border-radius: 5px;
   text-decoration: none;
   cursor: pointer;
@@ -115,20 +115,35 @@ const Hero = () => {
       <HeroContent>
         <Heading>Effortless Recruitment Websites for Your Business</Heading>
         <SubHeading>
-          Empower your recruitment agency with the ultimate solution for creating professional, feature-rich websites at an affordable monthly cost.
+          Empower your recruitment agency with the ultimate solution for
+          creating professional, feature-rich websites at an affordable monthly
+          cost.
         </SubHeading>
         <ButtonsContainer>
-          <Button primary href="#">
+          <Button
+            primary
+            href=""
+            type="button"
+            className="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#vendorFormModal"
+          >
             Get Started Now
           </Button>
-          <Button href="#">
-            Book A Call
-          </Button>
+          <VendorPartnershipForm />
+          <Button href="#">Book A Call</Button>
         </ButtonsContainer>
         <TrustLogos>
           <span>Trusted by</span>
-          <Logo src="https://novajobs.us/static/media/SBE-Logo.389eda415d6bcfb730cb.png" alt="SBE Logo" /> {/* Add your logo paths */}
-          <Logo src="https://novajobs.us/static/media/New-dbe-logo.520f3752c7088c8b133c.png" alt="DBE Logo" />
+          <Logo
+            src="https://novajobs.us/static/media/SBE-Logo.389eda415d6bcfb730cb.png"
+            alt="SBE Logo"
+          />{" "}
+          {/* Add your logo paths */}
+          <Logo
+            src="https://novajobs.us/static/media/New-dbe-logo.520f3752c7088c8b133c.png"
+            alt="DBE Logo"
+          />
         </TrustLogos>
       </HeroContent>
 
