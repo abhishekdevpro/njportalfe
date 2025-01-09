@@ -9,7 +9,6 @@ import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 function Footer() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
- 
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -26,7 +25,7 @@ function Footer() {
   const token = localStorage.getItem("jobSeekerLoginToken");
   const handleBuilder = () => {
     if (token) {
-      window.location.href = `https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`;
+      window.location.href = `https://airesume.novajobs.us/?tokenbyurl=${token}`;
     } else {
       window.location.href = "/user/login";
     }
@@ -134,7 +133,7 @@ function Footer() {
                         >
                           <Link
                             onClick={handleBuilder}
-                            // to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
+                            // to={`https://airesume.novajobs.us/?tokenbyurl=${token}`}
                           >
                             Build AI resume
                           </Link>

@@ -13,7 +13,7 @@ function Footer() {
   const token = localStorage.getItem("jobSeekerLoginToken");
   const handleBuilder = () => {
     if (token) {
-      window.location.href = `https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`;
+      window.location.href = `https://airesume.novajobs.us/?tokenbyurl=${token}`;
     } else {
       window.location.href = "/user/login";
     }
@@ -134,7 +134,7 @@ function Footer() {
                         >
                           <Link
                             onClick={handleBuilder}
-                            // to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
+                            // to={`https://airesume.novajobs.us/?tokenbyurl=${token}`}
                           >
                             Build AI resume
                           </Link>
