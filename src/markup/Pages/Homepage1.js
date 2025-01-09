@@ -37,7 +37,7 @@ function Homepage() {
   };
   const handleBuilder = () => {
     if (token) {
-      window.location.href = `https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`;
+      window.location.href = `https://airesume.novajobs.us/?tokenbyurl=${token}`;
     } else {
       window.location.href = "/user/login";
     }
@@ -218,7 +218,7 @@ function Homepage() {
                 <FaRegFileAlt />
               </div>
               <Link
-              // to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
+              // to={`https://airesume.novajobs.us/?tokenbyurl=${token}`}
               >
                 <h3
                   onClick={handleBuilder}

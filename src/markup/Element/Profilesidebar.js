@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../css/profilesidebar.css";
 import axios from "axios";
-import { FaComment, FaExternalLinkAlt, FaHistory, FaLightbulb, FaUserFriends } from "react-icons/fa";
+import {
+  FaComment,
+  FaExternalLinkAlt,
+  FaHistory,
+  FaLightbulb,
+  FaUserFriends,
+} from "react-icons/fa";
 // import { FaStar } from "react-icons/fa6";
 
 function Profilesidebar({ data }) {
@@ -27,7 +33,6 @@ function Profilesidebar({ data }) {
     setSidebarOpen(!sidebarOpen);
   };
 
-  
   return (
     <>
       <button className="sidebar-toggle" onClick={toggleSidebar}>
@@ -50,7 +55,7 @@ function Profilesidebar({ data }) {
               <li>
                 <Link
                   // ${token}
-                  to={`https://nj-rbuild-fe.vercel.app/?tokenbyurl=${token}`}
+                  to={`https://airesume.novajobs.us/?tokenbyurl=${token}`}
                   // to={`http://localhost:3000/?tokenbyurl=${token}`}
                   className={data === "resume" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
