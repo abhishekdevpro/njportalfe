@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import Logout from "./Logout";
-import "../Layout/Headerjobseeker.css"
+import "../Layout/Headerjobseeker.css";
 
 import logo2 from "./../../images/logo.png";
 var bnr3 = require("./../../images/background/bg3.jpg");
@@ -258,7 +258,8 @@ class Headerforlogin extends Component {
                     <li>
                       {localStorage.getItem("jobSeekerLoginToken") ? null : (
                         <Link
-                          to={"/vendor/login"}
+                          // to={"/vendor/login"}
+                          to="https://nova-white-label.vercel.app/white-label"
                           style={{ color: "white" }}
                           className="site-button "
                         >

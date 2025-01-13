@@ -291,7 +291,8 @@ class UserHeader extends Component {
                     <li>
                       {localStorage.getItem("jobSeekerLoginToken") ? null : (
                         <Link
-                          to={"/vendor/login"}
+                          // to={"/vendor/login"}
+                          to="https://nova-white-label.vercel.app/white-label"
                           style={{ color: "white" }}
                           className="site-button "
                         >
