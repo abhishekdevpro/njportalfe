@@ -221,7 +221,7 @@ const CompanySideBar = ({ active }) => {
                     to={"/employer/community"}
                   >
                     <FaUser />
-                    <span>Community</span>
+                    <span className="pl-1">Community</span>
                   </Link>
                 </li>
                 <li>
@@ -230,7 +230,7 @@ const CompanySideBar = ({ active }) => {
                     to={"/employer/messages"}
                   >
                     <FaComment />
-                    <span>Messages</span>
+                    <span className="pl-1">Messages</span>
                   </Link>
                 </li>
                 <li>
@@ -239,7 +239,7 @@ const CompanySideBar = ({ active }) => {
                     to={"/employer/jobs-alerts"}
                   >
                     <FaBell />
-                    <span>Notifications</span>
+                    <span className="pl-1">Notifications</span>
                   </Link>
                 </li>
 

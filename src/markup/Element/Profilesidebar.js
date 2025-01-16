@@ -102,7 +102,7 @@ function Profilesidebar({ data }) {
                   onClick={() => setSidebarOpen(false)}
                 >
                   <FaLightbulb />
-                  <span>Skill Test</span>
+                  <span className="pl-1">Skill Test</span>
                 </Link>
               </li>
               <li>
@@ -112,7 +112,7 @@ function Profilesidebar({ data }) {
                   onClick={() => setSidebarOpen(false)}
                 >
                   <FaHistory />
-                  <span>Skill Test History</span>
+                  <span className="pl-1">Skill Test History</span>
                 </Link>
               </li>
               <li>
@@ -122,7 +122,7 @@ function Profilesidebar({ data }) {
                   onClick={() => setSidebarOpen(false)}
                 >
                   <FaUserFriends />
-                  <span>Community</span>
+                  <span className="pl-1">Community</span>
                 </Link>
               </li>
               <li>
@@ -132,7 +132,7 @@ function Profilesidebar({ data }) {
                   onClick={() => setSidebarOpen(false)}
                 >
                   <FaComment />
-                  <span>Messages</span>
+                  <span className="pl-1">Messages</span>
                 </Link>
               </li>
               <li>
@@ -142,7 +142,7 @@ function Profilesidebar({ data }) {
                   onClick={() => setSidebarOpen(false)}
                 >
                   <FaExternalLinkAlt />
-                  <span>Ultra Aura</span>
+                  <span className="pl-1">Ultra Aura</span>
                 </Link>
               </li>
               <li>
@@ -152,7 +152,7 @@ function Profilesidebar({ data }) {
                   onClick={() => setSidebarOpen(false)}
                 >
                   <i className="fa fa-id-card-o" aria-hidden="true"></i>
-                  <span>Add Referral </span>
+                  <span className="pl-1">Add Referral </span>
                 </Link>
               </li>
               <li>
