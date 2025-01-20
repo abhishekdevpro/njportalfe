@@ -44,11 +44,26 @@ function AdminAboutus({ projectName }) {
                 <div className="job-bx">
                   {sections.length ? (
                     <>
-                      <Introductions introductionData={getSectionData(1)} />
-                      <ForJobseeker forJobseekerData={getSectionData(2)} />
-                      <ForEmployer forEmployerData={getSectionData(3)} />
-                      <Novajobsus novaJobsusData={getSectionData(4)} />
-                      <MoreServices moreServicesData={getSectionData(5)} />
+                      <Introductions
+                        introductionData={getSectionData(1)}
+                        projectName={projectName}
+                      />
+                      <ForJobseeker
+                        forJobseekerData={getSectionData(2)}
+                        projectName={projectName}
+                      />
+                      <ForEmployer
+                        forEmployerData={getSectionData(3)}
+                        projectName={projectName}
+                      />
+                      <Novajobsus
+                        novaJobsusData={getSectionData(4)}
+                        projectName={projectName}
+                      />
+                      <MoreServices
+                        moreServicesData={getSectionData(5)}
+                        projectName={projectName}
+                      />
                     </>
                   ) : null}
                 </div>
