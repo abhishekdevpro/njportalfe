@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import logo5 from "../../../assests/logo5.jpg";
 
-function MoreServices({ moreServicesData }) {
+function MoreServices({ moreServicesData, projectName }) {
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
   // State for content
@@ -72,7 +72,9 @@ function MoreServices({ moreServicesData }) {
 
     try {
       const response = await axios.patch(
-        "https://api.novajobs.us/api/admin/update-aboutus-content/5",
+        `https://api.novajobs.us/api/admin${
+          projectName ? projectName : ""
+        }/update-aboutus-content/5`,
         formData,
         {
           headers: {

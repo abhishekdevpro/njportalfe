@@ -17,7 +17,7 @@ import pic10 from "../../../assests/1 (10).png";
 import pic11 from "../../../assests/1 (11).png";
 import pic12 from "../../../assests/1 (12).png";
 
-function Novajobsus({ novaJobsusData }) {
+function Novajobsus({ novaJobsusData, projectName }) {
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [heading, setHeading] = useState("NovaJobs.US");
@@ -96,7 +96,9 @@ function Novajobsus({ novaJobsusData }) {
     try {
       const token = localStorage.getItem("authToken");
       const response = await axios.patch(
-        "https://api.novajobs.us/api/admin/update-aboutus-content/4",
+        `https://api.novajobs.us/api/admin/${
+          projectName ? projectName : ""
+        }update-aboutus-content/4`,
         formData,
         {
           headers: {

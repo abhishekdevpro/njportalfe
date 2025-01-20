@@ -300,6 +300,38 @@ function App() {
           </PrivateRouteadmin>
         }
       />
+       <Route
+        path="/admin/freevance/aboutus"
+        element={
+          <PrivateRouteadmin>
+            <AboutusForm projectName={"/freevance"}/>
+          </PrivateRouteadmin>
+        }
+      />
+       <Route
+        path="/admin/paradigmshift/aboutus"
+        element={
+          <PrivateRouteadmin>
+            <AboutusForm projectName={"/paradigmshift"}/>
+          </PrivateRouteadmin>
+        }
+      />
+        <Route
+        path="/admin/legitzone/aboutus"
+        element={
+          <PrivateRouteadmin>
+            <AboutusForm projectName={"/legitzone"}/>
+          </PrivateRouteadmin>
+        }
+      />
+       <Route
+        path="/admin/homecare/aboutus"
+        element={
+          <PrivateRouteadmin>
+            <AboutusForm projectName={"/homecare"}/>
+          </PrivateRouteadmin>
+        }
+      />
       <Route
         path="/admin/jobs"
         element={
