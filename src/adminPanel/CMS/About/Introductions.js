@@ -7,7 +7,7 @@ import axios from "axios";
 import "react-quill/dist/quill.snow.css";
 import logo1 from "../../../assests/logo1.jpg";
 
-function Introductions({ introductionData }) {
+function Introductions({ introductionData, projectName }) {
   const [isEditing, setIsEditing] = useState(false);
   const [heading, setHeading] = useState("Introduction");
   const [paragraph1Content, setParagraph1Content] = useState(`
@@ -82,7 +82,9 @@ function Introductions({ introductionData }) {
 
     try {
       const response = await axios.patch(
-        "https://api.novajobs.us/api/admin/update-aboutus-content/1",
+        `https://api.novajobs.us/api/admin${
+          projectName ? projectName : ""
+        }/update-aboutus-content/1`,
         formData,
         {
           headers: {

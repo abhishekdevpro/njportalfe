@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css"; // Quill editor styles
 import axios from "axios";
 import logo3 from "../../../assests/logo3.jpg";
 
-function ForEmployer({ forEmployerData }) {
+function ForEmployer({ forEmployerData, projectName }) {
   // State for heading and paragraph content
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -73,7 +73,9 @@ function ForEmployer({ forEmployerData }) {
 
     try {
       const response = await axios.patch(
-        "https://api.novajobs.us/api/admin/update-aboutus-content/3",
+        `https://api.novajobs.us/api/admin${
+          projectName ? projectName : ""
+        }/update-aboutus-content/3`,
         formData,
         {
           headers: {
