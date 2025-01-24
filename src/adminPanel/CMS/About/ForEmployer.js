@@ -92,7 +92,26 @@ function ForEmployer({ forEmployerData, projectName }) {
       setLoading(false);
     }
   };
+  const handleDelete = (field) => {
+    switch (field) {
+      case "heading":
+        setHeading("");
+        break;
+      case "paragraph1":
+        setParagraph1Content("");
+        break;
+      case "paragraph2":
+        setParagraph1AContent("");
+        break;
 
+      case "image":
+        setImage(null);
+        setImagePreview(logo3);
+        break;
+      default:
+        break;
+    }
+  };
   return (
     <>
       <div className="mt-5">
@@ -108,35 +127,64 @@ function ForEmployer({ forEmployerData, projectName }) {
         <div className="mx-3 mx-lg-5 mb-4 mb-lg-0">
           {isEditing ? (
             <div>
-              <label>
-                <h5> Heading(Title Mandatory):</h5>
-                <input
-                  type="text"
-                  value={heading}
-                  onChange={(e) => setHeading(e.target.value)}
-                  className="form-control"
-                  style={{ marginBottom: "10px" }}
-                />
-              </label>
+              <div className="d-flex justify-content-start gap-2">
+                <label>
+                  <h5> Heading(Title Mandatory):</h5>
+                  <input
+                    type="text"
+                    value={heading}
+                    onChange={(e) => setHeading(e.target.value)}
+                    className="form-control"
+                    style={{ marginBottom: "10px" }}
+                  />
+                </label>
+                <button
+                  className="btn btn-danger mt-4 mb-2 px-4 btn btn-primary"
+                  onClick={() => handleDelete("heading")}
+                >
+                  Delete Heading
+                </button>
+              </div>
+              <button
+                className="btn btn-danger mt-2 mb-2 px-4 btn btn-primary"
+                onClick={() => handleDelete("paragraph1")}
+              >
+                Delete Paragraph 1
+              </button>
               <h5>Paragraph 1:</h5>
               <ReactQuill
                 value={paragraph1Content}
                 onChange={setParagraph1Content}
               />
-              <h5 className="mt-3">Paragraph 2:</h5>
+              <button
+                className="btn btn-danger mt-2 mb-2 px-4 btn-primary"
+                onClick={() => handleDelete("paragraph2")}
+              >
+                Delete Paragraph 2
+              </button>
+              <h5 className="">Paragraph 2:</h5>
               <ReactQuill
                 value={paragraph1AContent}
                 onChange={setParagraph1AContent}
               />
-              <label className="mt-3">
-                <h5> Change Image (400px x 800px):</h5>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  className="form-control"
-                />
-              </label>
+
+              <div className="d-flex justify-content-start gap-2">
+                <label className="mt-3">
+                  <h5>Change Image (400px x 800px):</h5>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="form-control"
+                  />
+                </label>
+                <button
+                  className="btn btn-danger mt-4 mb-2 px-4 btn-primary"
+                  onClick={() => handleDelete("image")}
+                >
+                  Delete Image
+                </button>
+              </div>
               {imagePreview && (
                 <div className="mt-3">
                   <p>
