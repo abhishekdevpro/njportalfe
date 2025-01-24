@@ -194,6 +194,7 @@ import AboutusForm from "./adminPanel/CMS/About";
 import WhiteLabelForm from "./vendor/WhiteLabel";
 import WhiteLabelLanding from "./vendor/WhiteLanding/index";
 import Editor from "./vendor/Editor";
+import Gauth from '../src/markup/Pages/G-auth.js';
 
 function App() {
   const dispatch = useDispatch();
@@ -204,6 +205,7 @@ function App() {
       <Route path="services" element={<LandingPage />} />
       <Route path="novajobs" element={<Novajobs />} />
       <Route path="aboutus" element={<Aboutus1 />} />
+      <Route path="gauth" element={<Gauth />} />
       <Route path="Profilepagehome" element={<Profilepagehome />} />
       <Route path="/*" element={<Error404 />} />
       <Route path="about-us" element={<Aboutus />} />
