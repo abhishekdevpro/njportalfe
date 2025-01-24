@@ -14,6 +14,7 @@ import { toast, ToastContainer } from "react-toastify";
 import Footer from "../Layout/Footer";
 import Header from "../Layout/Header"
 import { Modal } from "react-bootstrap";
+import { FcGoogle } from "react-icons/fc";
 const bnr3 = require("./../../images/background/bg3.jpg");
 function Login(props) {
   const [email, setEmail] = useState("demo@example.com");
@@ -151,6 +152,27 @@ function Login(props) {
       toast.error("Failed to resend OTP. Please try again.");
     } finally {
       setLoading(false);
+    }
+  };
+  const handleGoogleSignin = async () => {
+    const url = 'https://api.novajobs.us/api/jobseeker/auth/google';
+
+    try {
+      const response = await axios.get(url, {}, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.status === 200) {
+        console.log("Google sign-in token: ", response.data.data);
+        window.open(response.data.data);
+      } else {
+        toast.error("Google sign-in failed.");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error(`${err.response?.data?.message || "Google sign-in failed"}`);
     }
   };
   return (
@@ -337,6 +359,14 @@ function Login(props) {
                         </button>
                       </div>
                     </form>
+                    <button
+            onClick={handleGoogleSignin}
+            type="button"
+            className="w-full flex items-center justify-center bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md mt-4 shadow-sm hover:bg-gray-100 focus:outline-none"
+          >
+            <FcGoogle className="h-6 w-6 mr-2" />
+            Continue with Google
+          </button>
                     <div className="form-group text-center">
                       <Link to="/" className="site-button-link  m-t15 ">
                         Back to Home
