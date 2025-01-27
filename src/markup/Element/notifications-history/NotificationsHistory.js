@@ -7,7 +7,8 @@ import { Bell, MessageSquare, Briefcase } from "lucide-react";
 const Container = styled.div`
   background-color: white;
   border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 `;
 
 const Header = styled.div`
@@ -33,7 +34,7 @@ const LoadingSpinner = styled.div`
   justify-content: center;
   align-items: center;
   padding: 3rem 0;
-  
+
   .spinner {
     border: 4px solid rgba(0, 0, 0, 0.1);
     width: 36px;
@@ -44,8 +45,12 @@ const LoadingSpinner = styled.div`
   }
 
   @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;
 
@@ -126,8 +131,10 @@ const NotificationsHistory = () => {
   const [error, setError] = useState(null);
 
   // Fetch token safely
-  const token = localStorage.getItem("jobSeekerLoginToken") || localStorage.getItem("employeeLoginToken") || '';
-
+  const token =
+    localStorage.getItem("jobSeekerLoginToken") ||
+    localStorage.getItem("employeeLoginToken") ||
+    "";
 
   useEffect(() => {
     fetchNotifications();
@@ -136,7 +143,7 @@ const NotificationsHistory = () => {
   const fetchNotifications = async () => {
     try {
       setLoading(true);
-      
+
       // Add more robust error handling
       if (!token) {
         throw new Error("No authentication token found");
@@ -145,15 +152,17 @@ const NotificationsHistory = () => {
       const response = await axios.get(
         "https://api.novajobs.us/api/employeer/notifications",
         {
-          headers: { 
-           
-            'Content-Type': 'application/json'
+          headers: {
+            "Content-Type": "application/json",
           },
-          timeout: 10000 // 10 second timeout
+          timeout: 10000, // 10 second timeout
         }
       );
 
-      if (response.data?.status === "success" && Array.isArray(response.data?.data)) {
+      if (
+        response.data?.status === "success" &&
+        Array.isArray(response.data?.data)
+      ) {
         setNotifications(response.data.data);
         setError(null);
       } else {
@@ -161,10 +170,10 @@ const NotificationsHistory = () => {
       }
     } catch (err) {
       // More detailed error handling
-      const errorMessage = err.response 
-        ? (err.response.data?.message || "Failed to fetch notifications")
-        : (err.message || "An unexpected error occurred");
-      
+      const errorMessage = err.response
+        ? err.response.data?.message || "Failed to fetch notifications"
+        : err.message || "An unexpected error occurred";
+
       setError(errorMessage);
       setNotifications([]);
       console.error("Notifications Fetch Error:", err);
@@ -201,9 +210,12 @@ const NotificationsHistory = () => {
   };
 
   // Pagination Logic
-  const totalPages = Math.ceil((notifications?.length || 0) / notificationsPerPage);
+  const totalPages = Math.ceil(
+    (notifications?.length || 0) / notificationsPerPage
+  );
   const indexOfLastNotification = currentPage * notificationsPerPage;
-  const indexOfFirstNotification = indexOfLastNotification - notificationsPerPage;
+  const indexOfFirstNotification =
+    indexOfLastNotification - notificationsPerPage;
   const currentNotifications = notifications.slice(
     indexOfFirstNotification,
     indexOfLastNotification
@@ -230,8 +242,8 @@ const NotificationsHistory = () => {
 
   const renderError = () => (
     <ErrorMessage>
-      <h4>Oops! Something went wrong</h4>
-      <p>{error || "Unable to load notifications"}</p>
+      <h4>Oops! No Notification here</h4>
+      {/* <p>{error || "Unable to load notifications"}</p> */}
     </ErrorMessage>
   );
 
@@ -259,17 +271,19 @@ const NotificationsHistory = () => {
       ))}
 
       <PaginationContainer>
-        <PaginationButton 
-          onClick={handlePreviousPage} 
+        <PaginationButton
+          onClick={handlePreviousPage}
           disabled={currentPage === 1}
         >
           Previous
         </PaginationButton>
-        
-        <span>Page {currentPage} of {totalPages}</span>
-        
-        <PaginationButton 
-          onClick={handleNextPage} 
+
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+
+        <PaginationButton
+          onClick={handleNextPage}
           disabled={currentPage === totalPages}
         >
           Next
@@ -283,16 +297,15 @@ const NotificationsHistory = () => {
       <Header>
         <Title>Notification History</Title>
       </Header>
-      
+
       <Content>
-        {loading 
-          ? renderLoading() 
-          : error 
-            ? renderError()
-            : notifications.length === 0 
-              ? renderEmptyState()
-              : renderNotifications()
-        }
+        {loading
+          ? renderLoading()
+          : error
+          ? renderError()
+          : notifications.length === 0
+          ? renderEmptyState()
+          : renderNotifications()}
       </Content>
     </Container>
   );

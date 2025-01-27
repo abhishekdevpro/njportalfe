@@ -9,7 +9,7 @@ import { fetchCompanyInfo } from "../../store/thunkFunctions/companyFunction";
 import { useDispatch, useSelector } from "react-redux";
 import CompanySideBar from "../Layout/companySideBar";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import TextEditor from "../Element/Editor";
 import ReactQuill from "react-quill";
 
@@ -729,5 +729,3 @@ function EmployeeCompanyprofile() {
 }
 
 export default EmployeeCompanyprofile;
-
-

@@ -93,7 +93,8 @@ const AddScreening = () => {
         {screeningQuestions.map((category, index) => (
           <div
             key={index}
-            style={{ display: "inline-block", marginRight: "10px" }}>
+            style={{ display: "inline-block", marginRight: "10px" }}
+          >
             <button
               className="d-flex justify-content-center align-items-center"
               onClick={() => {
@@ -118,7 +119,8 @@ const AddScreening = () => {
                 borderColor: "#9d9d9d",
                 cursor: "pointer",
                 outline: "none",
-              }}>
+              }}
+            >
               {expanded[category.name] ? <FaCheck /> : <FaPlus />}{" "}
               <span className="ml-2">{category.name}</span>
             </button>
