@@ -9,12 +9,11 @@ import FilterLeftSidebar from "./Rightsidebar";
 import FilterSidebar from "./LeftSidebar";
 import EmployeeHeader2 from "../../../employeeMarkup/Layout/Header2";
 
-
 function Community() {
-  const token = localStorage.getItem("jobSeekerLoginToken")
+  const token = localStorage.getItem("jobSeekerLoginToken");
   return (
     <>
-     {token ? <UserHeader2 />:<EmployeeHeader2/>}
+      {token ? <UserHeader2 /> : <EmployeeHeader2 />}
       {/* <FixedHeader /> */}
 
       <div className="page-content bg-light">
@@ -22,22 +21,18 @@ function Community() {
           <div className="section-full bg-white p-t50 p-b20 shadow-sm">
             <div className="container">
               <div className="row">
-                <div className="col-xl-3 col-lg-4">
+                <div className="col-xl-3 col-lg-4 col-sm-12 col-12">
                   {/* <Profilesidebar data={"community"} /> */}
                   <FilterSidebar />
                 </div>
                 <div className="col-xl-6 col-lg-8 m-b30">
-                  
                   <div className="mt-4 text-center">
                     <FeedSection />
-                   
                   </div>
-                  
-                  
                 </div>
-                <div className="col-xl-3 col-lg-4">
-                    <FilterLeftSidebar />
-                  </div>
+                <div className="col-xl-3 col-lg-4 col-sm-12 col-12">
+                  <FilterLeftSidebar />
+                </div>
               </div>
             </div>
           </div>

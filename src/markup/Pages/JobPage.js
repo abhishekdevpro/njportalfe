@@ -804,7 +804,7 @@ function JobPage() {
                           </div>
                         </div>
                       </div>
-                      <div className="col-xl-8 col-lg-7 m-b30 d-none d-md-block">
+                      <div className="col-xl-8 col-lg-7 m-b30 ">
                         {selectedJob && (
                           <div className="m-b20 job-bx rounded-4 ">
                             <div>

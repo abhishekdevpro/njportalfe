@@ -1,152 +1,240 @@
 * {
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
 }
 
 h2 {
-    margin: 0;
+  margin: 0;
 }
 
 body {
-    background-color: "#e8e8e8";
+  background-color: "#e8e8e8";
 }
 
 .banner {
-    display: flex;
-    height: 400px;
-    background-color: skyblue;
-    border-radius: 0 0 30% 30%;
-    overflow: visible
+  display: flex;
+  height: 400px;
+  background-color: skyblue;
+  border-radius: 0 0 30% 30%;
+  overflow: visible;
 }
 
 .banner-img {
-    width: 50%;
-    display: flex;
-    align-items: flex-end;
-    overflow: visible
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  overflow: visible;
+  justify-content: flex-end;
 }
 
 .banner-text {
-    display: flex;
-    width: 50%;
-    line-height: "10px";
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
+  /* display: flex; */
+  width: 100%;
+  line-height: "10px";
+
+  justify-content: center;
+  align-items: center;
+  color: black;
 }
 
 .banner-text h2 {
-    color: black;
+  color: black;
 }
 
 .services-row {
-    margin-top: 20px;
-    display: flex;
-    padding: 1% 20%;
-    justify-content: center;
-    gap: 3%;
+  margin-top: 20px;
+  display: flex;
+  padding: 1% 20%;
+  justify-content: center;
+  gap: 3%;
 }
 
 .service-div {
-    width: 300px;
-    height: 350px;
-    background-color: white;
-    border-radius: 10%;
-    box-shadow: rgba(0, 0, 0, 0.75) 0px 5px 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 300px;
+  height: 350px;
+  background-color: white;
+  border-radius: 10%;
+  box-shadow: rgba(0, 0, 0, 0.75) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.services-row :hover{
-    scale: 1.02;
-    transition: all 100ms ease-in-out;
-
+.services-row :hover {
+  scale: 1.02;
+  transition: all 100ms ease-in-out;
 }
 
 .service-div p {
-    color: black;
-    margin: 0;
-    font-weight: 700;
+  color: black;
+  margin: 0;
+  font-weight: 700;
 }
 
 .service-div li {
-    color: black;
-    margin: 0;
-    font-weight: 700;
+  color: black;
+  margin: 0;
+  font-weight: 700;
 }
-
-
 
 .service-div img {
-    width: 100px;
-    height: 100px;
-    margin: 30px;
+  width: 100px;
+  height: 100px;
+  margin: 30px;
 }
-
 
 /* Default size for small screens */
 .custom-modal-header .btn-close {
+  font-size: 42px;
+}
+
+/* Medium screens and up */
+@media (min-width: 768px) {
+  .custom-modal-header .btn-close {
     font-size: 42px;
   }
-  
-  /* Medium screens and up */
-  @media (min-width: 768px) {
-    .custom-modal-header .btn-close {
-        font-size: 42px;
-    }
+}
+
+/* Large screens and up */
+@media (min-width: 992px) {
+  .custom-modal-header .btn-close {
+    font-size: 42px;
   }
-  
-  /* Large screens and up */
-  @media (min-width: 992px) {
-    .custom-modal-header .btn-close {
-        font-size: 42px;
-    }
+}
+
+/* Extra large screens and up */
+@media (min-width: 1200px) {
+  .custom-modal-header .btn-close {
+    font-size: 42px;
   }
-  
-  /* Extra large screens and up */
-  @media (min-width: 1200px) {
-    .custom-modal-header .btn-close {
-        font-size: 42px;
-    }
-  }
-  
-  /* Example CSS - Adjust as needed */
+}
+
+/* Example CSS - Adjust as needed */
 .modal-content {
-    border-radius: 8px;
-  }
-  
-  .custom-modal-header {
-    border-bottom: none;
-  }
-  
-  .site-button {
-    /* Your button styles */
-  }
-  
+  border-radius: 8px;
+}
+
+.custom-modal-header {
+  border-bottom: none;
+}
+
+.site-button {
+  /* Your button styles */
+}
 
 /* App.css */
 .responsive-button {
-    font-size: 15px;
-    padding: 16px 32px;
-    white-space: normal;
+  font-size: 15px;
+  padding: 16px 32px;
+  white-space: normal;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .responsive-button {
+    font-size: 16px;
+    padding: 12px 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .responsive-button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e8e8e8;
+}
+
+/* Banner Section */
+.banner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  background-color: skyblue;
+  border-radius: 0 0 30% 30%;
+  padding: 20px;
+}
+
+.banner-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.banner-text {
+  width: 50%;
+  color: black;
+}
+
+.banner-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.banner-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.banner-image {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-image img {
+  /* width: 100%; */
+  max-width: 350px;
+  border-radius: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .banner-content {
+    flex-direction: column;
+    align-items: center;
     text-align: center;
   }
-  
-  @media (max-width: 768px) {
-    .responsive-button {
-      font-size: 16px;
-      padding: 12px 24px;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .responsive-button {
-      font-size: 14px;
-      padding: 10px 20px;
-    }
-  }
-  
 
-  
+  .banner-text {
+    width: 100%;
+    /* margin-bottom: 20px; */
+    margin-top: 30px;
+  }
+
+  .banner-image {
+    width: 80%;
+  }
+  .banner-container {
+    height: 580px;
+  }
+}
+
+@media (max-width: 576px) {
+  .banner-heading {
+    font-size: 2rem;
+  }
+
+  .banner-description {
+    font-size: 1rem;
+  }
+  .banner-container {
+    height: 570px;
+  }
+}
