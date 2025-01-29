@@ -368,6 +368,10 @@ function Introductions({ introductionData, projectName }) {
     setParagraph1Content(introductionData.paragraph1 || paragraph1Content);
     setParagraph1AContent(introductionData.paragraph2 || paragraph1AContent);
     setParagraph1BContent(introductionData.paragraph3 || paragraph1BContent);
+    setShowHeading(introductionData.is_title_display);
+    setShowParagraph1(introductionData.is_paragraph1_display);
+    setShowParagraph1B(introductionData.is_paragraph3_display);
+    setShowParagraph1A(introductionData.is_paragraph2_display);
     if (introductionData.urls && JSON.parse(introductionData.urls)) {
       const urlData = JSON.parse(introductionData.urls);
       setVideoUrl(urlData[0] || videoUrl);
@@ -401,8 +405,12 @@ function Introductions({ introductionData, projectName }) {
     formData.append("title", heading);
     formData.append("paragraph1", paragraph1Content);
     formData.append("paragraph2", paragraph1AContent);
+    formData.append("paragraph3", paragraph1BContent);
     formData.append("urls", videoUrl);
-
+    formData.append("is_title_display", showHeading);
+    formData.append("is_paragraph1_display", showParagraph1);
+    formData.append("is_paragraph2_display", showParagraph1A);
+    formData.append("is_paragraph3_display", showParagraph1B);
     if (image) {
       formData.append("images", image, "image.jpg");
     }
@@ -472,71 +480,104 @@ function Introductions({ introductionData, projectName }) {
         <div className="mx-3 mx-lg-5 mb-4 mb-lg-0">
           {isEditing ? (
             <div>
-              <div className="d-flex justify-content-start gap-2">
-                <label>
-                  Heading (Title Mandatory):
-                  <input
-                    type="text"
-                    value={heading}
-                    onChange={(e) => setHeading(e.target.value)}
-                    className="form-control"
-                  />
-                </label>
-                <button
+              <div className="d-flex justify-content-start gap-4">
+                {showHeading && (
+                  <label>
+                    Heading (Title Mandatory):
+                    <input
+                      type="text"
+                      value={heading}
+                      onChange={(e) => setHeading(e.target.value)}
+                      className="form-control"
+                    />
+                  </label>
+                )}
+                {/* <button
                   className="btn btn-danger mt-4 mb-2 px-4 btn btn-primary"
                   onClick={() => handleDelete("heading")}
                 >
                   Delete Heading
-                </button>
-                <button
-                  className="btn btn-secondary mt-4 mb-2 px-4 btn btn-primary"
-                  onClick={() => setShowHeading(!showHeading)}
-                >
-                  {showHeading ? "Hide" : "Show"} Heading
-                </button>
+                </button> */}
+
+                <div className="d-flex justify-content-start gap-2">
+                  <label className="form-check form-switch mt-4 mb-2">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id="toggleHeading"
+                      checked={showHeading}
+                      onChange={() => setShowHeading(!showHeading)}
+                    />
+                    <span className="form-check-label">
+                      {showHeading ? "Hide" : "Show"} Heading
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <div>
+                <div className="d-flex justify-content-start gap-4">
+                  {/* <button
+                    className="btn btn-danger mt-4 mb-2 px-4 btn btn-primary"
+                    onClick={() => handleDelete("paragraph1")}
+                  >
+                    Delete Paragraph 1
+                  </button> */}
+
+                  <div className="d-flex justify-content-start gap-2">
+                    <label className="form-check form-switch mt-4 mb-2">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="toggleHeading"
+                        checked={showParagraph1}
+                        onChange={() => setShowParagraph1(!showParagraph1)}
+                      />
+                      <span className="form-check-label">
+                        {showParagraph1 ? "Hide" : "Show"} Paragraph 1
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                {showParagraph1 && (
+                  <ReactQuill
+                    value={paragraph1Content}
+                    onChange={setParagraph1Content}
+                  />
+                )}
+              </div>
+              <div>
+                <div className="d-flex justify-content-start gap-4">
+                  {/* <button
+                    className="btn btn-danger mt-2 mb-2 btn-primary"
+                    onClick={() => handleDelete("paragraph3")}
+                  >
+                    Delete Paragraph 3
+                  </button> */}
+
+                  <div className="d-flex justify-content-start gap-2">
+                    <label className="form-check form-switch mt-4 mb-2">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="toggleHeading"
+                        checked={showParagraph1B}
+                        onChange={() => setShowParagraph1B(!showParagraph1B)}
+                      />
+                      <span className="form-check-label">
+                        {showParagraph1B ? "Hide" : "Show"} paragraph3
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                {showParagraph1B && (
+                  <ReactQuill
+                    value={paragraph1BContent}
+                    onChange={setParagraph1BContent}
+                  />
+                )}
               </div>
 
-              {showHeading && <h1 className="mb-4">{heading}</h1>}
-
-              <button
-                className="btn btn-danger mt-4 mb-2 px-4 btn btn-primary"
-                onClick={() => handleDelete("paragraph1")}
-              >
-                Delete Paragraph 1
-              </button>
-              <button
-                className="btn btn-secondary mt-4 mb-2 px-4 btn btn-primary"
-                onClick={() => setShowParagraph1(!showParagraph1)}
-              >
-                {showParagraph1 ? "Hide" : "Show"} Paragraph 1
-              </button>
-              {showParagraph1 && (
-                <ReactQuill
-                  value={paragraph1Content}
-                  onChange={setParagraph1Content}
-                />
-              )}
-
-              <button
-                className="btn btn-danger mt-2 mb-2 btn-primary"
-                onClick={() => handleDelete("paragraph3")}
-              >
-                Delete Paragraph 3
-              </button>
-              <button
-                className="btn btn-secondary mt-4 mb-2 px-4 btn btn-primary"
-                onClick={() => setShowParagraph1B(!showParagraph1B)}
-              >
-                {showParagraph1B ? "Hide" : "Show"} Paragraph 3
-              </button>
-              {showParagraph1B && (
-                <ReactQuill
-                  value={paragraph1BContent}
-                  onChange={setParagraph1BContent}
-                />
-              )}
-
-              <div className="d-flex justify-content-start gap-2">
+              <div className="d-flex justify-content-start gap-4">
                 <label className="mt-3">
                   Video URL:
                   <input
@@ -546,18 +587,27 @@ function Introductions({ introductionData, projectName }) {
                     className="form-control"
                   />
                 </label>
-                <button
+                {/* <button
                   className="btn btn-danger mt-4 mb-2 px-4 btn btn-primary"
                   onClick={() => handleDelete("videoUrl")}
                 >
                   Delete Video URL
-                </button>
-                <button
-                  className="btn btn-secondary mt-4 mb-2 px-4 btn btn-primary"
-                  onClick={() => setShowVideo(!showVideo)}
-                >
-                  {showVideo ? "Hide" : "Show"} Video
-                </button>
+                </button> */}
+
+                <div className="d-flex justify-content-start gap-2">
+                  <label className="form-check form-switch mt-4 mb-2">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id="toggleHeading"
+                      checked={showVideo}
+                      onChange={() => setShowVideo(!showVideo)}
+                    />
+                    <span className="form-check-label">
+                      {showParagraph1 ? "Hide" : "Show"} Video
+                    </span>
+                  </label>
+                </div>
               </div>
               {showVideo && (
                 <ReactPlayer
@@ -574,18 +624,29 @@ function Introductions({ introductionData, projectName }) {
                 />
               )}
 
-              <button
-                className="btn btn-danger mt-2 mb-2 btn-primary"
-                onClick={() => handleDelete("paragraph2")}
-              >
-                Delete Paragraph 2
-              </button>
-              <button
-                className="btn btn-secondary mt-4 mb-2 px-4 btn btn-primary"
-                onClick={() => setShowParagraph1A(!showParagraph1A)}
-              >
-                {showParagraph1A ? "Hide" : "Show"} Paragraph 2
-              </button>
+              <div className="d-flex justify-content-start gap-4">
+                {/* <button
+                  className="btn btn-danger mt-2 mb-2 btn-primary"
+                  onClick={() => handleDelete("paragraph2")}
+                >
+                  Delete Paragraph 2
+                </button> */}
+
+                <div className="d-flex justify-content-start gap-2">
+                  <label className="form-check form-switch mt-4 mb-2">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id="toggleHeading"
+                      checked={showParagraph1A}
+                      onChange={() => setShowParagraph1A(!showParagraph1A)}
+                    />
+                    <span className="form-check-label">
+                      {showParagraph1A ? "Hide" : "Show"} paragraph2
+                    </span>
+                  </label>
+                </div>
+              </div>
               {showParagraph1A && (
                 <ReactQuill
                   value={paragraph1AContent}
@@ -593,7 +654,7 @@ function Introductions({ introductionData, projectName }) {
                 />
               )}
 
-              <div className="d-flex justify-content-start gap-2 ">
+              <div className="d-flex justify-content-start gap-4 ">
                 <label className="mt-3">
                   Change Image (400px x 800px):
                   <input
@@ -603,18 +664,27 @@ function Introductions({ introductionData, projectName }) {
                     className="form-control mt-2"
                   />
                 </label>
-                <button
+                {/* <button
                   className="btn btn-danger mt-4 mb-2 px-4 btn-primary"
                   onClick={() => handleDelete("image")}
                 >
                   Delete Image
-                </button>
-                <button
-                  className="btn btn-secondary mt-4 mb-2 px-4 btn btn-primary"
-                  onClick={() => setShowImage(!showImage)}
-                >
-                  {showImage ? "Hide" : "Show"} Image
-                </button>
+                </button> */}
+
+                <div className="d-flex justify-content-start gap-2">
+                  <label className="form-check form-switch mt-4 mb-2">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id="toggleHeading"
+                      checked={showImage}
+                      onChange={() => setShowImage(!showImage)}
+                    />
+                    <span className="form-check-label">
+                      {showImage ? "Hide" : "Show"} Image
+                    </span>
+                  </label>
+                </div>
               </div>
 
               {showImage && imagePreview && (
