@@ -195,6 +195,7 @@ import WhiteLabelForm from "./vendor/WhiteLabel";
 import WhiteLabelLanding from "./vendor/WhiteLanding/index";
 import Editor from "./vendor/Editor";
 import Gauth from '../src/markup/Pages/G-auth.js';
+import EmpGauth from "./markup/Pages/Employer-gauth.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -952,6 +953,7 @@ function App() {
           }
         />
         <Route path="login" element={<EmployeeLogin />} />
+        <Route path="gauth" element={<EmpGauth />} />
         <Route path="register" element={<EmployeeRegister1 />} />
         <Route path="register-2" element={<EmployeeRegister2 />} />
 
