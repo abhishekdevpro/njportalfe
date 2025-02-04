@@ -411,12 +411,12 @@ function ForEmployer({ forEmployerData, projectName }) {
                     />
                   </label>
                 )}
-                <button
+                {/* <button
                   className="btn btn-danger mt-4 mb-2 px-4 btn btn-primary"
                   onClick={() => handleDelete("heading")}
                 >
                   Delete Heading
-                </button>
+                </button> */}
                 <div className="d-flex justify-content-start gap-2">
                   <label className="form-check form-switch mt-4 mb-2">
                     <input
@@ -434,12 +434,12 @@ function ForEmployer({ forEmployerData, projectName }) {
               </div>
 
               <div className="d-flex justify-content-start gap-4">
-                <button
+                {/* <button
                   className="btn btn-danger mt-4 mb-2 px-4 btn btn-primary"
                   onClick={() => handleDelete("paragraph1")}
                 >
                   Delete Paragraph 1
-                </button>
+                </button> */}
 
                 <div className="d-flex justify-content-start gap-2">
                   <label className="form-check form-switch mt-4 mb-2">
@@ -468,12 +468,12 @@ function ForEmployer({ forEmployerData, projectName }) {
               )}
 
               <div className="d-flex justify-content-start gap-4">
-                <button
+                {/* <button
                   className="btn btn-danger mt-2 mb-2 px-4 btn-primary"
                   onClick={() => handleDelete("paragraph2")}
                 >
                   Delete Paragraph 2
-                </button>
+                </button> */}
 
                 <div className="d-flex justify-content-start gap-2">
                   <label className="form-check form-switch mt-4 mb-2">
@@ -511,12 +511,12 @@ function ForEmployer({ forEmployerData, projectName }) {
                     className="form-control"
                   />
                 </label>
-                <button
+                {/* <button
                   className="btn btn-danger mt-4 mb-2 px-4 btn-primary"
                   onClick={() => handleDelete("image")}
                 >
                   Delete Image
-                </button>
+                </button> */}
                 <div className="d-flex justify-content-start gap-2">
                   <label className="form-check form-switch mt-4 mb-2">
                     <input

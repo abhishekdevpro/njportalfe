@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import Profilepagehome from "./markup/Layout/Profilepagehome";
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from "react";
 import Homepage from "./markup/Pages/Homepage1";
@@ -194,8 +194,12 @@ import AboutusForm from "./adminPanel/CMS/About";
 import WhiteLabelForm from "./vendor/WhiteLabel";
 import WhiteLabelLanding from "./vendor/WhiteLanding/index";
 import Editor from "./vendor/Editor";
-import Gauth from '../src/markup/Pages/G-auth.js';
-import EmpGauth from "./markup/Pages/Employer-gauth.js";
+
+import Gauth from "../src/markup/Pages/G-auth.js";
+import LoginCode from "./markup/Pages/LoginwithCode.js";
+import LoginEmployerCode from "./employeeMarkup/Pages/LoginwithCode.js";
+import EmployerGauth from "./employeeMarkup/Pages/G-auth.js";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -303,35 +307,35 @@ function App() {
           </PrivateRouteadmin>
         }
       />
-       <Route
+      <Route
         path="/admin/freevance/aboutus"
         element={
           <PrivateRouteadmin>
-            <AboutusForm projectName={"/freevance"}/>
+            <AboutusForm projectName={"/freevance"} />
           </PrivateRouteadmin>
         }
       />
-       <Route
+      <Route
         path="/admin/paradigmshift/aboutus"
         element={
           <PrivateRouteadmin>
-            <AboutusForm projectName={"/paradigmshift"}/>
+            <AboutusForm projectName={"/paradigmshift"} />
           </PrivateRouteadmin>
         }
       />
-        <Route
+      <Route
         path="/admin/legitzone/aboutus"
         element={
           <PrivateRouteadmin>
-            <AboutusForm projectName={"/legitzone"}/>
+            <AboutusForm projectName={"/legitzone"} />
           </PrivateRouteadmin>
         }
       />
-       <Route
+      <Route
         path="/admin/homecare/aboutus"
         element={
           <PrivateRouteadmin>
-            <AboutusForm projectName={"/homecare"}/>
+            <AboutusForm projectName={"/homecare"} />
           </PrivateRouteadmin>
         }
       />
@@ -441,12 +445,7 @@ function App() {
       />
 
       <Route path="/vendor/verify" element={<VerifyEmail />} />
-      <Route
-          path="white-label"
-          element={
-              <WhiteLabelLanding />
-          }
-        />
+      <Route path="white-label" element={<WhiteLabelLanding />} />
       <Route path="/vendor">
         <Route path="login" element={<Vendorlogin />} />
         <Route
@@ -531,7 +530,7 @@ function App() {
             </PrivateRoutevendor>
           }
         />
-         <Route
+        <Route
           path="editors"
           element={
             <PrivateRoutevendor>
@@ -553,6 +552,7 @@ function App() {
       <Route path="/user">
         <Route path="" element={<Homepage />} />
         <Route path="login" element={<Loginpage2 />} />
+        <Route path="login-code" element={<LoginCode />} />
         <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="reset-password/:token" element={<ResetPassword />} />
         <Route path="register" element={<Register1 />} />
@@ -938,12 +938,13 @@ function App() {
 
       <Route path="/employer">
         <Route path="verify/:token" element={<VerifyEmailemployee />} />
-
+        <Route path="login-code" element={<LoginEmployerCode />} />
         <Route path="forgot-password" element={<ForgotPasswordemployee />} />
         <Route
           path="reset-password/:token"
           element={<ResetPasswordemployee />}
         />
+        <Route path="gauth" element={<EmployerGauth />} />
         <Route
           path=""
           element={

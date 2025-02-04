@@ -709,12 +709,12 @@ function Novajobsus({ novaJobsusData, projectName }) {
                   />
                 </label>
               )}
-              <button
+              {/* <button
                 className="btn btn-danger mt-4 mb-2 px-4 btn btn-primary"
                 onClick={() => handleDelete("heading")}
               >
                 Delete Heading
-              </button>
+              </button> */}
 
               <div className="d-flex justify-content-start gap-2">
                 <label className="form-check form-switch mt-4 mb-2">
@@ -732,12 +732,12 @@ function Novajobsus({ novaJobsusData, projectName }) {
               </div>
             </div>
             <div className="d-flex justify-content-start gap-4">
-              <button
+              {/* <button
                 className="btn btn-danger mt-2 mb-2 px-4 btn btn-primary"
                 onClick={() => handleDelete("paragraph1")}
               >
                 Delete Paragraph 1
-              </button>
+              </button> */}
               <div className="d-flex justify-content-start gap-2">
                 <label className="form-check form-switch mt-4 mb-2">
                   <input
@@ -764,12 +764,12 @@ function Novajobsus({ novaJobsusData, projectName }) {
             )}
 
             <div className="d-flex justify-content-start gap-4 mt-3">
-              <button
+              {/* <button
                 className="btn btn-danger mb-2 px-4 btn btn-primary"
                 onClick={() => handleDelete("image")}
               >
                 Delete Images
-              </button>
+              </button> */}
               <div className="d-flex justify-content-start gap-2">
                 <label className="form-check form-switch mt-4 mb-2">
                   <input
@@ -814,12 +814,12 @@ function Novajobsus({ novaJobsusData, projectName }) {
                         />
                       </div>
                     )}
-                    <button
+                    {/* <button
                       className="btn btn-danger mt-2"
                       onClick={() => handleDeleteImage(index)}
                     >
                       Delete Image {index + 1}
-                    </button>
+                    </button> */}
                   </div>
                 ))}
                 <button

@@ -383,12 +383,12 @@ function ForJobseeker({ forJobseekerData, projectName }) {
                   />
                 </label>
                 <div className="d-flex justify-content-start gap-2">
-                  <button
+                  {/* <button
                     className="btn btn-danger mt-4 mb-2 px-4 btn btn-primary"
                     onClick={() => handleDelete("heading")}
                   >
                     Delete Heading
-                  </button>
+                  </button> */}
                   <div className="d-flex justify-content-start gap-2">
                     <label className="form-check form-switch">
                       <input
@@ -405,12 +405,12 @@ function ForJobseeker({ forJobseekerData, projectName }) {
                 </div>
               </div>
               <div className="d-flex justify-content-start gap-4">
-                <button
+                {/* <button
                   className="btn btn-danger mt-2 mb-2 px-4 btn btn-primary"
                   onClick={() => handleDelete("paragraph1")}
                 >
                   Delete Paragraph 1
-                </button>
+                </button> */}
                 <div className="d-flex justify-content-start gap-2">
                   <label className="form-check form-switch">
                     <input
@@ -431,12 +431,12 @@ function ForJobseeker({ forJobseekerData, projectName }) {
                 onChange={setParagraph1Content}
               />
               <div className="d-flex justify-content-start gap-4">
-                <button
+                {/* <button
                   className="btn btn-danger mt-2 mb-2 px-4 btn-primary"
                   onClick={() => handleDelete("paragraph2")}
                 >
                   Delete Paragraph 2
-                </button>
+                </button> */}
                 <label className="form-check form-switch">
                   <input
                     className="form-check-input"
@@ -464,12 +464,12 @@ function ForJobseeker({ forJobseekerData, projectName }) {
                     className="form-control"
                   />
                 </label>
-                <button
+                {/* <button
                   className="btn btn-danger mt-4 mb-2 px-4 btn-primary"
                   onClick={() => handleDelete("image")}
                 >
                   Delete Image
-                </button>
+                </button> */}
                 <label className="form-check form-switch">
                   <input
                     className="form-check-input"
