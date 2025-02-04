@@ -85,11 +85,11 @@ class EmployeeHeader extends Component {
                 </button>
                 <div className="extra-nav">
                   <div className="extra-cell">
-                    {localStorage.getItem("employeeLoginToken") ? null : (
+                    {/* {localStorage.getItem("employeeLoginToken") ? null : (
                       <Link to={"/user/register-2"} className="site-button">
                         <i className="fa fa-user"></i> Sign Up
                       </Link>
-                    )}
+                    )} */}
                     {/* <Link to ={'#'} title="READ MORE" onClick={this.handleShow}  className="site-button"><i className="fa fa-lock"></i> login </Link> */}
                     {localStorage.getItem("employeeLoginToken") ? (
                       <Logout />

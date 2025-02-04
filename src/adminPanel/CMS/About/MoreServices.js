@@ -413,12 +413,12 @@ function MoreServices({ moreServicesData, projectName }) {
                   style={{ marginBottom: "10px" }}
                 />
               </label>
-              <button
+              {/* <button
                 className="btn btn-danger mt-4 mb-2 px-4 btn btn-primary"
                 onClick={() => handleDelete("heading")}
               >
                 Delete Heading
-              </button>
+              </button> */}
 
               <div className="d-flex justify-content-start gap-2 ms-2">
                 <label className="form-check form-switch mt-4 mb-2">
@@ -451,12 +451,12 @@ function MoreServices({ moreServicesData, projectName }) {
                         })
                       }
                     />
-                    <button
+                    {/* <button
                       className="btn btn-danger mt-2"
                       onClick={() => handleDeleteParagraph(index)}
                     >
                       Delete Paragraph {index + 1}
-                    </button>
+                    </button> */}
 
                     <div className="d-flex justify-content-start gap-2 ms-2">
                       <label className="form-check form-switch mt-4 mb-2">
@@ -513,12 +513,12 @@ function MoreServices({ moreServicesData, projectName }) {
                     borderRadius: "10px",
                   }}
                 />
-                <button
+                {/* <button
                   className="btn btn-danger mt-2"
                   onClick={handleDeleteImage}
                 >
                   Delete Image
-                </button>
+                </button> */}
 
                 <div className="d-flex justify-content-start gap-2 ms-2">
                   <label className="form-check form-switch mt-4 mb-2">

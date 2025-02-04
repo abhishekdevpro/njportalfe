@@ -5,7 +5,7 @@ import {
   loadingToggleAction,
   loginAction,
 } from "../../store/actions/AuthActions";
-
+import { FcGoogle } from "react-icons/fc";
 // image
 //import logo from "../../images/logo-full-white.png";
 import loginbg from "./../../images/login/loginbg.jpeg";
@@ -14,7 +14,7 @@ import { showToastError } from "../../utils/toastify";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../Layout/Footer";
-import Header from "../Layout/Header"
+import Header from "../Layout/Header";
 import { Modal } from "react-bootstrap";
 const bnr3 = require("./../../images/background/bg3.jpg");
 function EmployeeLogin(props) {
@@ -56,30 +56,36 @@ function EmployeeLogin(props) {
 
   const handlePostRequest = async (e) => {
     e.preventDefault();
-    if (password === "") {
-      notify("Password is required");
-      if (email === "") {
-        notify("Email is required");
-      }
+
+    if (email === "") {
+      notify("Email is required");
       return;
     }
 
     const reqBody = {
       email: email,
-      password: password,
+      // password: password,
     };
     await axios({
       method: "POST",
-      url: "https://api.novajobs.us/api/employeer/auth/login",
+      url: "https://api.novajobs.us/api/employeer/auth/send-loginotp",
       headers: {
         "Content-Type": "Application/json",
       },
       data: reqBody,
     })
       .then((response) => {
-        console.log(response, "login");
-        localStorage.setItem("employeeLoginToken", response?.data?.data?.token);
-        navigate("/employer/company-profile");
+        console.log(response);
+        // localStorage.setItem("employeeLoginToken", response?.data?.data?.token);
+        // navigate("/employer/company-profile");
+        if (response.status === 200 || response.data.code === 200) {
+          console.log(response);
+          toast.success(response.data.message || " Otp sent to your email.");
+          localStorage.setItem("userEmail", email);
+          navigate("/employer/login-code");
+        } else {
+          toast.error("Failed to sent otp");
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -178,6 +184,31 @@ function EmployeeLogin(props) {
       setLoading(false);
     }
   };
+  const handleGoogleSignin = async () => {
+    const url = "https://api.novajobs.us/api/employeer/auth/google";
+
+    try {
+      const response = await axios.get(
+        url,
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("Google sign-in token: ", response.data.data);
+        window.open(response.data.data);
+      } else {
+        toast.error("Google sign-in failed.");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error(`${err.response?.data?.message || "Google sign-in failed"}`);
+    }
+  };
   return (
     <div className="page-wraper">
       <Header />
@@ -204,10 +235,7 @@ function EmployeeLogin(props) {
                       />
                     </Link> */}
                   </div>
-                  <h2 className="m-b10 text-white">
-                    {" "}
-                    Sign up or Login To Dashboard
-                  </h2>
+                  <h2 className="m-b10 text-white"> Login To Dashboard</h2>
                   <p
                     className="m-b30"
                     style={{
@@ -259,9 +287,9 @@ function EmployeeLogin(props) {
                   </div>
                   <div className="nav">
                     <form className="col-12 p-a0 ">
-                      <p className="font-weight-600">
+                      {/* <p className="font-weight-600">
                         If you have an account with us, please log in.
-                      </p>
+                      </p> */}
                       {props.errorMessage && (
                         <div className="bg-red-300 text-red-900 border border-red-900 p-1 my-2">
                           {props.errorMessage}
@@ -272,6 +300,20 @@ function EmployeeLogin(props) {
                           {props.successMessage}
                         </div>
                       )}
+                      <div>
+                        <button
+                          onClick={handleGoogleSignin}
+                          type="button"
+                          className="w-100 mb-4 flex items-center justify-center bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md mt-4 shadow-sm hover:bg-gray-100 focus:outline-none"
+                        >
+                          <FcGoogle className="h-6 w-6 mr-2" />
+                          Continue with Google
+                        </button>
+                      </div>
+                      <div className=" d-flex justify-content-center align-items-center">
+                        <p> OR</p>
+                      </div>
+
                       <div className="form-group ">
                         <label>E-Mail Address*</label>
                         <div className="input-group">
@@ -290,7 +332,7 @@ function EmployeeLogin(props) {
                         </div>
                       </div>
 
-                      <div className="form-group">
+                      {/* <div className="form-group">
                         <label>Password *</label>
                         <div className="input-group d-flex align-items-center">
                           <span
@@ -332,11 +374,11 @@ function EmployeeLogin(props) {
                         >
                           <i className="fa fa-unlock-alt"></i> Forgot Password
                         </Link>
-                      </div>
+                      </div> */}
                       <div className="dz-social clearfix">
-                        <h5 className="form-title m-t5 pull-left">
+                        {/* <h5 className="form-title m-t5 pull-left">
                           Sign In With
-                        </h5>
+                        </h5> */}
                         {/*<ul className="dez-social-icon dez-border pull-right dez-social-icon-lg text-white">
                           <li>
                             <Link
@@ -353,22 +395,47 @@ function EmployeeLogin(props) {
                             ></Link>
                           </li>
                         </ul> */}
+                        <span className="custom-control custom-checkbox mt-3">
+                          <input
+                            type="checkbox"
+                            className="custom-control-input"
+                            id="terms"
+                            name="terms"
+                            required
+                          />
+                          <label
+                            className="custom-control-label"
+                            htmlFor="terms"
+                          >
+                            {" "}
+                            I agree to the{" "}
+                            {
+                              <Link to={"/employer/privacy-rights"}>
+                                Privacy Policy
+                              </Link>
+                            }{" "}
+                            and{" "}
+                            <Link to={"/employer/term-of-use-nova-jobs"}>
+                              Terms & conditions{" "}
+                            </Link>
+                          </label>
+                        </span>
                       </div>
-                      <div className="text-center">
+                      <div className="text-center mt-4">
                         <button
                           onClick={handlePostRequest}
-                          className="site-button float-left"
+                          className="site-button float-center"
                         >
-                          login
+                          Send Otp
                         </button>
-                        <Link
+                        {/* <Link
                           to="/employer/register-2"
                           className="site-button-link forget-pass m-t15 float-right"
                         >
                           <i className="fa fa-unlock-alt"></i> Sign up
-                        </Link>
+                        </Link> */}
                       </div>
-                      <div className="form-group text-center">
+                      {/* <div className="form-group text-center">
                         <button
                           type="button"
                           className="site-button "
@@ -376,7 +443,7 @@ function EmployeeLogin(props) {
                         >
                           Sign in with OTP
                         </button>
-                      </div>
+                      </div> */}
                     </form>
                     <div className="form-group text-center">
                       <Link

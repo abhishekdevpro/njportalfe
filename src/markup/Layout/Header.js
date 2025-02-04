@@ -270,13 +270,13 @@ class UserHeader extends Component {
                       {!localStorage.getItem("jobSeekerLoginToken") && (
                         <div className="popup rounded-4 m-2 ">
                           <div className="d-flex gap-2 m-3 ">
-                            <Link
+                            {/* <Link
                               to="/user/register-2"
                               className="btn btn-primary "
                               style={{ backgroundColor: "#1C2957" }}
                             >
                               Sign Up
-                            </Link>
+                            </Link> */}
                             <br />
                             <Link
                               to="/user/login"
