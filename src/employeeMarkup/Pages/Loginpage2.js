@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Footer from "../Layout/Footer";
 import Header from "../Layout/Header";
 import { Modal } from "react-bootstrap";
+import { FcGoogle } from "react-icons/fc";
 const bnr3 = require("./../../images/background/bg3.jpg");
 function EmployeeLogin(props) {
   const [email, setEmail] = useState("demo@example.com");
@@ -185,6 +186,7 @@ function EmployeeLogin(props) {
     }
   };
   const handleGoogleSignin = async () => {
+
     const url = "https://api.novajobs.us/api/employeer/auth/google";
 
     try {
@@ -197,6 +199,7 @@ function EmployeeLogin(props) {
           },
         }
       );
+
 
       if (response.status === 200) {
         console.log("Google sign-in token: ", response.data.data);
@@ -374,7 +377,9 @@ function EmployeeLogin(props) {
                         >
                           <i className="fa fa-unlock-alt"></i> Forgot Password
                         </Link>
+
                       </div> */}
+
                       <div className="dz-social clearfix">
                         {/* <h5 className="form-title m-t5 pull-left">
                           Sign In With
