@@ -200,7 +200,6 @@ import LoginCode from "./markup/Pages/LoginwithCode.js";
 import LoginEmployerCode from "./employeeMarkup/Pages/LoginwithCode.js";
 import EmployerGauth from "./employeeMarkup/Pages/G-auth.js";
 
-
 function App() {
   const dispatch = useDispatch();
 
@@ -954,7 +953,7 @@ function App() {
           }
         />
         <Route path="login" element={<EmployeeLogin />} />
-        <Route path="gauth" element={<EmpGauth />} />
+
         <Route path="register" element={<EmployeeRegister1 />} />
         <Route path="register-2" element={<EmployeeRegister2 />} />
 
