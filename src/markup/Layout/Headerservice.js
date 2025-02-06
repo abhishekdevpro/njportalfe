@@ -111,7 +111,18 @@ class Headerservice extends Component {
                   </div>
                   <ul className="nav navbar-nav align-items-center ">
                     <li className="">
-                      <Link to={"/user"}>Home </Link>
+                      {/* <Link to={"/user"}>Home </Link> */}
+                      <Link to={"/user"} className="d-flex align-items-center">
+                        {/* Show icon on large screens (desktop) */}
+                        <i
+                          className="bi bi-house-door-fill d-none d-md-inline"
+                          style={{ fontSize: "20px" }}
+                        ></i>
+
+                        {/* Show text on small screens (mobile) */}
+                        <span className="d-inline d-md-none">Home</span>
+                      </Link>
+
                       {/* <ul className="sub-menu">
                         <li>
                           <Link to={"./"} className="dez-page">

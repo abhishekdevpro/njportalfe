@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import Logout from "./Logout";
-import axios from 'axios';
+import axios from "axios";
 
 var bnr3 = require("./../../images/background/bg3.jpg");
 
@@ -27,20 +27,20 @@ class UserHeader2 extends Component {
       formData.append("resume", resume);
 
       // Use your API endpoint here
-      axios.post("/api/upload-resumess", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        alert("Resume uploaded successfully");
-      })
-      .catch((error) => {
-        console.error("There was an error uploading the resume!", error);
-      });
+      axios
+        .post("/api/upload-resumess", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          alert("Resume uploaded successfully");
+        })
+        .catch((error) => {
+          console.error("There was an error uploading the resume!", error);
+        });
     }
   };
-  
 
   componentDidMount() {
     // sidebar open/close
@@ -98,7 +98,8 @@ class UserHeader2 extends Component {
                   data-target="#navbarNavDropdown"
                   aria-controls="navbarNavDropdown"
                   aria-expanded="false"
-                  aria-label="Toggle navigation">
+                  aria-label="Toggle navigation"
+                >
                   <span></span>
                   <span></span>
                   <span></span>
@@ -113,7 +114,6 @@ class UserHeader2 extends Component {
                     )}
                     {localStorage.getItem("jobSeekerLoginToken") ? (
                       <>
-                       
                         <Logout />
                       </>
                     ) : (
@@ -126,10 +126,21 @@ class UserHeader2 extends Component {
 
                 <div
                   className="header-nav navbar-collapse collapse myNavbar justify-content-start"
-                  id="navbarNavDropdown">
+                  id="navbarNavDropdown"
+                >
                   <ul className="nav navbar-nav">
                     <li className="">
-                      <Link to={"/user"}>Home </Link>
+                      {/* <Link to={"/user"}>Home </Link> */}
+                      <Link to={"/user"} className="d-flex align-items-center">
+                        {/* Show icon on large screens (desktop) */}
+                        <i
+                          className="bi bi-house-door-fill d-none d-md-inline"
+                          style={{ fontSize: "20px" }}
+                        ></i>
+
+                        {/* Show text on small screens (mobile) */}
+                        <span className="d-inline d-md-none">Home</span>
+                      </Link>
                     </li>
                     <li className="">
                       <Link to={"/services"}>services </Link>
@@ -139,18 +150,15 @@ class UserHeader2 extends Component {
                         localStorage.removeItem("selectedLocation");
                         localStorage.removeItem("title_keyword");
                       }}
-                      className="">
+                      className=""
+                    >
                       <Link to={"/user/job/1"}>Job Page</Link>
                     </li>
-                   
 
-                    {localStorage.getItem('jobSeekerLoginToken') ? (
-                    <li>
-                      
-                      <Link to={`/user/jobs-profile`}>
-                        Dashboard
-                      </Link>
-                      {/* <ul className="sub-menu">
+                    {localStorage.getItem("jobSeekerLoginToken") ? (
+                      <li>
+                        <Link to={`/user/jobs-profile`}>Dashboard</Link>
+                        {/* <ul className="sub-menu">
                         <li>
                           <Link to={"/user/jobs-profile"} className="dez-page">
                             My Profile<span className="new-page">New</span>
@@ -247,8 +255,8 @@ class UserHeader2 extends Component {
                           </Link>
                         </li>
                       </ul> */}
-                    {/* </li> */}
-                    {/* <li>
+                        {/* </li> */}
+                        {/* <li>
                       <Link to={"#"}>
                         Pages <i className="fa fa-chevron-down"></i>
                       </Link>
@@ -439,7 +447,7 @@ class UserHeader2 extends Component {
                         </li>
                       </ul>
                     </li> */}
-                    {/* <li>
+                        {/* <li>
                       <Link to={"#"}>
                         Blog <i className="fa fa-chevron-down"></i>
                       </Link>
@@ -483,7 +491,10 @@ class UserHeader2 extends Component {
                       </ul>
                     </li> 
                       </ul>*/}
-                    </li> ) : ("")}
+                      </li>
+                    ) : (
+                      ""
+                    )}
                   </ul>
                 </div>
               </div>
@@ -495,13 +506,15 @@ class UserHeader2 extends Component {
           show={this.state.show}
           onHide={this.handleClose}
           className=" lead-form-modal"
-          centered>
+          centered
+        >
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <button
                 type="button"
                 className="close"
-                onClick={this.handleClose}>
+                onClick={this.handleClose}
+              >
                 <span aria-hidden="true">&times;</span>
               </button>
               <div className="modal-body row m-a0 clearfix">
@@ -511,7 +524,8 @@ class UserHeader2 extends Component {
                     backgroundImage: "url(" + bnr3 + ")",
                     backgroundPosition: "center",
                     backgroundSize: "cover",
-                  }}>
+                  }}
+                >
                   <div className="form-info text-white align-self-center">
                     <h3 className="m-b15">Login To You Now</h3>
                     <p className="m-b15">
@@ -550,9 +564,7 @@ class UserHeader2 extends Component {
                 <div className="col-lg-6 col-md-6 p-a0">
                   <div className="lead-form browse-job text-left">
                     <form>
-                      <h3 className="m-t0">
-                        Personal Details{" "}
-                      </h3>
+                      <h3 className="m-t0">Personal Details </h3>
                       <div className="form-group">
                         <input
                           value=""
@@ -570,7 +582,8 @@ class UserHeader2 extends Component {
                       <div className="clearfix">
                         <button
                           type="button"
-                          className="btn-primary site-button btn-block">
+                          className="btn-primary site-button btn-block"
+                        >
                           Submit{" "}
                         </button>
                       </div>
