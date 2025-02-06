@@ -112,7 +112,17 @@ class EmployeeHeader extends Component {
                   </div>
                   <ul className="nav navbar-nav">
                     <li className="">
-                      <Link to={"/"}>Home </Link>
+                      {/* <Link to={"/"}>Home </Link> */}
+                      <Link to={"/"} className="d-flex align-items-center">
+                        {/* Show icon on large screens (desktop) */}
+                        <i
+                          className="bi bi-house-door-fill d-none d-md-inline"
+                          style={{ fontSize: "20px" }}
+                        ></i>
+
+                        {/* Show text on small screens (mobile) */}
+                        <span className="d-inline d-md-none">Home</span>
+                      </Link>
                     </li>
                     <li className="">
                       <Link to={"/services"}>services </Link>
