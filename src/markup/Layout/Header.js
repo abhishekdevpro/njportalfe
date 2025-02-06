@@ -5,6 +5,7 @@ import Logout from "./Logout";
 import "../Layout/Headerjobseeker.css";
 
 import logo2 from "./../../images/logo.png";
+import CookieBanner from "../Pages/CookieBanner";
 var bnr3 = require("./../../images/background/bg3.jpg");
 
 class UserHeader extends Component {
@@ -111,7 +112,17 @@ class UserHeader extends Component {
                   </div>
                   <ul className="nav navbar-nav align-items-center ">
                     <li className="">
-                      <Link to={"/user"}>Home </Link>
+                      <Link to={"/user"} className="d-flex align-items-center">
+                        {/* Show icon on large screens (desktop) */}
+                        <i
+                          className="bi bi-house-door-fill d-none d-md-inline"
+                          style={{ fontSize: "20px" }}
+                        ></i>
+
+                        {/* Show text on small screens (mobile) */}
+                        <span className="d-inline d-md-none">Home</span>
+                      </Link>
+
                       {/* <ul className="sub-menu">
                         <li>
                           <Link to={"./"} className="dez-page">
@@ -260,23 +271,31 @@ class UserHeader extends Component {
                       ) : (
                         <Link
                           style={{ color: "white" }}
-                          to="#"
-                          className="nav-link site-button"
+                          to="/user/login"
+                          className="nav-link site-button d-flex justify-content-center gap-1 align-items-center"
                         >
-                          Jobseeker
+                          <i
+                            style={{
+                              fontSize: "12px",
+                              objectFit: "contain",
+                              marginTop: "0px",
+                            }}
+                            className="bi bi-person  "
+                          ></i>
+                          Jobseeker Login
                         </Link>
                       )}
 
-                      {!localStorage.getItem("jobSeekerLoginToken") && (
+                      {/* {!localStorage.getItem("jobSeekerLoginToken") && (
                         <div className="popup rounded-4 m-2 ">
                           <div className="d-flex gap-2 m-3 ">
-                            {/* <Link
+                            <Link
                               to="/user/register-2"
                               className="btn btn-primary "
                               style={{ backgroundColor: "#1C2957" }}
                             >
                               Sign Up
-                            </Link> */}
+                            </Link>
                             <br />
                             <Link
                               to="/user/login"
@@ -286,7 +305,7 @@ class UserHeader extends Component {
                             </Link>
                           </div>
                         </div>
-                      )}
+                      )} */}
                     </li>
                     <li>
                       {localStorage.getItem("jobSeekerLoginToken") ? null : (
