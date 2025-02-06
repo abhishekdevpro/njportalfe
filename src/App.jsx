@@ -199,12 +199,15 @@ import Gauth from "../src/markup/Pages/G-auth.js";
 import LoginCode from "./markup/Pages/LoginwithCode.js";
 import LoginEmployerCode from "./employeeMarkup/Pages/LoginwithCode.js";
 import EmployerGauth from "./employeeMarkup/Pages/G-auth.js";
+import NotFound from "./markup/Pages/NotFound.js";
+import UltraAuraCourses from "./markup/Pages/UltraAuraCourses.js";
 
 function App() {
   const dispatch = useDispatch();
 
   return (
     <Routes>
+      <Route path="*" element={<NotFound />} />
       <Route path="/" element={<Homepage />} />
       <Route path="services" element={<LandingPage />} />
       <Route path="novajobs" element={<Novajobs />} />
@@ -557,6 +560,7 @@ function App() {
         <Route path="register" element={<Register1 />} />
         <Route path="register-2" element={<Register2 />} />
         <Route path="verify/:token" element={<Verifyemail />} />
+        {/* <Route path="/ultraaura-courses" element={<UltraAuraCourses />} /> */}
         <Route
           path="jobs-profile"
           element={
@@ -646,6 +650,14 @@ function App() {
           element={
             <UserPrivateRoute>
               <Messages />
+            </UserPrivateRoute>
+          }
+        />
+        <Route
+          path="ultraaura-courses"
+          element={
+            <UserPrivateRoute>
+              <UltraAuraCourses />
             </UserPrivateRoute>
           }
         />

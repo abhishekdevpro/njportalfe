@@ -137,7 +137,7 @@ function Profilesidebar({ data }) {
               </li>
               <li>
                 <Link
-                  to={""}
+                  to={"/user/ultraaura-courses"}
                   className={data === "ultra-aura" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
