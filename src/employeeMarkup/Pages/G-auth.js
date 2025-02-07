@@ -162,20 +162,12 @@ const EmployerGauth = () => {
           );
           const token = response.data.data.token;
           const message = response.data.message; // Get the success message from API
-
+          console.log(message, ">>>>message");
           // Save token in localStorage
           localStorage.setItem("employeeLoginToken", token);
 
           // ✅ Show success toast message
-          toast.success(message || "Login successful!", {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          toast.success(message || "Login successful!");
 
           // Navigate to company profile page
           navigate("/employer/company-profile");
@@ -183,10 +175,7 @@ const EmployerGauth = () => {
           console.error("Error while sending auth code:", error);
 
           // ❌ Show error toast message
-          toast.error("Authentication failed. Please try again.", {
-            position: "top-right",
-            autoClose: 3000,
-          });
+          toast.error(error || "Authentication failed. Please try again.");
 
           navigate("/employer/login");
         } finally {
