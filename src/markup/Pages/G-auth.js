@@ -1,8 +1,7 @@
-
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const Gauth = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -22,20 +21,26 @@ const Gauth = () => {
       // Send the code to the API endpoint
       const sendAuthCode = async () => {
         try {
-          const response = await axios.get(`https://api.novajobs.us/api/jobseeker/auth/callback?code=${code}`);
+          const response = await axios.get(
+            `https://api.novajobs.us/api/jobseeker/auth/callback?code=${code}`
+          );
           const token = response.data.data.token;
-
+          const message = response.data.message;
           // Save the token in localStorage
-          localStorage.setItem('jobSeekerLoginToken', token);
+          localStorage.setItem("jobSeekerLoginToken", token);
           console.log(response);
-        //   window.open='http://localhost:3000/user/jobs-profile'
-          navigate('/user/jobs-profile');
-             
+          console.log(message, ">>>>message");
+          toast.success(message || "Login successful!");
+          //   window.open='http://localhost:3000/user/jobs-profile'
+
+          navigate("/user/jobs-profile");
+
           // Redirect to the success URL with the token
-        //   window.open = `https://abroadium-arbuild-dev-fe.vercel.app/dashboard/?${token}`;
+          //   window.open = `https://abroadium-arbuild-dev-fe.vercel.app/dashboard/?${token}`;
         } catch (error) {
-          console.error('Error while sending auth code:', error);
-          navigate('/user/login');
+          console.error("Error while sending auth code:", error);
+          toast.error(error || "Authentication failed. Please try again.");
+          navigate("/user/login");
         } finally {
           setLoading(false); // Stop the loader
         }
@@ -43,9 +48,9 @@ const Gauth = () => {
 
       sendAuthCode();
     } else {
-      console.error('Code parameter is missing in the URL');
+      console.error("Code parameter is missing in the URL");
       setLoading(false);
-      navigate(''); // Redirect to the login page if code is missing
+      navigate(""); // Redirect to the login page if code is missing
     }
   }, []);
 
