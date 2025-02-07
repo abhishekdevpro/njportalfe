@@ -309,7 +309,10 @@ function ForEmployer({ forEmployerData, projectName }) {
     setHeading(forEmployerData.title || heading);
     setParagraph1Content(forEmployerData.paragraph1 || paragraph1Content);
     setParagraph1AContent(forEmployerData.paragraph2 || paragraph1AContent);
-
+    setShowHeading(forEmployerData.is_title_display);
+    setShowParagraph1(forEmployerData.is_paragraph1_display);
+    setShowParagraph2(forEmployerData.is_paragraph2_display);
+    setShowImage(forEmployerData.is_images_display);
     if (forEmployerData.images && JSON.parse(forEmployerData.images)) {
       const imgData = JSON.parse(forEmployerData.images);
 
@@ -336,6 +339,10 @@ function ForEmployer({ forEmployerData, projectName }) {
     formData.append("title", heading);
     formData.append("paragraph1", paragraph1Content);
     formData.append("paragraph2", paragraph1AContent);
+    formData.append("is_title_display", showHeading);
+    formData.append("is_paragraph1_display", showParagraph1);
+    formData.append("is_paragraph2_display", showParagraph2);
+    formData.append("is_images_display", showImage);
 
     if (image) {
       formData.append("images", image, "image.jpg");
@@ -502,15 +509,17 @@ function ForEmployer({ forEmployerData, projectName }) {
               )}
 
               <div className="d-flex justify-content-start gap-4">
-                <label className="mt-3">
-                  <h5>Change Image (400px x 800px):</h5>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                    className="form-control"
-                  />
-                </label>
+                {showImage && (
+                  <label className="mt-3">
+                    <h5>Change Image (400px x 800px):</h5>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      className="form-control"
+                    />
+                  </label>
+                )}
                 {/* <button
                   className="btn btn-danger mt-4 mb-2 px-4 btn-primary"
                   onClick={() => handleDelete("image")}
@@ -568,31 +577,37 @@ function ForEmployer({ forEmployerData, projectName }) {
             </div>
           ) : (
             <div>
-              <h1
-                style={{
-                  fontSize: "clamp(14px, 5vw, 20px)",
-                  fontWeight: "500",
-                  textDecoration: "underline",
-                }}
-              >
-                {heading}
-              </h1>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: paragraph1Content,
-                }}
-                style={{
-                  fontSize: "clamp(14px, 3vw, 15px)",
-                }}
-              ></div>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: paragraph1AContent,
-                }}
-                style={{
-                  fontSize: "clamp(14px, 3vw, 15px)",
-                }}
-              ></div>
+              {showHeading && (
+                <h1
+                  style={{
+                    fontSize: "clamp(14px, 5vw, 20px)",
+                    fontWeight: "500",
+                    textDecoration: "underline",
+                  }}
+                >
+                  {heading}
+                </h1>
+              )}
+              {showParagraph1 && (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: paragraph1Content,
+                  }}
+                  style={{
+                    fontSize: "clamp(14px, 3vw, 15px)",
+                  }}
+                ></div>
+              )}
+              {showParagraph2 && (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: paragraph1AContent,
+                  }}
+                  style={{
+                    fontSize: "clamp(14px, 3vw, 15px)",
+                  }}
+                ></div>
+              )}
 
               <div className="mx-3 mx-lg-5 d-flex justify-content-center">
                 {showImage && (
