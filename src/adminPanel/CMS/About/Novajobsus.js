@@ -577,21 +577,23 @@ function Novajobsus({ novaJobsusData, projectName }) {
       Parsing & more.
     </p>
   `);
-  const [images, setImages] = useState([
-    { file: null, preview: pic1 },
-    { file: null, preview: pic2 },
-    { file: null, preview: pic3 },
-    { file: null, preview: pic4 },
-    { file: null, preview: pic5 },
-    { file: null, preview: pic6 },
-    { file: null, preview: pic7 },
-    { file: null, preview: pic8 },
-    { file: null, preview: pic9 },
-    { file: null, preview: pic10 },
-    { file: null, preview: pic11 },
-    { file: null, preview: pic12 },
-  ]);
 
+  const initialImages = [
+    pic1,
+    pic2,
+    pic3,
+    pic4,
+    pic5,
+    pic6,
+    pic7,
+    pic8,
+    pic9,
+    pic10,
+    pic11,
+    pic12,
+  ].map((pic) => ({ file: null, preview: pic, isVisible: true }));
+
+  const [images, setImages] = useState(initialImages);
   const [showParagraph1, setShowParagraph1] = useState(true); // Toggle visibility of Paragraph 1
   const [showImages, setShowImages] = useState(true); // Toggle visibility of images section
   const [showHeading, setShowHeading] = useState(true); // Toggle visibility of heading
@@ -600,12 +602,21 @@ function Novajobsus({ novaJobsusData, projectName }) {
 
     setHeading(novaJobsusData.title || heading);
     setParagraph1Content(novaJobsusData.paragraph1 || paragraph1Content);
+    setShowHeading(novaJobsusData.is_title_display);
+    setShowParagraph1(novaJobsusData.is_paragraph1_display);
+    // setShowImages(novaJobsusData.is_images_display);
 
     if (novaJobsusData.images) {
       const imgData = JSON.parse(novaJobsusData.images);
-      const updatedImages = imgData.map((img) => ({
+
+      const updatedImages = imgData.map((img, index) => ({
         file: null,
         preview: "https://api.novajobs.us" + img,
+        isVisible:
+          Array.isArray(novaJobsusData.is_images_display) &&
+          novaJobsusData.is_images_display.length > index
+            ? novaJobsusData.is_images_display[index]
+            : true, // Default to true if no specific visibility info is available
       }));
       setImages(updatedImages);
     }
@@ -617,7 +628,11 @@ function Novajobsus({ novaJobsusData, projectName }) {
       const previewUrl = URL.createObjectURL(file);
       setImages((prevImages) => {
         const updatedImages = [...prevImages];
-        updatedImages[index] = { file, preview: previewUrl };
+        updatedImages[index] = {
+          ...updatedImages[index],
+          file,
+          preview: previewUrl,
+        };
         return updatedImages;
       });
     }
@@ -630,6 +645,20 @@ function Novajobsus({ novaJobsusData, projectName }) {
   const handleDeleteImage = (index) => {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
+  // const handleToggleImage = (index) => {
+  //   setImages((prevImages) => {
+  //     const updatedImages = [...prevImages];
+  //     updatedImages[index].isVisible = !updatedImages[index].isVisible;
+  //     return updatedImages;
+  //   });
+  // };
+  const handleToggleImage = (index) => {
+    setImages((prevImages) =>
+      prevImages.map((img, i) =>
+        i === index ? { ...img, isVisible: !img.isVisible } : img
+      )
+    );
+  };
 
   const handleSave = async () => {
     setLoading(true);
@@ -640,6 +669,13 @@ function Novajobsus({ novaJobsusData, projectName }) {
     formData.append("title", heading);
     formData.append("paragraph1", paragraph1Content);
 
+    formData.append("is_title_display", showHeading);
+    formData.append("is_paragraph1_display", showParagraph1);
+    // formData.append("is_images_display", showImages);
+    formData.append(
+      "is_images_display",
+      JSON.stringify(images.map((img) => img.isVisible))
+    );
     images.forEach((image) => {
       if (image.file) {
         formData.append("images", image.file);
@@ -763,73 +799,62 @@ function Novajobsus({ novaJobsusData, projectName }) {
               </>
             )}
 
-            <div className="d-flex justify-content-start gap-4 mt-3">
-              {/* <button
-                className="btn btn-danger mb-2 px-4 btn btn-primary"
-                onClick={() => handleDelete("image")}
-              >
-                Delete Images
-              </button> */}
-              <div className="d-flex justify-content-start gap-2">
-                <label className="form-check form-switch mt-4 mb-2">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="toggleImages"
-                    checked={showImages}
-                    onChange={() => setShowImages(!showImages)}
-                  />
-                  <span className="form-check-label">
-                    {showImages ? "Hide" : "Show"} Images
-                  </span>
-                </label>
-              </div>
-            </div>
-            {showImages && (
-              <>
-                {images.map((image, index) => (
-                  <div key={index}>
-                    <label className="mt-3">
-                      Change Image (400px x 800px) {index + 1}:
-                    </label>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => handleImageChange(index, e)}
-                      className="form-control mt-2"
-                    />
-                    {image.preview && (
-                      <div className="mt-3">
-                        <strong>Preview {index + 1}:</strong>
-                        <img
-                          src={image.preview}
-                          alt={`Preview ${index + 1}`}
-                          style={{
-                            height: "300px",
-                            width: "600px",
-                            border: "2px solid #ccc",
-                            borderRadius: "10px",
-                            marginTop: "10px",
-                          }}
+            <>
+              {images.map((image, index) => (
+                <div key={index}>
+                  <div className="d-flex justify-content-start gap-2">
+                    <label className="form-check form-switch mt-4 mb-2">
+                      <label className="form-check form-switch mt-4 mb-2">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          checked={image.isVisible}
+                          onChange={() => handleToggleImage(index)}
                         />
-                      </div>
-                    )}
-                    {/* <button
-                      className="btn btn-danger mt-2"
-                      onClick={() => handleDeleteImage(index)}
-                    >
-                      Delete Image {index + 1}
-                    </button> */}
+                        <span className="form-check-label">
+                          {image.isVisible ? "Hide" : "Show"} Image {index + 1}
+                        </span>
+                      </label>
+                    </label>
                   </div>
-                ))}
-                <button
-                  className="btn btn-secondary mt-3 "
-                  onClick={handleAddMoreImages}
-                >
-                  Add More Images
-                </button>
-              </>
-            )}
+                  {image.isVisible && (
+                    <div>
+                      <label className="mt-3">
+                        Change Image (400px x 800px) {index + 1}:
+                      </label>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageChange(index, e)}
+                        className="form-control mt-2"
+                      />
+                      {image.preview && (
+                        <div className="mt-3">
+                          <strong>Preview {index + 1}:</strong>
+                          <img
+                            src={image.preview}
+                            alt={`Preview ${index + 1}`}
+                            style={{
+                              height: "300px",
+                              width: "600px",
+                              border: "2px solid #ccc",
+                              borderRadius: "10px",
+                              marginTop: "10px",
+                            }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+              <button
+                className="btn btn-secondary mt-3 "
+                onClick={handleAddMoreImages}
+              >
+                Add More Images
+              </button>
+            </>
 
             <button
               className="btn btn-primary mt-3 ms-2"
@@ -847,43 +872,47 @@ function Novajobsus({ novaJobsusData, projectName }) {
           </div>
         ) : (
           <div>
-            <h1
-              className="mb-4"
-              style={{
-                fontSize: "clamp(24px, 5vw, 30px)",
-                fontWeight: "bold",
-              }}
-            >
-              {heading}
-            </h1>
-            <div
-              dangerouslySetInnerHTML={{ __html: paragraph1Content }}
-              style={{ fontSize: "clamp(14px, 3vw, 15px)" }}
-            ></div>
+            {showHeading && (
+              <h1
+                className="mb-4"
+                style={{
+                  fontSize: "clamp(24px, 5vw, 30px)",
+                  fontWeight: "bold",
+                }}
+              >
+                {heading}
+              </h1>
+            )}
+            {showParagraph1 && (
+              <div
+                dangerouslySetInnerHTML={{ __html: paragraph1Content }}
+                style={{ fontSize: "clamp(14px, 3vw, 15px)" }}
+              ></div>
+            )}
 
-            {showImages && (
-              <div className="mx-3 mx-lg-5 d-flex justify-content-center position-relative">
-                <Carousel
-                  style={{
-                    width: "800px",
-                    padding: "20px",
-                  }}
-                  prevIcon={
-                    <span
-                      className="carousel-control-prev-icon position-absolute"
-                      style={{ backgroundColor: "#000", right: "200px" }}
-                      aria-hidden="true"
-                    />
-                  }
-                  nextIcon={
-                    <span
-                      className="carousel-control-next-icon position-absolute"
-                      style={{ backgroundColor: "#000", left: "200px" }}
-                      aria-hidden="true"
-                    />
-                  }
-                >
-                  {images.map((image, index) => (
+            <div className="mx-3 mx-lg-5 d-flex justify-content-center position-relative">
+              <Carousel
+                style={{
+                  width: "800px",
+                  padding: "20px",
+                }}
+                prevIcon={
+                  <span
+                    className="carousel-control-prev-icon position-absolute"
+                    style={{ backgroundColor: "#000", right: "200px" }}
+                    aria-hidden="true"
+                  />
+                }
+                nextIcon={
+                  <span
+                    className="carousel-control-next-icon position-absolute"
+                    style={{ backgroundColor: "#000", left: "200px" }}
+                    aria-hidden="true"
+                  />
+                }
+              >
+                {images.map((image, index) =>
+                  image.isVisible ? (
                     <Carousel.Item key={index}>
                       <img
                         className="d-block w-100"
@@ -891,10 +920,10 @@ function Novajobsus({ novaJobsusData, projectName }) {
                         alt={`Slide ${index + 1}`}
                       />
                     </Carousel.Item>
-                  ))}
-                </Carousel>
-              </div>
-            )}
+                  ) : null
+                )}
+              </Carousel>
+            </div>
           </div>
         )}
       </div>

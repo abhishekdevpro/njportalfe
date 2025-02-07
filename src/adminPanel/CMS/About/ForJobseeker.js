@@ -284,7 +284,10 @@ function ForJobseeker({ forJobseekerData, projectName }) {
     setHeading(forJobseekerData.title || heading);
     setParagraph1Content(forJobseekerData.paragraph1 || paragraph1Content);
     setParagraph1AContent(forJobseekerData.paragraph2 || paragraph1AContent);
-
+    setShowHeading(forJobseekerData.is_title_display);
+    setShowParagraph1(forJobseekerData.is_paragraph1_display);
+    setShowParagraph2(forJobseekerData.is_paragraph2_display);
+    setShowImage(forJobseekerData.is_images_display);
     if (forJobseekerData.images && JSON.parse(forJobseekerData.images)) {
       const imgData = JSON.parse(forJobseekerData.images);
       setImagePreview(
@@ -309,6 +312,10 @@ function ForJobseeker({ forJobseekerData, projectName }) {
     formData.append("title", heading);
     formData.append("paragraph1", paragraph1Content);
     formData.append("paragraph2", paragraph1AContent);
+    formData.append("is_title_display", showHeading);
+    formData.append("is_paragraph1_display", showParagraph1);
+    formData.append("is_paragraph2_display", showParagraph2);
+    formData.append("is_images_display", showImage);
 
     if (image) {
       formData.append("images", image, "image.jpg");
@@ -372,45 +379,34 @@ function ForJobseeker({ forJobseekerData, projectName }) {
           {isEditing ? (
             <div>
               <div className="d-flex justify-content-start gap-2">
-                <label>
-                  <h5> Heading(Title Mandatory):</h5>
-                  <input
-                    type="text"
-                    value={heading}
-                    onChange={(e) => setHeading(e.target.value)}
-                    className="form-control"
-                    style={{ marginBottom: "10px" }}
-                  />
-                </label>
+                {showHeading && (
+                  <label>
+                    <h5> Heading(Title Mandatory):</h5>
+                    <input
+                      type="text"
+                      value={heading}
+                      onChange={(e) => setHeading(e.target.value)}
+                      className="form-control"
+                      style={{ marginBottom: "10px" }}
+                    />
+                  </label>
+                )}
+
                 <div className="d-flex justify-content-start gap-2">
-                  {/* <button
-                    className="btn btn-danger mt-4 mb-2 px-4 btn btn-primary"
-                    onClick={() => handleDelete("heading")}
-                  >
-                    Delete Heading
-                  </button> */}
-                  <div className="d-flex justify-content-start gap-2">
-                    <label className="form-check form-switch">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        checked={showHeading}
-                        onChange={() => setShowHeading(!showHeading)}
-                      />
-                      <span className="form-check-label">
-                        {showHeading ? "Hide Heading" : "Show Heading"}
-                      </span>
-                    </label>
-                  </div>
+                  <label className="form-check form-switch">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={showHeading}
+                      onChange={() => setShowHeading(!showHeading)}
+                    />
+                    <span className="form-check-label">
+                      {showHeading ? "Hide Heading" : "Show Heading"}
+                    </span>
+                  </label>
                 </div>
               </div>
               <div className="d-flex justify-content-start gap-4">
-                {/* <button
-                  className="btn btn-danger mt-2 mb-2 px-4 btn btn-primary"
-                  onClick={() => handleDelete("paragraph1")}
-                >
-                  Delete Paragraph 1
-                </button> */}
                 <div className="d-flex justify-content-start gap-2">
                   <label className="form-check form-switch">
                     <input
@@ -426,17 +422,13 @@ function ForJobseeker({ forJobseekerData, projectName }) {
                 </div>
               </div>
               <h5>Paragraph 1:</h5>
-              <ReactQuill
-                value={paragraph1Content}
-                onChange={setParagraph1Content}
-              />
+              {showParagraph1 && (
+                <ReactQuill
+                  value={paragraph1Content}
+                  onChange={setParagraph1Content}
+                />
+              )}
               <div className="d-flex justify-content-start gap-4">
-                {/* <button
-                  className="btn btn-danger mt-2 mb-2 px-4 btn-primary"
-                  onClick={() => handleDelete("paragraph2")}
-                >
-                  Delete Paragraph 2
-                </button> */}
                 <label className="form-check form-switch">
                   <input
                     className="form-check-input"
@@ -450,26 +442,25 @@ function ForJobseeker({ forJobseekerData, projectName }) {
                 </label>
               </div>
               <h5>Paragraph 2:</h5>
-              <ReactQuill
-                value={paragraph1AContent}
-                onChange={setParagraph1AContent}
-              />
+              {showParagraph2 && (
+                <ReactQuill
+                  value={paragraph1AContent}
+                  onChange={setParagraph1AContent}
+                />
+              )}
               <div className="d-flex justify-content-start gap-2">
                 <label className="mt-3">
                   <h5>Change Image (400px x 800px):</h5>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                    className="form-control"
-                  />
+                  {showImage && (
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      className="form-control"
+                    />
+                  )}
                 </label>
-                {/* <button
-                  className="btn btn-danger mt-4 mb-2 px-4 btn-primary"
-                  onClick={() => handleDelete("image")}
-                >
-                  Delete Image
-                </button> */}
+
                 <label className="form-check form-switch">
                   <input
                     className="form-check-input"
@@ -528,14 +519,18 @@ function ForJobseeker({ forJobseekerData, projectName }) {
                   {heading}
                 </h1>
               )}
-              <div
-                dangerouslySetInnerHTML={{ __html: paragraph1Content }}
-                style={{ fontSize: "clamp(14px, 3vw, 15px)" }}
-              ></div>
-              <div
-                dangerouslySetInnerHTML={{ __html: paragraph1AContent }}
-                style={{ fontSize: "clamp(14px, 3vw, 15px)" }}
-              ></div>
+              {showParagraph1 && (
+                <div
+                  dangerouslySetInnerHTML={{ __html: paragraph1Content }}
+                  style={{ fontSize: "clamp(14px, 3vw, 15px)" }}
+                ></div>
+              )}
+              {showParagraph2 && (
+                <div
+                  dangerouslySetInnerHTML={{ __html: paragraph1AContent }}
+                  style={{ fontSize: "clamp(14px, 3vw, 15px)" }}
+                ></div>
+              )}
               {showImage && (
                 <div className="mx-3 mx-lg-5 d-flex justify-content-center">
                   <img
