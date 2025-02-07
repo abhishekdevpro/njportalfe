@@ -66,12 +66,22 @@ function Profilesidebar({ data }) {
               </li>
               <li>
                 <Link
-                  to={"/user/resume-list"}
+                  to={"https://airesume.novajobs.us/dashboard/resumelist"}
                   className={data === "resume-list" ? "active" : null}
                   onClick={() => setSidebarOpen(false)}
                 >
                   <i className="fa fa-file-text-o" aria-hidden="true"></i>
                   <span>My Resumes</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={"https://airesume.novajobs.us/dashboard/cvletterlist"}
+                  className={data === "resume-list" ? "active" : null}
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <i className="fa fa-file-text-o" aria-hidden="true"></i>
+                  <span>My Cover Letter List</span>
                 </Link>
               </li>
               <li>
@@ -165,7 +175,7 @@ function Profilesidebar({ data }) {
                   <span>Notifications</span>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   to={"/user/jobs-change-password"}
                   className={data === "password" ? "active" : null}
@@ -174,7 +184,7 @@ function Profilesidebar({ data }) {
                   <i className="fa fa-key" aria-hidden="true"></i>
                   <span>Change Password</span>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   to={"/user/login"}

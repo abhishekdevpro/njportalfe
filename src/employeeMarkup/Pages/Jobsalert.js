@@ -113,12 +113,12 @@ function EmployeeJobsalert() {
                             <span>CV Manager</span>
                           </Link>
                         </li>
-                        <li>
+                        {/* <li>
                           <Link to={"/employer/jobs-change-password"}>
                             <i className="fa fa-key" aria-hidden="true"></i>
                             <span>Change Password</span>
                           </Link>
-                        </li>
+                        </li> */}
                         <li>
                           <Link to={"#"}>
                             <i

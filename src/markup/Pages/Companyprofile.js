@@ -198,7 +198,8 @@ function Companyprofile() {
                             className="upload-link"
                             title="update"
                             data-toggle="tooltip"
-                            data-placement="right">
+                            data-placement="right"
+                          >
                             <input type="file" className="update-flie" />
                             <i className="fa fa-pencil"></i>
                           </div>
@@ -220,7 +221,8 @@ function Companyprofile() {
                           <Link to={"/company-post-jobs"}>
                             <i
                               className="fa fa-file-text-o"
-                              aria-hidden="true"></i>
+                              aria-hidden="true"
+                            ></i>
                             <span>Post A Job</span>
                           </Link>
                         </li>
@@ -234,7 +236,8 @@ function Companyprofile() {
                           <Link to={"/company-manage-job"}>
                             <i
                               className="fa fa-briefcase"
-                              aria-hidden="true"></i>
+                              aria-hidden="true"
+                            ></i>
                             <span>Manage jobs</span>
                           </Link>
                         </li>
@@ -242,21 +245,23 @@ function Companyprofile() {
                           <Link to={"/company-resume"}>
                             <i
                               className="fa fa-id-card-o"
-                              aria-hidden="true"></i>
+                              aria-hidden="true"
+                            ></i>
                             <span>Resume</span>
                           </Link>
                         </li>
-                        <li>
+                        {/* <li>
                           <Link to={"/jobs-change-password"}>
                             <i className="fa fa-key" aria-hidden="true"></i>
                             <span>Change Password</span>
                           </Link>
-                        </li>
+                        </li> */}
                         <li>
                           <Link to={"./"}>
                             <i
                               className="fa fa-sign-out"
-                              aria-hidden="true"></i>
+                              aria-hidden="true"
+                            ></i>
                             <span>Log Out</span>
                           </Link>
                         </li>
@@ -272,7 +277,8 @@ function Companyprofile() {
                       </h5>
                       <Link
                         to={"/company-profile"}
-                        className="site-button right-arrow button-sm float-right">
+                        className="site-button right-arrow button-sm float-right"
+                      >
                         Back
                       </Link>
                     </div>
@@ -358,7 +364,8 @@ function Companyprofile() {
                               onChange={(e) => {
                                 setIndustry(e.target.value);
                               }}
-                              value={industry}>
+                              value={industry}
+                            >
                               <option>Web Designer</option>
                               <option>Web Developer1</option>
                             </Form.Control>
@@ -373,7 +380,8 @@ function Companyprofile() {
                               onChange={(e) => {
                                 setDescription(e.target.value);
                               }}
-                              value={description}></textarea>
+                              value={description}
+                            ></textarea>
                           </div>
                         </div>
                       </div>
@@ -406,7 +414,8 @@ function Companyprofile() {
                               value={selectedCountry}
                               onChange={(e) =>
                                 setSelectedCountry(e.target.value)
-                              }>
+                              }
+                            >
                               <option value=""></option>
                               {countries.map((item) => (
                                 <option value={item.id}>{item.name}</option>
@@ -421,9 +430,8 @@ function Companyprofile() {
                             <select
                               className="form-control"
                               value={selectedStates}
-                              onChange={(e) =>
-                                setSelectedState(e.target.value)
-                              }>
+                              onChange={(e) => setSelectedState(e.target.value)}
+                            >
                               <option value=""></option>
                               {states.map((item) => (
                                 <option value={item.id}>{item.name}</option>
@@ -440,7 +448,8 @@ function Companyprofile() {
                               value={selectedCities}
                               onChange={(e) => {
                                 setSelectedCities(e.target.value);
-                              }}>
+                              }}
+                            >
                               <option value=""></option>
 
                               {cities.map((item) => (
@@ -578,7 +587,8 @@ function Companyprofile() {
                           e.preventDefault();
 
                           updateCompanyData();
-                        }}>
+                        }}
+                      >
                         Update Setting
                       </button>
                     </form>

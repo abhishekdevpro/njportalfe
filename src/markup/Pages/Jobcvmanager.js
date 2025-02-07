@@ -115,12 +115,12 @@ function Jobcvmanager() {
                           </Link>
                         </li>
 
-                        <li>
+                        {/* <li>
                           <Link to={"/user/jobs-change-password"}>
                             <i className="fa fa-key" aria-hidden="true"></i>
                             <span>Change Password</span>
                           </Link>
-                        </li>
+                        </li> */}
                         <li>
                           <Link to={""}>
                             <i

@@ -115,16 +115,14 @@ function Footer() {
                             window.scrollTo({ top: 0, behavior: "smooth" })
                           }
                         >
-                          <Link to={"/user/register-2"}>
-                            Create Free account
-                          </Link>
+                          <Link to={"/user/login"}>Create Free account</Link>
                         </li>
                         <li
                           onClick={() =>
                             window.scrollTo({ top: 0, behavior: "smooth" })
                           }
                         >
-                          <Link to={"/user/register-2"}>List profile</Link>
+                          <Link to={"/user/login"}>List profile</Link>
                         </li>
                         <li
                           onClick={() =>
