@@ -101,12 +101,12 @@ function Componypostjobs() {
                             <span>Resume</span>
                           </Link>
                         </li>
-                        <li>
+                        {/* <li>
                           <Link to={"/jobs-change-password"}>
                             <i className="fa fa-key" aria-hidden="true"></i>
                             <span>Change Password</span>
                           </Link>
-                        </li>
+                        </li> */}
                         <li>
                           <Link to={"./"}>
                             <i

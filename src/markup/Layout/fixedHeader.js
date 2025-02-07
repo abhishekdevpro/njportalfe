@@ -9,7 +9,7 @@ import { setProfileImageValue } from "../../store/reducers/jobProfileSlice";
 import { setFixedHeaderValues } from "../../store/reducers/fixedHeaderSlice";
 import { showToastSuccess, showToastError } from "../../utils/toastify";
 import processVid from "../../gif process.mp4";
-import '../../css/fixedheader.css'
+import "../../css/fixedheader.css";
 
 var bnr = require("./../../images/banner/bnr1.jpg");
 
@@ -21,7 +21,7 @@ const FixedHeader = () => {
   const [showVideo, setShowVideo] = useState(true);
   const [showPercentage, setShowPercentage] = useState(false);
   const [percentage, setPercentage] = useState(() => {
-    const storedPercentage = localStorage.getItem('resumePercentage');
+    const storedPercentage = localStorage.getItem("resumePercentage");
     return storedPercentage ? JSON.parse(storedPercentage) : null;
   });
   const navigate = useNavigate();
@@ -335,19 +335,19 @@ const FixedHeader = () => {
                   ) : null}
                   <ul className="clearfix">
                     {fixedHeaderValues.email ? (
-                      <li>
+                      <li className="ms-2">
                         <i className="ti-email"></i>
                         {fixedHeaderValues.email}
                       </li>
                     ) : null}
                     {fixedHeaderValues.phone ? (
-                      <li>
+                      <li className="ms-2">
                         <i className="ti-mobile"></i>
                         {fixedHeaderValues.phone}
                       </li>
                     ) : null}
                     {fixedHeaderValues.country_id ? (
-                      <li>
+                      <li className="ms-2">
                         <i className="ti-location-pin"></i>
                         {getSingleCountry(fixedHeaderValues.country_id)}{" "}
                         {fixedHeaderValues.state_id ? (

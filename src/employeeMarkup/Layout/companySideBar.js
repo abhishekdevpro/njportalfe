@@ -274,7 +274,7 @@ const CompanySideBar = ({ active }) => {
               </Link>
             </li> */}
 
-                <li>
+                {/* <li>
                   <Link
                     to={"/employer/jobs-change-password"}
                     className={
@@ -284,7 +284,7 @@ const CompanySideBar = ({ active }) => {
                     <i className="fa fa-key" aria-hidden="true"></i>
                     <span>Change Password</span>
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to={"/"}>
                     <i className="fa fa-sign-out" aria-hidden="true"></i>
